@@ -1,0 +1,11 @@
+@use '../neon.scss';
+
+$config: ();
+
+@include neon.neonInit($config);
+
+main.app {
+  border: 1px solid white;
+  border-radius: 0.25em;
+  @include neon.neonText();
+}
