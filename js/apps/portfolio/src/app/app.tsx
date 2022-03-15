@@ -1,9 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
-import { Layout } from '@daidarabotchi/portfolio-lib';
 
 export function App() {
-  return <Layout />;
+  return <h1>test</h1>;
 }
 
 export default App;
