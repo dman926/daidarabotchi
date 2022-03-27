@@ -59,4 +59,4 @@ jobs:
           node-version: '14'
       - run: npm install
       - name: Start Nx Agent ${{ matrix.agent }}
-        run: npx nx-cloud start-agent
+        run: npx nx-cloud start-agent 
