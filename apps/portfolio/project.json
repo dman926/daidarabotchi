@@ -1,63 +1,37 @@
 {
   "root": "apps/portfolio",
-  "sourceRoot": "apps/portfolio/src",
+  "sourceRoot": "apps/portfolio",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:webpack",
+      "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "compiler": "babel",
-        "outputPath": "dist/apps/portfolio",
-        "index": "apps/portfolio/src/index.html",
-        "baseHref": "/",
-        "main": "apps/portfolio/src/main.tsx",
-        "polyfills": "apps/portfolio/src/polyfills.ts",
-        "tsConfig": "apps/portfolio/tsconfig.app.json",
-        "assets": [
-          "apps/portfolio/src/favicon.ico",
-          "apps/portfolio/src/assets"
-        ],
-        "styles": ["apps/portfolio/src/styles.scss"],
-        "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "root": "apps/portfolio",
+        "outputPath": "dist/apps/portfolio"
       },
       "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/portfolio/src/environments/environment.ts",
-              "with": "apps/portfolio/src/environments/environment.prod.ts"
-            }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
-        }
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/next:server",
       "options": {
         "buildTarget": "portfolio:build",
-        "hmr": true
+        "dev": true
       },
       "configurations": {
         "production": {
           "buildTarget": "portfolio:build:production",
-          "hmr": false
+          "dev": false
         }
       }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+    "export": {
+      "executor": "@nrwl/next:export",
       "options": {
-        "lintFilePatterns": ["apps/portfolio/**/*.{ts,tsx,js,jsx}"]
+        "buildTarget": "portfolio:build:production"
       }
     },
     "test": {
@@ -66,6 +40,13 @@
       "options": {
         "jestConfig": "apps/portfolio/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/portfolio/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
