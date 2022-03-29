@@ -1,7 +1,6 @@
 import type { MetaFunction, LoaderFunction } from 'remix';
 import { useLoaderData, json, Link } from 'remix';
 import { server } from '~/config';
-import Header from '~/components/resume/header/header';
 
 type IndexData = {
   resources: Array<{ name: string; url: string }>;
@@ -39,7 +38,7 @@ export default function Index() {
 
   return (
     <div className="remix__page">
-      <Header />
+      
     </div>
   );
 }
