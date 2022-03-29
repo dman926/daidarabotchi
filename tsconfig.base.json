@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@daidarabotchi/portfolio-lib": ["libs/portfolio-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
