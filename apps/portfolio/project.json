@@ -1,6 +1,6 @@
 {
-  "root": "apps/portfolio-next",
-  "sourceRoot": "apps/portfolio-next",
+  "root": "apps/portfolio",
+  "sourceRoot": "apps/portfolio",
   "projectType": "application",
   "targets": {
     "build": {
@@ -8,8 +8,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/portfolio-next",
-        "outputPath": "dist/apps/portfolio-next"
+        "root": "apps/portfolio",
+        "outputPath": "dist/apps/portfolio"
       },
       "configurations": {
         "production": {}
@@ -18,12 +18,12 @@
     "serve": {
       "executor": "@nrwl/next:server",
       "options": {
-        "buildTarget": "portfolio-next:build",
+        "buildTarget": "portfolio:build",
         "dev": true
       },
       "configurations": {
         "production": {
-          "buildTarget": "portfolio-next:build:production",
+          "buildTarget": "portfolio:build:production",
           "dev": false
         }
       }
@@ -31,14 +31,14 @@
     "export": {
       "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "portfolio-next:build:production"
+        "buildTarget": "portfolio:build:production"
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/portfolio-next"],
+      "outputs": ["coverage/apps/portfolio"],
       "options": {
-        "jestConfig": "apps/portfolio-next/jest.config.js",
+        "jestConfig": "apps/portfolio/jest.config.js",
         "passWithNoTests": true
       }
     },
@@ -46,7 +46,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/portfolio-next/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/portfolio/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

@@ -1,0 +1,23 @@
+{
+  "bottomText": "",
+  "socials": [
+    {
+      "link": "emailto:dj@dstelmach.com",
+      "handle": "DJ@DSTELMACH.COM",
+      "iconURI": "",
+      "iconAlt": "EMAIL ME AT DJ@DSTELMACH.COM"
+    },
+    {
+      "link": "https://github.com/dman926",
+      "handle": "GITHUB",
+      "iconURI": "",
+      "iconAlt": "CHECK OUT MY GITHUB"
+    },
+    {
+      "link": "https://www.linkedin.com/in/dennis-james-stelmach-205971121/",
+      "handle": "LINKEDIN",
+      "iconURI": "",
+      "iconAlt": "CHECK OUT MY LINKED IN"
+    }
+  ]
+}
