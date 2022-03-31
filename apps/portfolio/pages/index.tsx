@@ -56,13 +56,14 @@ const Index = ({
             const contentData = await (await fetch(pointer)).json();
             setContent([...content, contentData])
           } catch (error) {
-            setContent([...content, {error}])
+            // The idea would be to insert an error in here
+            // setContent([...content])
           }
         };
         fetchData(Object.keys(block)[0], Object.values(block)[0]);
       });
     }
-  }, [ok]);
+  }, [content, ok]);
 
   if (ok) {
     return <Resume head={head} foot={foot} content={fetchedContent} />;
