@@ -1,8 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "portfolio-lib": "libs/portfolio-lib",
-    "portfolio-next": "apps/portfolio-next",
-    "portfolio-remix": "apps/portfolio-remix"
+    "portfolio": "apps/portfolio",
+    "portfolio-e2e": "apps/portfolio-e2e",
+    "portfolio-lib": "libs/portfolio-lib"
   }
 }
