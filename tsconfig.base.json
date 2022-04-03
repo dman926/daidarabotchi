@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@daidarabotchi/material-ui": ["libs/material-ui/index.ts"],
       "@daidarabotchi/portfolio-lib": ["libs/portfolio-lib/src/index.ts"],
       "@daidarabotchi/portfolio-lib/interfaces": ["libs/portfolio-lib/src/interfaces/index.ts"]
     }
