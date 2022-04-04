@@ -1,0 +1,43 @@
+{
+  "root": "libs/werks-demo-lib",
+  "sourceRoot": "libs/werks-demo-lib/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/werks-demo-lib",
+        "tsConfig": "libs/werks-demo-lib/tsconfig.lib.json",
+        "project": "libs/werks-demo-lib/package.json",
+        "entryFile": "libs/werks-demo-lib/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/werks-demo-lib/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/werks-demo-lib/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/werks-demo-lib"],
+      "options": {
+        "jestConfig": "libs/werks-demo-lib/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

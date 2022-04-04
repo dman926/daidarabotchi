@@ -19,7 +19,8 @@
       "@daidarabotchi/portfolio-lib": ["libs/portfolio-lib/src/index.ts"],
       "@daidarabotchi/portfolio-lib/interfaces": [
         "libs/portfolio-lib/src/interfaces/index.ts"
-      ]
+      ],
+      "@daidarabotchi/werks-demo-lib": ["libs/werks-demo-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
