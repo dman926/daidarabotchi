@@ -10,7 +10,7 @@ export function Footer(props: FooterProps) {
   return (
     <AppBar position='static'>
       <Toolbar>
-        <Grid container justifyContent="center" alignItems="center" spacing={3}>
+        <Grid container spacing={3}>
           <Grid item xs={4}>
             NAV ITEMS
           </Grid>
