@@ -20,7 +20,7 @@
       "@daidarabotchi/portfolio-lib/interfaces": [
         "libs/portfolio-lib/src/interfaces/index.ts"
       ],
-      "@daidarabotchi/werks-demo-lib": ["libs/werks-demo-lib/src/index.ts"]
+      "@werks/werks-demo-lib": ["libs/werks-demo-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
