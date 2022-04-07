@@ -2,9 +2,7 @@ import MuiIconButton, { IconButtonProps as MuiIconButtonProps } from '@mui/mater
 import './icon-button.module.scss';
 
 /* eslint-disable-next-line */
-export interface IconButtonProps extends MuiIconButtonProps {
-  ref?: any; // Getting error while testing
-}
+export interface IconButtonProps extends MuiIconButtonProps {}
 
 export function IconButton(props: IconButtonProps) {
   return <MuiIconButton {...props} />;

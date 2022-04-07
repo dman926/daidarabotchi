@@ -7,7 +7,7 @@ import './bottom-navigation.module.scss';
 export interface BottomNavigationProps extends MuiBottomNavigationProps {}
 
 export function BottomNavigation(props: BottomNavigationProps) {
-  return <MuiBottomNavigation {...props} />;
+  return <MuiBottomNavigation data-testid="mui-bottom-navigation" {...props} />;
 }
 
 export default BottomNavigation;

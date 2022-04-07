@@ -5,7 +5,7 @@ import './tabs.module.scss';
 export interface TabsProps extends MuiTabsProps {}
 
 export function Tabs(props: TabsProps) {
-  return <MuiTabs {...props} />;
+  return <MuiTabs data-testid="mui-tabs" {...props} />;
 }
 
 export default Tabs;

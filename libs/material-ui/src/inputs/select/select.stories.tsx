@@ -17,7 +17,7 @@ const Template: Story<SelectProps> = (args) => {
       <Select
         {...{
           ...args,
-          value,
+          value: value || '',
           onChange: (event, child) => setValue(event.target.value as (number | null)),
         }}
       >

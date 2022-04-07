@@ -7,7 +7,7 @@ import './tooltip.module.scss';
 export interface TooltipProps extends MuiTooltipProps {}
 
 export function Tooltip(props: TooltipProps) {
-  return <MuiTooltip {...props} />;
+  return <MuiTooltip data-testid="mui-tooltip" {...props} />;
 }
 
 export default Tooltip;

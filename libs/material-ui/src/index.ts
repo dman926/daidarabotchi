@@ -110,7 +110,6 @@ export * from './inputs/button-group/button-group';
 export * from './inputs/autocomplete/autocomplete';
 
 export * from './inputs/button/button';
-export * from './inputs/button/button-base/button-base';
 export * from './inputs/button/icon-button/icon-button';
 
 export * from './surfaces/accordion/accordion';
@@ -133,3 +132,5 @@ export * from './surfaces/paper/paper';
 export * from './navigation/menu/menu';
 export * from './navigation/menu/menu-item/menu-item';
 export * from './navigation/menu/menu-list/menu-list';
+
+export * from './data-grid/data-grid';

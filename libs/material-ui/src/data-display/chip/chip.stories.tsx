@@ -90,7 +90,7 @@ const ChipArrayTemplate: Story<ChipProps> = (args) =>
     }}
     component="ul"
   >
-    {languageList.map((data: any) => {
+    {languageList.map((data) => {
       return (
         <ListItem key={data.key}>
           <Chip

@@ -1,0 +1,34 @@
+{
+  "root": "apps/material-ui-e2e",
+  "sourceRoot": "apps/material-ui-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "baseUrl": "http://localhost:4400/",
+        "cypressConfig": "apps/material-ui-e2e/cypress.json",
+        "devServerTarget": "material-ui:storybook",
+        "jestConfig": "apps/material-ui-e2e/jest.config.js",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "devServerTarget": "material-ui:storybook:ci"
+        },
+        "production": {
+          "devServerTarget": "material-ui:storybook:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/material-ui-e2e/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["material-ui"]
+}

@@ -1,4 +1,6 @@
-import MuiCheckbox, { CheckboxProps as MuiCheckboxProps} from "@mui/material/Checkbox"
+import MuiCheckbox, {
+  CheckboxProps as MuiCheckboxProps,
+} from '@mui/material/Checkbox';
 
 import './checkbox.module.scss';
 
@@ -6,7 +8,7 @@ import './checkbox.module.scss';
 export interface CheckboxProps extends MuiCheckboxProps {}
 
 export function Checkbox(props: CheckboxProps) {
-  return <MuiCheckbox />;
+  return <MuiCheckbox data-testid="mui-checkbox" />;
 }
 
 export default Checkbox;

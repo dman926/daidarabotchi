@@ -1,12 +1,16 @@
 import { Story, Meta } from '@storybook/react';
-import { useState } from 'react';
+import { ReactNode, SyntheticEvent, useState } from 'react';
 import { Typography } from '../../data-display/typography/typography';
 import { Box } from '../../layout/box/box';
 import { Tab } from './tab/tab';
 import { Tabs, TabsProps } from './tabs';
 
-const TabPanel = (props: any) => {
-  const { children, value, index, ...other } = props;
+const TabPanel = (props: {
+  children: ReactNode;
+  value: number;
+  index: number;
+}) => {
+  const { children, value, index } = props;
 
   return (
     <div
@@ -14,7 +18,6 @@ const TabPanel = (props: any) => {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
@@ -40,7 +43,7 @@ export default {
 const Template: Story<TabsProps> = (args) => {
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: any, newValue: any) => {
+  const handleChange = (event: SyntheticEvent<Element, Event>, newValue: number) => {
     setValue(newValue);
   };
 

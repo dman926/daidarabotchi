@@ -7,7 +7,7 @@ import './stepper.module.scss';
 export interface StepperProps extends MuiStepperProps {}
 
 export function Stepper(props: StepperProps) {
-  return <MuiStepper {...props} />;
+  return <MuiStepper data-testid="mui-stepper" {...props} />;
 }
 
 export default Stepper;

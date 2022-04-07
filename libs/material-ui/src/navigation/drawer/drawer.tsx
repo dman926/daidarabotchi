@@ -5,7 +5,7 @@ import './drawer.module.scss';
 export interface DrawerProps extends MuiDrawerProps {}
 
 export function Drawer(props: DrawerProps) {
-  return <MuiDrawer {...props} />;
+  return <MuiDrawer data-testid="mui-drawer" {...props} />;
 }
 
 export default Drawer;

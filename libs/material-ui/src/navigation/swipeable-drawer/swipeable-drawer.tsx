@@ -7,7 +7,7 @@ import './swipeable-drawer.module.scss';
 export interface SwipeableDrawerProps extends MuiSwipeableDrawerProps {}
 
 export function SwipeableDrawer(props: SwipeableDrawerProps) {
-  return <MuiSwipeableDrawer {...props} />;
+  return <MuiSwipeableDrawer data-testid="mui-swipeable-drawer" {...props} />;
 }
 
 export default SwipeableDrawer;

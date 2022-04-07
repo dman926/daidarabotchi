@@ -5,7 +5,7 @@ import './avatar.module.scss';
 export interface AvatarProps extends MuiAvatarProps {}
 
 export function Avatar(props: AvatarProps) {
-  return <MuiAvatar { ...props } />;
+  return <MuiAvatar data-testid="mui-avatar" {...props} />;
 }
 
 export default Avatar;

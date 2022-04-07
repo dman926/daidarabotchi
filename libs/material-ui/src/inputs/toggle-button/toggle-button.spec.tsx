@@ -4,7 +4,7 @@ import ToggleButton from './toggle-button';
 
 describe('ToggleButton', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ToggleButton />);
+    const { baseElement } = render(<ToggleButton value='' />);
     expect(baseElement).toBeTruthy();
   });
 });

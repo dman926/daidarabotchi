@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import { Grid, GridProps } from './grid';
 import { Paper } from '../../surfaces/paper/paper';
-import { styled, Theme } from '@mui/material'
+import { styled } from '@mui/material'
 
 export default {
   component: Grid,

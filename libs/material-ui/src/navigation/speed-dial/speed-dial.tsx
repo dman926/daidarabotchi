@@ -7,7 +7,7 @@ import './speed-dial.module.scss';
 export interface SpeedDialProps extends MuiSpeedDialProps {}
 
 export function SpeedDial(props: SpeedDialProps) {
-  return <MuiSpeedDial {...props} />;
+  return <MuiSpeedDial data-testid="mui-speed-dial" {...props} />;
 }
 
 export default SpeedDial;

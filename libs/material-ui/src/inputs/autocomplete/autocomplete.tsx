@@ -25,7 +25,7 @@ export function Autocomplete<
   DisableClearable extends boolean | undefined = undefined,
   FreeSolo extends boolean | undefined = undefined
 >(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
-  return <MuiAutocomplete {...props} />;
+  return <MuiAutocomplete data-testid="mui-autocomplete" {...props} />;
 }
 
 export default Autocomplete;

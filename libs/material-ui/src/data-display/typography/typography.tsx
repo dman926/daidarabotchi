@@ -1,4 +1,6 @@
-import MuiTypography, { TypographyProps as MuiTypographyProps} from '@mui/material/Typography';
+import MuiTypography, {
+  TypographyProps as MuiTypographyProps,
+} from '@mui/material/Typography';
 import { ElementType } from 'react';
 import './typography.module.scss';
 
@@ -8,7 +10,7 @@ export interface TypographyProps extends MuiTypographyProps {
 }
 
 export function Typography(props: TypographyProps) {
-  return <MuiTypography {...props} />;
+  return <MuiTypography data-testid="mui-typography" {...props} />;
 }
 
 export default Typography;
