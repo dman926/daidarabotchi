@@ -1,12 +1,15 @@
-import MuiFloatingActionButton, { FabProps as MuiFloatingActionButtonProps} from "@mui/material/Fab"
+import MuiFloatingActionButton, {
+  FabProps as MuiFloatingActionButtonProps,
+} from '@mui/material/Fab';
 
 import './floating-action-button.module.scss';
 
 /* eslint-disable-next-line */
-export interface FloatingActionButtonProps extends MuiFloatingActionButtonProps {}
+export interface FloatingActionButtonProps
+  extends MuiFloatingActionButtonProps {}
 
 export function FloatingActionButton(props: FloatingActionButtonProps) {
-  return <MuiFloatingActionButton />;
+  return <MuiFloatingActionButton data-testid="mui-floating-button" />;
 }
 
 export default FloatingActionButton;

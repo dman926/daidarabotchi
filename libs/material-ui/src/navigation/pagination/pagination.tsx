@@ -7,7 +7,7 @@ import './pagination.module.scss';
 export interface PaginationProps extends MuiPaginationProps {}
 
 export function Pagination(props: PaginationProps) {
-  return <MuiPagination {...props} />;
+  return <MuiPagination data-testid="mui-pagination" {...props} />;
 }
 
 export default Pagination;

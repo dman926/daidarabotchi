@@ -7,7 +7,7 @@ import './breadcrumbs.module.scss';
 export interface BreadcrumbsProps extends MuiBreadcrumbsProps {}
 
 export function Breadcrumbs(props: BreadcrumbsProps) {
-  return <MuiBreadcrumbs {...props} />;
+  return <MuiBreadcrumbs data-testid="mui-breadcrumbs" {...props} />;
 }
 
 export default Breadcrumbs;

@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "material-ui": "libs/material-ui",
+    "material-ui-e2e": "apps/material-ui-e2e",
     "portfolio": "apps/portfolio",
     "portfolio-e2e": "apps/portfolio-e2e",
     "portfolio-lib": "libs/portfolio-lib",

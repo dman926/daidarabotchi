@@ -6,7 +6,7 @@ import './table-container.module.scss';
 
 /* eslint-disable-next-line */
 export interface TableContainerProps extends MuiTableContainerProps {
-  component: ElementType;
+  component?: ElementType;
 }
 
 export function TableContainer(props: TableContainerProps) {

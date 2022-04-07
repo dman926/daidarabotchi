@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import ButtonBase from './button-base';
+import DataGrid from './data-grid';
 
-describe('ButtonBase', () => {
+describe('DataGrid', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ButtonBase />);
+    const { baseElement } = render(<DataGrid rows={[]} columns={[]} />);
     expect(baseElement).toBeTruthy();
   });
 });

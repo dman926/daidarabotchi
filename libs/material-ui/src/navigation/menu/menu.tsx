@@ -5,7 +5,7 @@ import './menu.module.scss';
 export interface MenuProps extends MuiMenuProps {}
 
 export function Menu(props: MenuProps) {
-  return <MuiMenu {...props} />;
+  return <MuiMenu data-testid="mui-menu" {...props} />;
 }
 
 export default Menu;

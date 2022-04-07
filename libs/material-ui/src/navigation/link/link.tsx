@@ -5,7 +5,7 @@ import './link.module.scss';
 export interface LinkProps extends MuiLinkProps {}
 
 export function Link(props: LinkProps) {
-  return <MuiLink {...props} />;
+  return <MuiLink data-testid="mui-link" {...props} />;
 }
 
 export default Link;
