@@ -4,7 +4,7 @@ import Avatar from '../avatar/avatar';
 import SendIcon from '@mui/icons-material/Send';
 import { styled } from '@mui/system';
 import Paper from '../../surfaces/paper/paper';
-import userImage from '../../../assets/images/craig.jpg';
+import userImage from '../../assets/images/craig.jpg';
 
 export default {
   component: Chip,
@@ -46,6 +46,7 @@ Clickable.parameters = { controls: { exclude: ['avatar', 'children', 'deleteIcon
 export const Deletable = BasicTemplate.bind({});
 Deletable.args = {
   label: 'Deletable Chip',
+  onDelete: () => {}
 };
 
 // allows to exclude a list of controls (props) in storybook,

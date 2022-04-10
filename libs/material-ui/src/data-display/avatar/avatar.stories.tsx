@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react';
 import { Avatar, AvatarProps } from './avatar';
 import { Badge } from '../badge/badge';
 import { styled } from '@mui/system';
-import userImage from '../../../assets/images/christina.jpg';
+import userImage from '../../assets/images/christina.jpg';
 
 // modified from the Material UI demo found here: https://codesandbox.io/s/komgtd?file=/demo.js
 const StyledBadge = styled(Badge)(({ theme }) => ({

@@ -30,7 +30,7 @@ export * from './navigation/tabs/tab/tab';
 export * from './navigation/speed-dial/speed-dial-icon/speed-dial-icon';
 export * from './navigation/speed-dial/speed-dial-action/speed-dial-action';
 export * from './navigation/pagination/pagination-item/pagination-item';
-export * from './navigation/swipeable-drawer/swipeable-drawer';
+export * from './navigation/drawer/swipeable-drawer/swipeable-drawer';
 export * from './navigation/bottom-navigation/bottom-navigation-action/bottom-navigation-action';
 
 export * from './layout/image-list/image-list';
@@ -87,7 +87,7 @@ export * from './data-display/badge/badge';
 
 export * from './data-display/avatar/avatar';
 
-export * from './inputs/toggle-button/toggle-button';
+export * from './inputs/toggle-button-group/toggle-button/toggle-button';
 
 export * from './inputs/text-field/text-field';
 

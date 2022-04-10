@@ -9,8 +9,8 @@ import Avatar from '../avatar/avatar';
 import ListItemAvatar from './list-item-avatar/list-item-avatar';
 import IconButton from '../../inputs/button/icon-button/icon-button';
 import SendIcon from '@mui/icons-material/Send';
-import user1Image from '../../../assets/images/christina.jpg';
-import user2Image from '../../../assets/images/craig.jpg';
+import user1Image from '../../assets/images/christina.jpg';
+import user2Image from '../../assets/images/craig.jpg';
 
 
 export default {

@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react';
+import Typography from '../../data-display/typography/typography';
 import { Box, BoxProps } from './box';
 
 export default {
@@ -13,10 +14,15 @@ Primary.args = {
   sx: {
     width: 300,
     height: 300,
-    backgroundColor: 'primary.dark',
+    display: 'grid',
+    placeContent: 'center',
+    border: '1px solid red',
+    backgroundColor: 'transparent',
+    transition: 'backgroundColor 0.5s',
     '&:hover': {
       backgroundColor: 'primary.main',
       opacity: [0.9, 0.8, 0.7],
     },
   },
+  children: <Typography>Content Area</Typography>
 };
