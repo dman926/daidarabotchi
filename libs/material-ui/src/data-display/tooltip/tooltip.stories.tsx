@@ -36,6 +36,6 @@ const Template: Story<TooltipProps> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   arrow: true,
-  title: 'Delete',
+  title: 'I Am A Tooltip!',
   placement: 'bottom',
 };

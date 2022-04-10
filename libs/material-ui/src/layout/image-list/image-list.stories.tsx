@@ -3,17 +3,12 @@ import { ImageList, ImageListProps } from './image-list';
 import ImageListItem from './image-list-item/image-list-item';
 import ImageListItemBar from './image-list-item-bar/image-list-item-bar';
 
-const data = [
-  'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-  'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-  'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-  'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-  'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-  'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-  'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-  'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-  'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-];
+import Lab1 from '../../assets/images/stock images/chokniti.jpg';
+import Lab2 from '../../assets/images/stock images/polina-tankilevitch.jpg';
+import Lab3 from '../../assets/images/stock images/pixabay.jpg';
+import Lab4 from '../../assets/images/stock images/martin-lopez.jpg';
+
+const data = [Lab1, Lab2, Lab3, Lab4];
 
 export default {
   component: ImageList,
@@ -22,9 +17,9 @@ export default {
 
 const Template: Story<ImageListProps> = (args) => (
   <ImageList {...args}>
-    {data.map((url, i) => (
+    {data.map((image, i) => (
       <ImageListItem key={i}>
-        <img src={url} alt="" loading="lazy" />
+        <img src={image} alt="" loading="lazy" />
         <ImageListItemBar title={`Image ${i}`} subtitle="I am a subtitle" />
       </ImageListItem>
     ))}

@@ -10,7 +10,7 @@ module.exports = {
     '../src/**/*.stories.mdx',
     '../src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: [...rootMain.addons, '@nrwl/react/plugins/storybook'],
+  addons: ['@storybook/addon-docs', ...rootMain.addons, '@nrwl/react/plugins/storybook', '@storybook/addon-a11y', '@react-theming/storybook-addon'],
 
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js

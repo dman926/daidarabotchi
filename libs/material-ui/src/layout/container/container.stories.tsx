@@ -16,8 +16,8 @@ export default {
 } as Meta;
 
 const Template: Story<ContainerProps> = (args) => (
-  <Container {...args}>
-    <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} />
+  <Container {...args} sx={{ border: '1px solid red' }}>
+    <Box sx={{ bgcolor: '#cfe8fc', width: '4em', height: '4em' }} />
   </Container>
 );
 

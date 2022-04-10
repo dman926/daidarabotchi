@@ -8,26 +8,7 @@ import { useState } from 'react';
 export interface ToggleBtnGroupParams extends ToggleButtonGroupProps {}
 
 export function ToggleButtonGroup(props: ToggleBtnGroupParams) {
-  // TODO: Continue improvements to display buttons as selected when appropriate.
-  const [alignment, setAlignment] = useState<string | null>('left');
-  const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null
-  ) => {
-    debugger;
-    setAlignment(newAlignment);
-  };
-  return (
-    <MuiToggleButtonGroup
-      data-testid="mui-toggle-btn-group"
-      {...props}
-      exclusive
-      onChange={handleAlignment}
-      value={alignment}
-    >
-      {props.children}
-    </MuiToggleButtonGroup>
-  );
+  return <MuiToggleButtonGroup data-testid="mui-toggle-btn-group" {...props} />;
 }
 
 export default ToggleButtonGroup;
