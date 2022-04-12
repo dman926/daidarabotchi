@@ -17,9 +17,9 @@ declare namespace Cypress {
 }
 //
 // -- This is a parent command --
-Cypress.Commands.add('getBySel', (testid) => {
-  return cy.get(`[data-testid="${testid}"]`);
-});
+Cypress.Commands.add('getBySel', (testid) =>
+  cy.get(`[data-testid="${testid}"]`)
+);
 //
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })

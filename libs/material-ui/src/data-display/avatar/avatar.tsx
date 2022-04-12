@@ -5,6 +5,7 @@ import './avatar.module.scss';
 export interface AvatarProps extends MuiAvatarProps {}
 
 export function Avatar(props: AvatarProps) {
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <MuiAvatar data-testid="mui-avatar" {...props} />;
 }
 

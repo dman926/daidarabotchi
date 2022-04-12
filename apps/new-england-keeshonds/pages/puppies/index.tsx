@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Puppies = () => {
+function Puppies() {
   return <div>Puppies</div>;
-};
+}
 
 export default Puppies;
