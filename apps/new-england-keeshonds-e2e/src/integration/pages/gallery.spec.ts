@@ -1,3 +1,3 @@
-describe('App', () => {
+describe('Gallery', () => {
   beforeEach(() => cy.visit('/'));
 });
