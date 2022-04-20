@@ -1,0 +1,79 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Paper } from './paper';
+
+<Meta title="Material-UI/Surfaces/Paper" component={Paper} />
+
+export const Template = (args) => (
+  <Paper {...args}>CONTENT CONTENT CONTENT</Paper>
+);
+
+export const MultiPaperTemplate = (args) => (
+  <Paper {...args}>
+    <Paper sx={{ m: 4, p: 2 }} elevation={2}>
+      Elevation 2
+    </Paper>
+    <Paper sx={{ m: 4, p: 2 }} elevation={8}>
+      Elevation 8
+    </Paper>
+    <Paper sx={{ m: 4, p: 2 }} elevation={14}>
+      Elevation 14
+    </Paper>
+    <Paper sx={{ m: 4, p: 2 }} elevation={20}>
+      Elevation 20
+    </Paper>
+  </Paper>
+);
+
+# Paper
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      classes: undefined,
+      elevation: undefined,
+      square: undefined,
+      sx: { p: 2 },
+      variant: undefined,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Outlined"
+    args={{
+      classes: undefined,
+      elevation: undefined,
+      square: undefined,
+      sx: { p: 2 },
+      variant: 'outlined',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Square"
+    args={{
+      classes: undefined,
+      elevation: 16,
+      square: true,
+      sx: { p: 2 },
+      variant: undefined,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Elevation"
+    args={{
+      classes: undefined,
+      square: undefined,
+      sx: { p: 4 },
+      elevation: 6,
+    }}
+  >
+    {MultiPaperTemplate.bind({})}
+  </Story>
+</Canvas>

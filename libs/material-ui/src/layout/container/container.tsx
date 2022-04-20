@@ -7,7 +7,7 @@ import './container.module.scss';
 export interface ContainerProps extends MuiContainerProps {}
 
 export function Container(props: ContainerProps) {
-  return <MuiContainer {...props} />;
+  return <MuiContainer data-testid="mui-container" {...props} />;
 }
 
 export default Container;

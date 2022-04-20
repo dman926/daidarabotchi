@@ -1,0 +1,160 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { List } from './list';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import FolderIcon from '@mui/icons-material/Folder';
+import Avatar from '../avatar/avatar';
+import ListItemAvatar from './list-item-avatar/list-item-avatar';
+import IconButton from '../../inputs/button/icon-button/icon-button';
+import SendIcon from '@mui/icons-material/Send';
+import user1Image from '../../../assets/images/christina.jpg';
+import user2Image from '../../../assets/images/craig.jpg';
+
+<Meta title="Material-UI/Data Display/List" component={List} />
+
+export const basicListItems = (
+  <>
+    <ListItemButton>
+      <ListItemText primary="Item one" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemText primary="Item two" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemText primary="Item three" />
+    </ListItemButton>
+  </>
+);
+
+export const basicListWithSecondaryText = (
+  <>
+    <ListItemButton>
+      <ListItemText primary="Item one" secondary="Secondary text" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemText primary="Item two" secondary="Secondary text" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemText primary="Item three" secondary="Secondary text" />
+    </ListItemButton>
+  </>
+);
+
+export const listItemsWithIcons = (
+  <>
+    <ListItemButton>
+      <ListItemIcon>
+        <FolderIcon />
+      </ListItemIcon>
+      <ListItemText primary="Item one" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <FolderIcon />
+      </ListItemIcon>
+      <ListItemText primary="Item two" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <FolderIcon />
+      </ListItemIcon>
+      <ListItemText primary="Item three" />
+    </ListItemButton>
+  </>
+);
+
+export const listAvatarsWithText = (
+  <>
+    <ListItemButton>
+      <ListItemAvatar>
+        <Avatar alt="Tabitha Hawkins" src={user1Image} />
+      </ListItemAvatar>
+      <ListItemText primary="Item one" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemAvatar>
+        <Avatar alt="Terry Brookfield" src={user2Image} />
+      </ListItemAvatar>
+      <ListItemText primary="Item two" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemAvatar>
+        <Avatar alt="Tabitha Hawkins" src={user1Image} />
+      </ListItemAvatar>
+      <ListItemText primary="Item three" />
+    </ListItemButton>
+  </>
+);
+
+export const listAvatarsWithIcons = (
+  <>
+    <ListItem
+      secondaryAction={
+        <IconButton edge="end" aria-label="delete">
+          <SendIcon />
+        </IconButton>
+      }
+    >
+      <ListItemAvatar>
+        <Avatar alt="Tabitha Hawkins" src={user1Image} />
+      </ListItemAvatar>
+      <ListItemText primary="Item one" />
+    </ListItem>
+    <ListItem
+      secondaryAction={
+        <IconButton edge="end" aria-label="delete">
+          <SendIcon />
+        </IconButton>
+      }
+    >
+      <ListItemAvatar>
+        <Avatar alt="Terry Brookfield" src={user2Image} />
+      </ListItemAvatar>
+      <ListItemText primary="Item two" />
+    </ListItem>
+    <ListItem
+      secondaryAction={
+        <IconButton edge="end" aria-label="delete">
+          <SendIcon />
+        </IconButton>
+      }
+    >
+      <ListItemAvatar>
+        <Avatar alt="Tabitha Hawkins" src={user1Image} />
+      </ListItemAvatar>
+      <ListItemText primary="Item three" />
+    </ListItem>
+  </>
+);
+
+export const Template = (args) => <List {...args} />;
+
+# List
+
+Description Here
+
+<Canvas>
+  <Story name="Basic" args={{ children: basicListItems }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="Dense" args={{ children: basicListItems, dense: true }}>
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="With Secondary Text"
+    args={{ children: basicListWithSecondaryText }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story name="Icon And Text" args={{ children: listItemsWithIcons }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="Avatar And Text" args={{ children: listAvatarsWithText }}>
+    {Template.bind({})}
+  </Story>
+  <Story name="Avatar And Icons" args={{ children: listAvatarsWithIcons }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

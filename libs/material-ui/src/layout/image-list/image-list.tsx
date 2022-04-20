@@ -7,7 +7,7 @@ import './image-list.module.scss';
 export interface ImageListProps extends MuiImageListProps {}
 
 export function ImageList(props: ImageListProps) {
-  return <MuiImageList {...props} />;
+  return <MuiImageList data-testid="mui-image-list" {...props} />;
 }
 
 export default ImageList;

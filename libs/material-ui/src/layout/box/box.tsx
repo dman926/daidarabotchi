@@ -5,7 +5,7 @@ import './box.module.scss';
 export type BoxProps = MuiBoxProps;
 
 export function Box(props: BoxProps) {
-  return <MuiBox {...props} />;
+  return <MuiBox data-testid="mui-box" {...props} />;
 }
 
 export default Box;

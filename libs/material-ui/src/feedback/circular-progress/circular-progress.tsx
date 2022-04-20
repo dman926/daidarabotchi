@@ -1,4 +1,6 @@
-import MuiCircularProgress, { CircularProgressProps as MuiCircularProgressProps} from "@mui/material/CircularProgress"
+import MuiCircularProgress, {
+  CircularProgressProps as MuiCircularProgressProps,
+} from '@mui/material/CircularProgress';
 
 import './circular-progress.module.scss';
 
@@ -6,7 +8,7 @@ import './circular-progress.module.scss';
 export interface CircularProgressProps extends MuiCircularProgressProps {}
 
 export function CircularProgress(props: CircularProgressProps) {
-  return <MuiCircularProgress />;
+  return <MuiCircularProgress data-testid="mui-circular-progress" {...props} />;
 }
 
 export default CircularProgress;

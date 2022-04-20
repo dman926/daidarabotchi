@@ -5,7 +5,7 @@ import './card.module.scss';
 export interface CardProps extends MuiCardProps {}
 
 export function Card(props: CardProps) {
-  return <MuiCard {...props} />;
+  return <MuiCard data-testid="mui-card" {...props} />;
 }
 
 export default Card;

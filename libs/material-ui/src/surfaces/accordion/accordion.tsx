@@ -7,7 +7,7 @@ import './accordion.module.scss';
 export interface AccordionProps extends MuiAccordionProps {}
 
 export function Accordion(props: AccordionProps) {
-  return <MuiAccordion {...props} />;
+  return <MuiAccordion data-testid="mui-accordion" {...props} />;
 }
 
 export default Accordion;
