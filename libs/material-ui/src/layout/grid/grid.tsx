@@ -5,7 +5,7 @@ import './grid.module.scss';
 export interface GridProps extends MuiGridProps {}
 
 export function Grid(props: GridProps) {
-  return <MuiGrid {...props} />;
+  return <MuiGrid data-testid="mui-grid" {...props} />;
 }
 
 export default Grid;

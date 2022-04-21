@@ -1,0 +1,22 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Pagination } from './pagination';
+
+<Meta title="Material-UI/Navigation/Pagination" component={Pagination} />
+
+export const Template = (args) => <Pagination {...args} />;
+
+#
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      count: 10,
+      color: 'primary',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

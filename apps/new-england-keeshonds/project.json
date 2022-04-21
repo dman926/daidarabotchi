@@ -1,0 +1,54 @@
+{
+  "root": "apps/new-england-keeshonds",
+  "sourceRoot": "apps/new-england-keeshonds",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/new-england-keeshonds",
+        "outputPath": "dist/apps/new-england-keeshonds"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "new-england-keeshonds:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "new-england-keeshonds:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "new-england-keeshonds:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/new-england-keeshonds"],
+      "options": {
+        "jestConfig": "apps/new-england-keeshonds/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/new-england-keeshonds/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

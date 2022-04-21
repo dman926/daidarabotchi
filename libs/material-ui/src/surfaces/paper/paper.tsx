@@ -8,7 +8,7 @@ export interface PaperProps extends MuiPaperProps {
 }
 
 export function Paper(props: PaperProps) {
-  return <MuiPaper {...props} />;
+  return <MuiPaper data-testid="mui-paper" {...props} />;
 }
 
 export default Paper;

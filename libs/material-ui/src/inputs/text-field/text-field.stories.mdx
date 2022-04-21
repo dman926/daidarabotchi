@@ -1,0 +1,14 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { TextField } from './text-field';
+
+<Meta title="Material-UI/Inputs/Text Field" component={TextField} />
+
+export const Template = (args) => <TextField {...args} />;
+
+# Text Field
+
+Description Here
+
+<Canvas>
+  <Story name="Primary">{Template.bind({})}</Story>
+</Canvas>

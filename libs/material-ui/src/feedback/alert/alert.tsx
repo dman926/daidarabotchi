@@ -1,4 +1,4 @@
-import MuiAlert, { AlertProps as MuiAlertProps} from "@mui/material/Alert"
+import MuiAlert, { AlertProps as MuiAlertProps } from '@mui/material/Alert';
 
 import './alert.module.scss';
 
@@ -6,7 +6,7 @@ import './alert.module.scss';
 export interface AlertProps extends MuiAlertProps {}
 
 export function Alert(props: AlertProps) {
-  return <MuiAlert />;
+  return <MuiAlert data-testid="mui-alert" {...props} />;
 }
 
 export default Alert;

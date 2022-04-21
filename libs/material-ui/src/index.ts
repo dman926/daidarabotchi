@@ -1,7 +1,6 @@
 export * from './inputs/toggle-button-group/toggle-button-group';
 export * from './inputs/radio/radio';
 export * from './inputs/input-label/input-label';
-export * from './inputs/form-control/form-control';
 export * from './data-display/list/collapse/collapse';
 export * from './data-display/list/list-subheader/list-subheader';
 export * from './data-display/list/list-item-text/list-item-text';
@@ -87,7 +86,7 @@ export * from './data-display/badge/badge';
 
 export * from './data-display/avatar/avatar';
 
-export * from './inputs/toggle-button-group/toggle-button/toggle-button';
+export * from './inputs/toggle-button/toggle-button';
 
 export * from './inputs/text-field/text-field';
 
@@ -133,4 +132,4 @@ export * from './navigation/menu/menu';
 export * from './navigation/menu/menu-item/menu-item';
 export * from './navigation/menu/menu-list/menu-list';
 
-export * from './data-grid/data-grid';
+export * from './data-display/data-grid/data-grid';

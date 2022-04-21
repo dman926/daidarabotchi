@@ -1,0 +1,30 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { DataGrid } from './data-grid';
+
+<Meta title="Material-UI/Data Display/Data Grid" component={DataGrid} />
+
+export const Template = (args) => (
+  <div style={{ height: 400, width: 600 }}>
+    <DataGrid {...args} />
+  </div>
+);
+
+# Data Grid
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      rows: [
+        { id: 1, make: 'Toyota', model: 'Celica', price: 35000 },
+        { id: 2, make: 'Ford', model: 'Mondeo', price: 32000 },
+        { id: 3, make: 'Porsche', model: 'Boxter', price: 72000 },
+      ],
+      columns: [{ field: 'make' }, { field: 'model' }, { field: 'price' }],
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -1,4 +1,6 @@
-import MuiBackdrop, { BackdropProps as MuiBackdropProps} from "@mui/material/Backdrop"
+import MuiBackdrop, {
+  BackdropProps as MuiBackdropProps,
+} from '@mui/material/Backdrop';
 
 import './backdrop.module.scss';
 
@@ -6,7 +8,7 @@ import './backdrop.module.scss';
 export interface BackdropProps extends MuiBackdropProps {}
 
 export function Backdrop(props: BackdropProps) {
-  return <MuiBackdrop {...props} />;
+  return <MuiBackdrop data-testid="mui-backdrop" {...props} />;
 }
 
 export default Backdrop;

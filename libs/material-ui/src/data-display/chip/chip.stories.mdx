@@ -1,0 +1,98 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Chip } from './chip';
+import Avatar from '../avatar/avatar';
+import SendIcon from '@mui/icons-material/Send';
+import { styled } from '@mui/material';
+import Paper from '../../surfaces/paper/paper';
+import userImage from '../../../assets/images/craig.jpg';
+
+<Meta title="Material-UI/Data Display/Chip" component={Chip} />
+
+export const ListItem = styled('li')(({ theme }) => ({
+  margin: theme.spacing(0.5),
+}));
+export const languageList = [
+  'Resistivity',
+  'Conductivity',
+  'Temperature coefficient of resistance',
+  'Current Flow',
+];
+export const BasicTemplate = (args) => <Chip {...args} />;
+export const ChipArrayTemplate = (args) => (
+  <Paper
+    sx={{
+      display: 'flex',
+      flexDirection: 'rows',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+      listStyle: 'none',
+      p: 0.5,
+      m: 0,
+    }}
+    component="ul"
+  >
+    {languageList.map((data, index) => (
+      <ListItem key={index}>
+        <Chip {...args} label={data} />
+      </ListItem>
+    ))}
+  </Paper>
+);
+
+# Chip
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Avatar Chip"
+    args={{
+      label: 'Avatar Chip',
+      avatar: <Avatar alt="Bernard Greenview" src={userImage} />,
+    }}
+    parameters={{
+      controls: { exclude: ['children', 'deleteIcon', 'onDelete'] },
+    }}
+  >
+    {BasicTemplate.bind({})}
+  </Story>
+  <Story
+    name="Basic"
+    args={{ label: 'Basic Chip' }}
+    parameters={{
+      controls: {
+        exclude: ['avatar', 'children', 'clickable', 'deleteIcon', 'onDelete'],
+      },
+    }}
+  >
+    {BasicTemplate.bind({})}
+  </Story>
+  <Story name="Chip Array" args={{ label: 'Chip Array' }}>
+    {ChipArrayTemplate.bind({})}
+  </Story>
+  <Story
+    name="Clickable"
+    args={{ label: 'Clickable Chip', clickable: true }}
+    parameters={{
+      controls: { exclude: ['avatar', 'children', 'deleteIcon', 'onDelete'] },
+    }}
+  >
+    {BasicTemplate.bind({})}
+  </Story>
+  <Story
+    name="Deletable"
+    args={{ label: 'Deletable Chip', onDelete: () => {} }}
+    parameters={{ controls: { exclude: ['avatar', 'children', 'onDelete'] } }}
+  >
+    {BasicTemplate.bind({})}
+  </Story>
+  <Story
+    name="Icon"
+    args={{ label: 'Icon Chip', icon: <SendIcon /> }}
+    parameters={{
+      controls: { exclude: ['avatar', 'children', 'deleteIcon', 'onDelete'] },
+    }}
+  >
+    {BasicTemplate.bind({})}
+  </Story>
+</Canvas>

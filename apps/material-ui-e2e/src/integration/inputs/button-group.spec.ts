@@ -1,6 +1,6 @@
 describe('Button Group', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=material-ui-inputs-buttongroup--horizontal-group')
+    cy.visit('/iframe.html?id=material-ui-inputs-button-group--horizontal')
   );
 
   it('renders the button group', () => {

@@ -1,0 +1,23 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { ToggleButtonGroup } from './toggle-button-group';
+import { Template } from './story-templates';
+
+<Meta
+  title="Material-UI/Inputs/Toggle Button Group"
+  component={ToggleButtonGroup}
+/>
+
+# Toggle Button Group
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      exclusive: true
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

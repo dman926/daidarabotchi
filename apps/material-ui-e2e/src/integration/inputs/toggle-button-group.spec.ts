@@ -1,6 +1,6 @@
 describe('Toggle Button Group', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=material-ui-inputs-togglebuttongroup--primary')
+    cy.visit('/iframe.html?id=material-ui-inputs-toggle-button-group--primary')
   );
 
   it('renders the toggle button group', () => {
