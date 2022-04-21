@@ -1,0 +1,36 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { ButtonGroup } from './button-group';
+import Button from '../button/button';
+
+<Meta title="Material-UI/Inputs/Button Group" component={ButtonGroup} />
+
+export const Template = (args) => (
+  <ButtonGroup {...args}>
+    <Button children="Button 1" />
+    <Button children="Button 2" />
+    <Button children="Button 3" />
+  </ButtonGroup>
+);
+
+# Button Group
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Horizontal"
+    args={{
+      orientation: 'horizontal',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Vertical"
+    args={{
+      orientation: 'vertical',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

@@ -8,7 +8,7 @@ import './checkbox.module.scss';
 export interface CheckboxProps extends MuiCheckboxProps {}
 
 export function Checkbox(props: CheckboxProps) {
-  return <MuiCheckbox data-testid="mui-checkbox" />;
+  return <MuiCheckbox data-testid="mui-checkbox" {...props} />;
 }
 
 export default Checkbox;

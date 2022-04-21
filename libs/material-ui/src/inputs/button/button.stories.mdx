@@ -1,0 +1,40 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Button } from './button';
+
+<Meta title="Material-UI/Inputs/Button" component={Button} />
+
+export const Template = (args) => <Button {...args} />;
+
+# Button
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Contained"
+    args={{
+      children: 'Contained Button',
+      variant: 'contained',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Outlined"
+    args={{
+      children: 'Outlined Button',
+      variant: 'outlined',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Text"
+    args={{
+      children: 'Text Button',
+      variant: 'text',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

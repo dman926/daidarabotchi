@@ -1,13 +1,12 @@
-import {
-  ToggleButtonGroup as MuiToggleButtonGroup,
-  ToggleButtonGroupProps,
-} from '@mui/material';
-import { useState } from 'react';
+import MuiToggleButtonGroup, {
+  ToggleButtonGroupProps as MuiToggleButtonGroupProps,
+} from '@mui/material/ToggleButtonGroup';
+import './toggle-button-group.module.scss';
 
 /* eslint-disable-next-line */
-export interface ToggleBtnGroupParams extends ToggleButtonGroupProps {}
+export interface ToggleButtonGroupProps extends MuiToggleButtonGroupProps {}
 
-export function ToggleButtonGroup(props: ToggleBtnGroupParams) {
+export function ToggleButtonGroup(props: ToggleButtonGroupProps) {
   return <MuiToggleButtonGroup data-testid="mui-toggle-btn-group" {...props} />;
 }
 

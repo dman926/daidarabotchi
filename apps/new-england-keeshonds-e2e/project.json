@@ -1,0 +1,28 @@
+{
+  "root": "apps/new-england-keeshonds-e2e",
+  "sourceRoot": "apps/new-england-keeshonds-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/new-england-keeshonds-e2e/cypress.json",
+        "devServerTarget": "new-england-keeshonds:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "new-england-keeshonds:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/new-england-keeshonds-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["new-england-keeshonds"]
+}

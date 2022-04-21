@@ -3,6 +3,9 @@
   "projects": {
     "material-ui": "libs/material-ui",
     "material-ui-e2e": "apps/material-ui-e2e",
+    "new-england-keeshonds": "apps/new-england-keeshonds",
+    "new-england-keeshonds-e2e": "apps/new-england-keeshonds-e2e",
+    "new-england-keeshonds-lib": "libs/new-england-keeshonds-lib",
     "portfolio": "apps/portfolio",
     "portfolio-e2e": "apps/portfolio-e2e",
     "portfolio-lib": "libs/portfolio-lib"

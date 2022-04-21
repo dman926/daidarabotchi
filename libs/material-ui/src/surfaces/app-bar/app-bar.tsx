@@ -7,7 +7,7 @@ export interface AppBarProps extends MuiAppBarProps {
 }
 
 export function AppBar(props: AppBarProps) {
-  return <MuiAppBar {...props} />;
+  return <MuiAppBar data-testid="mui-app-bar" {...props} />;
 }
 
 export default AppBar;

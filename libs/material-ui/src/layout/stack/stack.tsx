@@ -5,7 +5,7 @@ import './stack.module.scss';
 export interface StackProps extends MuiStackProps {}
 
 export function Stack(props: StackProps) {
-  return <MuiStack {...props} />;
+  return <MuiStack data-testid="mui-stack" {...props} />;
 }
 
 export default Stack;

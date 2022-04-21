@@ -4,10 +4,13 @@
   "integrationFolder": "./src/integration",
   "modifyObstructiveCode": false,
   "supportFile": "./src/support/index.ts",
-  "pluginsFile": false,
-  "video": true,
+  "pluginsFile": "./src/plugins/index.ts",
+  "video": false,
   "videosFolder": "../../dist/cypress/apps/material-ui/videos",
   "screenshotsFolder": "../../dist/cypress/apps/material-ui/screenshots",
   "chromeWebSecurity": false,
-  "baseUrl": "http://localhost:4400"
+  "baseUrl": "http://localhost:4400",
+  "env": {
+    "BABEL_ENV": "e2e"
+  }
 }

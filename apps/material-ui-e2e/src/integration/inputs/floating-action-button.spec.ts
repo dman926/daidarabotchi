@@ -1,6 +1,6 @@
 describe('Floating Action Button', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=material-ui-inputs-floatingactionbutton--primary')
+    cy.visit('/iframe.html?id=material-ui-inputs-floating-action-button--primary')
   );
 
   it('renders the floating action button', () => {

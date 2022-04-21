@@ -1,0 +1,53 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { AppBar } from './app-bar';
+import {
+  createTemplate,
+  BasicSearchInternals,
+  BasicTemplateInternals,
+  WithMenuInternals,
+} from './story-templates';
+
+<Meta title="Material-UI/Surfaces/App Bar" component={AppBar} />
+
+# App Bar
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Basic"
+    args={{
+      classes: undefined,
+      color: undefined,
+      enableColorOnDark: undefined,
+      position: undefined,
+      sx: undefined,
+    }}
+  >
+    {createTemplate(<BasicTemplateInternals />).bind({})}
+  </Story>
+  <Story
+    name="With Account Menu"
+    args={{
+      classes: undefined,
+      color: undefined,
+      enableColorOnDark: undefined,
+      position: undefined,
+      sx: undefined,
+    }}
+  >
+    {createTemplate(<WithMenuInternals />).bind({})}
+  </Story>
+  <Story
+    name="Basic Search Bar"
+    args={{
+      classes: undefined,
+      color: undefined,
+      enableColorOnDark: undefined,
+      position: undefined,
+      sx: undefined,
+    }}
+  >
+    {createTemplate(<BasicSearchInternals />).bind({})}
+  </Story>
+</Canvas>

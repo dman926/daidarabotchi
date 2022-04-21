@@ -1,0 +1,22 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Menu } from './menu';
+import { Template } from './story-templates';
+
+<Meta title="Material-UI/Navigation/Menu" component={Menu} />
+
+# Menu
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      autoFocus: undefined,
+      disableAutoFocusItem: undefined,
+      variant: undefined,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

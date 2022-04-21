@@ -1,0 +1,35 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Snackbar } from './snackbar';
+import { MessageLengthsTemplate } from './story-templates/MessageLengthsTemplate';
+import { PositionTemplate } from './story-templates/PositionTemplate';
+import { SimpleTemplate } from './story-templates/SimpleTemplate';
+import { SlideDirectionTemplate } from './story-templates/SlideDirectionTemplate';
+import { TransitionsTemplate } from './story-templates/TransitionsTemplate';
+import { WithAlertTemplate } from './story-templates/WithAlertTemplate';
+
+<Meta title="Material-UI/Feedback/Snackbar" component={Snackbar} />
+
+# Snackbar
+
+Description Here
+
+<Canvas>
+  <Story name="Simple" args={{ autoHideDuration: 6000 }}>
+    {SimpleTemplate.bind({})}
+  </Story>
+  <Story name="With Alert" args={{ autoHideDuration: 6000 }}>
+    {WithAlertTemplate.bind({})}
+  </Story>
+  <Story name="Position" args={{ autoHideDuration: 6000 }}>
+    {PositionTemplate.bind({})}
+  </Story>
+  <Story name="Message Lengths" args={{ autoHideDuration: 6000 }}>
+    {MessageLengthsTemplate.bind({})}
+  </Story>
+  <Story name="Transitions" args={{ autoHideDuration: 6000 }}>
+    {TransitionsTemplate.bind({})}
+  </Story>
+  <Story name="Slide Direction" args={{ autoHideDuration: 6000, message: 'Not archived' }}>
+    {SlideDirectionTemplate.bind({})}
+  </Story>
+</Canvas>

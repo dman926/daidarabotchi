@@ -1,4 +1,6 @@
-import MuiSnackbar, { SnackbarProps as MuiSnackbarProps} from "@mui/material/Snackbar"
+import MuiSnackbar, {
+  SnackbarProps as MuiSnackbarProps,
+} from '@mui/material/Snackbar';
 
 import './snackbar.module.scss';
 
@@ -6,7 +8,7 @@ import './snackbar.module.scss';
 export interface SnackbarProps extends MuiSnackbarProps {}
 
 export function Snackbar(props: SnackbarProps) {
-  return <MuiSnackbar {...props} />;
+  return <MuiSnackbar data-testid="mui-snackbar" {...props} />;
 }
 
 export default Snackbar;

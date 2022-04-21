@@ -1,6 +1,6 @@
 describe('Bottom Navigation', () => {
   beforeEach(() =>
-    cy.visit('/iframe.html?id=material-ui-navigation-bottomnavigation--primary')
+    cy.visit('/iframe.html?id=material-ui-navigation-bottom-navigation--primary')
   );
 
   it('renders the bottom navigation', () => {

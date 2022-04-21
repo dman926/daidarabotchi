@@ -1,0 +1,38 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Badge } from './badge';
+import MailIcon from '@mui/icons-material/Mail';
+
+<Meta title="Material-UI/Data Display/Badge" component={Badge} />
+
+export const Template = (args) => (
+  <Badge {...args}>
+    <MailIcon />
+  </Badge>
+);
+
+# Badge
+
+Description Here
+
+<Canvas>
+  <Story
+    name="Basic"
+    args={{
+      color: 'primary',
+      badgeContent: 4,
+      variant: 'standard',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="Dot"
+    args={{
+      color: 'primary',
+      badgeContent: 4,
+      variant: 'dot',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>

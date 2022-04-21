@@ -1,0 +1,16 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Slider } from './slider';
+
+<Meta title="Material-UI/Inputs/Slider" component={Slider} />
+
+export const Template = (args) => <Slider {...args} />;
+
+# Slider
+
+Description Here
+
+<Canvas>
+  <Story name="Primary" args={{ sx: { width: '7.5em' } }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

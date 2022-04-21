@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "newenglandkeeshonds",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authnewenglandkeeshonds3f4b45b8",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
