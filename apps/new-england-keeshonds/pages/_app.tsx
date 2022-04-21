@@ -1,6 +1,5 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import '@aws-amplify/ui-react/dist/styles.css'
 import './styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
