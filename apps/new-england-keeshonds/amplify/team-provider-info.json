@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-newenglandkeeshonds-dev-135713-authRole",
+      "UnauthRoleArn": "arn:aws:iam::249045439130:role/amplify-newenglandkeeshonds-dev-135713-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::249045439130:role/amplify-newenglandkeeshonds-dev-135713-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-newenglandkeeshonds-dev-135713-deployment",
+      "UnauthRoleName": "amplify-newenglandkeeshonds-dev-135713-unauthRole",
+      "StackName": "amplify-newenglandkeeshonds-dev-135713",
+      "StackId": "arn:aws:cloudformation:us-east-2:249045439130:stack/amplify-newenglandkeeshonds-dev-135713/a73f37a0-bdae-11ec-b6ed-020f8ccce900",
+      "AmplifyAppId": "d2nd06jjidopo3"
+    },
+    "categories": {
+      "auth": {
+        "newenglandkeeshonds3f4b45b8": {}
+      }
+    }
+  }
+}
