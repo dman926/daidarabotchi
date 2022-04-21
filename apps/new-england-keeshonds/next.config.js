@@ -23,7 +23,7 @@ const nextConfig = {
       });
     }
 
-    config.modules.rules.push({
+    config.module.rules.push({
       test: /\.svg$/,
       use: [
         {
