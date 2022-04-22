@@ -6,7 +6,10 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to new-england-keeshonds!</title>
+        <title>New England Keeshonds!</title>
+        <base href="/" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="app">
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}

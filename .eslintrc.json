@@ -9,7 +9,8 @@
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
     "import/no-extraneous-dependencies": [2, {"packageDir": "."}],
-    "react/require-default-props": [0]
+    "react/require-default-props": [0],
+    "import/extensions": [0]
   },
   "overrides": [
     {
