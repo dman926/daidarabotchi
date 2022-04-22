@@ -63,7 +63,6 @@
     "url-loader": "^3.0.0"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "^2.15.4",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
