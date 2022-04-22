@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "newenglandkeeshonds3f4b45b8_identitypool_3f4b45b8",
+    "identityPoolName": "newenglandkeeshonds3cbf01b9_identitypool_3cbf01b9",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "neweng3f4b45b8",
-    "userPoolName": "newenglandkeeshonds3f4b45b8_userpool_3f4b45b8",
+    "resourceNameTruncated": "neweng3cbf01b9",
+    "userPoolName": "newenglandkeeshonds3cbf01b9_userpool_3cbf01b9",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -20,7 +20,8 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-      "email"
+      "email",
+      "name"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
@@ -31,10 +32,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "neweng3f4b45b8_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "neweng3cbf01b9_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "3f4b45b8",
-    "resourceName": "newenglandkeeshonds3f4b45b8",
+    "sharedId": "3cbf01b9",
+    "resourceName": "newenglandkeeshonds3cbf01b9",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [

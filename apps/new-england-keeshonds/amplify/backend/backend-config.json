@@ -6,7 +6,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "newenglandkeeshonds3f4b45b8",
+          "resourceName": "newenglandkeeshonds3cbf01b9",
           "attributes": [
             "UserPoolId"
           ]
@@ -24,7 +24,7 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authnewenglandkeeshonds3f4b45b8"
+                "userPoolId": "authnewenglandkeeshonds3cbf01b9"
               }
             }
           ]
@@ -33,7 +33,7 @@
     }
   },
   "auth": {
-    "newenglandkeeshonds3f4b45b8": {
+    "newenglandkeeshonds3cbf01b9": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -44,7 +44,8 @@
           "EMAIL"
         ],
         "signupAttributes": [
-          "EMAIL"
+          "EMAIL",
+          "NAME"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
@@ -58,6 +59,13 @@
           "EMAIL"
         ]
       }
+    }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2022-04-22T01:55:12.161Z"
     }
   }
 }
