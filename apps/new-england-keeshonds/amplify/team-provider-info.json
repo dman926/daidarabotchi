@@ -1,19 +1,25 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-newenglandkeeshonds-dev-135713-authRole",
-      "UnauthRoleArn": "arn:aws:iam::249045439130:role/amplify-newenglandkeeshonds-dev-135713-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::249045439130:role/amplify-newenglandkeeshonds-dev-135713-authRole",
+      "AuthRoleName": "amplify-newenglandkeeshonds-dev-214453-authRole",
+      "UnauthRoleArn": "arn:aws:iam::249045439130:role/amplify-newenglandkeeshonds-dev-214453-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::249045439130:role/amplify-newenglandkeeshonds-dev-214453-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-newenglandkeeshonds-dev-135713-deployment",
-      "UnauthRoleName": "amplify-newenglandkeeshonds-dev-135713-unauthRole",
-      "StackName": "amplify-newenglandkeeshonds-dev-135713",
-      "StackId": "arn:aws:cloudformation:us-east-2:249045439130:stack/amplify-newenglandkeeshonds-dev-135713/a73f37a0-bdae-11ec-b6ed-020f8ccce900",
-      "AmplifyAppId": "d2nd06jjidopo3"
+      "DeploymentBucketName": "amplify-newenglandkeeshonds-dev-214453-deployment",
+      "UnauthRoleName": "amplify-newenglandkeeshonds-dev-214453-unauthRole",
+      "StackName": "amplify-newenglandkeeshonds-dev-214453",
+      "StackId": "arn:aws:cloudformation:us-east-2:249045439130:stack/amplify-newenglandkeeshonds-dev-214453/cfc17ca0-c1dd-11ec-b0af-024d7323ee20",
+      "AmplifyAppId": "d1v6m1ayrpq0fs"
     },
     "categories": {
       "auth": {
-        "newenglandkeeshonds3f4b45b8": {}
+        "newenglandkeeshonds3cbf01b9": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1v6m1ayrpq0fs",
+          "type": "cicd"
+        }
       }
     }
   }
