@@ -10,7 +10,8 @@
     ],
     "import/no-extraneous-dependencies": [2, {"packageDir": "."}],
     "react/require-default-props": [0],
-    "import/extensions": [0]
+    "import/extensions": [0],
+    "dot-notation": [0]
   },
   "overrides": [
     {

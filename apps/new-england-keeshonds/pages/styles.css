@@ -53,3 +53,13 @@ pre {
   overflow: scroll;
   padding: 0.5rem 0.75rem;
 }
+
+section.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+section.app > main {
+  flex-grow: 1;
+}
