@@ -1,15 +1,22 @@
 import { ButtonProps } from '@daidarabotchi/material-ui';
-import { Footer, Header } from '@daidarabotchi/new-england-keeshonds-lib';
-import { ThemeProvider, useTheme, Theme, createTheme } from '@mui/material';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { ThemeProvider, useTheme, Theme, createTheme } from '@mui/material';
+import { indigo, blueGrey } from '@mui/material/colors';
+import { Footer, Header } from '@daidarabotchi/new-england-keeshonds-lib';
 import './styles.css';
 
-const theme: Theme = createTheme({});
+// TODO: Add dark theme switcher in the future
+const theme: Theme = createTheme({
+  palette: {
+    primary: indigo,
+    secondary: blueGrey,
+  },
+});
 
 const menuItemButtonBaseProps: ButtonProps = {
-  variant: 'outlined',
+  variant: 'contained',
   color: 'info',
 };
 
