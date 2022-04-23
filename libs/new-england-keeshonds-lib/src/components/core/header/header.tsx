@@ -2,6 +2,7 @@ import {
   AppBar,
   Box,
   Button,
+  ButtonGroup,
   ButtonProps,
   Toolbar,
   Typography,
@@ -41,7 +42,7 @@ export function Header(props: HeaderProps) {
           {title}
         </Typography>
         <span style={{ flexGrow: 1 }}></span>
-        <Box
+        <ButtonGroup
           sx={{
             display: 'grid',
             gridTemplateColumns: `repeat(${menu.length}, 1fr)`,
@@ -55,7 +56,7 @@ export function Header(props: HeaderProps) {
               </Button>
             );
           })}
-        </Box>
+        </ButtonGroup>
       </Toolbar>
     </AppBar>
   );
