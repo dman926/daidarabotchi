@@ -1,9 +1,12 @@
 import { Footer, Header } from '@daidarabotchi/new-england-keeshonds-lib';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import './styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -13,7 +16,13 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <section className="app">
-        <Header />
+        <Header
+          navigate={(url, options) => {
+            router.push(url);
+          }}
+          title="New England Keeshonds"
+          home="/"
+        />
         <main>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Component {...pageProps} />
