@@ -1,36 +1,63 @@
-import { AppBar, Toolbar, Typography } from '@daidarabotchi/material-ui';
-import { ReactNode } from 'react';
+import {
+  AppBar,
+  Box,
+  Button,
+  ButtonProps,
+  Toolbar,
+  Typography,
+} from '@daidarabotchi/material-ui';
 
-/* eslint-disable-next-line */
+export interface HeaderMenuItemProps {
+  link: string;
+  text: string;
+  ButtonProps?: ButtonProps;
+}
 export interface HeaderProps {
   navigate: (
     url: string,
     options?: { query?: { [key: string]: unknown }[] }
   ) => void;
   title: string;
-  home: string;
+  currentRoute: string;
+  home?: string;
+  menu: HeaderMenuItemProps[];
 }
 
 export function Header(props: HeaderProps) {
-  const { navigate, title, home } = props;
+  const { navigate, title, currentRoute, home = '', menu } = props;
 
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h1"
-            onClick={() => navigate(home)}
-            sx={{
-              fontSize: '1em',
-              cursor: window.location.href === home ? 'default' : 'grabbing',
-            }}
-          >
-            {title}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position="static" data-testid="nek-header">
+      <Toolbar>
+        <Typography
+          variant="h1"
+          onClick={() => navigate(home)}
+          sx={{
+            fontSize: '1em',
+            cursor: currentRoute === home ? 'default' : 'grabbing',
+          }}
+          data-testid="nek-header-title"
+        >
+          {title}
+        </Typography>
+        <span style={{ flexGrow: 1 }}></span>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${menu.length}, 1fr)`,
+          }}
+        >
+          {menu.map((menuItem) => {
+            const { link, text, ButtonProps = {} } = menuItem;
+            return (
+              <Button {...ButtonProps} onClick={() => navigate(link)}>
+                <Typography>{text}</Typography>
+              </Button>
+            );
+          })}
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 

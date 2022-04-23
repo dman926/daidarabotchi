@@ -1,11 +1,21 @@
+import { ButtonProps } from '@daidarabotchi/material-ui';
 import { Footer, Header } from '@daidarabotchi/new-england-keeshonds-lib';
+import { ThemeProvider, useTheme, Theme, createTheme } from '@mui/material';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import './styles.css';
 
+const theme: Theme = createTheme({});
+
+const menuItemButtonBaseProps: ButtonProps = {
+  variant: 'outlined',
+  color: 'info',
+};
+
 function CustomApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const theme = useTheme();
 
   return (
     <>
@@ -15,20 +25,35 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <section className="app">
-        <Header
-          navigate={(url, options) => {
-            router.push(url);
-          }}
-          title="New England Keeshonds"
-          home="/"
-        />
-        <main>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Component {...pageProps} />
-        </main>
-        <Footer />
-      </section>
+      <ThemeProvider theme={theme}>
+        <section className="app">
+          <Header
+            navigate={(url, options) => {
+              router.push(url);
+            }}
+            title="New England Keeshonds"
+            currentRoute={router.asPath}
+            home="/"
+            menu={[
+              {
+                text: 'Home',
+                link: '/',
+                ButtonProps: menuItemButtonBaseProps,
+              },
+              {
+                text: 'Puppies',
+                link: '/puppies',
+                ButtonProps: menuItemButtonBaseProps,
+              },
+            ]}
+          />
+          <main>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </section>
+      </ThemeProvider>
     </>
   );
 }
