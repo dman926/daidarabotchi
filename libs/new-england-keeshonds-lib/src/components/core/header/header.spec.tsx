@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Header, { HeaderProps } from './header';
+import Header, { HeaderMenuItemProps, HeaderProps } from './header';
 
 const TITLE = 'Test Site';
 const SimpleHeader = (props: Partial<HeaderProps>) => (
@@ -22,11 +22,31 @@ describe('Header', () => {
     expect(screen.getByTestId('nek-header')).toBeInTheDocument();
   });
 
-  it('should have a title with the same text as the provided `title` prop', () => {
+  it('should have the correct title', () => {
     const { baseElement } = render(<SimpleHeader currentRoute="" />);
     expect(baseElement).toBeTruthy();
     const title = screen.getByTestId('nek-header-title');
     expect(title).toBeInTheDocument();
     expect(title).toHaveTextContent(TITLE);
+  });
+
+  it('should have the correct menu', () => {
+    const menu: HeaderMenuItemProps[] = [
+      {
+        text: 'Home',
+        link: '/',
+      },
+      {
+        text: 'Settings',
+        link: '/settings',
+      },
+    ];
+    const { baseElement } = render(
+      <SimpleHeader currentRoute="" menu={menu} />
+    );
+    expect(baseElement).toBeTruthy();
+    const headerMenu = screen.getByTestId('nek-header-menu');
+    expect(headerMenu).toBeInTheDocument();
+    expect(headerMenu.children).toHaveLength(menu.length);
   });
 });
