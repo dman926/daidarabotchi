@@ -8,6 +8,7 @@ import {
   Theme,
   createTheme,
   ThemeOptions,
+  CssBaseline,
 } from '@mui/material';
 import { indigo, blueGrey } from '@mui/material/colors';
 import { Header } from '@daidarabotchi/new-england-keeshonds-lib';
@@ -39,6 +40,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <ThemeProvider theme={createTheme(theme)}>
+        <CssBaseline />
         <section className="app">
           <Header
             navigate={(url, options) => {

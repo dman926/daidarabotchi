@@ -1,3 +1,5 @@
+/* NEXT.JS SUGGESTED START */
+
 html {
   -webkit-text-size-adjust: 100%;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -54,6 +56,10 @@ pre {
   padding: 0.5rem 0.75rem;
 }
 
+/* NEXT.JS SUGGESTED END */
+
+/* APP SPECIFIC STYLING START */
+
 section.app {
   display: flex;
   flex-direction: column;
@@ -63,3 +69,9 @@ section.app {
 section.app > main {
   flex-grow: 1;
 }
+
+img {
+  border-radius: 0.25em;
+}
+
+/* APP SPECIFIC STYLING END */

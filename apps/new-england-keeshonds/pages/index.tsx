@@ -1,7 +1,12 @@
 import { Box, Container, Grid, Typography } from '@daidarabotchi/material-ui';
-import { CallToAction } from '@daidarabotchi/new-england-keeshonds-lib';
+import {
+  CallToAction,
+  ContactForm,
+  Login,
+  Page,
+} from '@daidarabotchi/new-england-keeshonds-lib';
 import Image, { StaticImageData } from 'next/image';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import AllDogsImage from '../public/dogs/all_dogs.jpg';
 import WillowImage from '../public/dogs/willow.jpg';
@@ -36,20 +41,68 @@ const DOGS: {
 
 function Home() {
   return (
-    <Container>
-      <CallToAction>
-        {DOGS.map((dog, index) => (
-          <Grid container spacing={2} key={index}>
-            <Grid item xs={3}>
-              <Image src={dog.img} alt={`${dog.name}`} />
+    <Page testid="home-wrapper">
+      <Container>
+        <CallToAction
+          img={
+            <Image
+              src={AllDogsImage}
+              alt="Willow, Milo, and Bella"
+              placeholder="blur"
+              objectFit="cover"
+              priority
+            />
+          }
+        >
+          {DOGS.map((dog, index) => (
+            <Grid container key={index}>
+              <Grid item xs={4}>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    placeContent: 'center',
+                    paddingBottom: '0.25em',
+                    paddingRight: '0.25em',
+                  }}
+                >
+                  <Image
+                    src={dog.img}
+                    alt={`${dog.name}`}
+                    placeholder="blur"
+                    objectFit="cover"
+                    objectPosition="center"
+                    width={256}
+                    height={256}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={8}>
+                <Typography variant="h4" sx={{ marginTop: 1 }}>
+                  {dog.name}
+                </Typography>
+                <Typography>{dog.description}</Typography>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="h4">{dog.name}</Typography>
-            </Grid>
-          </Grid>
-        ))}
-      </CallToAction>
-    </Container>
+          ))}
+        </CallToAction>
+      </Container>
+      <Container maxWidth={false}>
+        <Typography align="center">
+          I don't know what to put down here. I was thinking of putting a full
+          width thing here. Probably just list the current litter if there is
+          one and a fallback message if not.
+        </Typography>
+      </Container>
+      <Container maxWidth="xs">
+        <ContactForm head="Get A Hold Of Me" />
+      </Container>
+      <Container maxWidth="xs">
+        <Login
+          head="Looking to make a paymnet? Enter your secret word below,"
+          onSubmit={(word) => {}}
+        />
+      </Container>
+    </Page>
   );
 }
 
