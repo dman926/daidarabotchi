@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Typography } from '@daidarabotchi/material-ui';
-import { CallToAction } from '@daidarabotchi/new-england-keeshonds-lib';
+import { CallToAction, Page } from '@daidarabotchi/new-england-keeshonds-lib';
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 
@@ -36,30 +36,25 @@ const DOGS: {
 
 function Home() {
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1em',
-        margin: '1em 0',
-      }}
-    >
-      <CallToAction
-        img={<Image src={AllDogsImage} alt="Willow, Milo, and Bella" />}
-      >
-        {DOGS.map((dog, index) => (
-          <Grid container spacing={2} key={index}>
-            <Grid item xs={3}>
-              <Image src={dog.img} alt={`${dog.name}`} />
+    <Page testid="home-wrapper">
+      <Container>
+        <CallToAction
+          img={<Image src={AllDogsImage} alt="Willow, Milo, and Bella" />}
+        >
+          {DOGS.map((dog, index) => (
+            <Grid container spacing={2} key={index}>
+              <Grid item xs={3}>
+                <Image src={dog.img} alt={`${dog.name}`} />
+              </Grid>
+              <Grid item xs={9}>
+                <Typography variant="h4">{dog.name}</Typography>
+                <Typography>{dog.description}</Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={9}>
-              <Typography variant="h4">{dog.name}</Typography>
-              <Typography>{dog.description}</Typography>
-            </Grid>
-          </Grid>
-        ))}
-      </CallToAction>
-    </Container>
+          ))}
+        </CallToAction>
+      </Container>
+    </Page>
   );
 }
 

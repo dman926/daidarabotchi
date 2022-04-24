@@ -1,16 +1,26 @@
-import { Box, Paper } from '@daidarabotchi/material-ui';
+import { Box, Paper, PaperProps } from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
 
 export interface CallToActionProps {
   img: ReactNode;
   children?: ReactNode;
+  PaperProps?: PaperProps;
 }
 
-export function CallToAction({ children, img }: CallToActionProps) {
+export function CallToAction({
+  children,
+  img,
+  PaperProps = {},
+}: CallToActionProps) {
   return (
-    <Paper elevation={4} sx={{ maxWidth: 1140, padding: '2.5em' }}>
+    <Paper
+      elevation={4}
+      sx={{ padding: '2.5em' }}
+      {...PaperProps}
+      data-testid="call-to-action"
+    >
       {img}
-      <Box>{children}</Box>
+      <Box data-testid="call-to-action-children-wrapper">{children}</Box>
     </Paper>
   );
 }
