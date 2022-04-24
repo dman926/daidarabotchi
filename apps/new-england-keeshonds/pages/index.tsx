@@ -2,6 +2,7 @@ import { Box, Container, Grid, Typography } from '@daidarabotchi/material-ui';
 import {
   CallToAction,
   ContactForm,
+  Login,
   Page,
 } from '@daidarabotchi/new-england-keeshonds-lib';
 import Image, { StaticImageData } from 'next/image';
@@ -86,7 +87,7 @@ function Home() {
         </CallToAction>
       </Container>
       <Container maxWidth={false}>
-        <Typography>
+        <Typography align="center">
           I don't know what to put down here. I was thinking of putting a full
           width thing here. Probably just list the current litter if there is
           one and a fallback message if not.
@@ -94,6 +95,12 @@ function Home() {
       </Container>
       <Container maxWidth="xs">
         <ContactForm head="Get A Hold Of Me" />
+      </Container>
+      <Container maxWidth="xs">
+        <Login
+          head="Looking to make a paymnet? Enter your secret work below,"
+          onSubmit={(word) => {}}
+        />
       </Container>
     </Page>
   );
