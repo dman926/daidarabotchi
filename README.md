@@ -14,6 +14,10 @@ The *Hitachi no Kuni Fudoki*, a recording of the imperial customs in the Hitachi
 
 *Izumo no Kuni Fudoki* also mentions a legendary king of Izumo, Ōmitsunu, who was the grandson of Susanoo and a demi-god. Having the strength of a giant, he performed Kuni-biki, pulling land from Silla with ropes, to increase the size of his territory.
 
+## Deploy Statuses
+
+- New England Keeshonds: [![Netlify Status](https://api.netlify.com/api/v1/badges/01e9a910-052e-4f7e-876b-0ee88aa5923f/deploy-status)](https://app.netlify.com/sites/gentle-sopapillas-1fdf29/deploys)
+
 ## This project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
