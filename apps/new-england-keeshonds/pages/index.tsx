@@ -54,20 +54,31 @@ function Home() {
           }
         >
           {DOGS.map((dog, index) => (
-            <Grid container spacing={2} key={index}>
+            <Grid container key={index}>
               <Grid item xs={4}>
-                <Image
-                  src={dog.img}
-                  alt={`${dog.name}`}
-                  placeholder="blur"
-                  objectFit="cover"
-                  objectPosition="center"
-                  width={256}
-                  height={256}
-                />
+                <Box
+                  sx={{
+                    display: 'grid',
+                    placeContent: 'center',
+                    paddingBottom: '0.25em',
+                    paddingRight: '0.25em',
+                  }}
+                >
+                  <Image
+                    src={dog.img}
+                    alt={`${dog.name}`}
+                    placeholder="blur"
+                    objectFit="cover"
+                    objectPosition="center"
+                    width={256}
+                    height={256}
+                  />
+                </Box>
               </Grid>
               <Grid item xs={8}>
-                <Typography variant="h4">{dog.name}</Typography>
+                <Typography variant="h4" sx={{ marginTop: 1 }}>
+                  {dog.name}
+                </Typography>
                 <Typography>{dog.description}</Typography>
               </Grid>
             </Grid>
