@@ -98,7 +98,7 @@ function Home() {
       </Container>
       <Container maxWidth="xs">
         <Login
-          head="Looking to make a paymnet? Enter your secret work below,"
+          head="Looking to make a paymnet? Enter your secret word below,"
           onSubmit={(word) => {}}
         />
       </Container>
