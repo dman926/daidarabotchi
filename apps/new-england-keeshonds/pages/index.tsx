@@ -1,5 +1,9 @@
 import { Box, Container, Grid, Typography } from '@daidarabotchi/material-ui';
-import { CallToAction, Page } from '@daidarabotchi/new-england-keeshonds-lib';
+import {
+  CallToAction,
+  ContactForm,
+  Page,
+} from '@daidarabotchi/new-england-keeshonds-lib';
 import Image, { StaticImageData } from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -69,6 +73,16 @@ function Home() {
             </Grid>
           ))}
         </CallToAction>
+      </Container>
+      <Container maxWidth={false}>
+        <Typography>
+          I don't know what to put down here. I was thinking of putting a full
+          width thing here. Probably just list the current litter if there is
+          one and a fallback message if not.
+        </Typography>
+      </Container>
+      <Container>
+        <ContactForm />
       </Container>
     </Page>
   );

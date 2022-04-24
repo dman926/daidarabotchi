@@ -7,15 +7,15 @@ describe('CallToAction', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<CallToAction img={<></>} />);
     expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('call-to-action')).toBeInTheDocument();
+    expect(screen.getByTestId('nek-call-to-action')).toBeInTheDocument();
   });
 
   it('should render the provided `img` prop', () => {
     const { baseElement } = render(
-      <CallToAction img={<span data-testid="call-to-action-img-test"></span>} />
+      <CallToAction img={<span data-testid="nek-call-to-action-img-test"></span>} />
     );
     expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('call-to-action-img-test')).toBeInTheDocument();
+    expect(screen.getByTestId('nek-call-to-action-img-test')).toBeInTheDocument();
   });
 
   it('should render the provided provided children', () => {
@@ -23,7 +23,7 @@ describe('CallToAction', () => {
       <CallToAction img={<></>}>
         {[0, 1].map((value, index) => (
           <span
-            data-testid="call-to-action-children-item-test"
+            data-testid="nek-call-to-action-children-item-test"
             key={index}
           ></span>
         ))}
@@ -31,9 +31,9 @@ describe('CallToAction', () => {
     );
     expect(baseElement).toBeTruthy();
     expect(
-      screen.getByTestId('call-to-action-children-wrapper')
+      screen.getByTestId('nek-call-to-action-children-wrapper')
     ).toBeInTheDocument();
-    const children = screen.getAllByTestId('call-to-action-children-item-test');
+    const children = screen.getAllByTestId('nek-call-to-action-children-item-test');
     children.forEach((child) => {
       expect(child).toBeInTheDocument();
     })
