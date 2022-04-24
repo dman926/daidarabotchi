@@ -81,8 +81,8 @@ function Home() {
           one and a fallback message if not.
         </Typography>
       </Container>
-      <Container>
-        <ContactForm />
+      <Container maxWidth="xs">
+        <ContactForm head="Get A Hold Of Me" />
       </Container>
     </Page>
   );

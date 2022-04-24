@@ -7,6 +7,6 @@ describe('ContactForm', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<ContactForm />);
     expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('nek-contact-form')).toBeInTheDocument();
+    expect(screen.getByTestId('nek-tab-box')).toBeInTheDocument();
   });
 });
