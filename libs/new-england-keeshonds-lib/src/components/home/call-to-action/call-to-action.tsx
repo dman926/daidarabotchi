@@ -1,4 +1,10 @@
-import { Box, Paper, PaperProps } from '@daidarabotchi/material-ui';
+import {
+  Box,
+  Divider,
+  Paper,
+  PaperProps,
+  Typography,
+} from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
 
 export interface CallToActionProps {
@@ -20,6 +26,9 @@ export function CallToAction({
       data-testid="call-to-action"
     >
       {img}
+      <Divider variant="middle">
+        <Typography>Meet The Parents</Typography>
+      </Divider>
       <Box data-testid="call-to-action-children-wrapper">{children}</Box>
     </Paper>
   );
