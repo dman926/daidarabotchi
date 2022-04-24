@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Footer from './footer';
+import CallToAction from './call-to-action';
 
-describe('Footer', () => {
+describe('CallToAction', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Footer />);
+    const { baseElement } = render(<CallToAction />);
     expect(baseElement).toBeTruthy();
   });
 });

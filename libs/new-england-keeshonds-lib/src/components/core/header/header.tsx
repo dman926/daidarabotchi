@@ -35,7 +35,7 @@ export function Header(props: HeaderProps) {
           onClick={() => navigate(home)}
           sx={{
             fontSize: '1em',
-            cursor: currentRoute === home ? 'default' : 'grabbing',
+            cursor: currentRoute === home ? 'default' : 'pointer',
           }}
           data-testid="nek-header-title"
         >
@@ -47,11 +47,16 @@ export function Header(props: HeaderProps) {
             display: 'grid',
             gridTemplateColumns: `repeat(${menu.length}, 1fr)`,
           }}
+          data-testid="nek-header-menu"
         >
-          {menu.map((menuItem) => {
+          {menu.map((menuItem, index) => {
             const { link, text, ButtonProps = {} } = menuItem;
             return (
-              <Button {...ButtonProps} onClick={() => navigate(link)}>
+              <Button
+                {...ButtonProps}
+                onClick={() => navigate(link)}
+                key={index}
+              >
                 <Typography>{text}</Typography>
               </Button>
             );

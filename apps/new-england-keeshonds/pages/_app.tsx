@@ -2,18 +2,24 @@ import { ButtonProps } from '@daidarabotchi/material-ui';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { ThemeProvider, useTheme, Theme, createTheme } from '@mui/material';
+import {
+  ThemeProvider,
+  useTheme,
+  Theme,
+  createTheme,
+  ThemeOptions,
+} from '@mui/material';
 import { indigo, blueGrey } from '@mui/material/colors';
-import { Footer, Header } from '@daidarabotchi/new-england-keeshonds-lib';
+import { Header } from '@daidarabotchi/new-england-keeshonds-lib';
 import './styles.css';
 
 // TODO: Add dark theme switcher in the future
-const theme: Theme = createTheme({
+const theme: ThemeOptions = {
   palette: {
     primary: indigo,
     secondary: blueGrey,
   },
-});
+};
 
 const menuItemButtonBaseProps: ButtonProps = {
   variant: 'contained',
@@ -32,7 +38,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={createTheme(theme)}>
         <section className="app">
           <Header
             navigate={(url, options) => {
@@ -58,7 +64,6 @@ function CustomApp({ Component, pageProps }: AppProps) {
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <Component {...pageProps} />
           </main>
-          <Footer />
         </section>
       </ThemeProvider>
     </>
