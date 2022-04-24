@@ -36,15 +36,25 @@ const DOGS: {
 
 function Home() {
   return (
-    <Container>
-      <CallToAction>
+    <Container
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1em',
+        margin: '1em 0',
+      }}
+    >
+      <CallToAction
+        img={<Image src={AllDogsImage} alt="Willow, Milo, and Bella" />}
+      >
         {DOGS.map((dog, index) => (
           <Grid container spacing={2} key={index}>
             <Grid item xs={3}>
               <Image src={dog.img} alt={`${dog.name}`} />
             </Grid>
-            <Grid item>
+            <Grid item xs={9}>
               <Typography variant="h4">{dog.name}</Typography>
+              <Typography>{dog.description}</Typography>
             </Grid>
           </Grid>
         ))}

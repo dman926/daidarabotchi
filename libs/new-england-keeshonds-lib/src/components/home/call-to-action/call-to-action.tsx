@@ -1,11 +1,17 @@
-/* eslint-disable-next-line */
-export interface CallToActionProps {}
+import { Box, Paper } from '@daidarabotchi/material-ui';
+import { ReactNode } from 'react';
 
-export function CallToAction(props: CallToActionProps) {
+export interface CallToActionProps {
+  img: ReactNode;
+  children?: ReactNode;
+}
+
+export function CallToAction({ children, img }: CallToActionProps) {
   return (
-    <div>
-      <h1>Welcome to CallToAction!</h1>
-    </div>
+    <Paper elevation={4} sx={{ maxWidth: 1140, padding: '2.5em' }}>
+      {img}
+      <Box>{children}</Box>
+    </Paper>
   );
 }
 
