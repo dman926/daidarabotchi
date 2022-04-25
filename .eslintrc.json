@@ -2,37 +2,12 @@
   "root": true,
   "ignorePatterns": ["**/*"],
   "plugins": ["@nrwl/nx"],
-  "extends": [
-    "airbnb",
-    "eslint:recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "prettier/@typescript-eslint",
-    "prettier/react",
-    "plugin:react/jsx-runtime"
-  ],
-  "settings": {
-    "react/jsx-filename-extension": {
-      "extensions": [".js", ".jsx", ".ts", ".tsx"]
-    },
-    "import/no-extraneous-dependencies": {
-      "packageDir": "."
-    },
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    },
-    "import/no-unresolved": {
-      "caseSensitiveStrict": true
-    }
-  },
+  "extends": ["airbnb", "airbnb-typescript", "airbnb/hooks"],
+  "settings": {},
   "rules": {
+    "react/react-in-jsx-scope": 0,
     "react/require-default-props": 0,
-    "import/extensions": 0,
-    "dot-notation": 0
+    "import/no-extraneous-dependencies": 0
   },
   "overrides": [
     {
