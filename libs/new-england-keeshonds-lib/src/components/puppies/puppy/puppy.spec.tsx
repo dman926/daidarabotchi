@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Puppy from './puppy';
+import { Puppy } from './puppy';
 
 describe('Puppy', () => {
   it('should render successfully', () => {
