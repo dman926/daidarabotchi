@@ -1,9 +1,8 @@
 import {
   AppBar,
-  Box,
   Button,
   ButtonGroup,
-  ButtonProps,
+  ButtonProps as MuiButtonProps,
   Toolbar,
   Typography,
 } from '@daidarabotchi/material-ui';
@@ -11,7 +10,7 @@ import {
 export interface HeaderMenuItemProps {
   link: string;
   text: string;
-  ButtonProps?: ButtonProps;
+  ButtonProps?: MuiButtonProps;
 }
 export interface HeaderProps {
   navigate: (
@@ -41,7 +40,7 @@ export function Header(props: HeaderProps) {
         >
           {title}
         </Typography>
-        <span style={{ flexGrow: 1 }}></span>
+        <span style={{ flexGrow: 1 }} />
         <ButtonGroup
           sx={{
             display: 'grid',
@@ -49,13 +48,14 @@ export function Header(props: HeaderProps) {
           }}
           data-testid="nek-header-menu"
         >
-          {menu.map((menuItem, index) => {
+          {menu.map((menuItem) => {
             const { link, text, ButtonProps = {} } = menuItem;
             return (
               <Button
+                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...ButtonProps}
                 onClick={() => navigate(link)}
-                key={index}
+                key={text}
               >
                 <Typography>{text}</Typography>
               </Button>

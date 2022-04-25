@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Page from './page';
+import { Page } from './page';
 
 describe('Page', () => {
   it('should render successfully', () => {
@@ -13,7 +13,7 @@ describe('Page', () => {
     let { baseElement } = render(<Page />);
     expect(baseElement).toBeTruthy();
     expect(screen.getByTestId('page-wrapper')).toBeInTheDocument();
-    baseElement = render(<Page testid='dynamic-test' />).baseElement;
+    baseElement = render(<Page testid="dynamic-test" />).baseElement;
     expect(baseElement).toBeTruthy();
     expect(screen.getByTestId('dynamic-test')).toBeInTheDocument();
   });

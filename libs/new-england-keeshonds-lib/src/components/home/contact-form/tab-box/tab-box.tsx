@@ -1,12 +1,17 @@
 import {
   Box,
   Paper,
-  PaperProps,
+  PaperProps as MuiPaperProps,
   Tab,
   Tabs,
   Typography,
 } from '@daidarabotchi/material-ui';
-import { JSXElementConstructor, ReactElement, ReactNode, useState } from 'react';
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactNode,
+  useState,
+} from 'react';
 
 /* eslint-disable-next-line */
 export interface TabBoxProps {
@@ -14,11 +19,11 @@ export interface TabBoxProps {
   tabs: {
     icon?:
       | string
-      | ReactElement<any, string | JSXElementConstructor<any>>;
+      | ReactElement<unknown, string | JSXElementConstructor<unknown>>;
     label?: string;
     content: ReactNode;
   }[];
-  PaperProps?: PaperProps;
+  PaperProps?: MuiPaperProps;
 }
 
 export function TabBox({ head, tabs, PaperProps = {} }: TabBoxProps) {
@@ -28,6 +33,7 @@ export function TabBox({ head, tabs, PaperProps = {} }: TabBoxProps) {
     <Paper
       elevation={4}
       sx={{ padding: '1em' }}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...PaperProps}
       data-testid="nek-tab-box"
     >
@@ -46,18 +52,18 @@ export function TabBox({ head, tabs, PaperProps = {} }: TabBoxProps) {
             centered
             data-testid="nek-tab-box-tabs"
           >
-            {tabs.map((tab, index) => (
+            {tabs.map((tab) => (
               <Tab
                 icon={tab.icon}
                 label={tab.label}
-                key={index}
+                key={tab.label}
                 data-testid="nek-tab-box-tab"
               />
             ))}
           </Tabs>
         </Box>
         {tabs.map((tab, index) => (
-          <Box role="tabpanel" hidden={currentTab !== index} key={index}>
+          <Box role="tabpanel" hidden={currentTab !== index} key={tab.label}>
             {currentTab === index && tab.content}
           </Box>
         ))}

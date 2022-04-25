@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Login from './login';
+import { Login } from './login';
 
 describe('Login', () => {
   it('should render successfully', () => {
