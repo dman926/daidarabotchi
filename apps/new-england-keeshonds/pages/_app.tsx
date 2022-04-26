@@ -1,17 +1,16 @@
 import { ButtonProps } from '@daidarabotchi/material-ui';
+import { Header } from '@daidarabotchi/new-england-keeshonds-lib';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import {
   ThemeProvider,
   useTheme,
-  Theme,
   createTheme,
   ThemeOptions,
   CssBaseline,
 } from '@mui/material';
 import { indigo, blueGrey } from '@mui/material/colors';
-import { Header } from '@daidarabotchi/new-england-keeshonds-lib';
 import './styles.css';
 
 // TODO: Add dark theme switcher in the future
