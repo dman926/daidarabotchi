@@ -46,7 +46,8 @@ export function ContactForm({ head }: ContactFormProps) {
                     <Box vertical>
                       <Field
                         name="name"
-                        component={<TextField label="Name" />}
+                        component={TextField}
+                        label="Name"
                       />
                       <ErrorMessage name="name" />
                     </Box>
@@ -54,7 +55,9 @@ export function ContactForm({ head }: ContactFormProps) {
                     <Box vertical>
                       <Field
                         name="message"
-                        component={<TextField label="Message" rows={4} />}
+                        component={TextField}
+                        label="Message"
+                        rows={4}
                       />
                       <ErrorMessage name="message" />
                     </Box>
@@ -62,7 +65,9 @@ export function ContactForm({ head }: ContactFormProps) {
                     <Box vertical>
                       <Field
                         name="email"
-                        component={<TextField label="Email" type="email" />}
+                        component={TextField}
+                        label="Email"
+                        type="email"
                       />
                       <ErrorMessage name="email" />
                     </Box>
