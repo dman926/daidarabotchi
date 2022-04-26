@@ -4,6 +4,9 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["apps/new-england-keeshonds/tsconfig.*?.json"]
+      },
       "rules": {}
     },
     {
