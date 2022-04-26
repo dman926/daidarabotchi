@@ -1,43 +1,73 @@
 {
   "root": "apps/new-england-keeshonds",
-  "sourceRoot": "apps/new-england-keeshonds",
+  "sourceRoot": "apps/new-england-keeshonds/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/next:build",
+      "executor": "@nrwl/web:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/new-england-keeshonds",
-        "outputPath": "dist/apps/new-england-keeshonds"
-      },
-      "configurations": {
-        "development": {},
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nrwl/next:server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "new-england-keeshonds:build",
-        "dev": true
+        "compiler": "babel",
+        "outputPath": "dist/apps/new-england-keeshonds",
+        "index": "apps/new-england-keeshonds/src/index.html",
+        "baseHref": "/",
+        "main": "apps/new-england-keeshonds/src/main.tsx",
+        "polyfills": "apps/new-england-keeshonds/src/polyfills.ts",
+        "tsConfig": "apps/new-england-keeshonds/tsconfig.app.json",
+        "assets": [
+          "apps/new-england-keeshonds/src/favicon.ico",
+          "apps/new-england-keeshonds/src/assets"
+        ],
+        "styles": ["apps/new-england-keeshonds/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
       },
       "configurations": {
         "development": {
-          "buildTarget": "new-england-keeshonds:build:development",
-          "dev": true
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
         },
         "production": {
-          "buildTarget": "new-england-keeshonds:build:production",
-          "dev": false
+          "fileReplacements": [
+            {
+              "replace": "apps/new-england-keeshonds/src/environments/environment.ts",
+              "with": "apps/new-england-keeshonds/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
         }
       }
     },
-    "export": {
-      "executor": "@nrwl/next:export",
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "new-england-keeshonds:build:production"
+        "buildTarget": "new-england-keeshonds:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "new-england-keeshonds:build:development"
+        },
+        "production": {
+          "buildTarget": "new-england-keeshonds:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/new-england-keeshonds/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
@@ -48,11 +78,10 @@
         "passWithNoTests": true
       }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+    "firebase": {
+      "executor": "@nxtend/firebase:firebase",
       "options": {
-        "lintFilePatterns": ["apps/new-england-keeshonds/**/*.{ts,tsx,js,jsx}"]
+        "cmd": "--help"
       }
     }
   },
