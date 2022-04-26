@@ -31,7 +31,7 @@ export function App() {
   return (
     <ThemeProvider theme={createTheme(theme)}>
       <CssBaseline />
-      <section className="app">
+      <section className="app" data-testid="app-wrapper">
         <Header
           navigate={(url, options) => {
             navigate(url);

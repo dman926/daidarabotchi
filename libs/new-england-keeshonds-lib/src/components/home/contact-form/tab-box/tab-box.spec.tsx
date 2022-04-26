@@ -24,8 +24,14 @@ describe('ContactForm', () => {
   it('should render the correct number of tabs', () => {
     const { baseElement } = render(
       <TabBox
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        tabs={[{ content: <></> }, { content: <></> }, { content: <></> }]}
+        tabs={[
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          { key: 0, content: <></> },
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          { key: 1, content: <></> },
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          { key: 2, content: <></> },
+        ]}
       />
     );
     expect(baseElement).toBeTruthy();
