@@ -34,7 +34,7 @@ export function App() {
       <section className="app" data-testid="app-wrapper">
         <Header
           navigate={(url, options) => {
-            navigate(url);
+            navigate(url, options);
           }}
           title="New England Keeshonds"
           currentRoute={location.pathname}
