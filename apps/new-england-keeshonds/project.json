@@ -12,7 +12,8 @@
         "outputPath": "dist/apps/new-england-keeshonds"
       },
       "configurations": {
-        "production": {}
+        "production": {},
+        "development": {}
       }
     },
     "serve": {
@@ -25,8 +26,13 @@
         "production": {
           "buildTarget": "new-england-keeshonds:build:production",
           "dev": false
+        },
+        "development": {
+          "buildTarget": "new-england-keeshonds:build:development",
+          "dev": true
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "export": {
       "executor": "@nrwl/next:export",
@@ -38,7 +44,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/new-england-keeshonds"],
       "options": {
-        "jestConfig": "apps/new-england-keeshonds/jest.config.js",
+        "jestConfig": "apps/new-england-keeshonds/jest.config.ts",
         "passWithNoTests": true
       }
     },

@@ -37,7 +37,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/new-england-keeshonds-lib"],
       "options": {
-        "jestConfig": "libs/new-england-keeshonds-lib/jest.config.js",
+        "jestConfig": "libs/new-england-keeshonds-lib/jest.config.ts",
         "passWithNoTests": true
       }
     }
