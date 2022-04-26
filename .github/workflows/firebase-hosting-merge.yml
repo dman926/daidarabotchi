@@ -20,3 +20,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
           channelId: live
           projectId: new-england-keeshonds
+          entryPoint: apps/new-england-keeshonds
