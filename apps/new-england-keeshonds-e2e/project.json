@@ -7,7 +7,7 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/new-england-keeshonds-e2e/cypress.json",
-        "devServerTarget": "new-england-keeshonds:serve"
+        "devServerTarget": "new-england-keeshonds:serve:development"
       },
       "configurations": {
         "production": {

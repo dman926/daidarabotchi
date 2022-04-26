@@ -5,20 +5,18 @@ import {
   Login,
   Page,
 } from '@daidarabotchi/new-england-keeshonds-lib';
-import Image, { StaticImageData } from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
 
-import AllDogsImage from '../public/dogs/all_dogs.jpg';
-import WillowImage from '../public/dogs/willow.jpg';
-import MiloImage from '../public/dogs/milo.jpg';
-import BellaImage from '../public/dogs/bella.jpg';
+import AllDogsImage from '../../../assets/dogs/all_dogs.jpg';
+import WillowImage from '../../../assets/dogs/willow.jpg';
+import MiloImage from '../../../assets/dogs/milo.jpg';
+import BellaImage from '../../../assets/dogs/bella.jpg';
 
 // TODO: fill out the description more
-// TOOD: make this dynamic through functions and ISR it as a long term cache
+// TOOD: make this dynamic through functions
 const DOGS: {
   name: string;
   description: string;
-  img: StaticImageData | string;
+  img: string;
 }[] = [
   {
     name: 'Willow',
@@ -39,18 +37,17 @@ const DOGS: {
   },
 ];
 
-function Home() {
+export function Home() {
   return (
     <Page testid="home-wrapper">
       <Container>
         <CallToAction
           img={
-            <Image
+            <img
               src={AllDogsImage}
               alt="Willow, Milo, and Bella"
               placeholder="blur"
-              objectFit="cover"
-              priority
+              style={{ objectFit: 'cover', objectPosition: 'center', width: '100%' }}
             />
           }
         >
@@ -65,14 +62,13 @@ function Home() {
                     paddingRight: '0.25em',
                   }}
                 >
-                  <Image
+                  <img
                     src={dog.img}
                     alt={`${dog.name}`}
                     placeholder="blur"
-                    objectFit="cover"
-                    objectPosition="center"
                     width={256}
                     height={256}
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                   />
                 </Box>
               </Grid>
