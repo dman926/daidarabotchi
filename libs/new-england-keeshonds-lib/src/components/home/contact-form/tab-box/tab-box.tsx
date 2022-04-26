@@ -17,6 +17,7 @@ import {
 export interface TabBoxProps {
   head?: string;
   tabs: {
+    key: number;
     icon?:
       | string
       | ReactElement<unknown, string | JSXElementConstructor<unknown>>;
@@ -56,14 +57,14 @@ export function TabBox({ head, tabs, PaperProps = {} }: TabBoxProps) {
               <Tab
                 icon={tab.icon}
                 label={tab.label}
-                key={tab.label}
+                key={tab.key}
                 data-testid="nek-tab-box-tab"
               />
             ))}
           </Tabs>
         </Box>
         {tabs.map((tab, index) => (
-          <Box role="tabpanel" hidden={currentTab !== index} key={tab.label}>
+          <Box role="tabpanel" hidden={currentTab !== index} key={tab.key}>
             {currentTab === index && tab.content}
           </Box>
         ))}

@@ -16,6 +16,7 @@ export function ContactForm({ head }: ContactFormProps) {
       head={head}
       tabs={[
         {
+          key: 0,
           icon: <EmailIcon />,
           content: (
             <Box sx={{ marginTop: '1em' }}>
@@ -59,7 +60,10 @@ export function ContactForm({ head }: ContactFormProps) {
                     </Box>
 
                     <Box vertical>
-                      <Field name="email" />
+                      <Field
+                        name="email"
+                        component={<TextField label="Email" type="email" />}
+                      />
                       <ErrorMessage name="email" />
                     </Box>
 
@@ -71,6 +75,7 @@ export function ContactForm({ head }: ContactFormProps) {
           ),
         },
         {
+          key: 1,
           icon: <FacebookIcon />,
           content: <Typography>TODO</Typography>,
         },
