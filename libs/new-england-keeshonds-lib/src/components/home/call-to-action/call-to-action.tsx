@@ -2,7 +2,7 @@ import {
   Box,
   Divider,
   Paper,
-  PaperProps,
+  PaperProps as MuiPaperProps,
   Typography,
 } from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
@@ -10,7 +10,7 @@ import { ReactNode } from 'react';
 export interface CallToActionProps {
   img: ReactNode;
   children?: ReactNode;
-  PaperProps?: PaperProps;
+  PaperProps?: MuiPaperProps;
 }
 
 export function CallToAction({
@@ -22,6 +22,7 @@ export function CallToAction({
     <Paper
       elevation={4}
       sx={{ padding: '2.5em' }}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...PaperProps}
       data-testid="nek-call-to-action"
     >

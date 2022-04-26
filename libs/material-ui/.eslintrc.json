@@ -4,8 +4,12 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["libs/material-ui/tsconfig.*?.json"]
+      },
       "rules": {
-        "react/jsx-props-no-spreading": [0]
+        "react/jsx-props-no-spreading": 0,
+        "import/no-named-as-default": 0
       }
     },
     {

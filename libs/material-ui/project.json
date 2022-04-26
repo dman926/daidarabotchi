@@ -35,7 +35,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/material-ui"],
       "options": {
-        "jestConfig": "libs/material-ui/jest.config.js",
+        "jestConfig": "libs/material-ui/jest.config.ts",
         "passWithNoTests": true
       }
     },

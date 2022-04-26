@@ -1,7 +1,7 @@
 import {
   Button,
   Paper,
-  PaperProps,
+  PaperProps as MuiPaperProps,
   TextField,
   Typography,
 } from '@daidarabotchi/material-ui';
@@ -11,17 +11,17 @@ import { useState } from 'react';
 export interface LoginProps {
   head: string;
   onSubmit: (word: string) => void;
-  PaperProps?: PaperProps;
+  PaperProps?: MuiPaperProps;
 }
 
 export function Login({ head, onSubmit, PaperProps = {} }: LoginProps) {
   const [word, setWord] = useState<string>();
-  const [error, setError] = useState<boolean>(false);
 
   return (
     <Paper
       elevation={4}
       sx={{ padding: '1em', display: 'flex', flexDirection: 'column' }}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...PaperProps}
       data-testid="nek-login"
     >
@@ -37,7 +37,6 @@ export function Login({ head, onSubmit, PaperProps = {} }: LoginProps) {
         required
         data-testid="nek-login-secret"
       />
-      {error && <Typography color="warn">Required</Typography>}
       <Button
         onClick={() => {
           if (word) {

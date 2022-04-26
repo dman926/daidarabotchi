@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import TabBox from './tab-box';
+import { TabBox } from './tab-box';
 
 describe('ContactForm', () => {
   it('should render successfully', () => {
@@ -24,7 +24,14 @@ describe('ContactForm', () => {
   it('should render the correct number of tabs', () => {
     const { baseElement } = render(
       <TabBox
-        tabs={[{ content: <></> }, { content: <></> }, { content: <></> }]}
+        tabs={[
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          { key: 0, content: <></> },
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          { key: 1, content: <></> },
+          // eslint-disable-next-line react/jsx-no-useless-fragment
+          { key: 2, content: <></> },
+        ]}
       />
     );
     expect(baseElement).toBeTruthy();

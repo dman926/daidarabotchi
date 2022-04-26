@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/portfolio-lib"],
       "options": {
-        "jestConfig": "libs/portfolio-lib/jest.config.js",
+        "jestConfig": "libs/portfolio-lib/jest.config.ts",
         "passWithNoTests": true
       }
     }

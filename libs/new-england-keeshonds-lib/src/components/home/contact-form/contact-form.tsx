@@ -1,10 +1,9 @@
 import { Box, Button, TextField, Typography } from '@daidarabotchi/material-ui';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { ReactNode } from 'react';
 import * as Yup from 'yup';
-import TabBox from './tab-box/tab-box';
 import EmailIcon from '@mui/icons-material/Email';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import { TabBox } from './tab-box/tab-box';
 
 /* eslint-disable-next-line */
 export interface ContactFormProps {
@@ -17,6 +16,7 @@ export function ContactForm({ head }: ContactFormProps) {
       head={head}
       tabs={[
         {
+          key: 0,
           icon: <EmailIcon />,
           content: (
             <Box sx={{ marginTop: '1em' }}>
@@ -35,7 +35,7 @@ export function ContactForm({ head }: ContactFormProps) {
                 })}
                 onSubmit={() => {}}
               >
-                {(formik) => (
+                {() => (
                   <Form
                     style={{
                       display: 'flex',
@@ -46,9 +46,8 @@ export function ContactForm({ head }: ContactFormProps) {
                     <Box vertical>
                       <Field
                         name="name"
-                        component={(props: any) => (
-                          <TextField label="Name" {...props} />
-                        )}
+                        component={TextField}
+                        label="Name"
                       />
                       <ErrorMessage name="name" />
                     </Box>
@@ -56,9 +55,9 @@ export function ContactForm({ head }: ContactFormProps) {
                     <Box vertical>
                       <Field
                         name="message"
-                        component={(props: any) => (
-                          <TextField label="Message" rows={4} {...props} />
-                        )}
+                        component={TextField}
+                        label="Message"
+                        rows={4}
                       />
                       <ErrorMessage name="message" />
                     </Box>
@@ -66,9 +65,9 @@ export function ContactForm({ head }: ContactFormProps) {
                     <Box vertical>
                       <Field
                         name="email"
-                        component={(props: any) => (
-                          <TextField label="Your Email" {...props} />
-                        )}
+                        component={TextField}
+                        label="Email"
+                        type="email"
                       />
                       <ErrorMessage name="email" />
                     </Box>
@@ -81,6 +80,7 @@ export function ContactForm({ head }: ContactFormProps) {
           ),
         },
         {
+          key: 1,
           icon: <FacebookIcon />,
           content: <Typography>TODO</Typography>,
         },

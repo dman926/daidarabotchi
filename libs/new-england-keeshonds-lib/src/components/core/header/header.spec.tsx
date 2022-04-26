@@ -1,19 +1,25 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Header, { HeaderMenuItemProps, HeaderProps } from './header';
+import { Header, HeaderMenuItemProps, HeaderProps } from './header';
 
 const TITLE = 'Test Site';
-const SimpleHeader = (props: Partial<HeaderProps>) => (
-  <Header
-    navigate={(url, options) => {
-      props.navigate ? props.navigate(url, options) : null;
-    }}
-    title={TITLE}
-    currentRoute={props.currentRoute ? props.currentRoute : ''}
-    menu={props.menu ? props.menu : []}
-  />
-);
+function SimpleHeader(props: Partial<HeaderProps>) {
+  const { navigate = () => {}, currentRoute = '', menu = [] } = props;
+
+  return (
+    <Header
+      navigate={(url, options) => {
+        if (navigate) {
+          navigate(url, options);
+        }
+      }}
+      title={TITLE}
+      currentRoute={currentRoute}
+      menu={menu}
+    />
+  );
+}
 
 describe('Header', () => {
   it('should render successfully', () => {
