@@ -12,27 +12,27 @@
         "outputPath": "dist/apps/new-england-keeshonds"
       },
       "configurations": {
-        "production": {},
-        "development": {}
+        "development": {},
+        "production": {}
       }
     },
     "serve": {
       "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
       "options": {
         "buildTarget": "new-england-keeshonds:build",
         "dev": true
       },
       "configurations": {
-        "production": {
-          "buildTarget": "new-england-keeshonds:build:production",
-          "dev": false
-        },
         "development": {
           "buildTarget": "new-england-keeshonds:build:development",
           "dev": true
+        },
+        "production": {
+          "buildTarget": "new-england-keeshonds:build:production",
+          "dev": false
         }
-      },
-      "defaultConfiguration": "development"
+      }
     },
     "export": {
       "executor": "@nrwl/next:export",
