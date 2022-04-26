@@ -6,6 +6,7 @@ import {
   Toolbar,
   Typography,
 } from '@daidarabotchi/material-ui';
+import { NavigateOptions } from 'react-router-dom';
 
 export interface HeaderMenuItemProps {
   link: string;
@@ -13,10 +14,7 @@ export interface HeaderMenuItemProps {
   ButtonProps?: MuiButtonProps;
 }
 export interface HeaderProps {
-  navigate: (
-    url: string,
-    options?: { query?: { [key: string]: unknown }[] }
-  ) => void;
+  navigate: (url: string, options?: NavigateOptions) => void;
   title: string;
   currentRoute: string;
   home?: string;
