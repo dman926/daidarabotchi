@@ -77,7 +77,7 @@
     "@fontsource/material-icons-two-tone": "^4.5.4",
     "@fontsource/roboto": "^4.5.5",
     "@mui/icons-material": "^5.5.1",
-    "@mui/material": "^5.6.1",
+    "@mui/material": "^5.6.3",
     "@mui/x-data-grid": "^5.8.0",
     "@netlify/functions": "^1.0.0",
     "@nrwl/next": "13.8.8",
