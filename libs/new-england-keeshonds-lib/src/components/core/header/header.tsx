@@ -7,7 +7,8 @@ import {
   Toolbar,
   Typography,
 } from '@daidarabotchi/material-ui';
-import { styled } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
 import { ReactNode } from 'react';
 import { NavigateOptions } from 'react-router-dom';
 
@@ -30,6 +31,8 @@ export interface HeaderProps {
 }
 
 export function Header(props: HeaderProps) {
+  const theme = useTheme();
+  const sm = useMediaQuery(theme.breakpoints.down('sm'));
   const { navigate, title, currentRoute, home = '', menu } = props;
 
   return (
@@ -60,39 +63,39 @@ export function Header(props: HeaderProps) {
               )}
             </Typography>
           </GridCenterContents>
-          <GridCenterContents
-            item
-            xs={1}
-            sx={{ position: 'absolute' }}
-          >
-            {/* @TODO: PUT AN ANNOUNCEMENT BAR HERE WHEN THERE IS A CURRENT LITTER */}
-          </GridCenterContents>
-          <GridCenterContents item xs={6}>
-            <ButtonGroup
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: `repeat(${menu.length}, 1fr)`,
-                width: '12em',
-                marginLeft: 'auto',
-              }}
-              data-testid="nek-header-menu"
-            >
-              {menu.map((menuItem) => {
-                const { link, text, ButtonProps = {} } = menuItem;
-                return (
-                  <Button
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...ButtonProps}
-                    onClick={() => navigate(link)}
-                    key={text}
-                    data-testid="nek-header-nav-button"
-                  >
-                    <Typography>{text}</Typography>
-                  </Button>
-                );
-              })}
-            </ButtonGroup>
-          </GridCenterContents>
+          {!sm && (
+            <>
+              <GridCenterContents item xs={1} sx={{ position: 'absolute' }}>
+                {/* @TODO: PUT AN ANNOUNCEMENT BAR HERE WHEN THERE IS A CURRENT LITTER */}
+              </GridCenterContents>
+              <GridCenterContents item xs={6}>
+                <ButtonGroup
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: `repeat(${menu.length}, 1fr)`,
+                    width: '12em',
+                    marginLeft: 'auto',
+                  }}
+                  data-testid="nek-header-menu"
+                >
+                  {menu.map((menuItem) => {
+                    const { link, text, ButtonProps = {} } = menuItem;
+                    return (
+                      <Button
+                        // eslint-disable-next-line react/jsx-props-no-spreading
+                        {...ButtonProps}
+                        onClick={() => navigate(link)}
+                        key={text}
+                        data-testid="nek-header-nav-button"
+                      >
+                        <Typography>{text}</Typography>
+                      </Button>
+                    );
+                  })}
+                </ButtonGroup>
+              </GridCenterContents>
+            </>
+          )}
         </Grid>
       </Toolbar>
     </AppBar>
