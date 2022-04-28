@@ -7,9 +7,9 @@ import {
   CssBaseline,
 } from '@mui/material';
 import { indigo, blueGrey } from '@mui/material/colors';
+import PetsIcon from '@mui/icons-material/Pets';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Home, Puppies, Puppy } from './pages';
-import './styles.css';
 
 // TODO: Add dark theme switcher in the future
 const theme: ThemeOptions = {
@@ -36,7 +36,7 @@ export function App() {
           navigate={(url, options) => {
             navigate(url, options);
           }}
-          title="New England Keeshonds"
+          title={{ icon: <PetsIcon />, text: 'New England Keeshonds' }}
           currentRoute={location.pathname}
           home="/"
           menu={[

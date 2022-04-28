@@ -6,6 +6,7 @@ import {
   Toolbar,
   Typography,
 } from '@daidarabotchi/material-ui';
+import { ReactNode } from 'react';
 import { NavigateOptions } from 'react-router-dom';
 
 export interface HeaderMenuItemProps {
@@ -15,7 +16,7 @@ export interface HeaderMenuItemProps {
 }
 export interface HeaderProps {
   navigate: (url: string, options?: NavigateOptions) => void;
-  title: string;
+  title: string | { icon: ReactNode; text: string };
   currentRoute: string;
   home?: string;
   menu: HeaderMenuItemProps[];
@@ -33,10 +34,20 @@ export function Header(props: HeaderProps) {
           sx={{
             fontSize: '1em',
             cursor: currentRoute === home ? 'default' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1
           }}
           data-testid="nek-header-title"
         >
-          {title}
+          {typeof title === 'string' ? (
+            title
+          ) : (
+            <>
+              {title.icon}
+              <span>{title.text}</span>
+            </>
+          )}
         </Typography>
         <span style={{ flexGrow: 1 }} />
         <ButtonGroup
@@ -54,6 +65,7 @@ export function Header(props: HeaderProps) {
                 {...ButtonProps}
                 onClick={() => navigate(link)}
                 key={text}
+                data-testid="nek-header-nav-button"
               >
                 <Typography>{text}</Typography>
               </Button>
