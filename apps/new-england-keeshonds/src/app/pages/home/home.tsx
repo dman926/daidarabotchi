@@ -6,6 +6,7 @@ import {
   Page,
 } from '@daidarabotchi/new-england-keeshonds-lib';
 import { useMediaQuery, useTheme } from '@mui/material';
+import Masonry from '@mui/lab/Masonry';
 
 import AllDogsImage from '../../../assets/dogs/all_dogs.jpg';
 import WillowImage from '../../../assets/dogs/willow.jpg';
@@ -100,6 +101,14 @@ export function Home() {
             );
           })}
         </CallToAction>
+      </Container>
+      <Container maxWidth={false}>
+        <Masonry columns={md ? 7 : 4} spacing={2}>
+          {/* The idea would be to only render 2-3 rows at a time a time with a manual load more button at the bottom so users can reach the contact form */}
+          {[].map((image) => (
+            <img src={image} loading="lazy" alt={image} key={image} />
+          ))}
+        </Masonry>
       </Container>
       <Container maxWidth="xs">
         <ContactForm head="Get A Hold Of Me" />
