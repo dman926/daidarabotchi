@@ -1,7 +1,9 @@
+import React, { Suspense } from 'react';
 import { ButtonProps } from '@daidarabotchi/material-ui';
 import {
   FirebaseProvider,
   Header,
+  LoadingPage,
 } from '@daidarabotchi/new-england-keeshonds-lib';
 import {
   ThemeProvider,
@@ -13,6 +15,8 @@ import PetsIcon from '@mui/icons-material/Pets';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Home, Puppies, Puppy } from './pages';
 import { environment } from '../environments/environment';
+
+const Admin = React.lazy(() => import('./pages/admin/admin'));
 
 // TODO: Add dark theme switcher in the future
 const theme: ThemeOptions = {
@@ -56,6 +60,14 @@ export function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route
+                path="/admin"
+                element={
+                  <Suspense fallback={<LoadingPage />}>
+                    <Admin />
+                  </Suspense>
+                }
+              />
               <Route path="/puppies" element={<Puppies />} />
               <Route
                 path="/puppies/:parentName/:litterNum/:color"
