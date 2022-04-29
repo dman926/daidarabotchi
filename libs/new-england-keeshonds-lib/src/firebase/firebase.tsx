@@ -1,5 +1,9 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
-import { Analytics, getAnalytics } from 'firebase/analytics';
+import {
+  Analytics,
+  getAnalytics,
+  isSupported as isAnalyticsSupported,
+} from 'firebase/analytics';
 import { Auth, getAuth } from 'firebase/auth';
 import { Firestore, getFirestore } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
@@ -9,7 +13,7 @@ import { createContext, ReactNode, useContext, useMemo } from 'react';
 export class Firebase {
   app: FirebaseApp;
 
-  analytics: Analytics;
+  analytics?: Analytics;
 
   auth: Auth;
 
@@ -21,7 +25,9 @@ export class Firebase {
 
   constructor(firebaseConfig: FirebaseOptions) {
     this.app = initializeApp(firebaseConfig);
-    this.analytics = getAnalytics(this.app);
+    isAnalyticsSupported().then(() => {
+      this.analytics = getAnalytics(this.app);
+    });
     this.auth = getAuth(this.app);
     this.firestore = getFirestore(this.app);
     this.storage = getStorage(this.app);
