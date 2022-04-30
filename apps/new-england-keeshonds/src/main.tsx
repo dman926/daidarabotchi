@@ -3,6 +3,10 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles.scss';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
+import CssBaseline from '@mui/material/CssBaseline';
+import { environment } from './environments/environment';
 import { App } from './app/app';
 
 const root = ReactDOM.createRoot(
@@ -11,7 +15,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <FirebaseProvider firebaseOptions={environment.firebaseConfig}>
+        <ThemeProvider theme={createTheme(environment.baseTheme)}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </FirebaseProvider>
     </BrowserRouter>
   </StrictMode>
 );

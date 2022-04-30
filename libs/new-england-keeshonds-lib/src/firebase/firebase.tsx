@@ -37,7 +37,13 @@ export class Firebase {
 
 const FirebaseContext = createContext<null | Firebase>(null);
 
-export const useFirebase = () => useContext(FirebaseContext);
+export const useFirebase = () => {
+  const firebase = useContext(FirebaseContext);
+  if (firebase === null) {
+    throw new Error('firebaseOptions not provided to FirebaseProvider');
+  }
+  return firebase;
+};
 
 export function FirebaseProvider({
   firebaseOptions,
