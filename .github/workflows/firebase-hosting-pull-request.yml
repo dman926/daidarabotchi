@@ -11,11 +11,27 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: >-
-          npm ci && npx nx run new-england-keeshonds:build:production && mv
-          dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Checkout [main]
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm ci
+      - name: Check if deploy is needed
+        id: deploy_needed
+        run: echo "::set-output name=deploy::$(./scripts/isaffected new-england-keeshonds)"
+      - name: Build New England Keeshonds
+        run: npx nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
+        if: steps.deploy_needed.outputs.deploy == 1
+      - name: Deploy New England Keeshonds
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        if: steps.deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'

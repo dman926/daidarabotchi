@@ -1,10 +1,10 @@
-import { render } from '@testing-library/react';
+import { act, renderWithProvider, waitFor } from '../../../utils/testUtils';
 
-import Admin from './admin';
+import { Admin } from './admin';
 
 describe('Admin', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<Admin />);
-    expect(baseElement).toBeTruthy();
+  it('should render successfully', async () => {
+    const { baseElement } = renderWithProvider(<Admin />);
+    await waitFor(() => expect(baseElement).toBeTruthy());
   });
 });

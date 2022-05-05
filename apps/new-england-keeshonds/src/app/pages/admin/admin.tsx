@@ -11,8 +11,6 @@ export function Admin() {
   const firebaseAuth = useFirebase().auth;
   const [user, loading, error] = useAuthState(firebaseAuth);
 
-  console.log({ user, loading, error });
-
   if (loading) {
     return (
       <Page testid="admin-loading-wrapper">

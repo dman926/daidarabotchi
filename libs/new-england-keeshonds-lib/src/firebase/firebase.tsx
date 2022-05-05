@@ -25,8 +25,10 @@ export class Firebase {
 
   constructor(firebaseConfig: FirebaseOptions) {
     this.app = initializeApp(firebaseConfig);
-    isAnalyticsSupported().then(() => {
-      this.analytics = getAnalytics(this.app);
+    isAnalyticsSupported().then((supported) => {
+      if (supported) {
+        this.analytics = getAnalytics(this.app);
+      }
     });
     this.auth = getAuth(this.app);
     this.firestore = getFirestore(this.app);
