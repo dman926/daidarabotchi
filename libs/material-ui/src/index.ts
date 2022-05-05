@@ -10,6 +10,7 @@ export * from './data-display/list/list-item-button/list-item-button';
 export * from './data-display/list/list-item-avatar/list-item-avatar';
 export * from './data-display/list/list-item/list-item';
 export * from './feedback/dialog/slide/slide';
+export * from './feedback/circular-progress/circular-progress';
 export * from './feedback/dialog/dialog-title/dialog-title';
 export * from './feedback/dialog/dialog-content-text/dialog-content-text';
 export * from './feedback/dialog/dialog-content/dialog-content';
