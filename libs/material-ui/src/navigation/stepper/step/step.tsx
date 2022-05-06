@@ -1,5 +1,4 @@
 import MuiStep, { StepProps as MuiStepProps } from '@mui/material/Step';
-import './step.module.scss';
 
 /* eslint-disable-next-line */
 export interface StepProps extends MuiStepProps {}

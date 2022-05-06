@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Collapse from './collapse';
+import Input from './input';
 
-describe('Collapse', () => {
+describe('Input', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Collapse />);
+    const { baseElement } = render(<Input />);
     expect(baseElement).toBeTruthy();
   });
 });

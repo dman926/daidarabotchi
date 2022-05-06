@@ -1,7 +1,6 @@
 import MuiBottomNavigation, {
   BottomNavigationProps as MuiBottomNavigationProps,
 } from '@mui/material/BottomNavigation';
-import './bottom-navigation.module.scss';
 
 /* eslint-disable-next-line */
 export interface BottomNavigationProps extends MuiBottomNavigationProps {}

@@ -1,7 +1,6 @@
 import MuiTableSortLabel, {
   TableSortLabelProps as MuiTableSortLabelProps,
 } from '@mui/material/TableSortLabel';
-import './table-sort-label.module.scss';
 
 /* eslint-disable-next-line */
 export interface TableSortLabelProps extends MuiTableSortLabelProps {}

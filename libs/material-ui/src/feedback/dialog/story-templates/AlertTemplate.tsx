@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Story } from '@storybook/react';
-import Button from 'libs/material-ui/src/inputs/button/button';
+import Button from '../../../inputs/button/button';
 import { Dialog, DialogProps } from '../dialog';
 import DialogActions from '../dialog-actions/dialog-actions';
 import DialogContent from '../dialog-content/dialog-content';

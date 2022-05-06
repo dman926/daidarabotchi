@@ -1,5 +1,4 @@
 import MuiSlider, { SliderProps as MuiSliderProps } from '@mui/material/Slider';
-import './slider.module.scss';
 
 /* eslint-disable-next-line */
 export interface SliderProps extends MuiSliderProps {}

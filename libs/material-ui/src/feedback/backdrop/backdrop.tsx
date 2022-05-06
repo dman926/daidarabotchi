@@ -2,8 +2,6 @@ import MuiBackdrop, {
   BackdropProps as MuiBackdropProps,
 } from '@mui/material/Backdrop';
 
-import './backdrop.module.scss';
-
 /* eslint-disable-next-line */
 export interface BackdropProps extends MuiBackdropProps {}
 

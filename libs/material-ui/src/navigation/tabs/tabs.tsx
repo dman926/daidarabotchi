@@ -1,5 +1,4 @@
 import MuiTabs, { TabsProps as MuiTabsProps } from '@mui/material/Tabs';
-import './tabs.module.scss';
 
 /* eslint-disable-next-line */
 export interface TabsProps extends MuiTabsProps {}

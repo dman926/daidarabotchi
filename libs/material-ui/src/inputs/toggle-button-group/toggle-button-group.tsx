@@ -1,7 +1,6 @@
 import MuiToggleButtonGroup, {
   ToggleButtonGroupProps as MuiToggleButtonGroupProps,
 } from '@mui/material/ToggleButtonGroup';
-import './toggle-button-group.module.scss';
 
 /* eslint-disable-next-line */
 export interface ToggleButtonGroupProps extends MuiToggleButtonGroupProps {}

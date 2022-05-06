@@ -1,7 +1,6 @@
 import MuiImageList, {
   ImageListProps as MuiImageListProps,
 } from '@mui/material/ImageList';
-import './image-list.module.scss';
 
 /* eslint-disable-next-line */
 export interface ImageListProps extends MuiImageListProps {}
