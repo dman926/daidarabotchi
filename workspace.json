@@ -8,6 +8,9 @@
     "new-england-keeshonds-lib": "libs/new-england-keeshonds-lib",
     "portfolio": "apps/portfolio",
     "portfolio-e2e": "apps/portfolio-e2e",
-    "portfolio-lib": "libs/portfolio-lib"
+    "portfolio-lib": "libs/portfolio-lib",
+    "sephira-lib": "libs/sephira-lib",
+    "sephira.ai": "apps/sephira.ai",
+    "sephira.ai-e2e": "apps/sephira.ai-e2e"
   }
 }

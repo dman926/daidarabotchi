@@ -1,0 +1,28 @@
+{
+  "root": "apps/sephira.ai-e2e",
+  "sourceRoot": "apps/sephira.ai-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/sephira.ai-e2e/cypress.json",
+        "devServerTarget": "sephira.ai:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "sephira.ai:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/sephira.ai-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["sephira.ai"]
+}
