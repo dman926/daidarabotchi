@@ -1,7 +1,6 @@
 import { Theme } from '@emotion/react';
 import { SxProps } from '@mui/material';
 import MuiCardMedia, { CardMediaClasses } from '@mui/material/CardMedia';
-import './card-media.module.scss';
 
 /* eslint-disable-next-line */
 export interface CardMediaProps {

@@ -1,5 +1,3 @@
-import './pagination-item.module.scss';
-
 /* eslint-disable-next-line */
 export interface PaginationItemProps {}
 

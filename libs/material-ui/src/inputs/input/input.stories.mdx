@@ -1,0 +1,14 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Input } from './input';
+
+<Meta title="Material-UI/Inputs/Input" component={Input} />
+
+export const Template = (args) => <Input {...args} />;
+
+# Input
+
+Description Here
+
+<Canvas>
+  <Story name="Primary">{Template.bind({})}</Story>
+</Canvas>

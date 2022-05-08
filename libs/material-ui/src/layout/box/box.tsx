@@ -1,6 +1,4 @@
-import { SxProps, Theme } from '@mui/material';
 import MuiBox, { BoxProps as MuiBoxProps } from '@mui/material/Box';
-import './box.module.scss';
 
 /* eslint-disable-next-line */
 export type BoxProps = MuiBoxProps & {
@@ -8,17 +6,16 @@ export type BoxProps = MuiBoxProps & {
 };
 
 export function Box(props: BoxProps) {
-  let sx: SxProps<Theme> | undefined;
-  if (props.vertical) {
+  let { sx } = props;
+  const { vertical, ...rest } = props;
+  if (vertical) {
     sx = {
-      ...(props.sx ? props.sx : {}),
+      ...(sx || {}),
       display: 'flex',
       flexDirection: 'column',
     };
-  } else {
-    sx = props.sx;
   }
-  return <MuiBox data-testid="mui-box" {...props} sx={sx} />;
+  return <MuiBox data-testid="mui-box" {...rest} sx={sx} />;
 }
 
 export default Box;

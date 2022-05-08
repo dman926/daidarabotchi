@@ -1,17 +1,17 @@
 import { Story } from '@storybook/react';
+import PersonIcon from '@mui/icons-material/Person';
+import AddIcon from '@mui/icons-material/Add';
+import { blue } from '@mui/material/colors';
+import { useState } from 'react';
 import Avatar from '../../../data-display/avatar/avatar';
 import List from '../../../data-display/list/list';
 import { Dialog, DialogProps } from '../dialog';
 import DialogTitle from '../dialog-title/dialog-title';
-import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
 import ListItemAvatar from '../../../data-display/list/list-item-avatar/list-item-avatar';
 import ListItemText from '../../../data-display/list/list-item-text/list-item-text';
 import ListItemButton from '../../../data-display/list/list-item-button/list-item-button';
 import Typography from '../../../data-display/typography/typography';
 import Button from '../../../inputs/button/button';
-import { blue } from '@mui/material/colors';
-import { useState } from 'react';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 

@@ -1,7 +1,6 @@
 import MuiBreadcrumbs, {
   BreadcrumbsProps as MuiBreadcrumbsProps,
 } from '@mui/material/Breadcrumbs';
-import './breadcrumbs.module.scss';
 
 /* eslint-disable-next-line */
 export interface BreadcrumbsProps extends MuiBreadcrumbsProps {}

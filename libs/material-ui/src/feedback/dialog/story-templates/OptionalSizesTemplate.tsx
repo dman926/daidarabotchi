@@ -1,17 +1,19 @@
 import { useState, ChangeEvent } from 'react';
 import { Story } from '@storybook/react'
-import Box from 'libs/material-ui/src/layout/box/box';
-import Button from 'libs/material-ui/src/inputs/button/button';
+
+import { FormControlLabel, FormControl } from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Switch from '@mui/material/Switch';
+
+import Box from '../../../layout/box/box';
+import Button from '../../../inputs/button/button';
 import Dialog, { DialogProps } from '../dialog';
 import DialogActions from '../dialog-actions/dialog-actions';
 import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
-import { FormControlLabel, FormControl } from '@mui/material';
-import InputLabel from 'libs/material-ui/src/inputs/input-label/input-label';
-import MenuItem from 'libs/material-ui/src/navigation/menu/menu-item/menu-item';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Switch from '@mui/material/Switch';
+import InputLabel from '../../../inputs/input-label/input-label';
+import MenuItem from '../../../navigation/menu/menu-item/menu-item';
 
 export const OptionalSizesTemplate: Story<DialogProps> = (args) =>  {
   const [open, setOpen] = useState(false);

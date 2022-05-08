@@ -1,5 +1,4 @@
 import MuiRating, { RatingProps as MuiRatingProps } from '@mui/material/Rating';
-import './rating.module.scss';
 
 /* eslint-disable-next-line */
 export interface RatingProps extends MuiRatingProps {}

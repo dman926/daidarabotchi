@@ -1,7 +1,6 @@
 import { Theme } from '@emotion/react';
 import { SxProps } from '@mui/material';
 import MuiCardActions, { CardActionsClasses } from '@mui/material/CardActions';
-import './card-actions.module.scss';
 
 /* eslint-disable-next-line */
 export interface CardActionsProps {

@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Story } from '@storybook/react';
 import { styled } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
-import Button from 'libs/material-ui/src/inputs/button/button';
+import Button from '../../../inputs/button/button';
 import Dialog, { DialogProps } from '../dialog';
 import DialogTitle from '../dialog-title/dialog-title';
 import DialogContent from '../dialog-content/dialog-content';
 import DialogActions from '../dialog-actions/dialog-actions';
-import IconButton from 'libs/material-ui/src/inputs/button/icon-button/icon-button';
-import Typography from 'libs/material-ui/src/data-display/typography/typography';
+import IconButton from '../../../inputs/button/icon-button/icon-button';
+import Typography from '../../../data-display/typography/typography';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {

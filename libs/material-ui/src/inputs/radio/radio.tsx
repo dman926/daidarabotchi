@@ -1,4 +1,5 @@
 import MuiRadio, { RadioProps as MuiRadioProps } from '@mui/material/Radio';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 /* eslint-disable-next-line */
 export interface RadioProps extends MuiRadioProps {}

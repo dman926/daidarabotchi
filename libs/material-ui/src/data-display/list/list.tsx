@@ -1,5 +1,4 @@
 import MuiList, { ListProps as MuiListProps } from '@mui/material/List';
-import './list.module.scss';
 
 /* eslint-disable-next-line */
 export interface ListProps extends MuiListProps {

@@ -1,7 +1,6 @@
 import MuiSpeedDialAction, {
   SpeedDialActionProps as MuiSpeedDialActionProps,
 } from '@mui/material/SpeedDialAction';
-import './speed-dial-action.module.scss';
 
 /* eslint-disable-next-line */
 export interface SpeedDialActionProps extends MuiSpeedDialActionProps {}

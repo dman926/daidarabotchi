@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Story } from '@storybook/react';
-import Button from 'libs/material-ui/src/inputs/button/button';
-import TextField from 'libs/material-ui/src/inputs/text-field/text-field';
+import Button from '../../../inputs/button/button';
+import TextField from '../../../inputs/text-field/text-field';
 import Dialog, { DialogProps } from '../dialog';
 import DialogActions from '../dialog-actions/dialog-actions';
 import DialogContent from '../dialog-content/dialog-content';

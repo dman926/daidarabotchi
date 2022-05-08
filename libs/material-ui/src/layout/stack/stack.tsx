@@ -1,5 +1,4 @@
 import MuiStack, { StackProps as MuiStackProps } from '@mui/material/Stack';
-import './stack.module.scss';
 
 /* eslint-disable-next-line */
 export interface StackProps extends MuiStackProps {}

@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState, ChangeEvent } from 'react';
 import { Story } from '@storybook/react';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Box from 'libs/material-ui/src/layout/box/box';
-import Button from 'libs/material-ui/src/inputs/button/button';
-import List from 'libs/material-ui/src/data-display/list/list';
-import ListItem from 'libs/material-ui/src/data-display/list/list-item/list-item';
-import ListItemText from 'libs/material-ui/src/data-display/list/list-item-text/list-item-text';
+import Box from '../../../layout/box/box';
+import Button from '../../../inputs/button/button';
+import List from '../../../data-display/list/list';
+import ListItem from '../../../data-display/list/list-item/list-item';
+import ListItemText from '../../../data-display/list/list-item-text/list-item-text';
 import DialogTitle from '../dialog-title/dialog-title';
 import DialogContent from '../dialog-content/dialog-content';
 import DialogActions from '../dialog-actions/dialog-actions';
 import Dialog, { DialogProps } from '../dialog';
-import RadioGroup from 'libs/material-ui/src/inputs/radio-group/radio-group';
-import Radio from 'libs/material-ui/src/inputs/radio/radio';
+import RadioGroup from '../../../inputs/radio-group/radio-group';
+import Radio from '../../../inputs/radio/radio';
 
 const options = [
   'None',
@@ -136,7 +136,10 @@ export const ConfirmationTemplate: Story<DialogProps> = (args) => {
           <ListItemText primary="Phone ringtone" secondary={value} />
         </ListItem>
         <ListItem divider disabled>
-          <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+          <ListItemText
+            primary="Default notification ringtone"
+            secondary="Tethys"
+          />
         </ListItem>
         <ConfirmationDialogRaw
           id="ringtone-menu"
@@ -148,4 +151,4 @@ export const ConfirmationTemplate: Story<DialogProps> = (args) => {
       </List>
     </Box>
   );
-}
+};
