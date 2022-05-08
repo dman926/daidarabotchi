@@ -1,4 +1,4 @@
-import { act, renderWithProvider, waitFor } from '../../../utils/testUtils';
+import { renderWithProvider, waitFor } from '../../../utils/testUtils';
 
 import { Admin } from './admin';
 
