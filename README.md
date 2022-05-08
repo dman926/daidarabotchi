@@ -10,7 +10,7 @@
   - [![Status: alpha](https://img.shields.io/badge/Status-alpha-red.svg)](https://shields.io/)
   - A react app with Google Firebase for infrusture to help collect electronic payments for puppies.
 - SEPHIRA
-  - [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-red.svg)](https://shields.io/)
+  - [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-darkred.svg)](https://shields.io/)
   - A personal assistant web app for anything I need to easily access at all times.
 
 ## Licensing
