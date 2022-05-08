@@ -4,7 +4,7 @@ import { firebaseProdConfig } from './secrets';
 // eslint-disable-next-line import/prefer-default-export
 export const environment = {
   production: true,
-  firebaseConfig: firebaseProdConfig
+  firebaseConfig: firebaseProdConfig,
   baseTheme: {
     palette: {
       primary: indigo,
