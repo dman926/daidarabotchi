@@ -1,43 +1,73 @@
 {
   "root": "apps/sephira.ai",
-  "sourceRoot": "apps/sephira.ai",
+  "sourceRoot": "apps/sephira.ai/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/next:build",
+      "executor": "@nrwl/web:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/sephira.ai",
-        "outputPath": "dist/apps/sephira.ai"
-      },
-      "configurations": {
-        "development": {},
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nrwl/next:server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "sephira.ai:build",
-        "dev": true
+        "compiler": "babel",
+        "outputPath": "dist/apps/sephira.ai",
+        "index": "apps/sephira.ai/src/index.html",
+        "baseHref": "/",
+        "main": "apps/sephira.ai/src/main.tsx",
+        "polyfills": "apps/sephira.ai/src/polyfills.ts",
+        "tsConfig": "apps/sephira.ai/tsconfig.app.json",
+        "assets": [
+          "apps/sephira.ai/src/favicon.ico",
+          "apps/sephira.ai/src/assets"
+        ],
+        "styles": ["apps/sephira.ai/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
       },
       "configurations": {
         "development": {
-          "buildTarget": "sephira.ai:build:development",
-          "dev": true
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
         },
         "production": {
-          "buildTarget": "sephira.ai:build:production",
-          "dev": false
+          "fileReplacements": [
+            {
+              "replace": "apps/sephira.ai/src/environments/environment.ts",
+              "with": "apps/sephira.ai/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
         }
       }
     },
-    "export": {
-      "executor": "@nrwl/next:export",
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "sephira.ai:build:production"
+        "buildTarget": "sephira.ai:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "sephira.ai:build:development"
+        },
+        "production": {
+          "buildTarget": "sephira.ai:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/sephira.ai/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
@@ -46,13 +76,6 @@
       "options": {
         "jestConfig": "apps/sephira.ai/jest.config.ts",
         "passWithNoTests": true
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/sephira.ai/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
