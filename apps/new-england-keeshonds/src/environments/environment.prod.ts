@@ -1,10 +1,9 @@
 import { indigo, blueGrey } from '@mui/material/colors';
-import { firebaseProdConfig } from './secrets';
 
 // eslint-disable-next-line import/prefer-default-export
 export const environment = {
   production: true,
-  firebaseConfig: firebaseProdConfig,
+  firebaseConfig: process.env['NEK_FIREBASE_CONFIG'] ? JSON.parse(process.env['NEK_FIREBASE_CONFIG']) : false,
   baseTheme: {
     palette: {
       primary: indigo,
