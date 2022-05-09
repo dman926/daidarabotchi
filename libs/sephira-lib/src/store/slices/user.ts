@@ -20,8 +20,9 @@ const initialState: UserState = {
 
 export const fetchUser = createAsyncThunk(
   'user/fetch',
+  // eslint-disable-next-line arrow-body-style
   async (_: undefined, thunkAPI) => {
-    return thunkAPI.rejectWithValue('err');
+    //return thunkAPI.rejectWithValue('err');
     return {
       firstName: 'Bob',
       lastName: 'Jones',
@@ -63,13 +64,16 @@ export const userSlice = createSlice({
 });
 
 export const selectUser = (state: RootState) => {
-  // eslint-disable-next-line prefer-const
-  let { userData, ...rest } = state.user;
+  const { userData, ...rest } = state.user;
+  let out: {
+    status: 'signed-in' | 'signed-out' | 'loading';
+    logInError?: SerializedError;
+  } & Partial<User> = { ...rest };
   if (userData) {
     // flatten userData
-    rest = { ...rest, ...userData };
+    out = { ...rest, ...userData };
   }
-  return rest;
+  return out;
 };
 
 export default userSlice.reducer;

@@ -5,4 +5,6 @@ const reducer = combineReducers({
   user,
 });
 
+export * from './user'
+
 export default reducer;
