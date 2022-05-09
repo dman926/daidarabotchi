@@ -1,5 +1,4 @@
 {
-  "root": "libs/sephira-lib",
   "sourceRoot": "libs/sephira-lib/src",
   "projectType": "library",
   "tags": [],

@@ -1,5 +1,4 @@
 {
-  "root": "libs/material-ui",
   "sourceRoot": "libs/material-ui/src",
   "projectType": "library",
   "tags": [],
