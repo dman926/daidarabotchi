@@ -1,12 +1,25 @@
+import {
+  fetchUser,
+  selectUser,
+  useAppDispatch,
+  useAppSelector,
+} from '@daidarabotchi/sephira-lib';
+import { useEffect } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
 
 export function App() {
+  const dispatch = useAppDispatch();
+  const { logInError, firstName } = useAppSelector(selectUser);
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   return (
     <>
-      <NxWelcome title="sephira.ai" />
-      <div />
+      <p>{firstName}</p>
+      <p>{logInError?.message}</p>
     </>
   );
 }
