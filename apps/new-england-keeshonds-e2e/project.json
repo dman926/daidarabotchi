@@ -1,5 +1,4 @@
 {
-  "root": "apps/new-england-keeshonds-e2e",
   "sourceRoot": "apps/new-england-keeshonds-e2e/src",
   "projectType": "application",
   "targets": {

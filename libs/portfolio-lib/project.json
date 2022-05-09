@@ -1,5 +1,4 @@
 {
-  "root": "libs/portfolio-lib",
   "sourceRoot": "libs/portfolio-lib/src",
   "projectType": "library",
   "tags": [],

@@ -1,5 +1,4 @@
 {
-  "root": "apps/portfolio",
   "sourceRoot": "apps/portfolio",
   "projectType": "application",
   "targets": {
