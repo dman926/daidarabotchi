@@ -5,9 +5,11 @@ import './styles.scss';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FirebaseOptions } from 'firebase/app';
+import { ServiceAccount } from 'firebase-admin';
 import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
 import CssBaseline from '@mui/material/CssBaseline';
 import { environment } from './environments/environment';
+
 import { App } from './app/app';
 
 const root = ReactDOM.createRoot(
@@ -18,6 +20,9 @@ root.render(
     <BrowserRouter>
       <FirebaseProvider
         firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
+        serviceAccount={
+          environment.firebaseServiceAccount as ServiceAccount | undefined
+        }
       >
         <ThemeProvider theme={createTheme(environment.baseTheme)}>
           <CssBaseline />

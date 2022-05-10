@@ -44,7 +44,7 @@ const DOGS: {
 
 export function Home() {
   const [galleryImages, setGalleryImages] = useState();
-  const firebase = useFirebase();
+  const { firebase } = useFirebase();
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down('md'));
   const sm = useMediaQuery(theme.breakpoints.down('sm'));

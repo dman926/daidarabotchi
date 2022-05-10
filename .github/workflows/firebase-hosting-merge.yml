@@ -8,6 +8,7 @@ on:
       - main
 env:
   NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+  NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest

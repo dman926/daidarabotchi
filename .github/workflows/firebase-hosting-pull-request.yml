@@ -8,6 +8,7 @@ on:
       - main
 env:
   NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+  NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'

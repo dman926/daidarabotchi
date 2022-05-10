@@ -8,7 +8,7 @@ import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export function Admin() {
-  const firebaseAuth = useFirebase().auth;
+  const firebaseAuth = useFirebase().firebase.auth;
   const [user, loading, error] = useAuthState(firebaseAuth);
 
   if (loading) {
