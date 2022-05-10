@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './styles.scss';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { FirebaseOptions } from 'firebase/app';
 import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
 import CssBaseline from '@mui/material/CssBaseline';
 import { environment } from './environments/environment';
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <FirebaseProvider firebaseOptions={environment.firebaseConfig}>
+      <FirebaseProvider
+        firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
+      >
         <ThemeProvider theme={createTheme(environment.baseTheme)}>
           <CssBaseline />
           <App />

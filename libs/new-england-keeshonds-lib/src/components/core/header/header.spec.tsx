@@ -5,7 +5,7 @@ import { Header, HeaderMenuItemProps, HeaderProps } from './header';
 
 const TITLE = 'Test Site';
 function SimpleHeader(props: Partial<HeaderProps>) {
-  const { navigate = () => {}, currentRoute = '', menu = [] } = props;
+  const { navigate, currentRoute = '', menu = [] } = props;
 
   return (
     <Header

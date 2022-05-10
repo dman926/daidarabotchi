@@ -117,6 +117,7 @@ export function Home() {
         <Login
           head="Looking to make a payment? Enter your secret word below."
           onSubmit={(word) => {
+            // @TODO: handle sign in email
             console.log(word);
           }}
         />

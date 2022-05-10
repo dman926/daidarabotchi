@@ -51,13 +51,17 @@ export function FirebaseProvider({
   firebaseOptions,
   children,
 }: {
-  firebaseOptions: FirebaseOptions;
+  firebaseOptions: FirebaseOptions | false;
   children: ReactNode;
 }) {
   const memoizedFirebase = useMemo(
-    () => new Firebase(firebaseOptions),
+    () => (firebaseOptions ? new Firebase(firebaseOptions) : false),
     [firebaseOptions]
   );
+
+  if (!memoizedFirebase) {
+    return <h1>ERROR: MISSING FIREBASE OPTIONS!</h1>;
+  }
 
   return (
     <FirebaseContext.Provider value={memoizedFirebase}>
