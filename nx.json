@@ -64,5 +64,6 @@
       }
     }
   },
-  "defaultProject": "sephira.ai"
+  "defaultProject": "sephira.ai",
+  "plugins": ["@nx-go/nx-go"]
 }
