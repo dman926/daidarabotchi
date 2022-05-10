@@ -35,6 +35,8 @@
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "13.1.1",
+    "@trumbitta/nx-plugin-openapi": "^1.10.0",
+    "@trumbitta/nx-plugin-unused-deps": "^1.10.0",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.7",
     "@types/react": "18.0.8",
