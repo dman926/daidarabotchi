@@ -49,6 +49,7 @@ export function Admin() {
         onClick={() => {
           signOut(firebaseAuth);
         }}
+        variant="contained"
       >
         Sign Out
       </Button>

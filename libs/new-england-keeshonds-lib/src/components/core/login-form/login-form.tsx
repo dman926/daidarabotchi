@@ -1,18 +1,5 @@
-import {
-  Box,
-  Button,
-  Paper,
-  TextField,
-  TextFieldProps,
-} from '@daidarabotchi/material-ui';
-import {
-  ErrorMessage,
-  Field,
-  Form,
-  Formik,
-  FormikHelpers,
-  useField,
-} from 'formik';
+import { Box, Button, Paper, TextField } from '@daidarabotchi/material-ui';
+import { ErrorMessage, Form, Formik, FormikHelpers, useField } from 'formik';
 import * as Yup from 'yup';
 
 function FormikTextField({ label, ...props }: any) {
@@ -43,21 +30,27 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
       >
         {({ isSubmitting, isValid }) => (
           <Form>
-            <Box vertical>
-              <FormikTextField name="email" label="Email" type="email" />
-              <ErrorMessage name="email" />
+            <Box vertical sx={{ gap: '0.5em' }}>
+              <Box vertical>
+                <FormikTextField name="email" label="Email" type="email" />
+                <ErrorMessage name="email" />
+              </Box>
+              <Box vertical>
+                <FormikTextField
+                  name="password"
+                  label="Password"
+                  type="password"
+                />
+                <ErrorMessage name="password" />
+              </Box>
+              <Button
+                type="submit"
+                variant="contained"
+                disabled={isSubmitting || !isValid}
+              >
+                Submit
+              </Button>
             </Box>
-            <Box vertical>
-              <FormikTextField
-                name="password"
-                label="Password"
-                type="password"
-              />
-              <ErrorMessage name="password" />
-            </Box>
-            <Button type="submit" disabled={isSubmitting || !isValid}>
-              Submit
-            </Button>
           </Form>
         )}
       </Formik>
