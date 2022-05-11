@@ -43,6 +43,8 @@ export function Admin() {
     );
   }
 
+  console.log(user);
+
   return (
     <Page testid="admin-wrapper">
       <Button
