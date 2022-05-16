@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test",
-    "postinstall": "remix setup node"
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "remix setup node",
+    "nx": "nx"
   },
   "private": true,
   "devDependencies": {

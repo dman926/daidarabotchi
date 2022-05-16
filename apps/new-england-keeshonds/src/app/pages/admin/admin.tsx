@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@daidarabotchi/material-ui';
+import { Button, Typography } from '@daidarabotchi/material-ui';
 import {
   useFirebase,
   LoginForm,
