@@ -8,7 +8,7 @@ import {
 import { User } from '../../interfaces/user';
 import type { RootState } from '../store';
 
-interface UserState {
+export interface UserState {
   status: 'signed-in' | 'signed-out' | 'loading';
   userData?: User;
   logInError?: SerializedError;

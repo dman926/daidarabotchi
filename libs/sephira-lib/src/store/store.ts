@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './slices';
+import reducer, { UserState } from './slices';
 
-export const createStore = (production?: boolean) =>
+export const createStore = (
+  production?: boolean,
+  preloadedState?: { user?: UserState }
+) =>
   configureStore({
     reducer,
+    preloadedState,
     devTools: !production,
   });
 

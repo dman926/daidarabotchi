@@ -1,17 +1,20 @@
-import { render } from '@testing-library/react';
+import { UserState } from '@daidarabotchi/sephira-lib';
+import { render, cleanup } from '../utils/testUtils';
 
 import App from './app';
 
 describe('App', () => {
-  it('should render successfully', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('should render successfully', async () => {
+    const userRes: UserState = {
+      status: 'signed-out',
+    };
+
     const { baseElement } = render(<App />);
 
     expect(baseElement).toBeTruthy();
-  });
-
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(<App />);
-
-    expect(getByText(/Welcome sephira.ai/gi)).toBeTruthy();
   });
 });
