@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "daidarabotchi",
   "affected": {
     "defaultBase": "main"
@@ -28,42 +29,14 @@
         "target": "build",
         "projects": "dependencies"
       }
-    ],
-    "dev": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ],
-    "start": [
-      {
-        "target": "build",
-        "projects": "self"
-      }
     ]
   },
+  "plugins": ["@nx-go/nx-go"],
   "generators": {
     "@nrwl/react": {
       "application": {
-        "style": "scss",
-        "linter": "eslint",
         "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint"
       }
     }
-  },
-  "defaultProject": "sephira.ai",
-  "plugins": ["@nx-go/nx-go"]
+  }
 }

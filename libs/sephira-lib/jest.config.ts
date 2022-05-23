@@ -1,6 +1,6 @@
 module.exports = {
   displayName: 'sephira-lib',
-  preset: '../../jest.preset.ts',
+  preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
