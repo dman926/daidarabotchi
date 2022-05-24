@@ -32,6 +32,7 @@ export * from './feedback/skeleton/skeleton';
 export * from './feedback/dialog/dialog';
 export * from './feedback/backdrop/backdrop';
 export * from './feedback/alert/alert';
+export * from './feedback/circular-progress/circular-progress';
 
 export * from './inputs/toggle-button-group/toggle-button-group';
 export * from './inputs/radio/radio';
