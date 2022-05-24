@@ -9,23 +9,35 @@ on:
       - pre
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  NX_NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+  NX_NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
 jobs:
   main:
-    name: Nx Cloud - Main Job
-    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.2
-    with:
-      parallel-commands: |
-        pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
-        pnpm exec nx-cloud record -- pnpm exec nx format:check
-      parallel-commands-on-agents: |
-        pnpm exec nx affected --target=lint --parallel=3
-        pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
-        pnpm exec nx affected --target=build --parallel=3
-    env:
-      NX_NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
-      NX_NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
-  agents:
-    name: Nx Cloud - Agents
-    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.2
-    with:
-      number-of-agents: 3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v2
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.0.0
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Workspace lint
+        run: pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
+      - name: Format check
+        run: pnpm exec nx-cloud record -- pnpm exec nx format:check
+      - name: Lint
+        run: pnpm exec nx affected --target=lint --parallel=3
+      - name: Test
+        run: pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
+      - name: Build
+        run: pnpm exec nx affected --target=build --parallel=3
