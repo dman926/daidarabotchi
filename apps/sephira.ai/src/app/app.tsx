@@ -5,8 +5,6 @@ import {
   useAppSelector,
 } from '@daidarabotchi/sephira-lib';
 import { useEffect } from 'react';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
 
 export function App() {
   const dispatch = useAppDispatch();
@@ -17,10 +15,10 @@ export function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div data-testid="sephira-wrapper">
       <p>{firstName}</p>
       <p>{logInError?.message}</p>
-    </>
+    </div>
   );
 }
 

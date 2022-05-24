@@ -1,5 +1,4 @@
-import { UserState } from '@daidarabotchi/sephira-lib';
-import { render, cleanup } from '../utils/testUtils';
+import { render, cleanup, screen, act, waitFor } from '../utils/testUtils';
 
 import App from './app';
 
@@ -9,12 +8,9 @@ describe('App', () => {
   });
 
   it('should render successfully', async () => {
-    const userRes: UserState = {
-      status: 'signed-out',
-    };
-
-    const { baseElement } = render(<App />);
-
-    expect(baseElement).toBeTruthy();
+    await act(() => {
+      render(<App />);
+    });
+    expect(screen.getByTestId('sephira-wrapper')).toBeInTheDocument();
   });
 });
