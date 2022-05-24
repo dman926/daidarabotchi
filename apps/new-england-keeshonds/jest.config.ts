@@ -7,4 +7,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/new-england-keeshonds',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };

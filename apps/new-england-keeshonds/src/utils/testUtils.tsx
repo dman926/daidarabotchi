@@ -1,13 +1,13 @@
 import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { environment } from '../environments/environment';
 
 function Wrapper({ children }: { children: ReactNode }) {
   return (
     <FirebaseProvider firebaseOptions={environment.firebaseConfig}>
-      <BrowserRouter>{children}</BrowserRouter>
+      <MemoryRouter>{children}</MemoryRouter>
     </FirebaseProvider>
   );
 }

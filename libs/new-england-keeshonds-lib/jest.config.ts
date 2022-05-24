@@ -1,15 +1,10 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'new-england-keeshonds-lib',
-
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-    },
-  },
+  preset: '../../jest.preset.js',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest',
+    '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/new-england-keeshonds-lib',
-  preset: '../../jest.preset.js',
 };

@@ -1,10 +1,10 @@
-import { render } from '@testing-library/react';
+import { renderWithProvider } from '../../../utils/testUtils';
 
 import { Home } from './home';
 
 describe('Home', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Home />);
+    const { baseElement } = renderWithProvider(<Home />);
     expect(baseElement).toBeTruthy();
   });
 });

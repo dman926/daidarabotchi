@@ -20,9 +20,6 @@ root.render(
     <BrowserRouter>
       <FirebaseProvider
         firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
-        serviceAccount={
-          environment.firebaseServiceAccount as ServiceAccount | undefined
-        }
       >
         <ThemeProvider theme={createTheme(environment.baseTheme)}>
           <CssBaseline />
