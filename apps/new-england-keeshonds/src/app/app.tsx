@@ -17,8 +17,6 @@ export function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(`VALUE ---- ${environment.firebaseConfig}`);
-
   return (
     <section className="app" data-testid="app-wrapper">
       <Header
