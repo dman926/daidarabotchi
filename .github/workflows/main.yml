@@ -88,9 +88,16 @@ jobs:
         agent: [1, 2, 3]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
         with:
-          node-version: '14'
-      - run: npm install
+          version: 7.0.0
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
       - name: Start Nx Agent ${{ matrix.agent }}
-        run: npx nx-cloud start-agent
+        run: pnpm exec nx-cloud start-agent
