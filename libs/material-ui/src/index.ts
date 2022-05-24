@@ -23,7 +23,6 @@ export * from './data-display/badge/badge';
 export * from './data-display/avatar/avatar';
 export * from './data-display/data-grid/data-grid';
 
-export * from './feedback/circular-progress/circular-progress';
 export * from './feedback/dialog/dialog-title/dialog-title';
 export * from './feedback/dialog/dialog-content-text/dialog-content-text';
 export * from './feedback/dialog/dialog-content/dialog-content';

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Story } from '@storybook/react'
+import { Story } from '@storybook/react';
 import Button from '../../../inputs/button/button';
 import Dialog, { DialogProps } from '../dialog';
 import DialogActions from '../dialog-actions/dialog-actions';
@@ -7,7 +7,9 @@ import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
 
-export const LongContentScrollingTemplate: Story<DialogProps> = (args) => {
+export const LongContentScrollingTemplate: Story<DialogProps> = (
+  args: DialogProps
+) => {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
 
@@ -50,10 +52,7 @@ export const LongContentScrollingTemplate: Story<DialogProps> = (args) => {
   Cras mattis consectetur purus sit amet fermentum.
   Cras justo odio, dapibus ac facilisis in, egestas eget quam.
   Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-  Praesent commodo cursus magna, vel scelerisque nisl consectetur et.\n`
-  
-
-
+  Praesent commodo cursus magna, vel scelerisque nisl consectetur et.\n`;
 
   const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
     setOpen(true);
@@ -102,4 +101,4 @@ export const LongContentScrollingTemplate: Story<DialogProps> = (args) => {
       </Dialog>
     </div>
   );
-}
+};

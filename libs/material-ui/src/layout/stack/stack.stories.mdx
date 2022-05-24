@@ -16,7 +16,7 @@ export const Item = styled(Paper)(({ theme }) => ({
 
 export const Template = (args) => (
   <Box sx={{ width: '100%' }}>
-    <Stack {...{...args, spacing: 2}}>
+    <Stack {...{ ...args, spacing: 2 }}>
       <Item>Item 1</Item>
       <Item>Item 2</Item>
       <Item>Item 3</Item>
@@ -24,14 +24,10 @@ export const Template = (args) => (
   </Box>
 );
 
-# Stack 
+# Stack
 
-Description Here
+Full description - https://mui.com/material-ui/react-stack
 
 <Canvas>
-  <Story
-    name="Primary"
-  >
-    {Template.bind({})}
-  </Story>
+  <Story name="Primary">{Template.bind({})}</Story>
 </Canvas>

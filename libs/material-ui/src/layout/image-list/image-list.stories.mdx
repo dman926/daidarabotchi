@@ -21,7 +21,7 @@ export const Template = (args) => (
   <ImageList {...args}>
     {data.map((url, i) => (
       <ImageListItem key={i}>
-        <img src={url} alt="" loading="lazy" width={512}  />
+        <img src={url} alt="" loading="lazy" width={512} />
         <ImageListItemBar title={`Image ${i}`} subtitle="I am a subtitle" />
       </ImageListItem>
     ))}
@@ -30,12 +30,8 @@ export const Template = (args) => (
 
 # Image List
 
-Description Here
+Full description - https://mui.com/material-ui/react-image-list
 
 <Canvas>
-  <Story
-    name="Primary"
-  >
-    {Template.bind({})}
-  </Story>
+  <Story name="Primary">{Template.bind({})}</Story>
 </Canvas>

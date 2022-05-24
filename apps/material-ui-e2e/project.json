@@ -1,22 +1,17 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/material-ui-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "baseUrl": "http://localhost:4400/",
         "cypressConfig": "apps/material-ui-e2e/cypress.json",
-        "devServerTarget": "material-ui:storybook",
-        "jestConfig": "apps/material-ui-e2e/jest.config.js",
-        "passWithNoTests": true
+        "devServerTarget": "material-ui:storybook"
       },
       "configurations": {
         "ci": {
           "devServerTarget": "material-ui:storybook:ci"
-        },
-        "production": {
-          "devServerTarget": "material-ui:storybook:production"
         }
       }
     },
@@ -24,7 +19,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/material-ui-e2e/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/material-ui-e2e/**/*.{js,ts}"]
       }
     }
   },

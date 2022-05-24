@@ -7,7 +7,7 @@ import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
 
-export const AlertTemplate: Story<DialogProps> = (args) => {
+export const AlertTemplate: Story<DialogProps> = (args: DialogProps) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -34,8 +34,8 @@ export const AlertTemplate: Story<DialogProps> = (args) => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -47,4 +47,4 @@ export const AlertTemplate: Story<DialogProps> = (args) => {
       </Dialog>
     </div>
   );
-}
+};

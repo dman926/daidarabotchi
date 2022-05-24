@@ -4,13 +4,10 @@
   "integrationFolder": "./src/integration",
   "modifyObstructiveCode": false,
   "supportFile": "./src/support/index.ts",
-  "pluginsFile": "./src/plugins/index.ts",
-  "video": false,
-  "videosFolder": "../../dist/cypress/apps/material-ui/videos",
-  "screenshotsFolder": "../../dist/cypress/apps/material-ui/screenshots",
+  "pluginsFile": false,
+  "video": true,
+  "videosFolder": "../../dist/cypress/apps/material-ui-e2e/videos",
+  "screenshotsFolder": "../../dist/cypress/apps/material-ui-e2e/screenshots",
   "chromeWebSecurity": false,
-  "baseUrl": "http://localhost:4400",
-  "env": {
-    "BABEL_ENV": "e2e"
-  }
+  "baseUrl": "http://localhost:4400"
 }

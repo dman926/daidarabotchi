@@ -8,7 +8,7 @@ import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
 
-export const FormTemplate: Story<DialogProps> = (args) =>  {
+export const FormTemplate: Story<DialogProps> = (args: DialogProps) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -28,8 +28,8 @@ export const FormTemplate: Story<DialogProps> = (args) =>  {
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            To subscribe to this website, please enter your email address here.
+            We will send updates occasionally.
           </DialogContentText>
           <TextField
             autoFocus
@@ -48,4 +48,4 @@ export const FormTemplate: Story<DialogProps> = (args) =>  {
       </Dialog>
     </div>
   );
-}
+};

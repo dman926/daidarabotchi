@@ -1,4 +1,6 @@
-import MuiTableRow, { TableRowProps as MuiTableRowProps } from '@mui/material/TableRow';
+import MuiTableRow, {
+  TableRowProps as MuiTableRowProps,
+} from '@mui/material/TableRow';
 
 /* eslint-disable-next-line */
 export interface TableRowProps extends MuiTableRowProps {}

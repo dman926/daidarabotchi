@@ -3,9 +3,9 @@ import { Alert, AlertProps } from '../alert';
 import CloseIcon from '@mui/icons-material/Close';
 import Box from '../../../layout/box/box';
 import Button from '../../../inputs/button/button';
-import Collapse from '../../../data-display/list/collapse/collapse';
 import IconButton from '../../../inputs/button/icon-button/icon-button';
 import { Story } from '@storybook/react';
+import { Collapse } from '@mui/material';
 
 export const AllSeveritiesTemplate: Story<AlertProps> = (args) => (
   <div>

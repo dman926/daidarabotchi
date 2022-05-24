@@ -44,11 +44,7 @@ export function ContactForm({ head }: ContactFormProps) {
                     }}
                   >
                     <Box vertical>
-                      <Field
-                        name="name"
-                        component={TextField}
-                        label="Name"
-                      />
+                      <Field name="name" component={TextField} label="Name" />
                       <ErrorMessage name="name" />
                     </Box>
 
@@ -72,7 +68,9 @@ export function ContactForm({ head }: ContactFormProps) {
                       <ErrorMessage name="email" />
                     </Box>
 
-                    <Button type="submit" disabled={isSubmitting}>Send</Button>
+                    <Button type="submit" disabled={isSubmitting}>
+                      Send
+                    </Button>
                   </Form>
                 )}
               </Formik>
