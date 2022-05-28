@@ -1,15 +1,16 @@
-import { useState } from 'react'
-import IconButton from '@mui/material/IconButton'
-import AccountCircle from '@mui/icons-material/AccountCircle'
-import MenuIcon from '@mui/icons-material/Menu'
+/* eslint-disable react/function-component-definition */
+import { useState, MouseEvent } from 'react';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '../../../inputs/button/icon-button/icon-button';
 import Typography from '../../../data-display/typography/typography';
 import Menu from '../../../navigation/menu/menu';
 import MenuItem from '../../../navigation/menu/menu-item/menu-item';
 
-export const WithMenuInternals = function SearchInternals(props: any): JSX.Element {
-  const [anchorEl, setAnchorEl] = useState(null);
+export const WithMenuInternals = (): JSX.Element => {
+  const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 
-  const handleMenu = (event: any) => {
+  const handleMenu = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -62,4 +63,6 @@ export const WithMenuInternals = function SearchInternals(props: any): JSX.Eleme
       </div>
     </>
   );
-}
+};
+
+export default WithMenuInternals;

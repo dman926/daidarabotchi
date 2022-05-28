@@ -1,29 +1,9 @@
 {
-  "root": "libs/new-england-keeshonds-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/new-england-keeshonds-lib/src",
   "projectType": "library",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/new-england-keeshonds-lib",
-        "tsConfig": "libs/new-england-keeshonds-lib/tsconfig.lib.json",
-        "project": "libs/new-england-keeshonds-lib/package.json",
-        "entryFile": "libs/new-england-keeshonds-lib/src/index.ts",
-        "external": ["react/jsx-runtime"],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
-        "compiler": "babel",
-        "assets": [
-          {
-            "glob": "libs/new-england-keeshonds-lib/README.md",
-            "input": ".",
-            "output": "."
-          }
-        ]
-      }
-    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

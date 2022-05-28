@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { useEffect, useRef, useState, ChangeEvent } from 'react';
 import { Story } from '@storybook/react';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -142,6 +143,7 @@ export const ConfirmationTemplate: Story<DialogProps> = (args) => {
           />
         </ListItem>
         <ConfirmationDialogRaw
+          {...args}
           id="ringtone-menu"
           keepMounted
           open={open}

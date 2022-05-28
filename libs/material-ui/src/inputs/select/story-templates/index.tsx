@@ -1,8 +1,9 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
-import { Select, SelectProps } from '../select';
-import { InputLabel } from '../../input-label/input-label';
 import { MenuItem, FormControl } from '@mui/material';
 import { useState } from '@storybook/addons';
+import { Select, SelectProps } from '../select';
+import { InputLabel } from '../../input-label/input-label';
 
 export const Template: Story<SelectProps> = (args) => {
   const [value, setValue] = useState<number | null>(null);
@@ -13,8 +14,7 @@ export const Template: Story<SelectProps> = (args) => {
         {...{
           ...args,
           value: value || '',
-          onChange: (event, child) =>
-            setValue(event.target.value as number | null),
+          onChange: (event) => setValue(event.target.value as number | null),
         }}
       >
         <MenuItem value={10}>Ten</MenuItem>
@@ -24,3 +24,5 @@ export const Template: Story<SelectProps> = (args) => {
     </FormControl>
   );
 };
+
+export default Template;

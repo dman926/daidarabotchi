@@ -6,11 +6,9 @@
 
 ## Projects
 
-- New England Keeshonds (`apps/new-england-keeshonds`)
-  - [![Status: alpha](https://img.shields.io/badge/Status-alpha-red.svg)](https://shields.io/)
+- New England Keeshonds [![Status: alpha](https://img.shields.io/badge/Status-alpha-red.svg)](https://shields.io/)
   - A react app with Google Firebase for infrusture to help collect electronic payments for puppies.
-- SEPHIRA
-  - [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-darkred.svg)](https://shields.io/)
+- SEPHIRA [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-darkred.svg)](https://shields.io/)
   - A personal assistant web app for anything I need to easily access at all times.
 
 ## Licensing
@@ -27,6 +25,6 @@ All code generally falls under [GNU General Public License v3.0](https://www.gnu
 
 The size of a Daidarabotchi was so great that his footprints were said to have created innumerable lakes and ponds. In one legend, a Daidarabotchi weighed Mount Fuji and Mount Tsukuba to see which was heavier, but he accidentally split Tsukuba's peak after he was finished with it.
 
-The *Hitachi no Kuni Fudoki*, a recording of the imperial customs in the Hitachi Province compiled in the 8th century, also told of a Daidarabotchi living on a hill west of a post office of Hiratsu Ogushi who fed on giant clams from the beach, piling the shells on top of a hill.
+The _Hitachi no Kuni Fudoki_, a recording of the imperial customs in the Hitachi Province compiled in the 8th century, also told of a Daidarabotchi living on a hill west of a post office of Hiratsu Ogushi who fed on giant clams from the beach, piling the shells on top of a hill.
 
-*Izumo no Kuni Fudoki* also mentions a legendary king of Izumo, Ōmitsunu, who was the grandson of Susanoo and a demi-god. Having the strength of a giant, he performed Kuni-biki, pulling land from Silla with ropes, to increase the size of his territory.
+_Izumo no Kuni Fudoki_ also mentions a legendary king of Izumo, Ōmitsunu, who was the grandson of Susanoo and a demi-god. Having the strength of a giant, he performed Kuni-biki, pulling land from Silla with ropes, to increase the size of his territory.

@@ -1,17 +1,16 @@
-import { render } from '@testing-library/react';
+import { render, cleanup, screen, act } from '../utils/testUtils';
 
-import App from './app';
+import { App } from './app';
 
 describe('App', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<App />);
-
-    expect(baseElement).toBeTruthy();
+  afterEach(() => {
+    cleanup();
   });
 
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(<App />);
-
-    expect(getByText(/Welcome sephira.ai/gi)).toBeTruthy();
+  it('should render successfully', async () => {
+    await act(() => {
+      render(<App />);
+    });
+    expect(screen.getByTestId('sephira-wrapper')).toBeInTheDocument();
   });
 });

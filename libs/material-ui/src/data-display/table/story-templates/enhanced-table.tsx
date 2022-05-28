@@ -1,3 +1,5 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { Story } from '@storybook/react';
 import PropTypes from 'prop-types';
@@ -5,6 +7,14 @@ import { alpha } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import Box from '@mui/material/Box';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { Table, TableProps } from '../table';
 import TableContainer from '../table-container/table-container';
 import Paper from '../../../surfaces/paper/paper';
@@ -15,44 +25,8 @@ import TableBody from '../table-body/table-body';
 import TablePagination from '../table-pagination/table-pagination';
 import * as complexRowData from './data';
 
-import Box from '@mui/material/Box';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-
 // all work here is based on Mui's codepen for an enhanced table: https://codesandbox.io/s/gwbdgy?file=/demo.js:32-1109
 export const EnhancedTableTemplate = () => {
-  function createData(name: any, calories: any, fat: any, carbs: any, protein: any) {
-    return {
-      name,
-      calories,
-      fat,
-      carbs,
-      protein,
-    };
-  }
-
-  const rows = [
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Donut', 452, 25.0, 51, 4.9),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-    createData('Honeycomb', 408, 3.2, 87, 6.5),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Jelly Bean', 375, 0.0, 94, 0.0),
-    createData('KitKat', 518, 26.0, 65, 7.0),
-    createData('Lollipop', 392, 0.2, 98, 0.0),
-    createData('Marshmallow', 318, 0, 81, 2.0),
-    createData('Nougat', 360, 19.0, 9, 37.0),
-    createData('Oreo', 437, 18.0, 63, 4.0),
-  ];
-
   function descendingComparator(a: any, b: any, orderBy: any) {
     if (b[orderBy] < a[orderBy]) {
       return -1;
@@ -132,8 +106,7 @@ export const EnhancedTableTemplate = () => {
   ];
 
   function EnhancedTableHead(props: any) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-      props;
+    const { order, orderBy, onRequestSort } = props;
     const createSortHandler = (property: any) => (event: any) => {
       onRequestSort(event, property);
     };
@@ -144,7 +117,7 @@ export const EnhancedTableTemplate = () => {
           {headCells.map((headCell) => (
             <TableCell
               key={headCell.id}
-              padding='normal'
+              padding="normal"
               sortDirection={orderBy === headCell.id ? order : false}
             >
               <TableSortLabel
@@ -155,7 +128,9 @@ export const EnhancedTableTemplate = () => {
                 {headCell.label}
                 {orderBy === headCell.id ? (
                   <Box component="span" sx={visuallyHidden}>
-                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                    {order === 'desc'
+                      ? 'sorted descending'
+                      : 'sorted ascending'}
                   </Box>
                 ) : null}
               </TableSortLabel>
@@ -167,15 +142,12 @@ export const EnhancedTableTemplate = () => {
   }
 
   EnhancedTableHead.propTypes = {
-    numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
     order: PropTypes.oneOf(['asc', 'desc']).isRequired,
     orderBy: PropTypes.string.isRequired,
-    rowCount: PropTypes.number.isRequired,
   };
 
-  const EnhancedTableToolbar = (props: any) => {
+  function EnhancedTableToolbar(props: any) {
     const { numSelected } = props;
 
     return (
@@ -185,7 +157,10 @@ export const EnhancedTableTemplate = () => {
           pr: { xs: 1, sm: 1 },
           ...(numSelected > 0 && {
             bgcolor: (theme) =>
-              alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+              alpha(
+                theme.palette.primary.main,
+                theme.palette.action.activatedOpacity
+              ),
           }),
         }}
       >
@@ -224,7 +199,7 @@ export const EnhancedTableTemplate = () => {
         )}
       </Toolbar>
     );
-  };
+  }
 
   EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
@@ -233,7 +208,7 @@ export const EnhancedTableTemplate = () => {
   const ComplexTableTemplate: Story<TableProps> = (args) => {
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('calories');
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState<any[]>([]);
     const [page, setPage] = useState(0);
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(3);
@@ -242,15 +217,6 @@ export const EnhancedTableTemplate = () => {
       const isAsc = orderBy === property && order === 'asc';
       setOrder(isAsc ? 'desc' : 'asc');
       setOrderBy(property);
-    };
-
-    const handleSelectAllClick = (event: any) => {
-      if (event.target.checked) {
-        const newSelecteds: any = complexRowData.map((n) => n.vessel);
-        setSelected(newSelecteds);
-        return;
-      }
-      setSelected([]);
     };
 
     const handleClick = (event: any, name: any) => {
@@ -266,7 +232,7 @@ export const EnhancedTableTemplate = () => {
       } else if (selectedIndex > 0) {
         newSelected = newSelected.concat(
           selected.slice(0, selectedIndex),
-          selected.slice(selectedIndex + 1),
+          selected.slice(selectedIndex + 1)
         );
       }
 
@@ -290,7 +256,9 @@ export const EnhancedTableTemplate = () => {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-      page > 0 ? Math.max(0, (1 + page) * rowsPerPage - complexRowData.length) : 0;
+      page > 0
+        ? Math.max(0, (1 + page) * rowsPerPage - complexRowData.length)
+        : 0;
 
     return (
       <Box sx={{ width: '100%' }}>
@@ -298,24 +266,22 @@ export const EnhancedTableTemplate = () => {
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
+              {...args}
               sx={{ minWidth: 750 }}
               aria-labelledby="tableTitle"
               size={dense ? 'small' : 'medium'}
             >
               <EnhancedTableHead
-                numSelected={selected.length}
                 order={order}
                 orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={complexRowData.length}
               />
               <TableBody>
                 {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                   rows.slice().sort(getComparator(order, orderBy)) */}
                 {stableSort(complexRowData, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row: any, index: any) => {
+                  .map((row: any) => {
                     const isItemSelected = isSelected(row.name);
                     return (
                       <TableRow
@@ -327,16 +293,10 @@ export const EnhancedTableTemplate = () => {
                         key={row.name}
                         selected={isItemSelected}
                       >
-                        {
-                          headCells.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell key={column.id}>
-                                {value}
-                              </TableCell>
-                            );
-                          })
-                        }
+                        {headCells.map((column) => {
+                          const value = row[column.id];
+                          return <TableCell key={column.id}>{value}</TableCell>;
+                        })}
                       </TableRow>
                     );
                   })}
@@ -368,7 +328,9 @@ export const EnhancedTableTemplate = () => {
         />
       </Box>
     );
-  }
+  };
 
   return ComplexTableTemplate.bind({});
-}
+};
+
+export default EnhancedTableTemplate;

@@ -1,7 +1,8 @@
+/* eslint-disable react/function-component-definition */
 import { useState, ComponentType } from 'react';
-import { Story } from '@storybook/react'
+import { Story } from '@storybook/react';
 import Slide, { SlideProps } from '@mui/material/Slide';
-import Button from 'libs/material-ui/src/inputs/button/button';
+import Button from '../../../inputs/button/button';
 import Snackbar, { SnackbarProps } from '../snackbar';
 
 type TransitionProps = Omit<SlideProps, 'direction'>;
@@ -43,6 +44,7 @@ export const SlideDirectionTemplate: Story<SnackbarProps> = (args) => {
       <Button onClick={handleClick(TransitionRight)}>Left</Button>
       <Button onClick={handleClick(TransitionDown)}>Down</Button>
       <Snackbar
+        {...args}
         open={open}
         onClose={handleClose}
         TransitionComponent={transition}
@@ -51,4 +53,6 @@ export const SlideDirectionTemplate: Story<SnackbarProps> = (args) => {
       />
     </div>
   );
-}
+};
+
+export default SlideDirectionTemplate;

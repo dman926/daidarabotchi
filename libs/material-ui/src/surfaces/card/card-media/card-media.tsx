@@ -12,7 +12,7 @@ export interface CardMediaProps {
 }
 
 export function CardMedia(props: CardMediaProps) {
-  return <MuiCardMedia {...props}></MuiCardMedia>;
+  return <MuiCardMedia {...props} />;
 }
 
 export default CardMedia;

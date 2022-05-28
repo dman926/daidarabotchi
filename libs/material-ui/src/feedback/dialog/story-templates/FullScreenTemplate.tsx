@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { useState, forwardRef } from 'react';
 import { Story } from '@storybook/react';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,14 +15,14 @@ import Toolbar from '../../../surfaces/app-bar/toolbar/toolbar';
 import IconButton from '../../../inputs/button/icon-button/icon-button';
 import Typography from '../../../data-display/typography/typography';
 
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement;
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+const Transition = forwardRef(
+  (
+    props: TransitionProps & {
+      children: React.ReactElement;
+    },
+    ref: React.Ref<unknown>
+  ) => <Slide direction="up" ref={ref} {...props} />
+);
 
 export const FullScreenTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
@@ -40,6 +41,7 @@ export const FullScreenTemplate: Story<DialogProps> = (args) => {
         Open full-screen dialog
       </Button>
       <Dialog
+        {...args}
         fullScreen
         open={open}
         onClose={handleClose}
@@ -79,3 +81,5 @@ export const FullScreenTemplate: Story<DialogProps> = (args) => {
     </div>
   );
 };
+
+export default FullScreenTemplate;

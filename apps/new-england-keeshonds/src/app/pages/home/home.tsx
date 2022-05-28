@@ -2,11 +2,14 @@ import { Box, Container, Grid, Typography } from '@daidarabotchi/material-ui';
 import {
   CallToAction,
   ContactForm,
+  Gallery,
   Login,
   Page,
+  useFirebase,
 } from '@daidarabotchi/new-england-keeshonds-lib';
 import { useMediaQuery, useTheme } from '@mui/material';
-import Masonry from '@mui/lab/Masonry';
+import { useEffect, useState } from 'react';
+import { listAll, ref } from 'firebase/storage';
 
 import AllDogsImage from '../../../assets/dogs/all_dogs.jpg';
 import WillowImage from '../../../assets/dogs/willow.jpg';
@@ -40,9 +43,31 @@ const DOGS: {
 ];
 
 export function Home() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [galleryImages, setGalleryImages] = useState();
+  const firebase = useFirebase();
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down('md'));
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
+
+  useEffect(() => {
+    const galleryListRef = ref(firebase.storage, 'puppies');
+
+    listAll(galleryListRef)
+      .then((res) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        res.prefixes.forEach((folderRef) => {
+          // is a foler. recursive call here
+        });
+        // eslint-disable-next-line no-console
+        console.log(res);
+        // setGalleryImages(res.items);
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      });
+  }, [firebase.storage]);
 
   return (
     <Page testid="home-wrapper">
@@ -103,12 +128,7 @@ export function Home() {
         </CallToAction>
       </Container>
       <Container maxWidth={false}>
-        <Masonry columns={md ? 7 : 4} spacing={2}>
-          {/* The idea would be to only render 2-3 rows at a time a time with a manual load more button at the bottom so users can reach the contact form */}
-          {[].map((image) => (
-            <img src={image} loading="lazy" alt={image} key={image} />
-          ))}
-        </Masonry>
+        <Gallery />
       </Container>
       <Container maxWidth="xs">
         <ContactForm head="Get A Hold Of Me" />
@@ -117,6 +137,8 @@ export function Home() {
         <Login
           head="Looking to make a payment? Enter your secret word below."
           onSubmit={(word) => {
+            // @TODO: handle sign in email
+            // eslint-disable-next-line no-console
             console.log(word);
           }}
         />

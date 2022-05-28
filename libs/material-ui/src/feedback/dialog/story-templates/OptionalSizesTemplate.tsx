@@ -1,5 +1,6 @@
+/* eslint-disable react/function-component-definition */
 import { useState, ChangeEvent } from 'react';
-import { Story } from '@storybook/react'
+import { Story } from '@storybook/react';
 
 import { FormControlLabel, FormControl } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -15,7 +16,7 @@ import DialogTitle from '../dialog-title/dialog-title';
 import InputLabel from '../../../inputs/input-label/input-label';
 import MenuItem from '../../../navigation/menu/menu-item/menu-item';
 
-export const OptionalSizesTemplate: Story<DialogProps> = (args) =>  {
+export const OptionalSizesTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
   const [maxWidth, setMaxWidth] = useState<DialogProps['maxWidth']>('sm');
@@ -31,7 +32,7 @@ export const OptionalSizesTemplate: Story<DialogProps> = (args) =>  {
   const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {
     setMaxWidth(
       // @ts-expect-error autofill of arbitrary value is not handled.
-      event.target.value,
+      event.target.value
     );
   };
 
@@ -45,6 +46,7 @@ export const OptionalSizesTemplate: Story<DialogProps> = (args) =>  {
         Open max-width dialog
       </Button>
       <Dialog
+        {...args}
         fullWidth={fullWidth}
         maxWidth={maxWidth}
         open={open}
@@ -76,7 +78,7 @@ export const OptionalSizesTemplate: Story<DialogProps> = (args) =>  {
                   id: 'max-width',
                 }}
               >
-                <MenuItem value={false as any}>false</MenuItem>
+                <MenuItem value="false">false</MenuItem>
                 <MenuItem value="xs">xs</MenuItem>
                 <MenuItem value="sm">sm</MenuItem>
                 <MenuItem value="md">md</MenuItem>
@@ -99,4 +101,6 @@ export const OptionalSizesTemplate: Story<DialogProps> = (args) =>  {
       </Dialog>
     </>
   );
-}
+};
+
+export default OptionalSizesTemplate;

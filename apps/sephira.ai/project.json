@@ -1,5 +1,4 @@
 {
-  "root": "apps/sephira.ai",
   "sourceRoot": "apps/sephira.ai/src",
   "projectType": "application",
   "targets": {

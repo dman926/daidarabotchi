@@ -1,11 +1,12 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
+import React from 'react';
 import { Stepper, StepperProps } from '../stepper';
 import { Box } from '../../../layout/box/box';
 import { Button } from '../../../inputs/button/button';
 import { Typography } from '../../../data-display/typography/typography';
 import Step from '../step/step';
 import StepLabel from '../step-label/step-label';
-import React from 'react';
 
 const steps = [
   'Select campaign settings',
@@ -17,13 +18,9 @@ export const Template: Story<StepperProps> = (args) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
 
-  const isStepOptional = (step: number) => {
-    return step === 1;
-  };
+  const isStepOptional = (step: number) => step === 1;
 
-  const isStepSkipped = (step: number) => {
-    return skipped.has(step);
-  };
+  const isStepSkipped = (step: number) => skipped.has(step);
 
   const handleNext = () => {
     let newSkipped = skipped;
@@ -61,7 +58,7 @@ export const Template: Story<StepperProps> = (args) => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep}>
+      <Stepper {...args} activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
@@ -83,7 +80,7 @@ export const Template: Story<StepperProps> = (args) => {
         })}
       </Stepper>
       {activeStep === steps.length ? (
-        <React.Fragment>
+        <>
           <Typography sx={{ mt: 2, mb: 1 }}>
             All steps completed - you&apos;re finished
           </Typography>
@@ -91,9 +88,9 @@ export const Template: Story<StepperProps> = (args) => {
             <Box sx={{ flex: '1 1 auto' }} />
             <Button onClick={handleReset}>Reset</Button>
           </Box>
-        </React.Fragment>
+        </>
       ) : (
-        <React.Fragment>
+        <>
           <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
@@ -114,8 +111,10 @@ export const Template: Story<StepperProps> = (args) => {
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>
-        </React.Fragment>
+        </>
       )}
     </Box>
   );
 };
+
+export default Template;

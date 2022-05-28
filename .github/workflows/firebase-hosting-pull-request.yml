@@ -8,6 +8,7 @@ on:
       - main
 env:
   NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+  NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
@@ -19,12 +20,17 @@ jobs:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
-      - name: Setup node
-        uses: actions/setup-node@v1
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
         with:
-          node-version: '14'
+          version: 7.0.0
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
       - name: Check if deploy is needed
         id: deploy_needed
         run: echo "::set-output name=deploy::$(./scripts/isaffected new-england-keeshonds)"

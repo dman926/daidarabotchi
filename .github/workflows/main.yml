@@ -9,28 +9,43 @@ on:
       - pre
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
-
+  NX_NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+  NX_NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
 jobs:
   main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
-        name: Checkout [main]
         with:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1 
-        with: 
-          node-version: '14'
-      - run: npm install
-      - run: npx nx-cloud start-ci-run    
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
-      - run: npx nx-cloud stop-all-agents
-  pr:
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.0.0
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - run: pnpm exec nx-cloud start-ci-run
+      - name: Workspace lint
+        run: pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
+      - name: Format check
+        run: pnpm exec nx-cloud record -- pnpm exec nx format:check
+      - name: Lint
+        run: pnpm exec nx affected --target=lint --parallel=3
+      - name: Test
+        run: pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
+      - name: Build
+        run: pnpm exec nx affected --target=build --parallel=3
+      - run: pnpm exec nx-cloud stop-all-agents
+  pre:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
@@ -40,26 +55,49 @@ jobs:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1
-        with: 
-          node-version: '14'
-      - run: npm install
-      - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
-      - run: npx nx-cloud stop-all-agents
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.0.0
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+
+      - run: pnpm exec nx-cloud start-ci-run
+      - name: Workspace lint
+        run: pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
+      - name: Format check
+        run: pnpm exec nx-cloud record -- pnpm exec nx format:check
+      - name: Lint
+        run: pnpm exec nx affected --target=lint --parallel=3
+      - name: Test
+        run: pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
+      - name: Build
+        run: pnpm exec nx affected --target=build --parallel=3
+      - run: pnpm exec nx-cloud stop-all-agents
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
     timeout-minutes: 60
     strategy:
       matrix:
-        agent: [ 1, 2, 3 ]
+        agent: [1, 2, 3]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with: 
-          node-version: '14'
-      - run: npm install
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.0.0
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
       - name: Start Nx Agent ${{ matrix.agent }}
-        run: npx nx-cloud start-agent 
+        run: pnpm exec nx-cloud start-agent

@@ -6,7 +6,7 @@ import MuiMenuItem, {
 export interface MenuItemProps extends MuiMenuItemProps {}
 
 export function MenuItem(props: MenuItemProps) {
-  return <MuiMenuItem {...props}></MuiMenuItem>;
+  return <MuiMenuItem {...props} />;
 }
 
 export default MenuItem;

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@daidarabotchi/material-ui';
+import { Button, Typography } from '@daidarabotchi/material-ui';
 import {
   useFirebase,
   LoginForm,
@@ -49,6 +49,7 @@ export function Admin() {
         onClick={() => {
           signOut(firebaseAuth);
         }}
+        variant="contained"
       >
         Sign Out
       </Button>

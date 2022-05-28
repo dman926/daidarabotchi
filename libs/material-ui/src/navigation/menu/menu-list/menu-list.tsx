@@ -11,7 +11,7 @@ export interface MenuListProps {
 }
 
 export function MenuList(props: MenuListProps) {
-  return <MuiMenuList {...props}></MuiMenuList>;
+  return <MuiMenuList {...props} />;
 }
 
 export default MenuList;

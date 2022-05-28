@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
 import { AppBar, AppBarProps } from '../app-bar';
 import Toolbar from '../toolbar/toolbar';
