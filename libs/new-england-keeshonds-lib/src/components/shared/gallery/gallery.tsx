@@ -11,11 +11,14 @@ export interface GalleryProps {
 }
 
 export function Gallery({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   autoScroll,
   images,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   layout = 'masonry',
   startingImageCount = 8,
 }: GalleryProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loadedImages, setLoadedImages] = useState(startingImageCount);
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down('md'));

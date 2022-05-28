@@ -20,16 +20,13 @@ describe('ImageList', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <ImageList>
-    {data.map((url, i) => (
-      <ImageListItem key={i}>
-        <img src={url} alt="" loading="lazy" />
-        <ImageListItemBar
-          title={`Image ${i}`}
-          subtitle='I am a subtitle'
-        />
-      </ImageListItem>
-    ))}
-  </ImageList>
+        {data.map((url, i) => (
+          <ImageListItem key={url}>
+            <img src={url} alt="" loading="lazy" />
+            <ImageListItemBar title={`Image ${i}`} subtitle="I am a subtitle" />
+          </ImageListItem>
+        ))}
+      </ImageList>
     );
     expect(baseElement).toBeTruthy();
   });

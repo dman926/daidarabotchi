@@ -1,7 +1,7 @@
 import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { environment } from '../environments/environment';
 
 function Wrapper({ children }: { children: ReactNode }) {

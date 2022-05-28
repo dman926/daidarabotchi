@@ -43,6 +43,7 @@ const DOGS: {
 ];
 
 export function Home() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [galleryImages, setGalleryImages] = useState();
   const firebase = useFirebase();
   const theme = useTheme();
@@ -54,13 +55,16 @@ export function Home() {
 
     listAll(galleryListRef)
       .then((res) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         res.prefixes.forEach((folderRef) => {
           // is a foler. recursive call here
         });
+        // eslint-disable-next-line no-console
         console.log(res);
         // setGalleryImages(res.items);
       })
       .catch((err) => {
+        // eslint-disable-next-line no-console
         console.error(err);
       });
   }, [firebase.storage]);
@@ -134,6 +138,7 @@ export function Home() {
           head="Looking to make a payment? Enter your secret word below."
           onSubmit={(word) => {
             // @TODO: handle sign in email
+            // eslint-disable-next-line no-console
             console.log(word);
           }}
         />

@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
 import { useState } from '@storybook/addons';
 import { ReactNode, SyntheticEvent } from 'react';
@@ -6,11 +7,11 @@ import { Box } from '../../../layout/box/box';
 import { Tab } from '../tab/tab';
 import { Tabs, TabsProps } from '../tabs';
 
-const TabPanel = (props: {
+function TabPanel(props: {
   children: ReactNode;
   value: number;
   index: number;
-}) => {
+}) {
   const { children, value, index } = props;
 
   return (
@@ -27,16 +28,14 @@ const TabPanel = (props: {
       )}
     </div>
   );
-};
+}
 
-const a11yProps = (index: number) => {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-};
+const a11yProps = (index: number) => ({
+  id: `simple-tab-${index}`,
+  'aria-controls': `simple-tabpanel-${index}`,
+});
 
-export const Template: Story<TabsProps> = (args) => {
+export const Template: Story<TabsProps> = (args: TabsProps) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (
@@ -50,6 +49,7 @@ export const Template: Story<TabsProps> = (args) => {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
+          {...args}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
@@ -71,3 +71,5 @@ export const Template: Story<TabsProps> = (args) => {
     </Box>
   );
 };
+
+export default Template;

@@ -15,6 +15,7 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js
     if (rootMain.webpackFinal) {
+      // eslint-disable-next-line no-param-reassign
       config = await rootMain.webpackFinal(config, { configType });
     }
 

@@ -4,7 +4,7 @@ import MuiSwitch, { SwitchProps as MuiSwitchProps } from '@mui/material/Switch';
 export interface SwitchProps extends MuiSwitchProps {}
 
 export function Switch(props: SwitchProps) {
-  return <MuiSwitch data-testid="mui-switch" />;
+  return <MuiSwitch data-testid="mui-switch" {...props} />;
 }
 
 export default Switch;

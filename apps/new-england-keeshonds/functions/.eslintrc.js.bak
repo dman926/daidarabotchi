@@ -14,7 +14,7 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: 'apps/new-england-keeshonds/functions/tsconfig.*?.json',
+    project: 'apps/new-england-keeshonds/functions/tsconfig(.*)?.json',
     sourceType: 'module',
   },
   ignorePatterns: [

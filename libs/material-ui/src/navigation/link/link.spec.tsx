@@ -4,7 +4,7 @@ import Link from './link';
 
 describe('Link', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Link />);
+    const { baseElement } = render(<Link href="http://www.google.com/" />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -1,8 +1,10 @@
+/* eslint-disable react/function-component-definition */
+/* eslint-disable import/prefer-default-export */
 import { Story } from '@storybook/react';
+import { useState } from 'react'; // Using `useState` from '@storybook/addons' doesn't work with `anchorEl`.
 import Button from '../../../inputs/button/button';
 import { Menu, MenuProps } from '../menu';
 import MenuItem from '../menu-item/menu-item';
-import { useState } from 'react'; // Using `useState` from '@storybook/addons' doesn't work with `anchorEl`.
 
 export const Template: Story<MenuProps> = (args) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

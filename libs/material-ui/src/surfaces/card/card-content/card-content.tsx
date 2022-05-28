@@ -1,6 +1,4 @@
-import MuiCardContent, {
-  CardContentProps as MuiCardContentProps,
-} from '@mui/material/CardContent';
+import MuiCardContent, { CardContentProps as MuiCardContentProps } from '@mui/material/CardContent';
 
 /* eslint-disable-next-line */
 export interface CardContentProps extends MuiCardContentProps {}

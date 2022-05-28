@@ -1,13 +1,15 @@
-import CircularProgress, { CircularProgressProps } from '../circular-progress';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/function-component-definition */
 import { Fab } from '@mui/material';
 import { green } from '@mui/material/colors';
 import { useEffect, useRef, useState } from '@storybook/addons';
 import { Story } from '@storybook/react';
+import CheckIcon from '@mui/icons-material/Check';
+import SaveIcon from '@mui/icons-material/Save';
 import Box from '../../../layout/box/box';
 import Button from '../../../inputs/button/button';
 import Typography from '../../../data-display/typography/typography';
-import CheckIcon from '@mui/icons-material/Check';
-import SaveIcon from '@mui/icons-material/Save';
+import CircularProgress, { CircularProgressProps } from '../circular-progress';
 
 export const BasicTemplate: Story<CircularProgressProps> = (args) => (
   <CircularProgress {...args} />
@@ -27,11 +29,12 @@ export const InteractiveTemplate: Story<CircularProgressProps> = (args) => {
     }),
   };
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearTimeout(timer.current);
-    };
-  }, []);
+    },
+    []
+  );
 
   const handleButtonClick = () => {
     if (!loading) {
@@ -57,6 +60,7 @@ export const InteractiveTemplate: Story<CircularProgressProps> = (args) => {
         </Fab>
         {loading && (
           <CircularProgress
+            {...args}
             size={68}
             sx={{
               color: green[500],
@@ -79,6 +83,7 @@ export const InteractiveTemplate: Story<CircularProgressProps> = (args) => {
         </Button>
         {loading && (
           <CircularProgress
+            {...args}
             size={24}
             sx={{
               color: green[500],
@@ -136,6 +141,7 @@ export const MultipleDeterminateTemplate: Story<CircularProgressProps> = (
       >
         <label>25% loaded:</label>
         <CircularProgress
+          {...args}
           variant="determinate"
           value={25}
           sx={{ m: '0 auto' }}
@@ -156,6 +162,7 @@ export const MultipleDeterminateTemplate: Story<CircularProgressProps> = (
       >
         <label>75% loaded:</label>
         <CircularProgress
+          {...args}
           variant="determinate"
           value={75}
           sx={{ m: '0 auto' }}
@@ -166,6 +173,7 @@ export const MultipleDeterminateTemplate: Story<CircularProgressProps> = (
       >
         <label>100% loaded:</label>
         <CircularProgress
+          {...args}
           variant="determinate"
           value={100}
           sx={{ m: '0 auto' }}
@@ -176,6 +184,7 @@ export const MultipleDeterminateTemplate: Story<CircularProgressProps> = (
       >
         <label>In progress:</label>
         <CircularProgress
+          {...args}
           variant="determinate"
           value={progress}
           sx={{ m: '0 auto' }}
@@ -188,6 +197,7 @@ export const MultipleDeterminateTemplate: Story<CircularProgressProps> = (
 function CircularProgressWithLabel(
   props: CircularProgressProps & { value: number }
 ) {
+  const { value } = props;
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress variant="determinate" {...props} />
@@ -207,7 +217,7 @@ function CircularProgressWithLabel(
           variant="caption"
           component="div"
           color="text.secondary"
-        >{`${Math.round(props.value)}%`}</Typography>
+        >{`${Math.round(value)}%`}</Typography>
       </Box>
     </Box>
   );
@@ -227,5 +237,5 @@ export const WithLabelTemplate: Story<CircularProgressProps> = (args) => {
     };
   }, []);
 
-  return <CircularProgressWithLabel value={progress} />;
+  return <CircularProgressWithLabel {...args} value={progress} />;
 };

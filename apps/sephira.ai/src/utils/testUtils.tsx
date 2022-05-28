@@ -5,7 +5,7 @@ import { createStore, UserState } from '@daidarabotchi/sephira-lib';
 import { EnhancedStore } from '@reduxjs/toolkit';
 
 function render(
-  ui: ReactElement<any, string | JSXElementConstructor<any>>,
+  ui: ReactElement<unknown, string | JSXElementConstructor<unknown>>,
   {
     preloadedState,
     store = createStore(false, preloadedState),

@@ -1,12 +1,13 @@
 import { render } from '@testing-library/react';
 
-import SpeedDial from './speed-dial';
-import SpeedDialIcon from './speed-dial-icon/speed-dial-icon';
-import SpeedDialAction from './speed-dial-action/speed-dial-action';
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import PrintIcon from '@mui/icons-material/Print';
 import ShareIcon from '@mui/icons-material/Share';
+import SpeedDialAction from './speed-dial-action/speed-dial-action';
+import SpeedDialIcon from './speed-dial-icon/speed-dial-icon';
+import SpeedDial from './speed-dial';
+
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
   { icon: <SaveIcon />, name: 'Save' },

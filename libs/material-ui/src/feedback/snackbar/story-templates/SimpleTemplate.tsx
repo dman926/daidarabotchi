@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
@@ -46,3 +47,5 @@ export const SimpleTemplate: Story<SnackbarProps> = (args) => {
     </>
   );
 };
+
+export default SimpleTemplate;

@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
 import PersonIcon from '@mui/icons-material/Person';
 import AddIcon from '@mui/icons-material/Add';
@@ -21,7 +22,7 @@ export interface SimpleDialogProps {
   onClose: (value: string) => void;
 }
 
-export const SimpleDialog = (props: SimpleDialogProps) => {
+export function SimpleDialog(props: SimpleDialogProps) {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
@@ -33,7 +34,7 @@ export const SimpleDialog = (props: SimpleDialogProps) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog {...props} onClose={handleClose} open={open}>
       <DialogTitle>Set backup account</DialogTitle>
       <List sx={{ pt: 0 }}>
         {emails.map((email) => (
@@ -63,7 +64,7 @@ export const SimpleDialog = (props: SimpleDialogProps) => {
       </List>
     </Dialog>
   );
-};
+}
 
 export const BasicTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
@@ -88,6 +89,7 @@ export const BasicTemplate: Story<DialogProps> = (args) => {
         Open simple dialog
       </Button>
       <SimpleDialog
+        {...args}
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}

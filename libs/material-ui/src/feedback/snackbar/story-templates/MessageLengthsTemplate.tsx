@@ -1,8 +1,9 @@
-import { Story } from '@storybook/react'
+/* eslint-disable react/function-component-definition */
+import { Story } from '@storybook/react';
 import { SnackbarContent } from '@mui/material'; // should this get wrapped into our material library?
-import Button from 'libs/material-ui/src/inputs/button/button';
+import Button from '../../../inputs/button/button';
+import Stack from '../../../layout/stack/stack';
 import { SnackbarProps } from '../snackbar';
-import Stack from 'libs/material-ui/src/layout/stack/stack';
 
 const action = (
   <Button color="secondary" size="small">
@@ -10,7 +11,7 @@ const action = (
   </Button>
 );
 
-export const MessageLengthsTemplate: Story<SnackbarProps> = (args) => (
+export const MessageLengthsTemplate: Story<SnackbarProps> = () => (
   <Stack spacing={2} sx={{ maxWidth: 600 }}>
     <SnackbarContent message="I love snacks." action={action} />
     <SnackbarContent
@@ -32,3 +33,5 @@ export const MessageLengthsTemplate: Story<SnackbarProps> = (args) => (
     />
   </Stack>
 );
+
+export default MessageLengthsTemplate;

@@ -1,7 +1,8 @@
+/* eslint-disable react/function-component-definition */
 import { useState } from 'react';
-import { Story } from '@storybook/react'
+import { Story } from '@storybook/react';
 import { SnackbarOrigin } from '@mui/material'; // should we wrap this?
-import Button from 'libs/material-ui/src/inputs/button/button';
+import Button from '../../../inputs/button/button';
 import Snackbar, { SnackbarProps } from '../snackbar';
 
 export interface State extends SnackbarOrigin {
@@ -81,6 +82,7 @@ export const PositionTemplate: Story<SnackbarProps> = (args) => {
     <div>
       {buttons}
       <Snackbar
+        {...args}
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
@@ -89,4 +91,4 @@ export const PositionTemplate: Story<SnackbarProps> = (args) => {
       />
     </div>
   );
-}
+};

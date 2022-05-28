@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { useState } from 'react';
 import { Story } from '@storybook/react';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -9,7 +10,7 @@ import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
 
-export const ResponsiveTemplate: Story<DialogProps> = (args: DialogProps) => {
+export const ResponsiveTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -28,13 +29,14 @@ export const ResponsiveTemplate: Story<DialogProps> = (args: DialogProps) => {
         Open responsive dialog
       </Button>
       <Dialog
+        {...args}
         fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Use Google's location service?"}
+          Use Google&apos;s location service?
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -54,3 +56,5 @@ export const ResponsiveTemplate: Story<DialogProps> = (args: DialogProps) => {
     </div>
   );
 };
+
+export default ResponsiveTemplate;

@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { useState } from 'react';
 import { Story } from '@storybook/react';
 import Button from '../../../inputs/button/button';
@@ -8,7 +9,7 @@ import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
 
-export const FormTemplate: Story<DialogProps> = (args: DialogProps) => {
+export const FormTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -24,7 +25,7 @@ export const FormTemplate: Story<DialogProps> = (args: DialogProps) => {
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog {...args} open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -49,3 +50,5 @@ export const FormTemplate: Story<DialogProps> = (args: DialogProps) => {
     </div>
   );
 };
+
+export default FormTemplate;

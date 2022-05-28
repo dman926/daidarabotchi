@@ -4,7 +4,6 @@ import { Header, LoadingPage } from '@daidarabotchi/new-england-keeshonds-lib';
 import PetsIcon from '@mui/icons-material/Pets';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Home, Puppies, Puppy } from './pages';
-import { environment } from '../environments/environment';
 
 const Admin = React.lazy(() => import('./pages/admin/admin'));
 

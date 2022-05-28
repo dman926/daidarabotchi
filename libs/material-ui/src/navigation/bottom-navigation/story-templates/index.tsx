@@ -1,12 +1,13 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
-import { BottomNavigation, BottomNavigationProps } from '../bottom-navigation';
-import BottomNavigationAction from '../bottom-navigation-action/bottom-navigation-action';
 import {
   Restore as RestoreIcon,
   Favorite as FavoriteIcon,
   LocationOn as LocationOnIcon,
 } from '@mui/icons-material';
 import { useState } from '@storybook/addons';
+import { BottomNavigation, BottomNavigationProps } from '../bottom-navigation';
+import BottomNavigationAction from '../bottom-navigation-action/bottom-navigation-action';
 
 export const Template: Story<BottomNavigationProps> = (args) => {
   const [value, setValue] = useState<number | undefined>(undefined);
@@ -25,3 +26,5 @@ export const Template: Story<BottomNavigationProps> = (args) => {
     </BottomNavigation>
   );
 };
+
+export default Template;

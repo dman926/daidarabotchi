@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
 import { useState } from '@storybook/addons';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -10,14 +11,14 @@ export const Template: Story<AccordionProps> = (args) => {
   const [expanded, setExpanded] = useState('none');
 
   const handleChange = (toExpand: string) => {
-    expanded === toExpand ? setExpanded('none') : setExpanded(toExpand);
+    setExpanded(expanded === toExpand ? 'none' : toExpand);
   };
 
   return (
     <>
       <Accordion
         {...args}
-        expanded={expanded === 'panel1' ? true : false}
+        expanded={expanded === 'panel1'}
         onChange={() => handleChange('panel1')}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -27,7 +28,7 @@ export const Template: Story<AccordionProps> = (args) => {
       </Accordion>
       <Accordion
         {...args}
-        expanded={expanded === 'panel2' ? true : false}
+        expanded={expanded === 'panel2'}
         onChange={() => handleChange('panel2')}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -50,7 +51,7 @@ export const LeftAlignedIconTemplate: Story<AccordionProps> = (args) => {
     <>
       <Accordion
         {...args}
-        expanded={expanded === 'panel1' ? true : false}
+        expanded={expanded === 'panel1'}
         onChange={() => handleChange('panel1')}
       >
         <AccordionSummary
@@ -63,7 +64,7 @@ export const LeftAlignedIconTemplate: Story<AccordionProps> = (args) => {
       </Accordion>
       <Accordion
         {...args}
-        expanded={expanded === 'panel2' ? true : false}
+        expanded={expanded === 'panel2'}
         onChange={() => handleChange('panel2')}
       >
         <AccordionSummary
@@ -78,16 +79,19 @@ export const LeftAlignedIconTemplate: Story<AccordionProps> = (args) => {
   );
 };
 
-export const SubHeadingTemplate: Story<AccordionProps> = (args) => {
+export const SubHeadingTemplate: Story<AccordionProps> = (
+  args: AccordionProps
+) => {
   const [expanded, setExpanded] = useState('none');
 
   const handleChange = (toExpand: string) => {
-    expanded === toExpand ? setExpanded('none') : setExpanded(toExpand);
+    setExpanded(expanded === toExpand ? 'none' : toExpand);
   };
 
   return (
     <div>
       <Accordion
+        {...args}
         expanded={expanded === 'panel1'}
         onChange={() => handleChange('panel1')}
       >

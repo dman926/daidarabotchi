@@ -1,6 +1,7 @@
 import { useState, forwardRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { TransitionProps } from '@mui/material/transitions';
+import Slide from '@mui/material/Slide';
 import Button from '../../../inputs/button/button';
 import Dialog from '../dialog';
 import ListItemText from '../../../data-display/list/list-item-text/list-item-text';
@@ -11,16 +12,15 @@ import AppBar from '../../../surfaces/app-bar/app-bar';
 import Toolbar from '../../../surfaces/app-bar/toolbar/toolbar';
 import IconButton from '../../../inputs/button/icon-button/icon-button';
 import Typography from '../../../data-display/typography/typography';
-import Slide from '@mui/material/Slide';
 
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement;
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+const Transition = forwardRef(
+  (
+    props: TransitionProps & {
+      children: React.ReactElement;
+    },
+    ref: React.Ref<unknown>
+  ) => <Slide direction="up" ref={ref} {...props} />
+);
 
 export default function FullScreenDialog() {
   const [open, setOpen] = useState(false);

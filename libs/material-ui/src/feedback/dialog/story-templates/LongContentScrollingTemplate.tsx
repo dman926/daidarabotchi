@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { useEffect, useRef, useState } from 'react';
 import { Story } from '@storybook/react';
 import Button from '../../../inputs/button/button';
@@ -7,9 +8,7 @@ import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
 
-export const LongContentScrollingTemplate: Story<DialogProps> = (
-  args: DialogProps
-) => {
+export const LongContentScrollingTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState<DialogProps['scroll']>('paper');
 
@@ -78,6 +77,7 @@ export const LongContentScrollingTemplate: Story<DialogProps> = (
       <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
       <Button onClick={handleClickOpen('body')}>scroll=body</Button>
       <Dialog
+        {...args}
         open={open}
         onClose={handleClose}
         scroll={scroll}
@@ -102,3 +102,5 @@ export const LongContentScrollingTemplate: Story<DialogProps> = (
     </div>
   );
 };
+
+export default LongContentScrollingTemplate;

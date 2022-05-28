@@ -8,7 +8,6 @@ import { Auth, getAuth } from 'firebase/auth';
 import { Firestore, getFirestore } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 import { Functions, getFunctions } from 'firebase/functions';
-import * as FirebaseAdminSDK from 'firebase-admin';
 import { createContext, ReactNode, useContext, useMemo } from 'react';
 
 export class Firebase {

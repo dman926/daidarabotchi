@@ -20,9 +20,9 @@ const initialState: UserState = {
 
 export const fetchUser = createAsyncThunk(
   'user/fetch',
-  // eslint-disable-next-line arrow-body-style
+  // eslint-disable-next-line
   async (_: undefined, thunkAPI) => {
-    //return thunkAPI.rejectWithValue('err');
+    // return thunkAPI.rejectWithValue('err');
     return {
       firstName: 'Bob',
       lastName: 'Jones',

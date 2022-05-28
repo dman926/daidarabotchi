@@ -2,6 +2,8 @@ import { Box, Button, Paper, TextField } from '@daidarabotchi/material-ui';
 import { ErrorMessage, Form, Formik, FormikHelpers, useField } from 'formik';
 import * as Yup from 'yup';
 
+// @TODO: figure out the proper type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function FormikTextField({ label, ...props }: any) {
   const [field] = useField(props);
   // eslint-disable-next-line react/jsx-props-no-spreading

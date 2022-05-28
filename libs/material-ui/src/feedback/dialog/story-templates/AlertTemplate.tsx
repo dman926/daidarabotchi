@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import { useState } from 'react';
 import { Story } from '@storybook/react';
 import Button from '../../../inputs/button/button';
@@ -7,7 +8,7 @@ import DialogContent from '../dialog-content/dialog-content';
 import DialogContentText from '../dialog-content-text/dialog-content-text';
 import DialogTitle from '../dialog-title/dialog-title';
 
-export const AlertTemplate: Story<DialogProps> = (args: DialogProps) => {
+export const AlertTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -24,13 +25,14 @@ export const AlertTemplate: Story<DialogProps> = (args: DialogProps) => {
         Open alert dialog
       </Button>
       <Dialog
+        {...args}
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          Use Google&apos;s location service?
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -48,3 +50,5 @@ export const AlertTemplate: Story<DialogProps> = (args: DialogProps) => {
     </div>
   );
 };
+
+export default AlertTemplate;

@@ -4,7 +4,7 @@ import MuiButton, { ButtonProps as MuiButtonProps } from '@mui/material/Button';
 export interface ButtonProps extends MuiButtonProps {}
 
 export function Button(props: ButtonProps) {
-  return <MuiButton data-testid="mui-button" {...props}></MuiButton>;
+  return <MuiButton data-testid="mui-button" {...props} />;
 }
 
 export default Button;

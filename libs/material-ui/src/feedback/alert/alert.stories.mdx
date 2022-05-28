@@ -1,33 +1,46 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { Alert } from './alert';
-import {
-  AllSeveritiesTemplate,
-  TextButtonTemplate,
-  Template,
-} from './story-templates';
+import { AllSeveritiesTemplate, TextButtonTemplate, Template } from './story-templates';
 
 <Meta title="Material-UI/Feedback/Alert" component={Alert} />
 
 # Alert
 
-Full description - https://mui.com/material-ui/react-alert
+Description Here
 
 <Canvas>
-  <Story name="Alert Severities">{AllSeveritiesTemplate.bind({})}</Story>
-  <Story name="Text Button">{TextButtonTemplate.bind({})}</Story>
-  <Story name="Standard" args={{ variant: 'standard' }}>
+  <Story
+    name="Alert Severities"
+  >
+    {AllSeveritiesTemplate.bind({})}
+  </Story>
+  <Story
+    name="Text Button"
+  >
+    {TextButtonTemplate.bind({})}
+  </Story>
+  <Story
+    name="Standard"
+    args={{variant: 'standard'}}
+  >
     {Template.bind({})}
   </Story>
-  <Story name="Filled" args={{ variant: 'filled' }}>
+  <Story
+    name="Filled"
+    args={{variant: 'filled'}}
+  >
     {Template.bind({})}
   </Story>
-  <Story name="Outlined" args={{ variant: 'outlined' }}>
+  <Story
+    name="Outlined"
+    args={{variant: 'outlined'}}
+  >
     {Template.bind({})}
   </Story>
   <Story
     name="No Icon"
     args={{
-      icon: false,
+      icon: false
     }}
   >
     {Template.bind({})}
