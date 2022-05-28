@@ -1,6 +1,8 @@
 import { Theme } from '@emotion/react';
 import { SxProps } from '@mui/material';
-import MuiCardActionArea, { CardActionAreaClasses } from '@mui/material/CardActionArea';
+import MuiCardActionArea, {
+  CardActionAreaClasses,
+} from '@mui/material/CardActionArea';
 
 /* eslint-disable-next-line */
 export interface CardActionAreaProps {

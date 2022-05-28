@@ -1,4 +1,6 @@
-import MuiToggleButton, { ToggleButtonProps as MuiToggleButtonProps} from "@mui/material/ToggleButton"
+import MuiToggleButton, {
+  ToggleButtonProps as MuiToggleButtonProps,
+} from '@mui/material/ToggleButton';
 
 /* eslint-disable-next-line */
 export interface ToggleButtonProps extends MuiToggleButtonProps {}
