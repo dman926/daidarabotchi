@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FirebaseOptions } from 'firebase/app';
 import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
 import CssBaseline from '@mui/material/CssBaseline';
+
 import { environment } from './environments/environment';
 
 import { App } from './app/app';
