@@ -7,6 +7,8 @@
     "new-england-keeshonds": "apps/new-england-keeshonds",
     "new-england-keeshonds-e2e": "apps/new-england-keeshonds-e2e",
     "new-england-keeshonds-lib": "libs/new-england-keeshonds-lib",
+    "nx-python": "libs/nx-python",
+    "nx-python-e2e": "apps/nx-python-e2e",
     "sephira-api": "apps/sephira-api",
     "sephira-front-end-lib": "libs/sephira-front-end-lib",
     "sephira-trading-lib": "libs/sephira-trading-lib",
