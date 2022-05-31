@@ -88,6 +88,7 @@ export function Admin() {
           signOut(firebaseAuth);
         }}
         variant="contained"
+        sx={{marginTop: 3}}
       >
         Sign Out
       </Button>

@@ -1,3 +1,8 @@
+/* 
+@TODO: wrap images in an error boundary for if
+(more like when) firebase errors out loading the thumbnails
+*/
+
 import {
   Box,
   Button,
@@ -19,9 +24,11 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import {
+  deleteObject,
   getDownloadURL,
   listAll,
   ref,
@@ -29,8 +36,11 @@ import {
 } from 'firebase/storage';
 import FolderIcon from '@mui/icons-material/Folder';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 function Images() {
+  const [refreshDisabled, setRefreshDisabled] = useState(false);
   const [showCustomFolder, setShowCustomFolder] = useState(false);
   const [customFolder, setCustomFolder] = useState('');
   const [customFolderDisable, setCustomFolderDisable] = useState(false);
@@ -46,8 +56,61 @@ function Images() {
   const [firebaseStorageImages, setFirebaseStorageImages] = useState<
     Image[] | undefined
   >();
+  const folderInput = useRef<HTMLInputElement>(null);
   const firebase = useFirebase();
   const firebaseStorage = useMemo(() => firebase.storage, [firebase]);
+
+  const loadImages = useCallback(() => {
+    setFirebaseStorageFolders(undefined);
+    setFirebaseStorageImages(undefined);
+    const galleryListRef = ref(firebaseStorage, selectedFolder);
+    listAll(galleryListRef)
+      .then((res) => {
+        setFirebaseStorageFolders(
+          res.prefixes
+            .filter((folder) => folder.name !== 'thumbnails')
+            .map((folder) => folder.fullPath)
+        );
+        // convert images to download urls
+        Promise.all(
+          res.items.map((image) =>
+            Promise.all([
+              Promise.resolve(image.name),
+              getDownloadURL(
+                ref(
+                  firebaseStorage,
+                  `${selectedFolder}/thumbnails/${image.name.substring(
+                    0,
+                    image.name.lastIndexOf('.')
+                  )}_256x256.webp`
+                )
+              ),
+              getDownloadURL(
+                ref(
+                  firebaseStorage,
+                  `${selectedFolder}/thumbnails/${image.name.substring(
+                    0,
+                    image.name.lastIndexOf('.')
+                  )}_256x256.jpeg`
+                )
+              ),
+            ])
+          )
+        ).then((images) => {
+          setFirebaseStorageImages(
+            images.map((image) => ({
+              name: image[0],
+              url: image[1],
+              fallback: image[2],
+            }))
+          );
+        });
+      })
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error(err);
+      });
+  }, [firebaseStorage, selectedFolder]);
 
   const handleUpload = useCallback(
     (
@@ -55,31 +118,35 @@ function Images() {
       setUploadPercent: Dispatch<SetStateAction<number>>,
       onUpload: () => void
     ) => {
-      for (let i = 0; i < files.length; i += 1) {
-        setUploadPercent(0);
-        const file = files[i];
-        // eslint-disable-next-line no-new
-        new Promise<void>((resolve) => {
-          const firebaseStorageRef = ref(
-            firebaseStorage,
-            `${selectedFolder}/${file.name}`
-          );
-          const uploadTask = uploadBytesResumable(firebaseStorageRef, file);
-          uploadTask.on(
-            'state_changed',
-            (snapshot) => {
-              const progress =
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              setUploadPercent(progress);
-            },
-            () => {},
-            () => {
-              onUpload();
-              resolve();
-            }
-          );
-        });
-      }
+      setRefreshDisabled(true);
+      return Promise.all(
+        Array.from(files).map(
+          (file) =>
+            new Promise<void>((resolve) => {
+              setUploadPercent(0);
+              const firebaseStorageRef = ref(
+                firebaseStorage,
+                `${selectedFolder}/${file.name}`
+              );
+              const uploadTask = uploadBytesResumable(firebaseStorageRef, file);
+              uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                  const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                  setUploadPercent(progress);
+                  console.log(progress);
+                },
+                () => {},
+                () => {
+                  onUpload();
+                  console.log('uploaded');
+                  resolve();
+                }
+              );
+            })
+        )
+      );
     },
     [firebaseStorage, selectedFolder]
   );
@@ -105,70 +172,59 @@ function Images() {
     [firebaseStorage, selectedFolder]
   );
 
-  useEffect(() => {
-    setFirebaseStorageFolders(undefined);
-    setFirebaseStorageImages(undefined);
-    const galleryListRef = ref(firebaseStorage, selectedFolder);
-    listAll(galleryListRef)
-      .then((res) => {
-        setFirebaseStorageFolders(
-          res.prefixes
-            .filter((folder) => folder.name !== 'thumbnails')
-            .map((folder) => folder.fullPath)
-        );
-        // convert images to download urls
-        Promise.all(
-          res.items.map(
-            (image) =>
-              new Promise<Image>((resolve, reject) => {
-                getDownloadURL(
-                  ref(
-                    firebaseStorage,
-                    `${selectedFolder}/thumbnails/${image.name.substring(
-                      0,
-                      image.name.lastIndexOf('.')
-                    )}_256x256.webp`
-                  )
-                )
-                  .then((url) => {
-                    getDownloadURL(
-                      ref(
-                        firebaseStorage,
-                        `${selectedFolder}/thumbnails/${image.name.substring(
-                          0,
-                          image.name.lastIndexOf('.')
-                        )}_256x256.jpeg`
-                      )
-                    )
-                      .then((fallback) => {
-                        resolve({
-                          name: image.name,
-                          url,
-                          fallback,
-                        });
-                      })
-                      .catch((err) => {
-                        reject(err);
-                      });
-                  })
-                  .catch((err) => {
-                    reject(err);
-                  });
-              })
+  const handleDelete = useCallback(() => {
+    if (typeof focusedImage === 'object') {
+      // Delete image and thumbnails
+      Promise.all([
+        deleteObject(
+          ref(firebaseStorage, `${selectedFolder}/${focusedImage.name}`)
+        ),
+        deleteObject(
+          ref(
+            firebaseStorage,
+            `${selectedFolder}/thumbnails/${focusedImage.name.substring(
+              0,
+              focusedImage.name.lastIndexOf('.')
+            )}_256x256.webp`
           )
-        ).then((images) => {
-          setFirebaseStorageImages(images);
-        });
-      })
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.error(err);
+        ),
+        deleteObject(
+          ref(
+            firebaseStorage,
+            `${selectedFolder}/thumbnails/${focusedImage.name.substring(
+              0,
+              focusedImage.name.lastIndexOf('.')
+            )}_256x256.jpeg`
+          )
+        ),
+      ]).then(() => {
+        setFocusedImage(undefined);
+        loadImages();
       });
-  }, [firebaseStorage, selectedFolder]);
+    }
+  }, [firebaseStorage, focusedImage, loadImages, selectedFolder]);
+
+  useEffect(() => {
+    loadImages();
+  }, [loadImages]);
+
+  useEffect(() => {
+    if (showCustomFolder && folderInput.current) {
+      folderInput.current.focus();
+    }
+  }, [showCustomFolder]);
 
   return (
     <Container data-testid="image-area">
-      <Uploader onUpload={handleUpload} />
+      <Uploader
+        onUpload={handleUpload}
+        onFinishUpload={() =>
+          setTimeout(() => {
+            setRefreshDisabled(false);
+            loadImages();
+          }, 2500)
+        }
+      />
       <IconButton
         onClick={() => {
           handleCustomFolder();
@@ -188,6 +244,7 @@ function Images() {
               setCustomFolder(event.target.value);
               setCustomFolderDisable(event.target.value === 'thumbnails');
             }}
+            inputRef={folderInput}
           />
           <Button
             variant="contained"
@@ -211,6 +268,9 @@ function Images() {
           <ArrowBackIcon />
         </IconButton>
       )}
+      <IconButton onClick={loadImages} disabled={refreshDisabled}>
+        <RefreshIcon />
+      </IconButton>
       <Gallery
         folders={firebaseStorageFolders}
         images={firebaseStorageImages}
@@ -227,11 +287,23 @@ function Images() {
           (typeof focusedImage === 'boolean' ? (
             <Typography sx={{ padding: 1 }}>Loading Image...</Typography>
           ) : (
-            <img
-              src={focusedImage.url}
-              loading="lazy"
-              alt={focusedImage.name}
-            />
+            <>
+              <IconButton
+                onClick={handleDelete}
+                sx={{
+                  position: 'absolute',
+                  top: 1,
+                  right: 1,
+                }}
+              >
+                <DeleteForeverIcon htmlColor="white" />
+              </IconButton>
+              <img
+                src={focusedImage.url}
+                loading="lazy"
+                alt={focusedImage.name}
+              />
+            </>
           ))}
       </Dialog>
     </Container>

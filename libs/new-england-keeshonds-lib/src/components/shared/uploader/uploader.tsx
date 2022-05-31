@@ -1,4 +1,12 @@
-import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
 import {
   Box,
   CircularProgress,
@@ -12,24 +20,39 @@ export interface UploaderProps {
     files: FileList,
     setUploadPercent: Dispatch<SetStateAction<number>>,
     onUpload: () => void
-  ) => void;
+  ) => Promise<void | void[]>;
+  onFinishUpload?: () => void;
 }
 
-export function Uploader({ onUpload }: UploaderProps) {
+export function Uploader({ onUpload, onFinishUpload }: UploaderProps) {
   const [uploadDisabled, setUploadDisabled] = useState(false);
   const [uploadPercent, setUploadPercent] = useState(0);
   const [uploadState, setUploadState] = useState<
     { total: number; uploaded: number } | undefined
-  >(undefined);
+  >();
+  const [files, setFiles] = useState<FileList | undefined>();
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
-    if (files && files.length > 0) {
-      setUploadDisabled(true);
-      setUploadPercent(0);
-      setUploadState({ total: files.length, uploaded: 0 });
+  const handleFileUpload = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const { files: toUpload } = event.target;
+      if (toUpload && toUpload.length > 0) {
+        setUploadDisabled(true);
+        setUploadPercent(0);
+        setUploadState({ total: toUpload.length, uploaded: 0 });
+        setFiles(toUpload);
+      }
+      // Reset file input value
+      if (fileInput.current) {
+        // fileInput.current.value = '';
+        // fileInput.current.files = null;
+      }
+    },
+    []
+  );
 
+  useEffect(() => {
+    if (typeof files === 'object') {
       onUpload(files, setUploadPercent, () => {
         setUploadState((curState) => {
           if (curState) {
@@ -38,17 +61,18 @@ export function Uploader({ onUpload }: UploaderProps) {
               uploaded: curState.uploaded + 1,
             };
           }
-          return {
-            total: files.length,
-            uploaded: 1,
-          };
+          return undefined;
         });
+      }).then(() => {
+        setUploadState(undefined);
+        setUploadDisabled(false);
+        setFiles(undefined);
+        if (onFinishUpload) {
+          onFinishUpload();
+        }
       });
-
-      setUploadState(undefined);
-      setUploadDisabled(false);
     }
-  };
+  }, [files, onUpload, onFinishUpload]);
 
   return (
     <Box data-testid="uploader-wrapper">

@@ -58,14 +58,13 @@ export function Gallery({
         </Box>
       ))}
       {images.slice(0, loadedImages).map((image) => (
-        <Box>
+        <Box key={image.name}>
           <IconButton
             onClick={() => {
               if (onImageSelect) {
                 onImageSelect(image.name);
               }
             }}
-            key={image.name}
           >
             {image.fallback ? (
               <picture>
