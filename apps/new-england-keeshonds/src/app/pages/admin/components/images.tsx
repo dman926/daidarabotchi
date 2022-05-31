@@ -71,6 +71,7 @@ function Images() {
             .filter((folder) => folder.name !== 'thumbnails')
             .map((folder) => folder.fullPath)
         );
+        // @TODO: make this better by handling errors caused by missing thumbnails
         // convert images to download urls
         Promise.all(
           res.items.map((image) =>
