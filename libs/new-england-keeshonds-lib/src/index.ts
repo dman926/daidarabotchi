@@ -9,3 +9,4 @@ export * from './components/pages/page/page';
 export * from './components/pages/loading-page/loading-page';
 export * from './components/core/login-form/login-form';
 export * from './components/shared/gallery/gallery';
+export * from './components/shared/uploader/uploader';

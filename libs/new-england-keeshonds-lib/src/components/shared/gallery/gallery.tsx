@@ -8,6 +8,7 @@ export interface GalleryProps {
   images?: string[];
   layout?: 'masonry' | 'grid';
   startingImageCount?: number;
+  onFolderSelect?: (folder: string) => void;
 }
 
 export function Gallery({
@@ -17,6 +18,7 @@ export function Gallery({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   layout = 'masonry',
   startingImageCount = 8,
+  onFolderSelect,
 }: GalleryProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loadedImages, setLoadedImages] = useState(startingImageCount);

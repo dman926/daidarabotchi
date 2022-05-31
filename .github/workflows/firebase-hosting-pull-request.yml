@@ -7,8 +7,9 @@ on:
     branches:
       - main
 env:
-  NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
-  NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
+  NX_NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+  NX_NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
+  NX_NEK_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.NEK_FIREBASE_APPCHECK_DEBUG_TOKEN }}
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'

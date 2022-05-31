@@ -5,17 +5,21 @@ import {
   Page,
 } from '@daidarabotchi/new-england-keeshonds-lib';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import Images from './components/images';
 
 interface AdminState {
   admin: boolean;
 }
 
 export function Admin() {
-  const [adminState, setAdminState] = useState<AdminState | undefined>(undefined);
-  const firebaseAuth = useFirebase().auth;
+  const [adminState, setAdminState] = useState<AdminState | undefined>(
+    undefined
+  );
+  const firebase = useFirebase();
+  const firebaseAuth = useMemo(() => firebase.auth, [firebase]);
   const [user, loading, error] = useAuthState(firebaseAuth);
   const navigate = useNavigate();
 
@@ -78,6 +82,7 @@ export function Admin() {
 
   return (
     <Page testid="admin-wrapper">
+      <Images />
       <Button
         onClick={() => {
           signOut(firebaseAuth);
