@@ -2,13 +2,16 @@ import {
   Box,
   Button,
   Container,
+  Dialog,
   IconButton,
   TextField,
+  Typography,
 } from '@daidarabotchi/material-ui';
 import {
   Gallery,
   Uploader,
   useFirebase,
+  Image,
 } from '@daidarabotchi/new-england-keeshonds-lib';
 import {
   Dispatch,
@@ -25,18 +28,18 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import FolderIcon from '@mui/icons-material/Folder';
-
-interface Image {
-  name: string;
-  url: string;
-}
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function Images() {
   const [showCustomFolder, setShowCustomFolder] = useState(false);
   const [customFolder, setCustomFolder] = useState('');
+  const [customFolderDisable, setCustomFolderDisable] = useState(false);
   const [selectedFolder, setSelectedFolder] = useState<string | undefined>(
     undefined
   );
+  const [focusedImage, setFocusedImage] = useState<
+    Image | boolean | undefined
+  >();
   const [firebaseStorageFolders, setFirebaseStorageFolders] = useState<
     string[] | undefined
   >();
@@ -90,24 +93,63 @@ function Images() {
     });
   }, []);
 
+  const handleImageSelect = useCallback(
+    (image: string) => {
+      setFocusedImage(true);
+      getDownloadURL(ref(firebaseStorage, `${selectedFolder}/${image}`)).then(
+        (url) => {
+          setFocusedImage({ name: image, url });
+        }
+      );
+    },
+    [firebaseStorage, selectedFolder]
+  );
+
   useEffect(() => {
+    setFirebaseStorageFolders(undefined);
+    setFirebaseStorageImages(undefined);
     const galleryListRef = ref(firebaseStorage, selectedFolder);
     listAll(galleryListRef)
       .then((res) => {
         setFirebaseStorageFolders(
-          res.prefixes.map((folder) => folder.fullPath)
+          res.prefixes
+            .filter((folder) => folder.name !== 'thumbnails')
+            .map((folder) => folder.fullPath)
         );
         // convert images to download urls
         Promise.all(
           res.items.map(
             (image) =>
               new Promise<Image>((resolve, reject) => {
-                getDownloadURL(ref(firebaseStorage, image.fullPath))
+                getDownloadURL(
+                  ref(
+                    firebaseStorage,
+                    `${selectedFolder}/thumbnails/${image.name.substring(
+                      0,
+                      image.name.lastIndexOf('.')
+                    )}_256x256.webp`
+                  )
+                )
                   .then((url) => {
-                    resolve({
-                      name: image.name,
-                      url,
-                    });
+                    getDownloadURL(
+                      ref(
+                        firebaseStorage,
+                        `${selectedFolder}/thumbnails/${image.name.substring(
+                          0,
+                          image.name.lastIndexOf('.')
+                        )}_256x256.jpeg`
+                      )
+                    )
+                      .then((fallback) => {
+                        resolve({
+                          name: image.name,
+                          url,
+                          fallback,
+                        });
+                      })
+                      .catch((err) => {
+                        reject(err);
+                      });
                   })
                   .catch((err) => {
                     reject(err);
@@ -136,11 +178,15 @@ function Images() {
       </IconButton>
       {showCustomFolder && (
         <Box>
+          <Typography>
+            Warning! Do not use &quot;thumbnails&quot; for the folder image
+          </Typography>
           <TextField
             label="Folder"
             value={customFolder}
             onChange={(event) => {
               setCustomFolder(event.target.value);
+              setCustomFolderDisable(event.target.value === 'thumbnails');
             }}
           />
           <Button
@@ -148,12 +194,46 @@ function Images() {
             onClick={() => {
               handleCustomFolder(customFolder);
             }}
+            disabled={customFolderDisable}
           >
             Set Folder
           </Button>
         </Box>
       )}
-      <Gallery onFolderSelect={setCustomFolder} />
+      {selectedFolder && (
+        <IconButton
+          onClick={() => {
+            setSelectedFolder((curFolder) =>
+              curFolder?.substring(0, curFolder?.lastIndexOf('/'))
+            );
+          }}
+        >
+          <ArrowBackIcon />
+        </IconButton>
+      )}
+      <Gallery
+        folders={firebaseStorageFolders}
+        images={firebaseStorageImages}
+        onFolderSelect={setSelectedFolder}
+        onImageSelect={handleImageSelect}
+      />
+      <Dialog
+        open={Boolean(focusedImage)}
+        onClose={() => {
+          setFocusedImage(undefined);
+        }}
+      >
+        {focusedImage &&
+          (typeof focusedImage === 'boolean' ? (
+            <Typography sx={{ padding: 1 }}>Loading Image...</Typography>
+          ) : (
+            <img
+              src={focusedImage.url}
+              loading="lazy"
+              alt={focusedImage.name}
+            />
+          ))}
+      </Dialog>
     </Container>
   );
 }
