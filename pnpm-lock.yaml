@@ -323,7 +323,7 @@ packages:
       }
     engines: { node: '>=6.9.0' }
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-builder-binary-assignment-operator-visitor/7.16.7:
@@ -334,7 +334,7 @@ packages:
     engines: { node: '>=6.9.0' }
     dependencies:
       '@babel/helper-explode-assignable-expression': 7.16.7
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-compilation-targets/7.17.10_@babel+core@7.18.0:
@@ -436,7 +436,7 @@ packages:
       }
     engines: { node: '>=6.9.0' }
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
 
   /@babel/helper-environment-visitor/7.18.2:
     resolution:
@@ -453,7 +453,7 @@ packages:
       }
     engines: { node: '>=6.9.0' }
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-function-name/7.17.9:
@@ -492,7 +492,7 @@ packages:
       }
     engines: { node: '>=6.9.0' }
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
 
   /@babel/helper-module-transforms/7.18.0:
     resolution:
@@ -519,7 +519,7 @@ packages:
       }
     engines: { node: '>=6.9.0' }
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-plugin-utils/7.10.4:
@@ -545,7 +545,7 @@ packages:
     dependencies:
       '@babel/helper-annotate-as-pure': 7.16.7
       '@babel/helper-wrap-function': 7.16.8
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -561,7 +561,7 @@ packages:
       '@babel/helper-member-expression-to-functions': 7.17.7
       '@babel/helper-optimise-call-expression': 7.16.7
       '@babel/traverse': 7.18.2
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -573,7 +573,7 @@ packages:
       }
     engines: { node: '>=6.9.0' }
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
 
   /@babel/helper-skip-transparent-expression-wrappers/7.16.0:
     resolution:
@@ -582,7 +582,7 @@ packages:
       }
     engines: { node: '>=6.9.0' }
     dependencies:
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/helper-split-export-declaration/7.16.7:
@@ -618,7 +618,7 @@ packages:
       '@babel/helper-function-name': 7.17.9
       '@babel/template': 7.16.7
       '@babel/traverse': 7.18.2
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1990,7 +1990,7 @@ packages:
       '@babel/helper-plugin-utils': 7.17.12
       '@babel/plugin-proposal-unicode-property-regex': 7.17.12_@babel+core@7.18.0
       '@babel/plugin-transform-dotall-regex': 7.16.7_@babel+core@7.18.0
-      '@babel/types': 7.18.2
+      '@babel/types': 7.18.4
       esutils: 2.0.3
     dev: true
 
