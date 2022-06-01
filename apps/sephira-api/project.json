@@ -1,51 +1,26 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/sephira-api/src",
   "projectType": "application",
+  "sourceRoot": "apps/sephira-api",
   "targets": {
     "build": {
-      "executor": "@nrwl/node:webpack",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx-go/nx-go:build",
       "options": {
         "outputPath": "dist/apps/sephira-api",
-        "main": "apps/sephira-api/src/main.ts",
-        "tsConfig": "apps/sephira-api/tsconfig.app.json",
-        "assets": ["apps/sephira-api/src/assets"]
-      },
-      "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
-          "fileReplacements": [
-            {
-              "replace": "apps/sephira-api/src/environments/environment.ts",
-              "with": "apps/sephira-api/src/environments/environment.prod.ts"
-            }
-          ]
-        }
+        "main": "apps/sephira-api/main.go"
       }
     },
     "serve": {
-      "executor": "@nrwl/node:node",
+      "executor": "@nx-go/nx-go:serve",
       "options": {
-        "buildTarget": "sephira-api:build"
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/sephira-api/**/*.ts"]
+        "main": "apps/sephira-api/main.go"
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/sephira-api"],
-      "options": {
-        "jestConfig": "apps/sephira-api/jest.config.ts",
-        "passWithNoTests": true
-      }
+      "executor": "@nx-go/nx-go:test"
+    },
+    "lint": {
+      "executor": "@nx-go/nx-go:lint"
     }
   },
   "tags": []

@@ -1,5 +1,7 @@
 # Daidarabotchi Mono Repo
 
+[![CI](https://github.com/dman926/daidarabotchi/actions/workflows/main.yml/badge.svg)](https://github.com/dman926/daidarabotchi/actions/workflows/main.yml)
+
 [![Daidarabotchi Portrait](https://upload.wikimedia.org/wikipedia/commons/6/61/Daidarabocchi_1.jpg)](https://en.wikipedia.org/wiki/Daidarabotchi)
 
 ---
