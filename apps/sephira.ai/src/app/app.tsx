@@ -3,7 +3,7 @@ import {
   selectUser,
   useAppDispatch,
   useAppSelector,
-} from '@daidarabotchi/sephira-lib';
+} from '@daidarabotchi/sephira-front-end-lib';
 import { useEffect } from 'react';
 
 export function App() {
