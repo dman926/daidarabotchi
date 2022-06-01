@@ -32,7 +32,7 @@ jobs:
         run: pnpm install
       - name: Check if deploy is needed
         id: deploy_needed
-        run: echo "::set-output name=deploy::$(./scripts/isaffected new-england-keeshonds)"
+        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds)"
       - name: Build New England Keeshonds
         run: npx nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
         if: steps.deploy_needed.outputs.deploy == 1
