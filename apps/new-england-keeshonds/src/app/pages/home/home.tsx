@@ -51,14 +51,10 @@ export function Home() {
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
-    const galleryListRef = ref(firebase.storage, 'puppies');
+    const galleryListRef = ref(firebase.storage, 'abc');
 
     listAll(galleryListRef)
       .then((res) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        res.prefixes.forEach((folderRef) => {
-          // is a foler. recursive call here
-        });
         // eslint-disable-next-line no-console
         console.log(res);
         // setGalleryImages(res.items);
