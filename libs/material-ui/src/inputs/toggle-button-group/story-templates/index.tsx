@@ -1,15 +1,16 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
 import { useState } from '@storybook/addons';
-import {
-  ToggleButtonGroup,
-  ToggleButtonGroupProps,
-} from '../toggle-button-group';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import { ToggleButton } from '@mui/material';
 import { MouseEvent } from 'react';
+import {
+  ToggleButtonGroup,
+  ToggleButtonGroupProps,
+} from '../toggle-button-group';
 
 export const Template: Story<ToggleButtonGroupProps> = (args) => {
   const [alignment, setAlignment] = useState<string | null>('left');
@@ -38,3 +39,5 @@ export const Template: Story<ToggleButtonGroupProps> = (args) => {
     </ToggleButtonGroup>
   );
 };
+
+export default Template;

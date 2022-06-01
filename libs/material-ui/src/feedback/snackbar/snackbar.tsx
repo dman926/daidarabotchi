@@ -2,8 +2,6 @@ import MuiSnackbar, {
   SnackbarProps as MuiSnackbarProps,
 } from '@mui/material/Snackbar';
 
-import './snackbar.module.scss';
-
 /* eslint-disable-next-line */
 export interface SnackbarProps extends MuiSnackbarProps {}
 

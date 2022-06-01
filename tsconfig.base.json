@@ -19,9 +19,14 @@
       "@daidarabotchi/new-england-keeshonds-lib": [
         "libs/new-england-keeshonds-lib/src/index.ts"
       ],
-      "@daidarabotchi/portfolio-lib": ["libs/portfolio-lib/src/index.ts"],
       "@daidarabotchi/portfolio-lib/interfaces": [
         "libs/portfolio-lib/src/interfaces/index.ts"
+      ],
+      "@daidarabotchi/sephira-front-end-lib": [
+        "libs/sephira-front-end-lib/src/index.ts"
+      ],
+      "@daidarabotchi/sephira-trading-lib": [
+        "libs/sephira-trading-lib/src/index.ts"
       ]
     }
   },

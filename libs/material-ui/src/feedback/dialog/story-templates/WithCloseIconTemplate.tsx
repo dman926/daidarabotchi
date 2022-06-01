@@ -1,14 +1,15 @@
+/* eslint-disable react/function-component-definition */
 import { useState } from 'react';
 import { Story } from '@storybook/react';
 import { styled } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
-import Button from 'libs/material-ui/src/inputs/button/button';
+import Button from '../../../inputs/button/button';
 import Dialog, { DialogProps } from '../dialog';
 import DialogTitle from '../dialog-title/dialog-title';
 import DialogContent from '../dialog-content/dialog-content';
 import DialogActions from '../dialog-actions/dialog-actions';
-import IconButton from 'libs/material-ui/src/inputs/button/icon-button/icon-button';
-import Typography from 'libs/material-ui/src/data-display/typography/typography';
+import IconButton from '../../../inputs/button/icon-button/icon-button';
+import Typography from '../../../data-display/typography/typography';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -25,7 +26,7 @@ export interface DialogTitleProps {
   onClose: () => void;
 }
 
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
+function BootstrapDialogTitle(props: DialogTitleProps) {
   const { children, onClose, ...other } = props;
 
   return (
@@ -47,9 +48,9 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
       ) : null}
     </DialogTitle>
   );
-};
+}
 
-export const WithCloseIconTemplate: Story<DialogProps> = (args) =>  {
+export const WithCloseIconTemplate: Story<DialogProps> = () => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -69,23 +70,27 @@ export const WithCloseIconTemplate: Story<DialogProps> = (args) =>  {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <BootstrapDialogTitle
+          id="customized-dialog-title"
+          onClose={handleClose}
+        >
           Modal title
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
           </Typography>
           <Typography gutterBottom>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+            auctor.
           </Typography>
           <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
+            dui. Donec ullamcorper nulla non metus auctor fringilla.
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -96,4 +101,4 @@ export const WithCloseIconTemplate: Story<DialogProps> = (args) =>  {
       </BootstrapDialog>
     </div>
   );
-}
+};

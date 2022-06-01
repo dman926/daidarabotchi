@@ -1,11 +1,12 @@
+/* eslint-disable react/function-component-definition */
 import { useState } from '@storybook/addons';
-import { Alert, AlertProps } from '../alert';
+import { Collapse } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { Story } from '@storybook/react';
+import { Alert, AlertProps } from '../alert';
 import Box from '../../../layout/box/box';
 import Button from '../../../inputs/button/button';
-import Collapse from '../../../data-display/list/collapse/collapse';
 import IconButton from '../../../inputs/button/icon-button/icon-button';
-import { Story } from '@storybook/react';
 
 export const AllSeveritiesTemplate: Story<AlertProps> = (args) => (
   <div>

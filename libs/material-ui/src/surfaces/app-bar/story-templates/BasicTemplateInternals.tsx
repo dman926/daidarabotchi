@@ -1,13 +1,13 @@
-import React from 'react'
-import IconButton from '@mui/material/IconButton'
+import React from 'react';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import Button from '../../../inputs/button/button';
-import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '../../../data-display/typography/typography';
 
-export const BasicTemplateInternals = function SearchInternals(props: any): JSX.Element { 
+export function BasicTemplateInternals(): JSX.Element {
   return (
     <>
-    <IconButton
+      <IconButton
         size="large"
         edge="start"
         color="inherit"
@@ -23,3 +23,5 @@ export const BasicTemplateInternals = function SearchInternals(props: any): JSX.
     </>
   );
 }
+
+export default BasicTemplateInternals;

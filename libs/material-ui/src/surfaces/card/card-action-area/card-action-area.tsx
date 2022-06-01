@@ -1,7 +1,8 @@
 import { Theme } from '@emotion/react';
 import { SxProps } from '@mui/material';
-import MuiCardActionArea, { CardActionAreaClasses } from '@mui/material/CardActionArea';
-import './card-action-area.module.scss';
+import MuiCardActionArea, {
+  CardActionAreaClasses,
+} from '@mui/material/CardActionArea';
 
 /* eslint-disable-next-line */
 export interface CardActionAreaProps {
@@ -12,7 +13,7 @@ export interface CardActionAreaProps {
 }
 
 export function CardActionArea(props: CardActionAreaProps) {
-  return <MuiCardActionArea {...props}></MuiCardActionArea>;
+  return <MuiCardActionArea {...props} />;
 }
 
 export default CardActionArea;

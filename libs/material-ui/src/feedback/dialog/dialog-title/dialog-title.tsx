@@ -1,7 +1,6 @@
 import MuiDialogTitle, {
   DialogTitleProps as MuiDialogTitleProps,
 } from '@mui/material/DialogTitle';
-import './dialog-title.module.scss';
 
 /* eslint-disable-next-line */
 export interface DialogTitleProps extends MuiDialogTitleProps {}

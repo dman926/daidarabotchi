@@ -1,5 +1,4 @@
 import MuiMenuList from '@mui/material/MenuList';
-import './menu-list.module.scss';
 
 /* eslint-disable-next-line */
 export interface MenuListProps {
@@ -12,7 +11,7 @@ export interface MenuListProps {
 }
 
 export function MenuList(props: MenuListProps) {
-  return <MuiMenuList {...props}></MuiMenuList>;
+  return <MuiMenuList {...props} />;
 }
 
 export default MenuList;

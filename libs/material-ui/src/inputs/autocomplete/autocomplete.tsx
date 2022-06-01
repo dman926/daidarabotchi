@@ -2,7 +2,6 @@ import { ChipTypeMap } from '@mui/material';
 import MuiAutocomplete, {
   AutocompleteProps as MuiAutocompleteProps,
 } from '@mui/material/Autocomplete';
-import './autocomplete.module.scss';
 
 /* eslint-disable-next-line */
 export interface AutocompleteProps<

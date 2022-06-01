@@ -1,5 +1,4 @@
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import './app-bar.module.scss';
 
 /* eslint-disable-next-line */
 export interface AppBarProps extends MuiAppBarProps {

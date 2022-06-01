@@ -1,0 +1,43 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/sephira-front-end-lib/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/sephira-front-end-lib",
+        "tsConfig": "libs/sephira-front-end-lib/tsconfig.lib.json",
+        "project": "libs/sephira-front-end-lib/package.json",
+        "entryFile": "libs/sephira-front-end-lib/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/sephira-front-end-lib/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/sephira-front-end-lib/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/sephira-front-end-lib"],
+      "options": {
+        "jestConfig": "libs/sephira-front-end-lib/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -6,5 +6,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/libs/material-ui',
-  preset: '../../jest.preset.ts',
+  preset: '../../jest.preset.js',
 };

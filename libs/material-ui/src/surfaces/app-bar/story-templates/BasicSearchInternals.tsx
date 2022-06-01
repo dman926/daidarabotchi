@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton'
+import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu'
+import MenuIcon from '@mui/icons-material/Menu';
 import { InputBase } from '@mui/material';
 import Typography from '../../../data-display/typography/typography';
 
@@ -48,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const BasicSearchInternals = function SearchInternals(props: any): JSX.Element { 
+export function BasicSearchInternals(): JSX.Element {
   return (
     <>
       <IconButton
@@ -80,3 +80,5 @@ export const BasicSearchInternals = function SearchInternals(props: any): JSX.El
     </>
   );
 }
+
+export default BasicSearchInternals;

@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/function-component-definition */
 import { useState, ComponentType, ReactElement } from 'react';
-import { Story } from '@storybook/react'
+import { Story } from '@storybook/react';
 import Fade from '@mui/material/Fade';
 import Slide, { SlideProps } from '@mui/material/Slide';
 import Grow, { GrowProps } from '@mui/material/Grow';
 import { TransitionProps } from '@mui/material/transitions';
-import Button from 'libs/material-ui/src/inputs/button/button';
+import Button from '../../../inputs/button/button';
 import Snackbar, { SnackbarProps } from '../snackbar';
 
 function SlideTransition(props: SlideProps) {
@@ -34,7 +36,7 @@ export const TransitionsTemplate: Story<SnackbarProps> = (args) => {
         TransitionProps & {
           children: ReactElement<any, any>;
         }
-      >,
+      >
     ) =>
     () => {
       setState({
@@ -56,6 +58,7 @@ export const TransitionsTemplate: Story<SnackbarProps> = (args) => {
       <Button onClick={handleClick(Fade)}>Fade Transition</Button>
       <Button onClick={handleClick(SlideTransition)}>Slide Transition</Button>
       <Snackbar
+        {...args}
         open={state.open}
         onClose={handleClose}
         TransitionComponent={state.Transition}
@@ -64,4 +67,6 @@ export const TransitionsTemplate: Story<SnackbarProps> = (args) => {
       />
     </div>
   );
-}
+};
+
+export default TransitionsTemplate;

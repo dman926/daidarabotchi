@@ -1,5 +1,4 @@
 import MuiAvatar, { AvatarProps as MuiAvatarProps } from '@mui/material/Avatar';
-import './avatar.module.scss';
 
 /* eslint-disable-next-line */
 export interface AvatarProps extends MuiAvatarProps {}

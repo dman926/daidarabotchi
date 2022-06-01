@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 // There was an issue having these directly defined in the MDX file, so they are defined here.
 
 import { Story } from '@storybook/react';
@@ -19,6 +20,7 @@ export const Template: Story<BackdropProps> = (args) => {
     <>
       <Button onClick={handleToggle}>Show backdrop</Button>
       <Backdrop
+        {...args}
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={open}
         onClick={handleClose}
@@ -28,3 +30,5 @@ export const Template: Story<BackdropProps> = (args) => {
     </>
   );
 };
+
+export default Template;

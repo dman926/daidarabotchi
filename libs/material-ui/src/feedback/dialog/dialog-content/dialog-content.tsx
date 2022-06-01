@@ -1,7 +1,6 @@
 import MuiDialogContent, {
   DialogContentProps as MuiDialogContentProps,
 } from '@mui/material/DialogContent';
-import './dialog-content.module.scss';
 
 /* eslint-disable-next-line */
 export interface DialogContentProps extends MuiDialogContentProps {}

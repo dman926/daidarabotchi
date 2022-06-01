@@ -1,6 +1,19 @@
+import { indigo, blueGrey } from '@mui/material/colors';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // When building for production, this file is replaced with `environment.prod.ts`.
 
+// eslint-disable-next-line import/prefer-default-export
 export const environment = {
   production: false,
+  firebaseConfig: process.env['NX_NEK_FIREBASE_CONFIG']
+    ? JSON.parse(process.env['NX_NEK_FIREBASE_CONFIG'])
+    : false,
+  recaptchaV3PublicKey: '6LcHETAgAAAAABLEG5AiS3IqNWnic1z-X0jBT_cf',
+  baseTheme: {
+    palette: {
+      primary: indigo,
+      secondary: blueGrey,
+    },
+  },
 };

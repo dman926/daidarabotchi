@@ -1,7 +1,6 @@
 import MuiListItemIcon, {
   ListItemIconProps as MuiListItemIconProps,
 } from '@mui/material/ListItemIcon';
-import './list-item-icon.module.scss';
 
 /* eslint-disable-next-line */
 export interface ListItemIconProps extends MuiListItemIconProps {}

@@ -1,5 +1,6 @@
-import MuiIconButton, { IconButtonProps as MuiIconButtonProps } from '@mui/material/IconButton';
-import './icon-button.module.scss';
+import MuiIconButton, {
+  IconButtonProps as MuiIconButtonProps,
+} from '@mui/material/IconButton';
 
 /* eslint-disable-next-line */
 export interface IconButtonProps extends MuiIconButtonProps {}

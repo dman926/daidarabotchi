@@ -1,7 +1,6 @@
 import { Theme } from '@emotion/react';
 import { SxProps } from '@mui/material';
 import MuiCardMedia, { CardMediaClasses } from '@mui/material/CardMedia';
-import './card-media.module.scss';
 
 /* eslint-disable-next-line */
 export interface CardMediaProps {
@@ -13,7 +12,7 @@ export interface CardMediaProps {
 }
 
 export function CardMedia(props: CardMediaProps) {
-  return <MuiCardMedia {...props}></MuiCardMedia>;
+  return <MuiCardMedia {...props} />;
 }
 
 export default CardMedia;

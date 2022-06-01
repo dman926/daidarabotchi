@@ -1,29 +1,30 @@
+/* eslint-disable react/function-component-definition */
 import { useState, forwardRef } from 'react';
-import { Story } from '@storybook/react'
+import { Story } from '@storybook/react';
 import CloseIcon from '@mui/icons-material/Close';
 import { TransitionProps } from '@mui/material/transitions';
-import Button from 'libs/material-ui/src/inputs/button/button'
+import Slide from '@mui/material/Slide';
+import Button from '../../../inputs/button/button';
 import Dialog, { DialogProps } from '../dialog';
-import ListItemText from 'libs/material-ui/src/data-display/list/list-item-text/list-item-text'
-import ListItem from 'libs/material-ui/src/data-display/list/list-item/list-item';
-import List from 'libs/material-ui/src/data-display/list/list';
-import Divider from 'libs/material-ui/src/data-display/divider/divider'
-import AppBar from 'libs/material-ui/src/surfaces/app-bar/app-bar';
-import Toolbar from 'libs/material-ui/src/surfaces/app-bar/toolbar/toolbar';
-import IconButton from 'libs/material-ui/src/inputs/button/icon-button/icon-button';
-import Typography from 'libs/material-ui/src/data-display/typography/typography';
-import Slide from '../slide/slide';
+import ListItemText from '../../../data-display/list/list-item-text/list-item-text';
+import ListItem from '../../../data-display/list/list-item/list-item';
+import List from '../../../data-display/list/list';
+import Divider from '../../../data-display/divider/divider';
+import AppBar from '../../../surfaces/app-bar/app-bar';
+import Toolbar from '../../../surfaces/app-bar/toolbar/toolbar';
+import IconButton from '../../../inputs/button/icon-button/icon-button';
+import Typography from '../../../data-display/typography/typography';
 
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+const Transition = forwardRef(
+  (
+    props: TransitionProps & {
+      children: React.ReactElement;
+    },
+    ref: React.Ref<unknown>
+  ) => <Slide direction="up" ref={ref} {...props} />
+);
 
-export const FullScreenTemplate: Story<DialogProps> = (args) =>  {
+export const FullScreenTemplate: Story<DialogProps> = (args) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -40,6 +41,7 @@ export const FullScreenTemplate: Story<DialogProps> = (args) =>  {
         Open full-screen dialog
       </Button>
       <Dialog
+        {...args}
         fullScreen
         open={open}
         onClose={handleClose}
@@ -78,4 +80,6 @@ export const FullScreenTemplate: Story<DialogProps> = (args) =>  {
       </Dialog>
     </div>
   );
-}
+};
+
+export default FullScreenTemplate;

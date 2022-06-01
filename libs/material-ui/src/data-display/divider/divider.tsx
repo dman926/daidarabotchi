@@ -1,7 +1,6 @@
 import MuiDivider, {
   DividerProps as MuiDividerProps,
 } from '@mui/material/Divider';
-import './divider.module.scss';
 
 /* eslint-disable-next-line */
 export interface DividerProps extends MuiDividerProps {}

@@ -1,14 +1,12 @@
-import './pagination-item.module.scss';
+import MuiPaginationItem, {
+  PaginationItemProps as MuiPaginationItemProps,
+} from '@mui/material/PaginationItem';
 
 /* eslint-disable-next-line */
-export interface PaginationItemProps {}
+export interface PaginationItemProps extends MuiPaginationItemProps {}
 
 export function PaginationItem(props: PaginationItemProps) {
-  return (
-    <div>
-      <h1>Welcome to PaginationItem!</h1>
-    </div>
-  );
+  return <MuiPaginationItem data-testid="mui-pagination-item" {...props} />;
 }
 
 export default PaginationItem;

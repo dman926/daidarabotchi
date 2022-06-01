@@ -4,9 +4,7 @@ import Tooltip from './tooltip';
 
 describe('Tooltip', () => {
   it('should render successfully', () => {
-    const Content = React.forwardRef((props, ref) => (
-      <span {...props}>Test</span>
-    ));
+    const Content = React.forwardRef((props) => <span {...props}>Test</span>);
     const { baseElement } = render(
       <Tooltip title="Tooltip example">
         <Content />

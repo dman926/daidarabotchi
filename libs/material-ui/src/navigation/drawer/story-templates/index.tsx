@@ -1,6 +1,14 @@
+/* eslint-disable react/function-component-definition */
 import { Story } from '@storybook/react';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import { useState } from '@storybook/addons';
+import React from 'react';
 import { Drawer, DrawerProps } from '../drawer';
-import { SwipeableDrawer } from '../swipeable-drawer/swipeable-drawer';
+import {
+  SwipeableDrawer,
+  SwipeableDrawerProps,
+} from '../swipeable-drawer/swipeable-drawer';
 import { Box } from '../../../layout/box/box';
 import { Button } from '../../../inputs/button/button';
 import { List } from '../../../data-display/list/list';
@@ -8,14 +16,10 @@ import { ListItem } from '../../../data-display/list/list-item/list-item';
 import { ListItemIcon } from '../../../data-display/list/list-item-icon/list-item-icon';
 import { ListItemText } from '../../../data-display/list/list-item-text/list-item-text';
 import { Divider } from '../../../data-display/divider/divider';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { useState } from '@storybook/addons';
-import React from 'react';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-export const Template: Story<DrawerProps> = (args) => {
+export const Template: Story<DrawerProps> = (args: DrawerProps) => {
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -74,6 +78,7 @@ export const Template: Story<DrawerProps> = (args) => {
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <Drawer
+            {...args}
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
@@ -86,7 +91,9 @@ export const Template: Story<DrawerProps> = (args) => {
   );
 };
 
-export const SwipeableTemplate: Story<DrawerProps> = (args) => {
+export const SwipeableTemplate: Story<SwipeableDrawerProps> = (
+  args: SwipeableDrawerProps
+) => {
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -145,6 +152,7 @@ export const SwipeableTemplate: Story<DrawerProps> = (args) => {
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <SwipeableDrawer
+            {...args}
             anchor={anchor}
             open={state[anchor]}
             onOpen={toggleDrawer(anchor, true)}

@@ -1,12 +1,11 @@
 import MuiTablePagination, {
-  TablePaginationProps as MuiTablePaginationProps
+  TablePaginationProps as MuiTablePaginationProps,
 } from '@mui/material/TablePagination';
 import { ElementType } from 'react';
-import './table-pagination.module.scss';
 
 /* eslint-disable-next-line */
 export type TablePaginationProps = MuiTablePaginationProps & {
-  component?: ElementType
+  component?: ElementType;
 };
 
 export function TablePagination(props: TablePaginationProps) {
