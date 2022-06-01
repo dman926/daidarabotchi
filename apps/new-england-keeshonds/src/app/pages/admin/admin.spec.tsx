@@ -11,6 +11,6 @@ describe('Admin', () => {
     await act(() => {
       renderWithProvider(<Admin />);
     });
-    expect(screen.getByTestId('admin-login-wrapper')).toBeInTheDocument();
+    expect(screen.getByTestId('admin-wrapper')).toBeInTheDocument();
   });
 });
