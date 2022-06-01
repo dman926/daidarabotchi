@@ -1,7 +1,7 @@
 import React, { JSXElementConstructor, ReactElement, ReactNode } from 'react';
 import { render as rtlRender } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { createStore, UserState } from '@daidarabotchi/sephira-lib';
+import { createStore, UserState } from '@daidarabotchi/sephira-front-end-lib';
 import { EnhancedStore } from '@reduxjs/toolkit';
 
 function render(

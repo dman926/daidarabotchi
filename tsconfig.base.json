@@ -22,7 +22,12 @@
       "@daidarabotchi/portfolio-lib/interfaces": [
         "libs/portfolio-lib/src/interfaces/index.ts"
       ],
-      "@daidarabotchi/sephira-lib": ["libs/sephira-lib/src/index.ts"]
+      "@daidarabotchi/sephira-front-end-lib": [
+        "libs/sephira-front-end-lib/src/index.ts"
+      ],
+      "@daidarabotchi/sephira-trading-lib": [
+        "libs/sephira-trading-lib/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

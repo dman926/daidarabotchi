@@ -1,4 +1,4 @@
-import { createStore } from '@daidarabotchi/sephira-lib';
+import { createStore } from '@daidarabotchi/sephira-front-end-lib';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 

@@ -1,12 +1,12 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*", "/lib/**/*", "/node_modules"],
-  "parserOptions": {
-    "project": ["apps/new-england-keeshonds/functions/tsconfig.json"]
-  },
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["libs/sephira-trading-lib/tsconfig.*?.json"]
+      },
       "rules": {}
     },
     {
