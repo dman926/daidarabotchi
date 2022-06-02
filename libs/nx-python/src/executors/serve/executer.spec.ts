@@ -1,11 +1,11 @@
 // There's a fake eslint error here
 // eslint-disable-next-line import/extensions
-import { BuildExecutorSchema } from './schema';
-import executor from './executor';
+import { ServeExecutorSchema } from './schema';
+import executor from './executer';
 
-const options: BuildExecutorSchema = {};
+const options: ServeExecutorSchema = {};
 
-describe('Build Executor', () => {
+describe('Serve Executor', () => {
   it('can run', async () => {
     const output = await executor(options);
     expect(output.success).toBe(true);
