@@ -1,54 +1,48 @@
 /* eslint-disable no-console */
 
-import { ExecutorContext } from '@nrwl/devkit';
-import type { FileInputOutput } from '@nrwl/workspace/src/utilities/assets';
-import { join } from 'path';
+import { ExecutorContext, logger,  } from '@nrwl/devkit';
+import { ChildProcess, execSync } from 'child_process';
 import { runPythonCommand } from '../../utils/py-utils';
-import { NormalizedExecutorOptions } from '../../utils/schema';
 // There's a fake eslint error here
 // eslint-disable-next-line import/extensions
 import { BuildExecutorSchema } from './schema';
 
-export function normalizeOptions(
-  options: BuildExecutorSchema,
-  contextRoot: string,
-  sourceRoot?: string,
-  projectRoot?: string
-): NormalizedExecutorOptions<BuildExecutorSchema> {
-  const outputPath = join(contextRoot, options.outputPath);
+let childProcess: ChildProcess;
 
-  if (options.watch == null) {
-    options.watch = false;
-  }
+const runBuild = (
+  workspaceRoot: string,
+  projectRoot: string
+) =>
+  new Promise((resolve, reject) => {
+    childProcess = runPythonCommand(`python3 setup.py sdist bdist_wheel`, workspaceRoot, projectRoot);
 
-  const files: FileInputOutput[] = assetGlobsToFiles(
-    options.assets,
-    contextRoot,
-    outputPath
-  );
+    process.on('exit', () => childProcess.kill());
+    process.on('SIGTERM', () => childProcess.kill());
 
-  return {
-    ...options,
-    root: contextRoot,
-    sourceRoot,
-    projectRoot,
-    files,
-    tsConfig: join(contextRoot, options.tsConfig),
-    mainOutputPath: resolve(
-      outputPath,
-      options.main.replace(`${projectRoot}/`, '').replace('.ts', '.js')
-    ),
-  };
-}
+    childProcess.on('error', (err) => {
+      reject(err);
+    });
+    childProcess.on('exit', (code) => {
+      if (code === 0) {
+        resolve(code);
+      } else {
+        reject(code);
+      }
+    });
+  });
 
 export default async function runExecutor(
   options: BuildExecutorSchema,
   context: ExecutorContext
 ) {
   const projectRoot = context.workspace.projects[context.projectName].root;
-  runPythonCommand(context, 'build', [mainFile], getCliOptions(options));
-
-  return {
-    success: true,
-  };
+  try {
+    await runBuild(context.root, projectRoot);
+    return { sucess: true };
+  } catch (e) {
+    logger.error(`Error: ${e}`);
+    return { sucess: false };
+  } finally {
+    childProcess?.kill();
+  }
 }
