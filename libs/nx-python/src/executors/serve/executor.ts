@@ -5,15 +5,21 @@
 import { ExecutorContext } from '@nrwl/devkit';
 import { runPythonCommand } from '../../utils';
 // eslint-disable-next-line import/extensions
-import { TestExecutorSchema } from './schema';
+import { ServeExecutorSchema } from './schema';
 
 export default async function runExecutor(
-  options: TestExecutorSchema,
+  options: ServeExecutorSchema,
   context: ExecutorContext
 ) {
   const { projectName } = context;
   const sourceRoot = context.workspace.projects[projectName].root;
-  const cwd = `${sourceRoot}`;
+  const cwd = `${options.cwd || sourceRoot}`;
 
-  return runPythonCommand(context, 'test', [], { cwd });
+  // We strip the project root from the main file
+  const mainFile = options.main.replace(`${cwd}/`, '');
+
+  return runPythonCommand(context, 'serve', [mainFile, ...options.args], {
+    cmd: options.cmd,
+    cwd,
+  });
 }

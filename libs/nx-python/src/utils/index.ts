@@ -13,7 +13,16 @@ export function runPythonCommand(
   const cmd = options.cmd || 'python3';
   const cwd = options.cwd || process.cwd();
 
-  const execute = `${cmd} ${command} ${params.join('')}`;
+  let mutateCommand = '';
+
+  // Create the command to execute
+  if (command === 'serve') mutateCommand = '';
+  else if (command === 'build') mutateCommand = '';
+  else if (command === 'lint') mutateCommand = '--recursive=y';
+  else if (command === 'test') mutateCommand = '-m unittest discover -s ./ -p';
+  else mutateCommand = command;
+
+  const execute = `${cmd} ${mutateCommand} ${params.join('')}`;
 
   try {
     logger.info(`Executing command: ${execute}`);

@@ -11,7 +11,7 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   return runPythonCommand(context, 'build', [
-    'setup.py',
+    options.setup,
     'sdist',
     'bdist_wheel',
     '--dist-dir',

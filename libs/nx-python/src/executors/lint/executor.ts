@@ -11,11 +11,11 @@ export default async function runExecutor(
   options: LintExecutorSchema,
   context: ExecutorContext
 ) {
-  const projectName = context?.projectName;
-  const sourceRoot = context?.workspace?.projects[projectName]?.root;
+  const { projectName } = context;
+  const sourceRoot = context.workspace.projects[projectName].root;
   const cwd = `${sourceRoot}`;
 
-  return runPythonCommand(context, 'lint', ['--recursive=y', '.'], {
+  return runPythonCommand(context, 'lint', ['.'], {
     cwd,
     cmd: 'pylint',
   });

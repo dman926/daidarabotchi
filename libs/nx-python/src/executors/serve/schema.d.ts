@@ -1,4 +1,6 @@
 export interface ServeExecutorSchema {
-  main?: string;
-  cmd?: string;
+  cmd: string;
+  cwd: string;
+  main: string;
+  args: string[];
 }
