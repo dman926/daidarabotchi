@@ -1,36 +1,27 @@
-import { ExecutorContext, logger } from '@nrwl/devkit';
-import { execSync } from 'child_process';
-// eslint-disable-next-line import/extensions
-import { ServeExecutorSchema } from '../executors/serve/schema';
-import { CommandType } from '..';
-import { getCorePythonExecuteCommand } from './command';
+/* eslint-disable import/prefer-default-export */
+
+import { logger } from '@nrwl/devkit';
+import { ChildProcess, spawn } from 'child_process';
+import { join } from 'path';
 
 export function runPythonCommand(
-  context: ExecutorContext,
-  command: CommandType,
-  params: string[],
-  options: ServeExecutorSchema = {}
-): { success: boolean } {
-  // Take the parameters or set defaults
-  const cmd = options.cmd || 'python3';
-
-  const execute = getCorePythonExecuteCommand(cmd, command, params);
+  cmd: string,
+  workspaceRoot: string,
+  projectRoot: string
+): ChildProcess | undefined {
+  const splitCmd = cmd.match(/"[^"]+"|'[^']+'|\S+/g)
+  if (splitCmd[0] !== 'python3' && splitCmd[0] !== 'pip3') {
+    logger.error(`Invalid command: ${splitCmd[0]}`)
+    return undefined;
+  }
   try {
-    logger.info(`Executing command: ${execute}`);
-
-    return { success: true };
+    logger.info(`Executing command: ${cmd}`);
+    return spawn(splitCmd[0], splitCmd.slice(1), {
+      cwd: join(workspaceRoot, projectRoot),
+      stdio: [0, 1, 2],
+    });
   } catch (e) {
-    logger.error(`Failed to execute command: ${execute} ${e}`);
-    return { success: false };
+    logger.error(`Failed to execute command: ${cmd} ${e}`);
   }
-}
-
-export function getCliOptions(
-  options: ServeExecutorSchema
-): ServeExecutorSchema {
-  const newOptions: ServeExecutorSchema = { ...options };
-  if (options.cmd) {
-    newOptions.cmd = options.cmd;
-  }
-  return newOptions;
+  return undefined;
 }
