@@ -13,7 +13,7 @@ export default async function runExecutor(
   return {
     success: runPipenvCommand(
       context,
-      `-m pipenv ${options.command}${options.options && ` ${options.options}`}`
+      `${options.command}${options.options && ` ${options.options}`}`
     ).success,
   };
 }

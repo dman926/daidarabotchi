@@ -11,6 +11,6 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   return {
-    success: runPipenvCommand(context, '-m pipenv run serve').success,
+    success: runPipenvCommand(context, 'run serve').success,
   };
 }

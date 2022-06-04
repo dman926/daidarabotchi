@@ -13,7 +13,7 @@ import { platform } from 'os';
 import { execSync } from 'child_process';
 // eslint-disable-next-line import/extensions
 import { ApplicationGeneratorSchema } from './schema';
-import { runPipenvCommand } from '../../utils';
+import { runPipenvCommand, runPythonCommand, hasFlag } from '../../utils';
 
 interface NormalizedSchema extends ApplicationGeneratorSchema {
   projectName: string;
@@ -53,7 +53,12 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   const lint = options.typeChecker !== 'none';
   let lintCmd: string;
   let testCmd: string;
+  const pythonVersionLong = runPythonCommand('--version');
   let pythonVersion: string;
+  if (pythonVersionLong.success) {
+    pythonVersion = pythonVersionLong.stdout.toString();
+    pythonVersion = pythonVersion.substring(7, pythonVersion.lastIndexOf('.'));
+  }
 
   if (format) {
     switch (options.formatter) {
@@ -128,7 +133,7 @@ export default async function (
   };
   const isWin = platform().indexOf('win') > -1;
   const where = isWin ? 'where' : 'whereis';
-  const cmds = [];
+  const cmds = ['pipenv'];
   if (options.typeChecker !== 'none') {
     cmds.push('watchman');
   }
@@ -147,7 +152,7 @@ export default async function (
     );
     exitFlag.soft = false;
   }
-  ['setuptools', 'wheel', 'pipenv'].forEach((cmd) => {
+  ['setuptools', 'wheel'].forEach((cmd) => {
     try {
       execSync(`python3 -c "import ${cmd}"`);
     } catch (e) {
@@ -186,6 +191,12 @@ export default async function (
     },
     tags: normalizedOptions.parsedTags,
   });
+  if (!hasFlag('--dry-run')) {
+    runPythonCommand(`install`, {
+      cwd: `${process.cwd()}/${normalizedOptions.projectRoot}`,
+      cmd: 'pipenv',
+    });
+  }
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);
   return () => {
@@ -193,8 +204,7 @@ export default async function (
     // pipenv install a code formatter (nothing, black, autopep8) (DEV) (optional)
     // pipenv install a test runner (nothing for unittest, robot, pytest) (DEV) (optional)
     // pipenv install a type checker (mypi, pyright, pytype, pyre) (DEV) (optional)
-    // Generate requirements
-    const packages = ['setuptools', 'wheel', 'pipenv-setup'];
+    const packages = ['setuptools', 'wheel'];
     if (normalizedOptions.formatter !== 'none') {
       packages.push(normalizedOptions.formatter);
     }
@@ -218,15 +228,14 @@ export default async function (
     }
     const context = {
       workspace: {
-        projects: { [normalizedOptions.projectName]: { root: '' } },
+        projects: {
+          [normalizedOptions.projectName]: {
+            root: normalizedOptions.projectRoot,
+          },
+        },
       },
       projectName: normalizedOptions.projectName,
     };
-    runPipenvCommand(
-      context,
-      `-m pipenv install --options="--dev setuptools wheel pipenv-setup ${packages.join(
-        ' '
-      )}"`
-    );
+    runPipenvCommand(context, `install --dev ${packages.join(' ')}`);
   };
 }
