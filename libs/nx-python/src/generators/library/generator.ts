@@ -8,6 +8,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+// eslint-disable-next-line import/extensions
 import { NxPythonGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends NxPythonGeneratorSchema {
@@ -25,7 +26,7 @@ function normalizeOptions(
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
+  const projectName = projectDirectory.replace(/\//g, '-');
   const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
@@ -55,6 +56,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
+// eslint-disable-next-line func-names
 export default async function (tree: Tree, options: NxPythonGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {

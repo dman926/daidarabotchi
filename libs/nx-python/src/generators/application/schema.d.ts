@@ -1,0 +1,8 @@
+export interface NxPythonGeneratorSchema {
+  name: string;
+  tags?: string;
+  directory?: string;
+  formatter: 'none' | 'autopep8' | 'black';
+  testRunner: 'none' | 'pytest' | 'robot';
+  typeChecker: 'none' | 'mypy' | 'pyright' | 'pytype' | 'pyre';
+}
