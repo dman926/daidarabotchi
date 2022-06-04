@@ -158,7 +158,7 @@ export default async function (
     logger.error('Please install the above packages with pip');
   }
   if (exitFlag.hard) {
-    return;
+    return () => {};
   }
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
@@ -174,42 +174,46 @@ export default async function (
     tags: normalizedOptions.parsedTags,
   });
   addFiles(tree, normalizedOptions);
-  // pipenv install frequently used dependencies (pipenv-setup [DEV]) (auto creates environment)
-  // pipenv install a code formatter (nothing, black, autopep8) (DEV) (optional)
-  // pipenv install a test runner (nothing for unittest, robot, pytest) (DEV) (optional)
-  // pipenv install a type checker (mypi, pyright, pytype, pyre) (DEV) (optional)
-  // Generate requirements
-  const packages = ['setuptools', 'wheel', 'pipenv-setup'];
-  if (normalizedOptions.formatter !== 'none') {
-    packages.push(normalizedOptions.formatter);
-  }
-  if (normalizedOptions.testRunner !== 'none') {
-    let testRunnerPackage: string;
-    if (normalizedOptions.testRunner === 'robot') {
-      testRunnerPackage = 'robotframework';
-    } else {
-      testRunnerPackage = normalizedOptions.testRunner;
-    }
-    packages.push(testRunnerPackage);
-  }
-  if (normalizedOptions.typeChecker !== 'none') {
-    let typeCheckerPackage: string;
-    if (normalizedOptions.typeChecker === 'pyre') {
-      typeCheckerPackage = 'pyre-check';
-    } else {
-      typeCheckerPackage = normalizedOptions.typeChecker;
-    }
-    packages.push(typeCheckerPackage);
-  }
-  const context = {
-    workspace: { projects: { [normalizedOptions.projectName]: { root: '' } } },
-    projectName: normalizedOptions.projectName,
-  };
-  runPipenvCommand(
-    context,
-    `-m pipenv install --options="--dev setuptools wheel pipenv-setup ${packages.join(
-      ' '
-    )}"`
-  );
   await formatFiles(tree);
+  return () => {
+    // pipenv install frequently used dependencies (pipenv-setup [DEV]) (auto creates environment)
+    // pipenv install a code formatter (nothing, black, autopep8) (DEV) (optional)
+    // pipenv install a test runner (nothing for unittest, robot, pytest) (DEV) (optional)
+    // pipenv install a type checker (mypi, pyright, pytype, pyre) (DEV) (optional)
+    // Generate requirements
+    const packages = ['setuptools', 'wheel', 'pipenv-setup'];
+    if (normalizedOptions.formatter !== 'none') {
+      packages.push(normalizedOptions.formatter);
+    }
+    if (normalizedOptions.testRunner !== 'none') {
+      let testRunnerPackage: string;
+      if (normalizedOptions.testRunner === 'robot') {
+        testRunnerPackage = 'robotframework';
+      } else {
+        testRunnerPackage = normalizedOptions.testRunner;
+      }
+      packages.push(testRunnerPackage);
+    }
+    if (normalizedOptions.typeChecker !== 'none') {
+      let typeCheckerPackage: string;
+      if (normalizedOptions.typeChecker === 'pyre') {
+        typeCheckerPackage = 'pyre-check';
+      } else {
+        typeCheckerPackage = normalizedOptions.typeChecker;
+      }
+      packages.push(typeCheckerPackage);
+    }
+    const context = {
+      workspace: {
+        projects: { [normalizedOptions.projectName]: { root: '' } },
+      },
+      projectName: normalizedOptions.projectName,
+    };
+    runPipenvCommand(
+      context,
+      `-m pipenv install --options="--dev setuptools wheel pipenv-setup ${packages.join(
+        ' '
+      )}"`
+    );
+  };
 }

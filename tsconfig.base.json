@@ -25,9 +25,6 @@
       ],
       "@daidarabotchi/sephira-front-end-lib": [
         "libs/sephira-front-end-lib/src/index.ts"
-      ],
-      "@daidarabotchi/sephira-trading-lib": [
-        "libs/sephira-trading-lib/src/index.ts"
       ]
     }
   },
