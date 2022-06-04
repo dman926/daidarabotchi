@@ -31,7 +31,9 @@ function normalizeOptions(
     ? `${names(options.directory).fileName}/${name}`
     : name;
   const projectName = projectDirectory.replace(/\//g, '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
+  const projectRoot =
+    options.directory ||
+    `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
@@ -169,7 +171,18 @@ export default async function (
       build: {
         executor: '@daidarabotchi/nx-python:build',
       },
-      // @TODO: Add the rest of the targets
+      lint: {
+        executor: '@daidarabotchi/nx-python:lint',
+      },
+      pipenv: {
+        executor: '@daidarabotchi/nx-python:pipenv',
+      },
+      serve: {
+        executor: '@daidarabotchi/nx-python:serve',
+      },
+      test: {
+        executor: '@daidarabotchi/nx-python:test',
+      },
     },
     tags: normalizedOptions.parsedTags,
   });
