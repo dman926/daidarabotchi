@@ -3,11 +3,11 @@ import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
 // eslint-disable-next-line import/extensions
-import { NxPythonGeneratorSchema } from './schema';
+import { ApplicationGeneratorSchema } from './schema';
 
 describe('nx-python generator', () => {
   let appTree: Tree;
-  const options: NxPythonGeneratorSchema = {
+  const options: ApplicationGeneratorSchema = {
     name: 'test',
     formatter: 'none',
     testRunner: 'none',

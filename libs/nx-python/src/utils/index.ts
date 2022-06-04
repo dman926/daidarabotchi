@@ -25,7 +25,12 @@ export function runPythonCommand(
 }
 
 export function runPipenvCommand(
-  context: ExecutorContext,
+  context:
+    | ExecutorContext
+    | {
+        workspace: { projects: { [key: string]: { root: string } } };
+        projectName: string;
+      },
   command: string,
   options: { cwd?: string } = {}
 ): { success: boolean; stdio?: Buffer } {

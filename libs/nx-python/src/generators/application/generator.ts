@@ -12,9 +12,10 @@ import * as path from 'path';
 import { platform } from 'os';
 import { execSync } from 'child_process';
 // eslint-disable-next-line import/extensions
-import { NxPythonGeneratorSchema } from './schema';
+import { ApplicationGeneratorSchema } from './schema';
+import { runPipenvCommand } from '../../utils';
 
-interface NormalizedSchema extends NxPythonGeneratorSchema {
+interface NormalizedSchema extends ApplicationGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -23,7 +24,7 @@ interface NormalizedSchema extends NxPythonGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: NxPythonGeneratorSchema
+  options: ApplicationGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
@@ -45,11 +46,65 @@ function normalizeOptions(
 }
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
+  const format = options.formatter !== 'none';
+  let formatCmd: string;
+  const lint = options.typeChecker !== 'none';
+  let lintCmd: string;
+  let testCmd: string;
+  let pythonVersion: string;
+
+  if (format) {
+    switch (options.formatter) {
+      case 'autopep8':
+        formatCmd = 'autopep8 --in-place --recursive .';
+        break;
+      case 'black':
+        formatCmd = 'black .';
+        break;
+      default:
+    }
+  }
+  if (lint) {
+    switch (options.typeChecker) {
+      case 'mypy':
+        lintCmd = 'mypy tests';
+        break;
+      case 'pyright':
+        lintCmd = 'pyright --watch .';
+        break;
+      case 'pytype':
+        lintCmd = 'pytype .';
+        break;
+      case 'pyre':
+        lintCmd = 'pyre';
+        break;
+      default:
+    }
+  }
+  switch (options.testRunner) {
+    case 'none':
+      testCmd = 'unittest discover -s ./ -p';
+      break;
+    case 'pytest':
+      testCmd = 'pytest';
+      break;
+    case 'robot':
+      testCmd = 'robot .';
+      break;
+    default:
+  }
+
   const templateOptions = {
     ...options,
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: '',
+    format,
+    formatCmd,
+    lint,
+    lintCmd,
+    testCmd,
+    pythonVersion,
   };
   generateFiles(
     tree,
@@ -60,7 +115,10 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 }
 
 // eslint-disable-next-line func-names
-export default async function (tree: Tree, options: NxPythonGeneratorSchema) {
+export default async function (
+  tree: Tree,
+  options: ApplicationGeneratorSchema
+) {
   // See if pipenv, setuptools, wheel, and watchman (if they want a type checker) are installed
   const exitFlag = {
     soft: false,
@@ -100,7 +158,7 @@ export default async function (tree: Tree, options: NxPythonGeneratorSchema) {
     logger.error('Please install the above packages with pip');
   }
   if (exitFlag.hard) {
-    return { success: false };
+    return;
   }
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
@@ -111,17 +169,47 @@ export default async function (tree: Tree, options: NxPythonGeneratorSchema) {
       build: {
         executor: '@daidarabotchi/nx-python:build',
       },
-      // Add the rest of the targets
+      // @TODO: Add the rest of the targets
     },
     tags: normalizedOptions.parsedTags,
   });
   addFiles(tree, normalizedOptions);
-  // ABSTRACT THIS TO AN EXECUTOR!
   // pipenv install frequently used dependencies (pipenv-setup [DEV]) (auto creates environment)
   // pipenv install a code formatter (nothing, black, autopep8) (DEV) (optional)
   // pipenv install a test runner (nothing for unittest, robot, pytest) (DEV) (optional)
   // pipenv install a type checker (mypi, pyright, pytype, pyre) (DEV) (optional)
   // Generate requirements
+  const packages = ['setuptools', 'wheel', 'pipenv-setup'];
+  if (normalizedOptions.formatter !== 'none') {
+    packages.push(normalizedOptions.formatter);
+  }
+  if (normalizedOptions.testRunner !== 'none') {
+    let testRunnerPackage: string;
+    if (normalizedOptions.testRunner === 'robot') {
+      testRunnerPackage = 'robotframework';
+    } else {
+      testRunnerPackage = normalizedOptions.testRunner;
+    }
+    packages.push(testRunnerPackage);
+  }
+  if (normalizedOptions.typeChecker !== 'none') {
+    let typeCheckerPackage: string;
+    if (normalizedOptions.typeChecker === 'pyre') {
+      typeCheckerPackage = 'pyre-check';
+    } else {
+      typeCheckerPackage = normalizedOptions.typeChecker;
+    }
+    packages.push(typeCheckerPackage);
+  }
+  const context = {
+    workspace: { projects: { [normalizedOptions.projectName]: { root: '' } } },
+    projectName: normalizedOptions.projectName,
+  };
+  runPipenvCommand(
+    context,
+    `-m pipenv install --options="--dev setuptools wheel pipenv-setup ${packages.join(
+      ' '
+    )}"`
+  );
   await formatFiles(tree);
-  return { success: true };
 }
