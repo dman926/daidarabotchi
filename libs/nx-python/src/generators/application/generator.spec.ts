@@ -7,7 +7,12 @@ import { NxPythonGeneratorSchema } from './schema';
 
 describe('nx-python generator', () => {
   let appTree: Tree;
-  const options: NxPythonGeneratorSchema = { name: 'test' };
+  const options: NxPythonGeneratorSchema = {
+    name: 'test',
+    formatter: 'none',
+    testRunner: 'none',
+    typeChecker: 'none',
+  };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();
