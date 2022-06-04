@@ -1,3 +1,1 @@
-export interface LintExecutorSchema {
-  typeChecker: 'none' | 'mypy' | 'pyright' | 'pytype' | 'pyre';
-}
+export interface LintExecutorSchema {} // eslint-disable-line

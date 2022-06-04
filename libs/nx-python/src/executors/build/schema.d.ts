@@ -1,4 +1,1 @@
-export interface BuildExecutorSchema {
-  setup: string;
-  outputPath: string;
-}
+export interface BuildExecutorSchema {} // eslint-disable-line

@@ -1,6 +1,1 @@
-export interface ServeExecutorSchema {
-  cmd: string;
-  cwd: string;
-  main: string;
-  args: string[];
-}
+export interface ServeExecutorSchema {} // eslint-disable-line

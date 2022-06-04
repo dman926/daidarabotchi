@@ -24,12 +24,22 @@ export function runPythonCommand(
   }
 }
 
-export function getVenvBin(context: ExecutorContext) {
+export function runPipenvCommand(
+  context: ExecutorContext,
+  command: string,
+  options: { cwd?: string } = {}
+): { success: boolean; stdio?: Buffer } {
   const cwd = context.workspace.projects[context.projectName].root;
+  let cmd: string;
   try {
-    const bin = `${runPythonCommand('-m pipenv --venv', { cwd })}/bin`;
-    return bin;
+    cmd = `${runPythonCommand('-m pipenv --py', { cwd })}/bin`;
   } catch (e) {
     return undefined;
   }
+
+  if (!cmd) {
+    logger.fatal("Error finding the project's environment bin folder");
+    return { success: false };
+  }
+  return runPythonCommand(command, { ...options, cmd });
 }
