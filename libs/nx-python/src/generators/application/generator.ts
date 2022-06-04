@@ -13,7 +13,7 @@ import { platform } from 'os';
 import { execSync } from 'child_process';
 // eslint-disable-next-line import/extensions
 import { ApplicationGeneratorSchema } from './schema';
-import { runPipenvCommand, runPythonCommand, hasFlag } from '../../utils';
+import { runPipenvCommand, runPythonCommand } from '../../utils';
 
 interface NormalizedSchema extends ApplicationGeneratorSchema {
   projectName: string;
@@ -53,12 +53,6 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   const lint = options.typeChecker !== 'none';
   let lintCmd: string;
   let testCmd: string;
-  const pythonVersionLong = runPythonCommand('--version');
-  let pythonVersion: string;
-  if (pythonVersionLong.success) {
-    pythonVersion = pythonVersionLong.stdout.toString();
-    pythonVersion = pythonVersion.substring(7, pythonVersion.lastIndexOf('.'));
-  }
 
   if (format) {
     switch (options.formatter) {
@@ -111,7 +105,6 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
     lint,
     lintCmd,
     testCmd,
-    pythonVersion,
   };
   generateFiles(
     tree,
@@ -191,12 +184,6 @@ export default async function (
     },
     tags: normalizedOptions.parsedTags,
   });
-  if (!hasFlag('--dry-run')) {
-    runPythonCommand(`install`, {
-      cwd: `${process.cwd()}/${normalizedOptions.projectRoot}`,
-      cmd: 'pipenv',
-    });
-  }
   addFiles(tree, normalizedOptions);
   await formatFiles(tree);
   return () => {
@@ -236,6 +223,10 @@ export default async function (
       },
       projectName: normalizedOptions.projectName,
     };
+    runPythonCommand('install', {
+      cwd: normalizedOptions.projectRoot,
+      cmd: 'pipenv',
+    });
     runPipenvCommand(context, `install --dev ${packages.join(' ')}`);
   };
 }

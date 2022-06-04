@@ -18,7 +18,7 @@ export function runPythonCommand(
 
   try {
     logger.info(
-      `Executing command: ${execute} ${options.cwd || 'NONE'} ${cwd}`
+      `Executing command: ${execute}`
     );
     const stdout = execSync(execute, { cwd, env });
     return { success: true, stdout };
