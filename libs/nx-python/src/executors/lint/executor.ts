@@ -15,8 +15,8 @@ export default async function runExecutor(
   const sourceRoot = context.workspace.projects[projectName].root;
   const cwd = `${sourceRoot}`;
 
+  // @TODO: fix this command to use options.typeChecker
   return runPythonCommand(context, 'lint', ['.'], {
     cwd,
-    cmd: 'pylint',
   });
 }

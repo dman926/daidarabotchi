@@ -7,7 +7,7 @@ jest.mock('../../utils');
 // eslint-disable-next-line import/first
 import * as utils from '../../utils';
 
-const options: LintExecutorSchema = {};
+const options: LintExecutorSchema = { typeChecker: 'none' };
 
 describe('Build Executor', () => {
   beforeEach(async () => {

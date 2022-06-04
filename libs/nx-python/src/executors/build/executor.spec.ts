@@ -7,7 +7,7 @@ jest.mock('../../utils');
 // eslint-disable-next-line import/first
 import * as utils from '../../utils';
 
-const options: BuildExecutorSchema = { outputPath: '' };
+const options: BuildExecutorSchema = { outputPath: '', setup: '' };
 
 describe('Build Executor', () => {
   beforeEach(async () => {

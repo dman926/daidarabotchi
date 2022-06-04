@@ -2,36 +2,34 @@
 
 import { ExecutorContext, logger } from '@nrwl/devkit';
 import { execSync } from 'child_process';
-import { CommandType } from '..';
 
 export function runPythonCommand(
-  context: ExecutorContext,
-  command: CommandType,
-  params: string[],
+  command: string,
   options: { cwd?: string; cmd?: string } = {}
-): { success: boolean } {
+): { success: boolean; stdio?: Buffer } {
   const cmd = options.cmd || 'python3';
   const cwd = options.cwd || process.cwd();
 
-  let mutateCommand = '';
-
-  // Create the command to execute
-  if (command === 'serve') mutateCommand = '';
-  else if (command === 'build') mutateCommand = '';
-  else if (command === 'lint') mutateCommand = '--recursive=y';
-  else if (command === 'test') mutateCommand = '-m unittest discover -s ./ -p';
-  else mutateCommand = command;
-
-  const execute = `${cmd} ${mutateCommand} ${params.join('')}`;
+  const execute = `${cmd} ${command}`;
 
   try {
     logger.info(`Executing command: ${execute}`);
-    execSync(execute, { cwd, stdio: [0, 1, 2] });
-    return { success: true };
+    const stdio = execSync(execute, { cwd, stdio: [0, 1, 2] });
+    return { success: true, stdio };
   } catch (e) {
     logger.error(`Failed to execute comand: ${execute}`);
     // eslint-disable-next-line no-console
     console.error(e);
     return { success: false };
+  }
+}
+
+export function getVenvBin(context: ExecutorContext) {
+  const cwd = context.workspace.projects[context.projectName].root;
+  try {
+    const bin = `${runPythonCommand('-m pipenv --venv', { cwd })}/bin`;
+    return bin;
+  } catch (e) {
+    return undefined;
   }
 }

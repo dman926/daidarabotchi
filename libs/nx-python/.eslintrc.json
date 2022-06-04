@@ -3,18 +3,14 @@
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": ["*.ts"],
       "parserOptions": {
         "project": ["libs/nx-python/tsconfig.*?.json"]
       },
       "rules": {}
     },
     {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
+      "files": ["*.js"],
       "rules": {}
     }
   ]
