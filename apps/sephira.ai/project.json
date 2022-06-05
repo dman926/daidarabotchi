@@ -1,10 +1,13 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/sephira.ai/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
@@ -18,7 +21,9 @@
           "apps/sephira.ai/src/favicon.ico",
           "apps/sephira.ai/src/assets"
         ],
-        "styles": ["apps/sephira.ai/src/styles.scss"],
+        "styles": [
+          "apps/sephira.ai/src/styles.scss"
+        ],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
       },
@@ -64,14 +69,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/sephira.ai/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/sephira.ai/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/sephira.ai"],
+      "outputs": [
+        "coverage/apps/sephira.ai"
+      ],
       "options": {
         "jestConfig": "apps/sephira.ai/jest.config.ts",
         "passWithNoTests": true

@@ -1,10 +1,13 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/new-england-keeshonds/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
@@ -18,7 +21,9 @@
           "apps/new-england-keeshonds/src/favicon.ico",
           "apps/new-england-keeshonds/src/assets"
         ],
-        "styles": ["apps/new-england-keeshonds/src/styles.scss"],
+        "styles": [
+          "apps/new-england-keeshonds/src/styles.scss"
+        ],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
       },
@@ -64,14 +69,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/new-england-keeshonds/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/new-england-keeshonds/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/new-england-keeshonds"],
+      "outputs": [
+        "coverage/apps/new-england-keeshonds"
+      ],
       "options": {
         "jestConfig": "apps/new-england-keeshonds/jest.config.ts",
         "passWithNoTests": true

@@ -1,12 +1,13 @@
 import {
-  checkFilesExist,
   ensureNxProject,
-  readJson,
+  runNxCommand,
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
 
-describe('nx-python e2e', () => {
+describe('builder executor', () => {
+  let app: string;
+
   // Setting up individual workspaces per
   // test can cause e2e runs to take a long time.
   // For this reason, we recommend each suite only
@@ -23,36 +24,18 @@ describe('nx-python e2e', () => {
     runNxCommandAsync('reset');
   });
 
-  it('should create nx-python', async () => {
-    const project = uniq('nx-python');
-    await runNxCommandAsync(
-      `generate @daidarabotchi/nx-python:nx-python ${project}`
-    );
-    const result = await runNxCommandAsync(`build ${project}`);
-    expect(result.stdout).toContain('Executor ran');
-  }, 120000);
-
-  describe('--directory', () => {
-    it('should create src in the specified directory', async () => {
-      const project = uniq('nx-python');
-      await runNxCommandAsync(
-        `generate @daidarabotchi/nx-python:nx-python ${project} --directory subdir`
-      );
-      expect(() =>
-        checkFilesExist(`libs/subdir/${project}/src/index.ts`)
-      ).not.toThrow();
-    }, 120000);
+  beforeEach(() => {
+    app = uniq('nx-python');
+    runNxCommand(`generate @daidarabotchi/nx-python:application ${app}`);
   });
 
-  describe('--tags', () => {
-    it('should add tags to the project', async () => {
-      const projectName = uniq('nx-python');
-      ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
-      await runNxCommandAsync(
-        `generate @daidarabotchi/nx-python:nx-python ${projectName} --tags e2etag,e2ePackage`
-      );
-      const project = readJson(`libs/${projectName}/project.json`);
-      expect(project.tags).toEqual(['e2etag', 'e2ePackage']);
-    }, 120000);
+  afterEach(() => {
+    // clean up virtualenv
+    runNxCommandAsync(`run ${app}:preremove`);
+  });
+
+  it('should build successfully', async () => {
+    const result = await runNxCommandAsync(`build ${app}`);
+    expect(result.stdout).toContain('Executor ran');
   });
 });
