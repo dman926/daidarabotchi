@@ -10,7 +10,7 @@ import {
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { platform } from 'os';
-import { appendFileSync } from 'fs';
+import { appendFileSync, readFileSync, writeFileSync } from 'fs';
 import { execSync } from 'child_process';
 // eslint-disable-next-line import/extensions
 import { ApplicationGeneratorSchema } from './schema';
@@ -49,69 +49,11 @@ function normalizeOptions(
 }
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
-  const format = options.formatter !== 'none';
-  let formatCmd: string;
-  const lint = options.typeChecker !== 'none';
-  let lintCmd: string;
-  let testCmd: string;
-  const pythonVersionLong = runPythonCommand('--version');
-  let pythonVersion: string;
-  if (pythonVersionLong.success) {
-    pythonVersion = pythonVersionLong.stdout.toString();
-    pythonVersion = pythonVersion.substring(7, pythonVersion.lastIndexOf('.'));
-  }
-
-  if (format) {
-    switch (options.formatter) {
-      case 'autopep8':
-        formatCmd = 'autopep8 --in-place --recursive .';
-        break;
-      case 'black':
-        formatCmd = 'black .';
-        break;
-      default:
-    }
-  }
-  if (lint) {
-    switch (options.typeChecker) {
-      case 'mypy':
-        lintCmd = 'mypy tests';
-        break;
-      case 'pyright':
-        lintCmd = 'pyright --watch .';
-        break;
-      case 'pytype':
-        lintCmd = 'pytype .';
-        break;
-      case 'pyre':
-        lintCmd = 'pyre';
-        break;
-      default:
-    }
-  }
-  switch (options.testRunner) {
-    case 'none':
-      testCmd = 'unittest discover -s ./ -p';
-      break;
-    case 'pytest':
-      testCmd = 'pytest';
-      break;
-    case 'robot':
-      testCmd = 'robot .';
-      break;
-    default:
-  }
   const templateOptions = {
     ...options,
     ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: '',
-    format,
-    formatCmd,
-    lint,
-    lintCmd,
-    testCmd,
-    pythonVersion,
   };
   generateFiles(
     tree,
@@ -230,6 +172,78 @@ export default async function (
       },
       projectName: normalizedOptions.projectName,
     };
+    const cwd = `${process.cwd()}/${
+      context.workspace.projects[context.projectName].root
+    }`;
+    logger.info(`Executing command: pipenv install`);
+    execSync('pipenv install', { cwd });
+    if (normalizedOptions.allowPre) {
+      runPipenvCommand(context, 'install --pre');
+    }
+
+    const format = normalizedOptions.formatter !== 'none';
+    let formatCmd: string;
+    const lint = normalizedOptions.typeChecker !== 'none';
+    let lintCmd: string;
+    let testCmd: string;
+
+    if (format) {
+      switch (normalizedOptions.formatter) {
+        case 'autopep8':
+          formatCmd = 'autopep8 --in-place --recursive .';
+          break;
+        case 'black':
+          formatCmd = 'black .';
+          break;
+        default:
+      }
+    }
+    if (lint) {
+      switch (normalizedOptions.typeChecker) {
+        case 'mypy':
+          lintCmd = 'mypy tests';
+          break;
+        case 'pyright':
+          lintCmd = 'pyright --watch .';
+          break;
+        case 'pytype':
+          lintCmd = 'pytype .';
+          break;
+        case 'pyre':
+          lintCmd = 'pyre';
+          break;
+        default:
+      }
+    }
+    switch (normalizedOptions.testRunner) {
+      case 'none':
+        testCmd = 'unittest discover -s ./ -p';
+        break;
+      case 'pytest':
+        testCmd = 'pytest';
+        break;
+      case 'robot':
+        testCmd = 'robot .';
+        break;
+      default:
+    }
+    // const pipfile = readFileSync(`${cwd}/Pipfile`).toString().split('\n');
+    const commands = [
+      '[scripts]',
+      `build = "setup.py sdist bdist_wheel --dist-dir ../../dist/${normalizedOptions.projectName}"`,
+    ];
+    if (format) {
+      commands.push(`format = "python3 -m ${formatCmd}"`);
+    }
+    if (lint) {
+      commands.push(`lint = "python3 -m ${lintCmd}"`);
+    }
+    commands.push(
+      `test = "python3 -m ${testCmd}"`,
+      'serve = "python3 main.py"'
+    );
+    // pipfile.splice(5, 0, `${commands.join('\n')}\n`);
+    appendFileSync(`${cwd}/Pipfile`, `\n${commands.join('\n')}\n`);
     runPipenvCommand(context, `install --dev ${packages.join(' ')}`);
   };
 }

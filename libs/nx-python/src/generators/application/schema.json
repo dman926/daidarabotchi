@@ -24,6 +24,12 @@
       "description": "A directory where the project is placed",
       "alias": "d"
     },
+    "allowPre": {
+      "type": "boolean",
+      "description": "Allow pipenv to use prereleases",
+      "alias": "p",
+      "default": false
+    },
     "formatter": {
       "type": "string",
       "description": "Install and configure an optional formatter",
