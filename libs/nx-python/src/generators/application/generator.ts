@@ -130,7 +130,7 @@ export default async function (
       test: {
         executor: '@daidarabotchi/nx-python:test',
       },
-      preremove: {
+      clean: {
         executor: '@daidarabotchi/nx-python:pipenv',
         options: {
           command: '--rm',
