@@ -6,7 +6,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 import { killPorts } from '../../utils';
 
-describe('serve executor', () => {
+describe.skip('serve executor', () => {
   let project: string;
 
   // Setting up individual workspaces per

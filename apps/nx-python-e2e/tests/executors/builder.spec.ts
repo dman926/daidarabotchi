@@ -5,7 +5,7 @@ import {
   uniq,
 } from '@nrwl/nx-plugin/testing';
 
-describe('builder executor', () => {
+describe.skip('builder executor', () => {
   let project: string;
 
   // Setting up individual workspaces per

@@ -6,7 +6,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 import { killPorts } from '../../utils';
 
-describe('pipenv executor', () => {
+describe.skip('pipenv executor', () => {
   let project: string;
 
   // Setting up individual workspaces per
