@@ -1,11 +1,14 @@
 import {
   ensureNxProject,
   readJson,
+  runNxCommand,
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
 
 describe('application generator', () => {
+  let project: string;
+
   // Setting up individual workspaces per
   // test can cause e2e runs to take a long time.
   // For this reason, we recommend each suite only
@@ -22,24 +25,25 @@ describe('application generator', () => {
     runNxCommandAsync('reset');
   });
 
+  beforeEach(() => {
+    project = uniq('nx-python');
+    runNxCommand(`generate @daidarabotchi/nx-python:application ${project}`);
+  });
+
+  afterEach(() => {
+    runNxCommand(`run ${project}:clean`);
+    runNxCommand(`generate @nrwl/workspace:remove ${project} --no-interactive`);
+  });
+
   it('should create nx-python', async () => {
-    const project = uniq('nx-python');
-    await runNxCommandAsync(
-      `generate @daidarabotchi/nx-python:application ${project}`
-    );
-    await runNxCommandAsync(`run ${project}:clean`);
+    // dummy assert because beforeEach and afterEach take care of this test
+    expect(true).toBeTruthy();
   }, 120000);
 
   describe('--tags', () => {
     it('should add tags to the project', async () => {
-      const projectName = uniq('nx-python');
-      ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
-      await runNxCommandAsync(
-        `generate @daidarabotchi/nx-python:application ${projectName} --tags e2etag,e2ePackage`
-      );
-      const project = readJson(`libs/${projectName}/project.json`);
-      expect(project.tags).toEqual(['e2etag', 'e2ePackage']);
-      await runNxCommandAsync(`run ${project}:clean`);
+      const projectJson = readJson(`libs/${project}/project.json`);
+      expect(projectJson.tags).toEqual(['e2etag', 'e2ePackage']);
     }, 120000);
   });
 });

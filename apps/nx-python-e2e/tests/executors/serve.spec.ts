@@ -7,7 +7,7 @@ import {
 import { killPorts } from '../../utils';
 
 describe('serve executor', () => {
-  let app: string;
+  let project: string;
 
   // Setting up individual workspaces per
   // test can cause e2e runs to take a long time.
@@ -21,15 +21,16 @@ describe('serve executor', () => {
 
   afterAll(() => {
     // clean up virtualenv
-    runNxCommand(`run ${app}:clean`);
+    runNxCommand(`run ${project}:clean`);
+    runNxCommand(`generate @nrwl/workspace:remove ${project} --no-interactive`);
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
     runNxCommandAsync('reset');
   });
 
   beforeEach(() => {
-    app = uniq('nx-python');
-    runNxCommand(`generate @daidarabotchi/nx-python:application ${app}`);
+    project = uniq('nx-python');
+    runNxCommand(`generate @daidarabotchi/nx-python:projectlication ${project}`);
   });
 
   afterEach(() => {
@@ -37,7 +38,7 @@ describe('serve executor', () => {
   });
 
   it('should serve successfully', async () => {
-    const result = await runNxCommandAsync(`serve ${app}`);
+    const result = await runNxCommandAsync(`serve ${project}`);
     expect(result.stdout).toContain('Executor ran');
   });
 });

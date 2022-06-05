@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import kill from 'kill-port';
 
 const KILL_PORT_DELAY = 5000;
-const E2E_LOG_PREFIX = `${chalk.reset.inverse.bold.keyword('orange')(' E2E ')}`;
+const E2E_LOG_PREFIX = `${chalk.reset.inverse.bold.green(' E2E ')}`;
 
 function e2eConsoleLogger(message: string, body?: string) {
   process.stdout.write('\n');
@@ -40,9 +40,11 @@ export async function killPort(port: number): Promise<boolean> {
     try {
       logInfo(`Attempting to close port ${port}`);
       await kill(port);
-      await new Promise<void>((resolve) =>
-        setTimeout(() => resolve(), KILL_PORT_DELAY)
-      );
+      await new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, KILL_PORT_DELAY);
+      });
       if (await portCheck(port)) {
         logError(`Port ${port} still open`);
       } else {
@@ -53,13 +55,10 @@ export async function killPort(port: number): Promise<boolean> {
       logError(`Port ${port} closing failed`);
     }
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
 
 export async function killPorts(port?: number): Promise<boolean> {
-  return port
-    ? await killPort(port)
-    : (await killPort(3333)) && (await killPort(4200));
+  return port ? killPort(port) : killPort(3333) && killPort(4200);
 }

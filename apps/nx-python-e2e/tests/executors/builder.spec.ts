@@ -6,7 +6,7 @@ import {
 } from '@nrwl/nx-plugin/testing';
 
 describe('builder executor', () => {
-  let app: string;
+  let project: string;
 
   // Setting up individual workspaces per
   // test can cause e2e runs to take a long time.
@@ -20,19 +20,20 @@ describe('builder executor', () => {
 
   afterAll(() => {
     // clean up virtualenv
-    runNxCommand(`run ${app}:clean`);
+    runNxCommand(`run ${project}:clean`);
+    runNxCommand(`generate @nrwl/workspace:remove ${project} --no-interactive`);
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
     runNxCommandAsync('reset');
   });
 
   beforeEach(() => {
-    app = uniq('nx-python');
-    runNxCommand(`generate @daidarabotchi/nx-python:application ${app}`);
+    project = uniq('nx-python');
+    runNxCommand(`generate @daidarabotchi/nx-python:projectlication ${project}`);
   });
 
   it('should build successfully', async () => {
-    const result = await runNxCommandAsync(`build ${app}`);
+    const result = await runNxCommandAsync(`build ${project}`);
     expect(result.stdout).toContain('Executor ran');
   });
 });
