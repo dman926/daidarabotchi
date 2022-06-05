@@ -27,9 +27,7 @@ describe('application generator', () => {
     await runNxCommandAsync(
       `generate @daidarabotchi/nx-python:application ${project}`
     );
-    const result = await runNxCommandAsync(`build ${project}`);
-    expect(result.stdout).toContain('Generate ran');
-    await runNxCommandAsync(`run ${project}:preremove`);
+    await runNxCommandAsync(`run ${project}:clean`);
   }, 120000);
 
   describe('--tags', () => {
@@ -41,7 +39,7 @@ describe('application generator', () => {
       );
       const project = readJson(`libs/${projectName}/project.json`);
       expect(project.tags).toEqual(['e2etag', 'e2ePackage']);
-      await runNxCommandAsync(`run ${project}:preremove`);
+      await runNxCommandAsync(`run ${project}:clean`);
     }, 120000);
   });
 });

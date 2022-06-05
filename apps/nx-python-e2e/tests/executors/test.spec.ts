@@ -19,6 +19,8 @@ describe('test executor', () => {
   });
 
   afterAll(() => {
+    // clean up virtualenv
+    runNxCommand(`run ${app}:clean`);
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
     runNxCommandAsync('reset');
@@ -27,11 +29,6 @@ describe('test executor', () => {
   beforeEach(() => {
     app = uniq('nx-python');
     runNxCommand(`generate @daidarabotchi/nx-python:application ${app}`);
-  });
-
-  afterEach(() => {
-    // clean up virtualenv
-    runNxCommandAsync(`run ${app}:preremove`);
   });
 
   it('should test successfully', async () => {

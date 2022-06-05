@@ -4,6 +4,7 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
+import { killPorts } from '../../utils';
 
 describe('serve executor', () => {
   let app: string;
@@ -19,6 +20,8 @@ describe('serve executor', () => {
   });
 
   afterAll(() => {
+    // clean up virtualenv
+    runNxCommand(`run ${app}:clean`);
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
     runNxCommandAsync('reset');
@@ -30,8 +33,7 @@ describe('serve executor', () => {
   });
 
   afterEach(() => {
-    // clean up virtualenv
-    runNxCommandAsync(`run ${app}:preremove`);
+    killPorts();
   });
 
   it('should serve successfully', async () => {

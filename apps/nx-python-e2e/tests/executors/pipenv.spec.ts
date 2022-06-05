@@ -4,6 +4,7 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
+import { killPorts } from '../../utils';
 
 describe('pipenv executor', () => {
   let app: string;
@@ -19,6 +20,8 @@ describe('pipenv executor', () => {
   });
 
   afterAll(() => {
+    // clean up virtualenv
+    runNxCommand(`run ${app}:clean`);
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
     runNxCommandAsync('reset');
@@ -30,12 +33,11 @@ describe('pipenv executor', () => {
   });
 
   afterEach(() => {
-    // clean up virtualenv
-    runNxCommandAsync(`run ${app}:preremove`);
+    killPorts();
   });
 
   it('should pipenv successfully', async () => {
-    const result = await runNxCommandAsync(`run ${app}:pipenv`);
+    const result = await runNxCommandAsync(`pipenv ${app}`);
     expect(result.stdout).toContain('Executor ran');
   });
 });
