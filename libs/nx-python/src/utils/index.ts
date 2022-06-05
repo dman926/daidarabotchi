@@ -43,7 +43,6 @@ export function runPipenvCommand(
   const PIPENV_PIPFILE = `${process.cwd()}/${
     context.workspace.projects[context.projectName].root
   }/Pipfile`;
-  logger.info(`\n${PIPENV_PIPFILE}\n`);
   const env = {
     PIPENV_PIPFILE,
   };

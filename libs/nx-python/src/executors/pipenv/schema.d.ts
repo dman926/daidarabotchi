@@ -11,6 +11,7 @@ export interface PipenvExecutorSchema {
     | 'shell'
     | 'sync'
     | 'requirements'
-    | 'uninstall';
+    | 'uninstall'
+    | '--rm';
   options?: string;
 } // eslint-disable-line

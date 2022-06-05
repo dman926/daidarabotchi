@@ -27,7 +27,8 @@
           "shell",
           "sync",
           "requirements",
-          "uninstall"
+          "uninstall",
+          "--rm"
         ]
       }
     },
