@@ -15,9 +15,9 @@ const options: PipenvExecutorSchema = {
 describe('Build Executor', () => {
   beforeEach(async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (utils as any).runPythonCommand = jest
-      .fn()
-      .mockReturnValue({ success: true });
+    (utils as any).runPythonCommand = jest.fn(() => ({ success: true }));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (utils as any).runPipenvCommand = jest.fn(() => ({ success: true }));
   });
 
   afterEach(() => {
