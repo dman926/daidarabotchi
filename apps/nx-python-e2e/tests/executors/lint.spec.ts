@@ -29,7 +29,7 @@ describe('lint executor', () => {
 
   beforeEach(() => {
     project = uniq('nx-python');
-    runNxCommand(`generate @daidarabotchi/nx-python:projectlication ${project}`);
+    runNxCommand(`generate @daidarabotchi/nx-python:application ${project}`);
   });
 
   it('should lint successfully', async () => {

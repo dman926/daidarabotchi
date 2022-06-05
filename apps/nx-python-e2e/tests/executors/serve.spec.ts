@@ -30,7 +30,7 @@ describe('serve executor', () => {
 
   beforeEach(() => {
     project = uniq('nx-python');
-    runNxCommand(`generate @daidarabotchi/nx-python:projectlication ${project}`);
+    runNxCommand(`generate @daidarabotchi/nx-python:application ${project}`);
   });
 
   afterEach(() => {
