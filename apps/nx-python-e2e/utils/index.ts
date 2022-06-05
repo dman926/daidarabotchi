@@ -1,9 +1,8 @@
 import { check as portCheck } from 'tcp-port-used';
-import chalk from 'chalk';
 import kill from 'kill-port';
 
 const KILL_PORT_DELAY = 5000;
-const E2E_LOG_PREFIX = `${chalk.reset.inverse.bold.green(' E2E ')}`;
+const E2E_LOG_PREFIX = ' E2E ';
 
 function e2eConsoleLogger(message: string, body?: string) {
   process.stdout.write('\n');
@@ -15,23 +14,17 @@ function e2eConsoleLogger(message: string, body?: string) {
 }
 
 export function logInfo(title: string, body?: string) {
-  const message = `${chalk.reset.inverse.bold.white(
-    ' INFO '
-  )} ${chalk.bold.white(title)}`;
+  const message = ` INFO ${title}`;
   return e2eConsoleLogger(message, body);
 }
 
 export function logError(title: string, body?: string) {
-  const message = `${chalk.reset.inverse.bold.red(' ERROR ')} ${chalk.bold.red(
-    title
-  )}`;
+  const message = ` ERROR ${title}`;
   return e2eConsoleLogger(message, body);
 }
 
 export function logSuccess(title: string, body?: string) {
-  const message = `${chalk.reset.inverse.bold.green(
-    ' SUCCESS '
-  )} ${chalk.bold.green(title)}`;
+  const message = ` SUCCESS ${title}`;
   return e2eConsoleLogger(message, body);
 }
 

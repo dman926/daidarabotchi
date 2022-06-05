@@ -11,8 +11,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  moduleNameMapper: {
-    '#(.*)': '<rootDir>/node_modules/$1',
-  },
   coverageDirectory: '../../coverage/apps/nx-python-e2e',
 };
