@@ -10,11 +10,11 @@ import {
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { platform } from 'os';
-import { appendFileSync, readFileSync, writeFileSync } from 'fs';
+import { appendFileSync } from 'fs';
 import { execSync } from 'child_process';
 // eslint-disable-next-line import/extensions
 import { ApplicationGeneratorSchema } from './schema';
-import { runPipenvCommand, runPythonCommand } from '../../utils';
+import { runPipenvCommand } from '../../utils';
 
 interface NormalizedSchema extends ApplicationGeneratorSchema {
   projectName: string;
