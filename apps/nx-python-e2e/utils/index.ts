@@ -1,5 +1,7 @@
+import { getPackageManagerCommand } from '@nrwl/devkit';
 import { check as portCheck } from 'tcp-port-used';
 import kill from 'kill-port';
+import { execSync } from 'child_process';
 
 const KILL_PORT_DELAY = 5000;
 const E2E_LOG_PREFIX = ' E2E ';
@@ -54,4 +56,12 @@ export async function killPort(port: number): Promise<boolean> {
 
 export async function killPorts(port?: number): Promise<boolean> {
   return port ? killPort(port) : killPort(3333) && killPort(4200);
+}
+
+export function packageInstall(pkg: string) {
+  return execSync(`${getPackageManagerCommand().addDev} ${pkg}`).toString();
+}
+
+export function packageUninstall(pkg: string) {
+  return execSync(`${getPackageManagerCommand().rm} ${pkg}`).toString();
 }
