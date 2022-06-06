@@ -15,4 +15,5 @@ export default {
     '@daidarabotchi/nx-python': '<rootDir>/../../dist/libs/nx-python',
   },
   coverageDirectory: '../../coverage/apps/nx-python-e2e',
+  setupFilesAfterEnv: ['<rootDir>/jset.setup.ts'],
 };
