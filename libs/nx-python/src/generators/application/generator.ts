@@ -8,9 +8,8 @@ import {
   Tree,
   logger,
 } from '@nrwl/devkit';
-import commandExists from 'command-exists';
+import { sync as commandExistsSync } from 'command-exists';
 import * as path from 'path';
-import { platform } from 'os';
 import { appendFileSync } from 'fs';
 import { execSync } from 'child_process';
 // eslint-disable-next-line import/extensions
@@ -79,7 +78,7 @@ export default async function (
     cmds.push('watchman');
   }
   cmds.forEach((cmd) => {
-    if (!commandExists(cmd)) {
+    if (!commandExistsSync(cmd)) {
       logger.warn(`${cmd} missing from PATH`);
       exitFlag.soft = true;
       exitFlag.hard = true;
