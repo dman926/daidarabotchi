@@ -1,10 +1,16 @@
-import { runNxCommand, runNxCommandAsync, uniq } from '@nrwl/nx-plugin/testing';
+import {
+  ensureNxProject,
+  runNxCommand,
+  runNxCommandAsync,
+  uniq,
+} from '@nrwl/nx-plugin/testing';
 
 describe('test executor', () => {
   let project: string;
 
   beforeAll(() => {
     project = uniq('nx-python');
+    ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
     runNxCommand(
       `generate @daidarabotchi/nx-python:application ${project} --no-interactive`
     );
@@ -14,6 +20,8 @@ describe('test executor', () => {
     // clean up virtualenv
     runNxCommand(`run ${project}:clean`);
     runNxCommand(`generate @nrwl/workspace:remove ${project} --no-interactive`);
+    // clean up project
+    runNxCommand('reset');
   });
 
   it('should test successfully', async () => {
