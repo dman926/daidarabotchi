@@ -1,8 +1,6 @@
 import {
   ensureNxProject,
-  readJson,
   runNxCommand,
-  runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
 
@@ -22,12 +20,13 @@ describe('application generator', () => {
   afterAll(() => {
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
-    runNxCommandAsync('reset');
+    runNxCommand('reset');
   });
 
   beforeEach(() => {
     project = uniq('nx-python');
-    runNxCommand(`generate @daidarabotchi/nx-python:application ${project}`);
+    ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
+    runNxCommand(`generate @daidarabotchi/nx-python:application ${project} --no-interactive`);
   });
 
   afterEach(() => {
@@ -39,11 +38,4 @@ describe('application generator', () => {
     // dummy assert because beforeEach and afterEach take care of this test
     expect(true).toBeTruthy();
   }, 120000);
-
-  describe('--tags', () => {
-    it('should add tags to the project', async () => {
-      const projectJson = readJson(`libs/${project}/project.json`);
-      expect(projectJson.tags).toEqual(['e2etag', 'e2ePackage']);
-    }, 120000);
-  });
 });

@@ -16,6 +16,8 @@ describe.skip('builder executor', () => {
   // are not dependant on one another.
   beforeAll(() => {
     ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
+    project = uniq('nx-python');
+    runNxCommand(`generate @daidarabotchi/nx-python:application ${project} --no-interactive`);
   });
 
   afterAll(() => {
@@ -25,11 +27,6 @@ describe.skip('builder executor', () => {
     // `nx reset` kills the daemon, and performs
     // some work which can help clean up e2e leftovers
     runNxCommandAsync('reset');
-  });
-
-  beforeEach(() => {
-    project = uniq('nx-python');
-    runNxCommand(`generate @daidarabotchi/nx-python:application ${project}`);
   });
 
   it('should build successfully', async () => {

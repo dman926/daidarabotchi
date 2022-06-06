@@ -16,6 +16,8 @@ describe.skip('test executor', () => {
   // are not dependant on one another.
   beforeAll(() => {
     ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
+    project = uniq('nx-python');
+    runNxCommand(`generate @daidarabotchi/nx-python:application ${project} --no-interactive`);
   });
 
   afterAll(() => {
@@ -27,10 +29,6 @@ describe.skip('test executor', () => {
     runNxCommandAsync('reset');
   });
 
-  beforeEach(() => {
-    project = uniq('nx-python');
-    runNxCommand(`generate @daidarabotchi/nx-python:application ${project}`);
-  });
 
   it('should test successfully', async () => {
     const result = await runNxCommandAsync(`test ${project}`);
