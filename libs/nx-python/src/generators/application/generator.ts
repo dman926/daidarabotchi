@@ -8,6 +8,7 @@ import {
   Tree,
   logger,
 } from '@nrwl/devkit';
+import commandExists from 'command-exists';
 import * as path from 'path';
 import { platform } from 'os';
 import { appendFileSync } from 'fs';
@@ -73,16 +74,12 @@ export default async function (
     soft: false,
     hard: false,
   };
-  const isWin = platform().indexOf('win') > -1;
-  const where = isWin ? 'where' : 'whereis';
   const cmds = [];
   if (options.typeChecker !== 'none') {
     cmds.push('watchman');
   }
   cmds.forEach((cmd) => {
-    try {
-      execSync(`${where} ${cmd}`);
-    } catch (e) {
+    if (!commandExists(cmd)) {
       logger.warn(`${cmd} missing from PATH`);
       exitFlag.soft = true;
       exitFlag.hard = true;

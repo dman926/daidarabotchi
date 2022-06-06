@@ -84,6 +84,7 @@
     "chartjs-chart-financial": "^0.1.1",
     "chartjs-plugin-annotation": "^1.4.0",
     "chartjs-plugin-zoom": "^1.2.1",
+    "command-exists": "^1.2.9",
     "core-js": "^3.22.7",
     "d3": "^7.4.4",
     "dotenv": "^16.0.1",

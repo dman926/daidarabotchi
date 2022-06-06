@@ -55,6 +55,7 @@ importers:
       chartjs-chart-financial: ^0.1.1
       chartjs-plugin-annotation: ^1.4.0
       chartjs-plugin-zoom: ^1.2.1
+      command-exists: ^1.2.9
       core-js: ^3.22.7
       cypress: ^9.7.0
       d3: ^7.4.4
@@ -109,6 +110,7 @@ importers:
       chartjs-chart-financial: 0.1.1_chart.js@3.8.0
       chartjs-plugin-annotation: 1.4.0_chart.js@3.8.0
       chartjs-plugin-zoom: 1.2.1_chart.js@3.8.0
+      command-exists: 1.2.9
       core-js: 3.22.7
       d3: 7.4.4
       dotenv: 16.0.1
@@ -8291,6 +8293,10 @@ packages:
     resolution: {integrity: sha512-GHuDRO12Sypu2cV70d1dkA2EUmXHgntrzbpvOB+Qy+49ypNfGgFQIC2fhhXbnyrJRynDCAARsT7Ou0M6hirpfw==}
     dev: true
 
+  /command-exists/1.2.9:
+    resolution: {integrity: sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==}
+    dev: false
+
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
     dev: true
@@ -14950,7 +14956,7 @@ packages:
     dev: true
 
   /path-is-absolute/1.0.1:
-    resolution: {integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=}
+    resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
     engines: {node: '>=0.10.0'}
 
   /path-is-network-drive/1.0.15:
