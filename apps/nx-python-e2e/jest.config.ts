@@ -1,5 +1,3 @@
-import { pathsToModuleNameMapper } from 'ts-jest';
-
 /* eslint-disable */
 export default {
   displayName: 'nx-python-e2e',
@@ -13,11 +11,8 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  moduleNameMapper: pathsToModuleNameMapper(
-    {
-      '@daidarabotchi/nx-python': ['libs/nx-python/src/index.ts'],
-    },
-    { prefix: '<rootDir>/../../' }
-  ),
+  moduleNameMapper: {
+    '@daidarabotchi/nx-python': '<rootDir>/../../dist/libs/nx-python',
+  },
   coverageDirectory: '../../coverage/apps/nx-python-e2e',
 };
