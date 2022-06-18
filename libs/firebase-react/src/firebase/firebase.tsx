@@ -16,7 +16,7 @@ type Auth = firebaseCompat.auth.Auth;
 type Firestore = firebaseCompat.firestore.Firestore;
 type Storage = firebaseCompat.storage.Storage;
 type Functions = firebaseCompat.functions.Functions;
-type FirebaseOptions = {
+export type FirebaseOptions = {
   apiKey: string;
   authDomain: string;
   projectId: string;
@@ -116,7 +116,10 @@ export function FirebaseProvider({
   }
 
   return (
-    <FirebaseContext.Provider value={memoizedFirebase}>
+    <FirebaseContext.Provider
+      value={memoizedFirebase}
+      data-testid="firebase-provider"
+    >
       {children}
     </FirebaseContext.Provider>
   );
