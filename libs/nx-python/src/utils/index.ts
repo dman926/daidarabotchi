@@ -17,9 +17,7 @@ export function runPythonCommand(
   const execute = `${cmd} ${command}`;
 
   try {
-    logger.info(
-      `Executing command: ${execute}`
-    );
+    logger.info(`Executing command: ${execute}`);
     const stdout = execSync(execute, { cwd, env });
     return { success: true, stdout };
   } catch (e) {
