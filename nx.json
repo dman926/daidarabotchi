@@ -46,5 +46,8 @@
       }
     }
   },
-  "defaultProject": "new-england-keeshonds"
+  "defaultProject": "new-england-keeshonds",
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  }
 }

@@ -21,6 +21,7 @@
         "libs/new-england-keeshonds-lib/src/index.ts"
       ],
       "@daidarabotchi/nx-python": ["libs/nx-python/src/index.ts"],
+      "@daidarabotchi/portfolio-lib": ["libs/portfolio-lib/src/index.ts"],
       "@daidarabotchi/portfolio-lib/interfaces": [
         "libs/portfolio-lib/src/interfaces/index.ts"
       ],
