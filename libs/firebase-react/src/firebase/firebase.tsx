@@ -1,50 +1,26 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
+import { FirebaseApp, initializeApp, FirebaseOptions } from 'firebase/app';
+import {
+  AppCheck,
+  initializeAppCheck,
+  ReCaptchaV3Provider,
+  ReCaptchaEnterpriseProvider,
+  CustomProvider,
+} from 'firebase/app-check';
+import {
+  isSupported as isAnalyticsSupported,
+  getAnalytics,
+  Analytics,
+} from 'firebase/analytics';
+import { getAuth, Auth } from 'firebase/auth';
+import { getFirestore, Firestore } from 'firebase/firestore';
+import { getStorage, FirebaseStorage as Storage } from 'firebase/storage';
+import { getFunctions, Functions } from 'firebase/functions';
 
-// Firebase v9 Compat Begin
-import firebaseCompat from 'firebase/compat/app';
-import 'firebase/compat/app-check';
-import 'firebase/compat/analytics';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import 'firebase/compat/storage';
-import 'firebase/compat/functions';
-
-type FirebaseApp = firebaseCompat.app.App;
-type AppCheck = firebaseCompat.appCheck.AppCheck;
-type Analytics = firebaseCompat.analytics.Analytics;
-type Auth = firebaseCompat.auth.Auth;
-type Firestore = firebaseCompat.firestore.Firestore;
-type Storage = firebaseCompat.storage.Storage;
-type Functions = firebaseCompat.functions.Functions;
-export type FirebaseOptions = {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
-  measurementId: string;
-};
-type AppCheckProvider = firebaseCompat.appCheck.AppCheckProvider;
-const { initializeApp } = firebaseCompat;
-const isAnalyticsSupported = () => Promise.resolve(true); // I will assume analytics are supported
-const getAnalytics = (app: FirebaseApp) => app.analytics();
-const initializeAppCheck = (
-  app: FirebaseApp,
-  options: {
-    provider: AppCheckProvider;
-    isTokenAutoRefreshEnabled: boolean;
-  }
-) => {
-  const appCheck = app.appCheck();
-  appCheck.activate(options);
-  return appCheck;
-};
-const getAuth = (app: FirebaseApp) => app.auth();
-const getFirestore = (app: FirebaseApp) => app.firestore();
-const getStorage = (app: FirebaseApp) => app.storage();
-const getFunctions = (app: FirebaseApp) => app.functions();
-// Firebase v9 Compat End
+type AppCheckProvider =
+  | ReCaptchaV3Provider
+  | ReCaptchaEnterpriseProvider
+  | CustomProvider;
 
 export class Firebase {
   app: FirebaseApp;
@@ -116,10 +92,8 @@ export function FirebaseProvider({
   }
 
   return (
-    <FirebaseContext.Provider
-      value={memoizedFirebase}
-      data-testid="firebase-provider"
-    >
+    <FirebaseContext.Provider value={memoizedFirebase}>
+      <span data-testid="firebase-provider" />
       {children}
     </FirebaseContext.Provider>
   );
