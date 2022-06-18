@@ -136,11 +136,13 @@ function Images() {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                   setUploadPercent(progress);
+                  // eslint-disable-next-line no-console
                   console.log(progress);
                 },
                 () => {},
                 () => {
                   onUpload();
+                  // eslint-disable-next-line no-console
                   console.log('uploaded');
                   resolve();
                 }
