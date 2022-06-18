@@ -78,7 +78,6 @@ jobs:
       - name: Lint
         run: pnpm exec nx affected --target=lint --parallel=3
       - name: Test
-              - name: Test
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
           command: pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
