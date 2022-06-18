@@ -16,6 +16,7 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
+      "@daidarabotchi/firebase-react": ["libs/firebase-react/src/index.ts"],
       "@daidarabotchi/material-ui": ["libs/material-ui/src/index.ts"],
       "@daidarabotchi/new-england-keeshonds-lib": [
         "libs/new-england-keeshonds-lib/src/index.ts"

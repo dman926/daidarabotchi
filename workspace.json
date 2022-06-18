@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "firebase-react": "libs/firebase-react",
     "material-ui": "libs/material-ui",
     "material-ui-e2e": "apps/material-ui-e2e",
     "new-england-keeshonds": "apps/new-england-keeshonds",

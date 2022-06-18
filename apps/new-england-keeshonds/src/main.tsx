@@ -6,7 +6,7 @@ import './styles.scss';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FirebaseOptions } from 'firebase/app';
 import { ReCaptchaV3Provider } from 'firebase/app-check';
-import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
+import { FirebaseProvider } from '@daidarabotchi/firebase-react';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { environment } from './environments/environment';

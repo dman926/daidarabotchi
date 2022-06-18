@@ -5,8 +5,8 @@ import {
   Gallery,
   Login,
   Page,
-  useFirebase,
 } from '@daidarabotchi/new-england-keeshonds-lib';
+import { useFirebase } from '@daidarabotchi/firebase-react';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { listAll, ref } from 'firebase/storage';

@@ -15,9 +15,9 @@ import {
 import {
   Gallery,
   Uploader,
-  useFirebase,
   Image,
 } from '@daidarabotchi/new-england-keeshonds-lib';
+import { useFirebase } from '@daidarabotchi/firebase-react';
 import {
   Dispatch,
   SetStateAction,
