@@ -69,7 +69,7 @@ export default async function (
   options: ApplicationGeneratorSchema
 ) {
   // eslint-disable-next-line @typescript-eslint/dot-notation
-  const inGithubActions = process.env['GITHUB_ACTIONS'];
+  const inGithubActions = process.env['GITHUB_ACTIONS'] === 'true';
   // See if pipenv, setuptools, wheel, and watchman (if they want a type checker) are installed
   const exitFlag = {
     soft: false,
