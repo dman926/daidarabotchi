@@ -93,7 +93,7 @@ export function FirebaseProvider({
 
   return (
     <FirebaseContext.Provider value={memoizedFirebase}>
-      <span data-testid="firebase-provider" />
+      <div data-testid="firebase-provider" />
       {children}
     </FirebaseContext.Provider>
   );
