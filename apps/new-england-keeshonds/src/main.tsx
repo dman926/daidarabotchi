@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles.scss';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material/styles';
 import { FirebaseOptions } from 'firebase/app';
 import { ReCaptchaV3Provider } from 'firebase/app-check';
 import { FirebaseProvider } from '@daidarabotchi/firebase-react';
@@ -13,10 +13,12 @@ import { environment } from './environments/environment';
 
 import { App } from './app/app';
 
-const appcheckToken = process.env['NX_NEK_FIREBASE_APPCHECK_DEGUG_TOKEN'];
-if (appcheckToken) {
+if (typeof environment.firebaseAppCheckToken !== 'undefined') {
   // eslint-disable-next-line
-  (window as any)['FIREBASE_APPCHECK_DEBUG_TOKEN'] = appcheckToken;
+  (window as any)['FIREBASE_APPCHECK_DEBUG_TOKEN'] =
+    environment.firebaseAppCheckToken === 'true'
+      ? true
+      : environment.firebaseAppCheckToken;
 }
 
 const root = ReactDOM.createRoot(
@@ -28,10 +30,14 @@ root.render(
       <FirebaseProvider
         firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
         firebaseAppCheckProvider={
-          new ReCaptchaV3Provider(environment.recaptchaV3PublicKey)
+          environment.recaptchaV3PublicKey
+            ? new ReCaptchaV3Provider(environment.recaptchaV3PublicKey)
+            : undefined
         }
       >
-        <ThemeProvider theme={createTheme(environment.baseTheme)}>
+        <ThemeProvider
+          theme={createTheme(environment.baseTheme as ThemeOptions)}
+        >
           <CssBaseline />
           <App />
         </ThemeProvider>

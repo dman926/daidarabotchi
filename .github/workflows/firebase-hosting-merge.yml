@@ -9,7 +9,11 @@ on:
 env:
   NX_NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
   NX_NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
+  NX_NEK_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
   NX_NEK_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.NEK_FIREBASE_APPCHECK_DEBUG_TOKEN }}
+  NX_PORTFOLIO_FIREBASE_CONFIG: ${{ secrets.PORTFOLIO_FIREBASE_CONFIG }}
+  NX_PORTFOLIO_RECAPTCHA_V3_SITE_KEY: ${{ secrets.PORTFOLIO_RECAPTCHA_V3_SITE_KEY }}
+  NX_PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN }}
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -30,6 +34,7 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: pnpm install
+        # NEW ENGLAND KEESHONDS
       - name: Check if deploy is needed
         id: deploy_needed
         run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds)"
@@ -45,3 +50,19 @@ jobs:
           channelId: live
           projectId: new-england-keeshonds
           entryPoint: apps/new-england-keeshonds
+        # PORTFOLIO
+      - name: Check if deploy is needed
+        id: deploy_needed
+        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh portfolio)"
+      - name: Build Portfolio
+        run: npx nx run portfolio:build:production && mv dist/apps/portfolio apps/portfolio/out
+        if: steps.deploy_needed.outputs.deploy == 1
+      - name: Deploy Portfolio
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        if: steps.deploy_needed.outputs.deploy == 1
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO }}'
+          channelId: live
+          projectId: personal-portfolio
+          entryPoint: apps/portfolio
