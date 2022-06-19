@@ -15,9 +15,9 @@ import {
 import {
   Gallery,
   Uploader,
-  useFirebase,
   Image,
 } from '@daidarabotchi/new-england-keeshonds-lib';
+import { useFirebase } from '@daidarabotchi/firebase-react';
 import {
   Dispatch,
   SetStateAction,
@@ -136,11 +136,13 @@ function Images() {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                   setUploadPercent(progress);
+                  // eslint-disable-next-line no-console
                   console.log(progress);
                 },
                 () => {},
                 () => {
                   onUpload();
+                  // eslint-disable-next-line no-console
                   console.log('uploaded');
                   resolve();
                 }

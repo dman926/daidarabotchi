@@ -1,21 +1,26 @@
-import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
+import { createContext, ReactNode, useContext, useMemo } from 'react';
+import { FirebaseApp, initializeApp, FirebaseOptions } from 'firebase/app';
 import {
   AppCheck,
-  CustomProvider,
   initializeAppCheck,
-  ReCaptchaEnterpriseProvider,
   ReCaptchaV3Provider,
+  ReCaptchaEnterpriseProvider,
+  CustomProvider,
 } from 'firebase/app-check';
 import {
-  Analytics,
-  getAnalytics,
   isSupported as isAnalyticsSupported,
+  getAnalytics,
+  Analytics,
 } from 'firebase/analytics';
-import { Auth, getAuth } from 'firebase/auth';
-import { Firestore, getFirestore } from 'firebase/firestore';
-import { FirebaseStorage, getStorage } from 'firebase/storage';
-import { Functions, getFunctions } from 'firebase/functions';
-import { createContext, ReactNode, useContext, useMemo } from 'react';
+import { getAuth, Auth } from 'firebase/auth';
+import { getFirestore, Firestore } from 'firebase/firestore';
+import { getStorage, FirebaseStorage as Storage } from 'firebase/storage';
+import { getFunctions, Functions } from 'firebase/functions';
+
+type AppCheckProvider =
+  | ReCaptchaV3Provider
+  | ReCaptchaEnterpriseProvider
+  | CustomProvider;
 
 export class Firebase {
   app: FirebaseApp;
@@ -28,16 +33,13 @@ export class Firebase {
 
   firestore: Firestore;
 
-  storage: FirebaseStorage;
+  storage: Storage;
 
   functions: Functions;
 
   constructor(
     firebaseConfig: FirebaseOptions,
-    firebaseAppCheckProvider?:
-      | CustomProvider
-      | ReCaptchaV3Provider
-      | ReCaptchaEnterpriseProvider
+    firebaseAppCheckProvider?: AppCheckProvider
   ) {
     this.app = initializeApp(firebaseConfig);
     isAnalyticsSupported().then((supported) => {
@@ -74,10 +76,7 @@ export function FirebaseProvider({
   children,
 }: {
   firebaseOptions: FirebaseOptions | false;
-  firebaseAppCheckProvider?:
-    | CustomProvider
-    | ReCaptchaV3Provider
-    | ReCaptchaEnterpriseProvider;
+  firebaseAppCheckProvider?: AppCheckProvider;
   children: ReactNode;
 }) {
   const memoizedFirebase = useMemo(
@@ -94,6 +93,7 @@ export function FirebaseProvider({
 
   return (
     <FirebaseContext.Provider value={memoizedFirebase}>
+      <div data-testid="firebase-provider" />
       {children}
     </FirebaseContext.Provider>
   );

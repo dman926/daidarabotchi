@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "firebase-react": "libs/firebase-react",
     "material-ui": "libs/material-ui",
     "material-ui-e2e": "apps/material-ui-e2e",
     "new-england-keeshonds": "apps/new-england-keeshonds",
@@ -9,6 +10,9 @@
     "new-england-keeshonds-lib": "libs/new-england-keeshonds-lib",
     "nx-python": "libs/nx-python",
     "nx-python-e2e": "apps/nx-python-e2e",
+    "portfolio": "apps/portfolio",
+    "portfolio-e2e": "apps/portfolio-e2e",
+    "portfolio-lib": "libs/portfolio-lib",
     "sephira-api": "apps/sephira-api",
     "sephira-front-end-lib": "libs/sephira-front-end-lib",
     "sephira.ai": "apps/sephira.ai",

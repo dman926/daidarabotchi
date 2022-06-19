@@ -21,14 +21,6 @@
       }
     }
   },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
-  },
   "plugins": ["@nx-go/nx-go"],
   "generators": {
     "@nrwl/react": {
@@ -46,5 +38,13 @@
       }
     }
   },
-  "defaultProject": "new-england-keeshonds"
+  "defaultProject": "new-england-keeshonds",
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
+    }
+  }
 }
