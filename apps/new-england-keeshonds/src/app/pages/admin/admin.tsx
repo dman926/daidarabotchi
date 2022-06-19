@@ -1,9 +1,6 @@
 import { Button, Typography } from '@daidarabotchi/material-ui';
-import {
-  useFirebase,
-  LoginForm,
-  Page,
-} from '@daidarabotchi/new-england-keeshonds-lib';
+import { LoginForm, Page } from '@daidarabotchi/new-england-keeshonds-lib';
+import { useFirebase } from '@daidarabotchi/firebase-react';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useEffect, useMemo, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';

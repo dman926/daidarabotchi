@@ -9,7 +9,11 @@ on:
 env:
   NX_NEK_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
   NX_NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
+  NX_NEK_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
   NX_NEK_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.NEK_FIREBASE_APPCHECK_DEBUG_TOKEN }}
+  NX_PORTFOLIO_FIREBASE_CONFIG: ${{ secrets.PORTFOLIO_FIREBASE_CONFIG }}
+  NX_PORTFOLIO_RECAPTCHA_V3_SITE_KEY: ${{ secrets.PORTFOLIO_RECAPTCHA_V3_SITE_KEY }}
+  NX_PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN }}
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
@@ -32,17 +36,33 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      # NEW ENGLAND KEESHONDS
       - name: Check if deploy is needed
-        id: deploy_needed
+        id: nek_deploy_needed
         run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds)"
       - name: Build New England Keeshonds
         run: npx nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
-        if: steps.deploy_needed.outputs.deploy == 1
+        if: steps.nek_deploy_needed.outputs.deploy == 1
       - name: Deploy New England Keeshonds
         uses: FirebaseExtended/action-hosting-deploy@v0
-        if: steps.deploy_needed.outputs.deploy == 1
+        if: steps.nek_deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
           projectId: new-england-keeshonds
           entryPoint: apps/new-england-keeshonds
+      # PORTFOLIO
+      - name: Check if deploy is needed
+        id: portfolio_deploy_needed
+        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh portfolio)"
+      - name: Build Portfolio
+        run: npx nx run portfolio:build:production && mv dist/apps/portfolio apps/portfolio/out
+        if: steps.portfolio_deploy_needed.outputs.deploy == 1
+      - name: Deploy Portfolio
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        if: steps.portfolio_deploy_needed.outputs.deploy == 1
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO }}'
+          projectId: personal-portfolio-3ee9b
+          entryPoint: apps/portfolio

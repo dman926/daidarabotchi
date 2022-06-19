@@ -1,4 +1,4 @@
-import { FirebaseProvider } from '@daidarabotchi/new-england-keeshonds-lib';
+import { FirebaseProvider } from '@daidarabotchi/firebase-react';
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';

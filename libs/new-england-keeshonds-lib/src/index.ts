@@ -1,4 +1,3 @@
-export * from './firebase/firebase';
 export * from './components/home/login/login';
 export * from './components/home/contact-form/tab-box/tab-box';
 export * from './components/home/contact-form/contact-form';

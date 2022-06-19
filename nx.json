@@ -4,9 +4,6 @@
   "affected": {
     "defaultBase": "main"
   },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -23,14 +20,6 @@
         "accessToken": "NzdmZDBiMzEtYzRjNi00YTE0LWFiZGUtNmJhMDc3ZTUxMGI0fHJlYWQtd3JpdGU="
       }
     }
-  },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
   },
   "plugins": ["@nx-go/nx-go"],
   "generators": {
@@ -49,5 +38,13 @@
       }
     }
   },
-  "defaultProject": "new-england-keeshonds"
+  "defaultProject": "new-england-keeshonds",
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
+    }
+  }
 }

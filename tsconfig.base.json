@@ -13,20 +13,21 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
+      "@daidarabotchi/firebase-react": ["libs/firebase-react/src/index.ts"],
       "@daidarabotchi/material-ui": ["libs/material-ui/src/index.ts"],
       "@daidarabotchi/new-england-keeshonds-lib": [
         "libs/new-england-keeshonds-lib/src/index.ts"
       ],
+      "@daidarabotchi/nx-python": ["libs/nx-python/src/index.ts"],
+      "@daidarabotchi/portfolio-lib": ["libs/portfolio-lib/src/index.ts"],
       "@daidarabotchi/portfolio-lib/interfaces": [
         "libs/portfolio-lib/src/interfaces/index.ts"
       ],
       "@daidarabotchi/sephira-front-end-lib": [
         "libs/sephira-front-end-lib/src/index.ts"
-      ],
-      "@daidarabotchi/sephira-trading-lib": [
-        "libs/sephira-trading-lib/src/index.ts"
       ]
     }
   },

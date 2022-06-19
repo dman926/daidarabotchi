@@ -2,7 +2,11 @@
 
 [![CI](https://github.com/dman926/daidarabotchi/actions/workflows/main.yml/badge.svg)](https://github.com/dman926/daidarabotchi/actions/workflows/main.yml)
 
+<center>
+
 [![Daidarabotchi Portrait](https://upload.wikimedia.org/wikipedia/commons/6/61/Daidarabocchi_1.jpg)](https://en.wikipedia.org/wiki/Daidarabotchi)
+
+</center>
 
 ---
 
@@ -12,6 +16,12 @@
   - A react app with Google Firebase for infrusture to help collect electronic payments for puppies.
 - SEPHIRA [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-darkred.svg)](https://shields.io/)
   - A personal assistant web app for anything I need to easily access at all times.
+- nx-python [![Status: beta](https://img.shields.io/badge/Status-beta-yellow.svg)](https://shields.io/)
+  - An NX plugin for using python projects.
+- firebase-react [![Status: beta](https://img.shields.io/badge/Status-beta-yellow.svg)](https://shields.io/)
+  - A react context based provider for hosting a global firebase object.
+- portfolio [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-darkred.svg)](https://shields.io/)
+  - A firebase and react based web portfolio.
 
 ## Licensing
 
