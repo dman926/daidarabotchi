@@ -36,14 +36,14 @@ jobs:
         run: pnpm install
         # NEW ENGLAND KEESHONDS
       - name: Check if deploy is needed
-        id: deploy_needed
+        id: nek_deploy_needed
         run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds)"
       - name: Build New England Keeshonds
         run: npx nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
-        if: steps.deploy_needed.outputs.deploy == 1
+        if: steps.nek_deploy_needed.outputs.deploy == 1
       - name: Deploy New England Keeshonds
         uses: FirebaseExtended/action-hosting-deploy@v0
-        if: steps.deploy_needed.outputs.deploy == 1
+        if: steps.nek_deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
@@ -52,14 +52,14 @@ jobs:
           entryPoint: apps/new-england-keeshonds
         # PORTFOLIO
       - name: Check if deploy is needed
-        id: deploy_needed
+        id: portfolio_deploy_needed
         run: echo "::set-output name=deploy::$(./scripts/isaffected.sh portfolio)"
       - name: Build Portfolio
         run: npx nx run portfolio:build:production && mv dist/apps/portfolio apps/portfolio/out
-        if: steps.deploy_needed.outputs.deploy == 1
+        if: steps.portfolio_deploy_needed.outputs.deploy == 1
       - name: Deploy Portfolio
         uses: FirebaseExtended/action-hosting-deploy@v0
-        if: steps.deploy_needed.outputs.deploy == 1
+        if: steps.portfolio_deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO }}'
