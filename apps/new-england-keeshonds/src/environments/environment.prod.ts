@@ -6,7 +6,8 @@ export const environment = {
   firebaseConfig: process.env['NX_NEK_FIREBASE_CONFIG']
     ? JSON.parse(process.env['NX_NEK_FIREBASE_CONFIG'])
     : false,
-  recaptchaV3PublicKey: '6LcHETAgAAAAABLEG5AiS3IqNWnic1z-X0jBT_cf',
+  recaptchaV3PublicKey: process.env['NX_NEK_RECAPTCHA_V3_SITE_KEY'],
+  firebaseAppCheckToken: process.env['NX_NEK_FIREBASE_APPCHECK_DEGUG_TOKEN'],
   baseTheme: {
     palette: {
       primary: indigo,
