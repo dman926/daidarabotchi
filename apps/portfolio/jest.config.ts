@@ -7,5 +7,6 @@ export default {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  modulePathIgnorePatterns: ['<rootDir>/functions'],
   coverageDirectory: '../../coverage/apps/portfolio',
 };
