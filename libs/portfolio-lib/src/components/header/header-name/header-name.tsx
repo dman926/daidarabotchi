@@ -1,12 +1,6 @@
 import { Typography } from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
-
-function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
-  if (value === null || value === undefined) return false;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const testDummy: TValue = value;
-  return true;
-}
+import { notEmpty } from '../../../utils';
 
 export interface HeaderNameProps {
   firstName?: string;
