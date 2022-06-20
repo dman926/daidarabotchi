@@ -3,10 +3,23 @@ import { Header, HeaderProps } from '@daidarabotchi/portfolio-lib';
 
 const headerProps: HeaderProps = {
   name: {
-    firstName: 'Dennis James',
-    lastName: 'Stelmach',
-    suffix: 'JR',
-    nickName: 'DJ',
+    firstName: 'Bob',
+    lastName: 'Jones',
+    suffix: 'Sr',
+  },
+  subtitleName: {
+    nickName: 'Bill',
+  },
+  contact: {
+    email: [{ email: 'test@test.com' }],
+    phone: [{ phone: '1234567980' }],
+    address: {
+      street: '1234 Fake Street',
+      city: 'Faketown',
+      state: 'Fakestate',
+      zip: '01234',
+      country: 'Fakeland',
+    },
   },
 };
 
