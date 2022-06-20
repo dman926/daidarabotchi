@@ -65,7 +65,11 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
             .map<ReactNode>(
               (t) =>
                 t.field && (
-                  <Typography itemProp={t.itemProp} data-testid={t.testid}>
+                  <Typography
+                    key={t.field}
+                    itemProp={t.itemProp}
+                    data-testid={t.testid}
+                  >
                     {t.field}
                   </Typography>
                 )
