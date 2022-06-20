@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import FourZeroFour from './four-zero-four/four-zero-four';
-import Resume from './resume/resume';
+import { FourZeroFour } from './four-zero-four/four-zero-four';
+import { Resume } from './resume/resume';
 
 export function App() {
   return (
