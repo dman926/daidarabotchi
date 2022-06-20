@@ -24,11 +24,7 @@ export function Header({
 }: HeaderProps) {
   return (
     <Box data-testid="portfolio-header">
-      <Typography
-        itemScope
-        itemType="https://schema.org/Person"
-        data-testid="portfolio-header-person"
-      >
+      <Typography data-testid="portfolio-header-name">
         {[
           {
             field: firstName,
@@ -44,6 +40,8 @@ export function Header({
             field: nickName,
             itemProp: 'additionalName',
             testid: 'portfolio-header-nick-name',
+            pre: '(',
+            post: ')',
           },
           {
             field: prefix,
@@ -64,8 +62,12 @@ export function Header({
           .map<ReactNode>(
             (t) =>
               t.field && (
-                <span itemProp={t.itemProp} data-testid={t.testid}>
-                  {t.field}
+                <span>
+                  {t.pre}
+                  <span itemProp={t.itemProp} data-testid={t.testid}>
+                    {t.field}
+                  </span>
+                  {t.post}
                 </span>
               )
           )

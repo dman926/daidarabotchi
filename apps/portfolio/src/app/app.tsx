@@ -1,21 +1,13 @@
-import { Container } from '@daidarabotchi/material-ui';
-import { Header, HeaderProps } from '@daidarabotchi/portfolio-lib';
-
-const headerProps: HeaderProps = {
-  name: {
-    firstName: 'Dennis James',
-    lastName: 'Stelmach',
-    suffix: 'JR',
-    nickName: '(DJ)',
-  },
-};
+import { Route, Routes } from 'react-router-dom';
+import FourZeroFour from './four-zero-four/four-zero-four';
+import Resume from './resume/resume';
 
 export function App() {
   return (
-    <Container>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Header {...headerProps} />
-    </Container>
+    <Routes>
+      <Route path="/" element={<Resume />} />
+      <Route path="*" element={<FourZeroFour />} />
+    </Routes>
   );
 }
 
