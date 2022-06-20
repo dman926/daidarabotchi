@@ -61,7 +61,7 @@ export function HeaderName({
         .map<ReactNode>(
           (t) =>
             t.field && (
-              <span itemProp={t.itemProp} data-testid={t.testid}>
+              <span key={t.field} itemProp={t.itemProp} data-testid={t.testid}>
                 {t.field}
               </span>
             )
