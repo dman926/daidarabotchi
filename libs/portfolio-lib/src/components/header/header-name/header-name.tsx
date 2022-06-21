@@ -30,32 +30,32 @@ export function HeaderName({
         {
           field: firstName,
           itemProp: 'givenName',
-          testid: 'portfolio-header-first-name',
+          testid: 'portfolio-header-name-first-name',
         },
         {
           field: middleName,
           itemProp: 'additionalName',
-          testid: 'portfolio-header-middle-name',
+          testid: 'portfolio-header-name-middle-name',
         },
         {
           field: nickName,
           itemProp: 'additionalName',
-          testid: 'portfolio-header-nick-name',
+          testid: 'portfolio-header-name-nick-name',
         },
         {
           field: prefix,
           itemProp: 'honorificPrefix',
-          testid: 'portfolio-header-prefix',
+          testid: 'portfolio-header-name-prefix',
         },
         {
           field: lastName,
           itemProp: 'familyName',
-          testid: 'portfolio-header-last-name',
+          testid: 'portfolio-header-name-last-name',
         },
         {
           field: suffix,
           itemProp: 'honorificSuffix',
-          testid: 'portfolio-header-suffix',
+          testid: 'portfolio-header-name-suffix',
         },
       ]
         .map<ReactNode>(
