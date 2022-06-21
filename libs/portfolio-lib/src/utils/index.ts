@@ -9,11 +9,13 @@ export const notEmpty = <TValue>(
   return true;
 };
 
-// Shamelessly adapted from https://stackoverflow.com/questions/43768435/all-text-from-camelcase-to-snake-case
+// Shamelessly taken from https://stackoverflow.com/questions/63116039/camelcase-to-kebab-case
 export const camelToKebab = (camel: string): string =>
   camel
-    .replace(
-      /(\b[a-z]+|G(?!^))((?:[A-Z]|\d+)[a-z]*)/,
-      (match, p1, p2) => `${p1}-${p2}`
+    .split('')
+    .map((letter, idx) =>
+      letter.toUpperCase() === letter
+        ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
+        : letter
     )
-    .toLowerCase();
+    .join('');
