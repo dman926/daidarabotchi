@@ -1,17 +1,12 @@
 import { Box, Typography } from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
 import { notEmpty } from '../../../utils';
+import { Address } from '../../../models';
 
 export interface HeaderContactProps {
   email?: { type?: string; email: string }[];
   phone?: { type?: string; phone: string }[];
-  address?: {
-    street?: string;
-    city: string;
-    state: string;
-    zip?: string;
-    country?: string;
-  };
+  address?: Address;
 }
 
 export function HeaderContact({ email, phone, address }: HeaderContactProps) {
