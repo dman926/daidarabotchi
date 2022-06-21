@@ -2,6 +2,8 @@
 
 import { Container } from '@daidarabotchi/material-ui';
 import {
+  Footer,
+  FooterProps,
   Header,
   HeaderProps,
   ProjectExperience,
@@ -10,6 +12,8 @@ import {
   WorkExperienceProps,
 } from '@daidarabotchi/portfolio-lib';
 import { Key } from 'react';
+
+type WrappedElement<TType> = { id: Key; element: TType };
 
 const headerProps: HeaderProps = {
   name: {
@@ -36,10 +40,10 @@ const headerProps: HeaderProps = {
   },
 };
 
-type WrappedElement<TType> = { id: Key; element: TType };
-
 const workExperiences: WrappedElement<WorkExperienceProps>[] = [];
 const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [];
+
+const footerProps: FooterProps = {};
 
 export function Resume() {
   return (
@@ -51,6 +55,7 @@ export function Resume() {
       {projectExperiences.map((experience) => (
         <ProjectExperience key={experience.id} {...experience.element} />
       ))}
+      <Footer {...footerProps} />
     </Container>
   );
 }
