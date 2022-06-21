@@ -40,27 +40,27 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
             {
               field: street,
               itemProp: 'streetAddress',
-              testid: 'header-contact-address-street',
+              testid: 'portfolio-header-contact-address-street',
             },
             {
               field: city,
               itemProp: 'addressLocality',
-              testid: 'header-contact-address-city',
+              testid: 'portfolio-header-contact-address-city',
             },
             {
               field: state,
               itemProp: 'addressRegion',
-              testid: 'header-contact-address-state',
+              testid: 'portfolio-header-contact-address-state',
             },
             {
               field: zip,
               itemProp: 'postalCode',
-              testid: 'header-contact-address-zip',
+              testid: 'portfolio-header-contact-address-zip',
             },
             {
               field: country,
               itemProp: 'addressCountry',
-              testid: 'header-contact-address-country',
+              testid: 'portfolio-header-contact-address-country',
             },
           ]
             .map<ReactNode>(
