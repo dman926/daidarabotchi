@@ -7,6 +7,6 @@ describe('Header Contact', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<HeaderContact />);
     expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('portfolio-header')).toBeInTheDocument();
+    expect(screen.getByTestId('portfolio-header-contact')).toBeInTheDocument();
   });
 });

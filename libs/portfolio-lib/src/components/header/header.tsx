@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Box, Divider } from '@daidarabotchi/material-ui';
-import HeaderContact, {
+import {
+  HeaderContact,
   HeaderContactProps,
 } from './header-contact/header-contact';
 import { HeaderName, HeaderNameProps } from './header-name/header-name';
