@@ -77,6 +77,29 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
             .filter(notEmpty)}
         </Box>
       )}
+      {/* TODO: add nav links for emailto: and tel: */}
+      {email?.map(({ type, email: emailAddress }) => (
+        <Box
+          key={emailAddress}
+          itemProp="contactPoint"
+          itemScope
+          itemType="https://schema.org/ContactPoint"
+        >
+          <meta itemProp="contactType" content={type} />
+          <Typography itemProp="email">{emailAddress}</Typography>
+        </Box>
+      ))}
+      {phone?.map(({ type, phone: phoneNumber }) => (
+        <Box
+          key={phoneNumber}
+          itemProp="contactPoint"
+          itemScope
+          itemType="https://schema.org/ContactPoint"
+        >
+          <meta itemProp="contactType" content={type} />
+          <Typography itemProp="telephone">{phoneNumber}</Typography>
+        </Box>
+      ))}
     </Box>
   );
 }
