@@ -28,12 +28,13 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
     country = address.country;
   }
   return (
-    <Box>
+    <Box data-testid="portfolio-header-contact">
       {address && (
         <Box
           itemProp="address"
           itemScope
           itemType="https://schema.org/PostalAddress"
+          data-testid="portfolio-header-address"
         >
           {[
             {
@@ -84,6 +85,7 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
           itemProp="contactPoint"
           itemScope
           itemType="https://schema.org/ContactPoint"
+          data-testid="portfolio-header-contact-email"
         >
           <meta itemProp="contactType" content={type} />
           <Typography itemProp="email">{emailAddress}</Typography>
@@ -95,6 +97,7 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
           itemProp="contactPoint"
           itemScope
           itemType="https://schema.org/ContactPoint"
+          data-testid="portfolio-header-contact-phone"
         >
           <meta itemProp="contactType" content={type} />
           <Typography itemProp="telephone">{phoneNumber}</Typography>

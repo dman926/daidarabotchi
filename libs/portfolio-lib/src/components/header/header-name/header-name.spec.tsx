@@ -7,6 +7,6 @@ describe('Header Name', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<HeaderName />);
     expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('portfolio-header')).toBeInTheDocument();
+    expect(screen.getByTestId('portfolio-header-name')).toBeInTheDocument();
   });
 });
