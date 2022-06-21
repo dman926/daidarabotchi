@@ -60,7 +60,6 @@ describe('Header Contact', () => {
           const textContent = (
             value as { type?: string; email?: string; phone?: string }
           )[key];
-          expect(textContent).not.toBeUndefined();
           expect(el).toBeInTheDocument();
           if (textContent) {
             expect(el).toHaveTextContent(textContent);
