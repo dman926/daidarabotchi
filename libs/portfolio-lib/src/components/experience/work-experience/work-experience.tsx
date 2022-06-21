@@ -4,7 +4,10 @@ import {
   GenericExperienceProps,
 } from '../generic-experience/generic-experience';
 
-export function WorkExperience(props: GenericExperienceProps) {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface WorkExperienceProps extends GenericExperienceProps {}
+
+export function WorkExperience(props: WorkExperienceProps) {
   return (
     <Box data-testid="portfolio-work-experience">
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
