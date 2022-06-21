@@ -1,15 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Box, Divider } from '@daidarabotchi/material-ui';
-import {
-  HeaderContact,
-  HeaderContactProps,
-} from './header-contact/header-contact';
+import { Contact, ContactProps } from '../contact/contact';
 import { HeaderName, HeaderNameProps } from './header-name/header-name';
 
 export interface HeaderProps {
   name?: HeaderNameProps;
   subtitleName?: HeaderNameProps;
-  contact?: HeaderContactProps;
+  contact?: ContactProps;
 }
 
 export function Header({ name, subtitleName, contact }: HeaderProps) {
@@ -18,7 +15,7 @@ export function Header({ name, subtitleName, contact }: HeaderProps) {
       <Box data-testid="portfolio-header">
         {name && <HeaderName {...name} />}
         {subtitleName && <HeaderName {...subtitleName} subtitle />}
-        {contact && <HeaderContact {...contact} />}
+        {contact && <Contact {...contact} />}
       </Box>
       <Divider />
     </>
