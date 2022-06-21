@@ -95,7 +95,16 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
           data-testid="portfolio-header-contact-phone"
         >
           <meta itemProp="contactType" content={type} />
-          <Typography itemProp="telephone">{phoneNumber}</Typography>
+          <Typography
+            itemProp={
+              type?.toLowerCase() === 'fax' ||
+              type?.toLowerCase() === 'faxnumber'
+                ? 'faxNumber'
+                : 'telephone'
+            }
+          >
+            {phoneNumber}
+          </Typography>
         </Box>
       ))}
     </Box>
