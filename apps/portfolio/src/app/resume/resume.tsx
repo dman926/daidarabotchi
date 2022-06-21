@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import { Container } from '@daidarabotchi/material-ui';
 import {
   Header,
@@ -42,14 +44,11 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [];
 export function Resume() {
   return (
     <Container itemScope itemType="https://schema.org/Person">
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Header {...headerProps} />
       {workExperiences.map((experience) => (
-        // eslint-disable-next-line react/jsx-props-no-spreading
         <WorkExperience key={experience.id} {...experience.element} />
       ))}
       {projectExperiences.map((experience) => (
-        // eslint-disable-next-line react/jsx-props-no-spreading
         <ProjectExperience key={experience.id} {...experience.element} />
       ))}
     </Container>
