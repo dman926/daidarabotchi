@@ -10,6 +10,7 @@ export interface HeaderNameProps {
   suffix?: string;
   nickName?: string;
   subtitle?: boolean;
+  jobTitle?: string | { break?: boolean; jobTitle: string };
 }
 
 export function HeaderName({
@@ -20,6 +21,7 @@ export function HeaderName({
   suffix,
   nickName,
   subtitle,
+  jobTitle,
 }: HeaderNameProps) {
   return (
     <Typography
@@ -57,13 +59,26 @@ export function HeaderName({
           itemProp: 'honorificSuffix',
           testid: 'portfolio-header-name-suffix',
         },
+        {
+          field: typeof jobTitle === 'object' ? jobTitle.jobTitle : jobTitle,
+          itemProp: 'jobTitle',
+          testid: 'portfolio-header-name-job-title',
+          break: typeof jobTitle === 'object' ? jobTitle.break : false,
+        },
       ]
         .map<ReactNode>(
           (t) =>
             t.field && (
-              <span key={t.field} itemProp={t.itemProp} data-testid={t.testid}>
-                {t.field}
-              </span>
+              <>
+                {t.break && <br />}
+                <span
+                  key={t.field}
+                  itemProp={t.itemProp}
+                  data-testid={t.testid}
+                >
+                  {t.field}
+                </span>
+              </>
             )
         )
         .filter(notEmpty)

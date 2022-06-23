@@ -19,6 +19,7 @@ const headerProps: HeaderProps = {
   },
   subtitleName: {
     nickName: 'Bill',
+    jobTitle: { break: true, jobTitle: 'Software Developer' },
   },
   contact: {
     email: [{ type: 'Business', email: 'test@test.com' }],
