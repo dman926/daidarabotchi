@@ -1,6 +1,6 @@
-import { Box, Typography } from '@daidarabotchi/material-ui';
+import { Box, Link, Typography } from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
-import { notEmpty } from '../../utils';
+import { formatPhoneNumber, isFax, notEmpty } from '../../utils';
 import { Address } from '../../models';
 
 export interface ContactProps {
@@ -83,7 +83,9 @@ export function Contact({ email, phone, address }: ContactProps) {
           data-testid="portfolio-contact-email"
         >
           <meta itemProp="contactType" content={type} />
-          <Typography itemProp="email">{emailAddress}</Typography>
+          <Link href={`mailto:${emailAddress}`} itemProp="email">
+            {emailAddress}
+          </Link>
         </Box>
       ))}
       {phone?.map(({ type, phone: phoneNumber }) => (
@@ -95,16 +97,13 @@ export function Contact({ email, phone, address }: ContactProps) {
           data-testid="portfolio-contact-phone"
         >
           <meta itemProp="contactType" content={type} />
-          <Typography
-            itemProp={
-              type?.toLowerCase() === 'fax' ||
-              type?.toLowerCase() === 'faxnumber'
-                ? 'faxNumber'
-                : 'telephone'
-            }
-          >
-            {phoneNumber}
-          </Typography>
+          {type && isFax(type) ? (
+            <Typography itemProp="faxNumber">{phoneNumber}</Typography>
+          ) : (
+            <Link href={`tel:${phoneNumber}`} itemProp="telephone">
+              {formatPhoneNumber(phoneNumber)}
+            </Link>
+          )}
         </Box>
       ))}
     </Box>
