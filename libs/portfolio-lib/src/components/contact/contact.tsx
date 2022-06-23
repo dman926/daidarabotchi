@@ -73,7 +73,6 @@ export function Contact({ email, phone, address }: ContactProps) {
             .filter(notEmpty)}
         </Box>
       )}
-      {/* TODO: add nav links for emailto: and tel: */}
       {email?.map(({ type, email: emailAddress }) => (
         <Box
           key={emailAddress}
