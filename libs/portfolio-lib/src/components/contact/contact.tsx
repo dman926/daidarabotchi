@@ -1,15 +1,15 @@
 import { Box, Typography } from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
-import { notEmpty } from '../../../utils';
-import { Address } from '../../../models';
+import { notEmpty } from '../../utils';
+import { Address } from '../../models';
 
-export interface HeaderContactProps {
+export interface ContactProps {
   email?: { type?: string; email: string }[];
   phone?: { type?: string; phone: string }[];
   address?: Address;
 }
 
-export function HeaderContact({ email, phone, address }: HeaderContactProps) {
+export function Contact({ email, phone, address }: ContactProps) {
   let street;
   let city;
   let state;
@@ -23,39 +23,39 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
     country = address.country;
   }
   return (
-    <Box data-testid="portfolio-header-contact">
+    <Box data-testid="portfolio-contact">
       {address && (
         <Box
           itemProp="address"
           itemScope
           itemType="https://schema.org/PostalAddress"
-          data-testid="portfolio-header-address"
+          data-testid="portfolio-contact-address"
         >
           {[
             {
               field: street,
               itemProp: 'streetAddress',
-              testid: 'portfolio-header-contact-address-street',
+              testid: 'portfolio-contact-address-street',
             },
             {
               field: city,
               itemProp: 'addressLocality',
-              testid: 'portfolio-header-contact-address-city',
+              testid: 'portfolio-contact-address-city',
             },
             {
               field: state,
               itemProp: 'addressRegion',
-              testid: 'portfolio-header-contact-address-state',
+              testid: 'portfolio-contact-address-state',
             },
             {
               field: zip,
               itemProp: 'postalCode',
-              testid: 'portfolio-header-contact-address-zip',
+              testid: 'portfolio-contact-address-zip',
             },
             {
               field: country,
               itemProp: 'addressCountry',
-              testid: 'portfolio-header-contact-address-country',
+              testid: 'portfolio-contact-address-country',
             },
           ]
             .map<ReactNode>(
@@ -80,7 +80,7 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
           itemProp="contactPoint"
           itemScope
           itemType="https://schema.org/ContactPoint"
-          data-testid="portfolio-header-contact-email"
+          data-testid="portfolio-contact-email"
         >
           <meta itemProp="contactType" content={type} />
           <Typography itemProp="email">{emailAddress}</Typography>
@@ -92,7 +92,7 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
           itemProp="contactPoint"
           itemScope
           itemType="https://schema.org/ContactPoint"
-          data-testid="portfolio-header-contact-phone"
+          data-testid="portfolio-contact-phone"
         >
           <meta itemProp="contactType" content={type} />
           <Typography
@@ -111,4 +111,4 @@ export function HeaderContact({ email, phone, address }: HeaderContactProps) {
   );
 }
 
-export default HeaderContact;
+export default Contact;

@@ -1,9 +1,9 @@
 import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { HeaderContact, HeaderContactProps } from './header-contact';
+import { Contact, ContactProps } from './contact';
 
-const props1: HeaderContactProps = {
+const props1: ContactProps = {
   email: [
     {
       type: 'Work',
@@ -12,7 +12,7 @@ const props1: HeaderContactProps = {
   ],
 };
 
-const props2: HeaderContactProps = {
+const props2: ContactProps = {
   phone: [
     {
       type: 'Work',
@@ -21,7 +21,7 @@ const props2: HeaderContactProps = {
   ],
 };
 
-const props3: HeaderContactProps = {
+const props3: ContactProps = {
   address: {
     street: '1234 Fake Street',
     city: 'Faketown',
@@ -31,7 +31,7 @@ const props3: HeaderContactProps = {
   },
 };
 
-const props4: HeaderContactProps = {
+const props4: ContactProps = {
   ...props1,
   ...props2,
   ...props3,
@@ -39,24 +39,22 @@ const props4: HeaderContactProps = {
 
 const props = [props1, props2, props3, props4];
 
-describe('Header Contact', () => {
+describe('Contact', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<HeaderContact />);
+    const { baseElement } = render(<Contact />);
     expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('portfolio-header-contact')).toBeInTheDocument();
+    expect(screen.getByTestId('portfolio-contact')).toBeInTheDocument();
   });
 
   it('should render props successfully', () => {
     props.forEach((inProps) => {
       // eslint-disable-next-line react/jsx-props-no-spreading
-      const { baseElement } = render(<HeaderContact {...inProps} />);
+      const { baseElement } = render(<Contact {...inProps} />);
       expect(baseElement).toBeTruthy();
-      expect(
-        screen.getByTestId('portfolio-header-contact')
-      ).toBeInTheDocument();
+      expect(screen.getByTestId('portfolio-contact')).toBeInTheDocument();
       Object.entries(inProps).forEach(([key, value]) => {
         if (key === 'email' || key === 'phone') {
-          const el = screen.getByTestId(`portfolio-header-contact-${key}`);
+          const el = screen.getByTestId(`portfolio-contact-${key}`);
           const textContent = (
             value as { type?: string; email?: string; phone?: string }
           )[key];
@@ -65,10 +63,13 @@ describe('Header Contact', () => {
             expect(el).toHaveTextContent(textContent);
           }
         } else {
-          Object.entries(value as HeaderContactProps).forEach(
+          expect(
+            screen.getByTestId('portfolio-contact-address')
+          ).toBeInTheDocument();
+          Object.entries(value as ContactProps).forEach(
             ([innerKey, innerValue]) => {
               const el = screen.getByTestId(
-                `portfolio-header-contact-address-${innerKey}`
+                `portfolio-contact-address-${innerKey}`
               );
               expect(el).toBeInTheDocument();
               if (innerValue) {
