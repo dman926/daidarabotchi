@@ -9,10 +9,10 @@ describe('test executor', () => {
   let project: string;
 
   beforeAll(() => {
-    project = uniq('nx-python');
-    ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
+    project = uniq('nx-python3');
+    ensureNxProject('@dman926/nx-python3', 'dist/libs/nx-python3');
     runNxCommand(
-      `generate @daidarabotchi/nx-python:application ${project} --no-interactive`
+      `generate @dman926/nx-python3:application ${project} --no-interactive`
     );
   });
 

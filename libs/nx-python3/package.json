@@ -1,5 +1,5 @@
 {
-  "name": "@daidarabotchi/nx-python",
+  "name": "@dman926/nx-python3",
   "version": "0.0.1",
   "main": "src/index.js",
   "generators": "./generators.json",

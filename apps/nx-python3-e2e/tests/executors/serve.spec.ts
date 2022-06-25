@@ -4,15 +4,16 @@ import {
   runNxCommandAsync,
   uniq,
 } from '@nrwl/nx-plugin/testing';
+import { killPorts } from '../../utils';
 
-describe('builder executor', () => {
+describe('serve executor', () => {
   let project: string;
 
   beforeAll(() => {
-    project = uniq('nx-python');
-    ensureNxProject('@daidarabotchi/nx-python', 'dist/libs/nx-python');
+    project = uniq('nx-python3');
+    ensureNxProject('@dman926/nx-python3', 'dist/libs/nx-python3');
     runNxCommand(
-      `generate @daidarabotchi/nx-python:application ${project} --no-interactive`
+      `generate @dman926/nx-python3:application ${project} --no-interactive`
     );
   });
 
@@ -24,8 +25,12 @@ describe('builder executor', () => {
     runNxCommand('reset');
   });
 
-  it('should build successfully', async () => {
-    const result = await runNxCommandAsync(`build ${project}`);
+  afterEach(() => {
+    killPorts();
+  });
+
+  it('should serve successfully', async () => {
+    const result = await runNxCommandAsync(`serve ${project}`);
     expect(result.stdout).toContain('Executor ran');
   });
 });

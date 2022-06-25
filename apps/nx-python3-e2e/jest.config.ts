@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'nx-python-e2e',
+  displayName: 'nx-python3-e2e',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,8 +11,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  moduleNameMapper: {
-    '@daidarabotchi/nx-python': '<rootDir>/../../dist/libs/nx-python',
-  },
-  coverageDirectory: '../../coverage/apps/nx-python-e2e',
+  coverageDirectory: '../../coverage/apps/nx-python3-e2e',
 };
