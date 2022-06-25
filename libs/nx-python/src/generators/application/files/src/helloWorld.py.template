@@ -1,2 +1,0 @@
-def helloWorldFunc() -> None:
-    print("Hello, World!")
