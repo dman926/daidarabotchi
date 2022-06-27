@@ -33,3 +33,19 @@ export const formatPhoneNumber = (phone: string) => {
 
   return null;
 };
+
+export const formatStartEndDate = (
+  start?: Date,
+  end?: Date,
+  noPresent?: boolean
+) => {
+  let out = '';
+  if (start) {
+    if (noPresent) {
+      out = `${start.toDateString()}${end && ` - ${end.toDateString()}`}`;
+    } else {
+      out = `${start.toDateString()} - ${end?.toDateString() || 'Present'}`;
+    }
+  }
+  return out;
+};
