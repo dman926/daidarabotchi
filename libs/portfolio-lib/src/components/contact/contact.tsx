@@ -82,9 +82,8 @@ export function Contact({ email, phone, address }: ContactProps) {
           data-testid="portfolio-contact-email"
         >
           <meta itemProp="contactType" content={type} />
-          <Link href={`mailto:${emailAddress}`} itemProp="email">
-            {emailAddress}
-          </Link>
+          <meta itemProp="email" content={emailAddress} />
+          <Link href={`mailto:${emailAddress}`}>{emailAddress}</Link>
         </Box>
       ))}
       {phone?.map(({ type, phone: phoneNumber }) => (
