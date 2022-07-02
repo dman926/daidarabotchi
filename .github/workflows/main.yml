@@ -102,6 +102,6 @@ jobs:
           node-version: '16'
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
       - name: Start Nx Agent ${{ matrix.agent }}
         run: pnpm exec nx-cloud start-agent
