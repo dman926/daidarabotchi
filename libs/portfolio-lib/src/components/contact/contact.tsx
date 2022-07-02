@@ -48,14 +48,14 @@ export function Contact({ email, phone, address }: ContactProps) {
               testid: 'portfolio-contact-address-state',
             },
             {
-              field: zip,
-              itemProp: 'postalCode',
-              testid: 'portfolio-contact-address-zip',
-            },
-            {
               field: country,
               itemProp: 'addressCountry',
               testid: 'portfolio-contact-address-country',
+            },
+            {
+              field: zip,
+              itemProp: 'postalCode',
+              testid: 'portfolio-contact-address-zip',
             },
           ]
             .map<ReactNode>(
