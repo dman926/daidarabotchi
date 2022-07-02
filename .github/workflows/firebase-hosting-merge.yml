@@ -20,17 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout [main]
-        uses: actions/checkout@v2
+        uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
       - name: Setup PNPM
-        uses: pnpm/action-setup@v2.0.1
+        uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2 # ratchet:pnpm/action-setup@v2.0.1
         with:
           version: 7.0.0
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
         with:
           node-version: '16'
       - name: Install dependencies
@@ -43,7 +43,7 @@ jobs:
         run: npx nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
         if: steps.nek_deploy_needed.outputs.deploy == 1
       - name: Deploy New England Keeshonds
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@276388dd6c2cde23455b30293105cc866c22282d # ratchet:FirebaseExtended/action-hosting-deploy@v0
         if: steps.nek_deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -51,7 +51,7 @@ jobs:
           channelId: live
           projectId: new-england-keeshonds
           entryPoint: apps/new-england-keeshonds
-        # PORTFOLIO
+          # PORTFOLIO
       - name: Check if deploy is needed
         id: portfolio_deploy_needed
         run: echo "::set-output name=deploy::$(./scripts/isaffected.sh portfolio)"
@@ -59,7 +59,7 @@ jobs:
         run: npx nx run portfolio:build:production && mv dist/apps/portfolio apps/portfolio/out
         if: steps.portfolio_deploy_needed.outputs.deploy == 1
       - name: Deploy Portfolio
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@276388dd6c2cde23455b30293105cc866c22282d # ratchet:FirebaseExtended/action-hosting-deploy@v0
         if: steps.portfolio_deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
