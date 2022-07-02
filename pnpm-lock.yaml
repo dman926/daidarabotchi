@@ -79,6 +79,7 @@ importers:
       kill-port: ^2.0.1
       nx: 14.4.0
       prettier: 2.6.2
+      protobufjs: ^6.11.3
       react: 18.2.0
       react-chartjs-2: ^4.2.0
       react-dom: 18.2.0
@@ -119,6 +120,7 @@ importers:
       firebase: 9.8.4
       firebase-admin: 10.3.0_@firebase+app-types@0.7.0
       formik: 2.2.9_react@18.2.0
+      protobufjs: 6.11.3
       react: 18.2.0
       react-chartjs-2: 4.2.0_yw232gbma4xqgfjmup6t23g3w4
       react-dom: 18.2.0_react@18.2.0
@@ -256,9 +258,6 @@ importers:
     specifiers: {}
 
   libs/material-ui:
-    specifiers: {}
-
-  libs/nx-python:
     specifiers: {}
 
   libs/portfolio-lib:
