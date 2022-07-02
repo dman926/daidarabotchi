@@ -97,7 +97,9 @@ export function Contact({ email, phone, address }: ContactProps) {
         >
           <meta itemProp="contactType" content={type} />
           {type && isFax(type) ? (
-            <Typography itemProp="faxNumber">{phoneNumber}</Typography>
+            <Typography itemProp="faxNumber">
+              {formatPhoneNumber(phoneNumber)} (Fax)
+            </Typography>
           ) : (
             <Link href={`tel:${phoneNumber}`} itemProp="telephone">
               {formatPhoneNumber(phoneNumber)}
