@@ -52,7 +52,7 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [
       title: 'Project Alpha',
       subheader: 'The first project',
       content: lorem,
-      media: ['/test-assets/jpg/test1.jpg', '/test-assets/jpg/test2.jpg'],
+      media: ['/assets/test-assets/jpg/test1.jpg', '/assets/test-assets/jpg/test2.jpg'],
       startDate: (() => {
         const tmp = new Date();
         tmp.setFullYear(tmp.getFullYear() - 5);
@@ -72,7 +72,7 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [
       title: 'Project Beta',
       subheader: 'The second project',
       content: lorem,
-      media: ['/test-assets/jpg/test3.jpg'],
+      media: ['/assets/test-assets/jpg/test3.jpg'],
       startDate: (() => {
         const tmp = new Date();
         tmp.setFullYear(tmp.getFullYear() - 4);

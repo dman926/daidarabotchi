@@ -56,6 +56,8 @@ export function GenericExperience({
             <CardMedia
               // @TODO: convert this into a carousel
               image={media[0]}
+              component="img"
+              height="256"
               data-testid="portfolio-generic-experience-media"
             />
           )}
