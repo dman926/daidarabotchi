@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nx-python3/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nx-python3",
+        "main": "libs/nx-python3/src/index.ts",
+        "tsConfig": "libs/nx-python3/tsconfig.lib.json",
+        "assets": [
+          "libs/nx-python3/*.md",
+          {
+            "input": "./libs/nx-python3/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-python3/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/nx-python3",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/nx-python3",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lintBROKEN": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/nx-python3/**/*.ts",
+          "libs/nx-python3/generators.json",
+          "libs/nx-python3/executors.json",
+          "libs/nx-python3/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/nx-python3"],
+      "options": {
+        "jestConfig": "libs/nx-python3/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

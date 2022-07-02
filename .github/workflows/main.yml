@@ -14,6 +14,7 @@ env:
   NX_NEK_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
   NX_NEK_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.NEK_FIREBASE_APPCHECK_DEBUG_TOKEN }}
   NX_PORTFOLIO_FIREBASE_CONFIG: ${{ secrets.PORTFOLIO_FIREBASE_CONFIG }}
+  NX_PORTFOLIO_FIREBASE_ADMIN_SDK: ${{ secrets.PORTFOLIO_FIREBASE_ADMIN_SDK }}
   NX_PORTFOLIO_RECAPTCHA_V3_SITE_KEY: ${{ secrets.PORTFOLIO_RECAPTCHA_V3_SITE_KEY }}
   NX_PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN }}
 jobs:
@@ -21,23 +22,22 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
       - name: Setup PNPM
-        uses: pnpm/action-setup@v2.0.1
+        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
         with:
-          version: 7.0.0
+          version: latest
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-
       - run: pnpm exec nx-cloud start-ci-run
       - name: Workspace lint
         run: pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
@@ -54,24 +54,23 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
       - name: Setup PNPM
-        uses: pnpm/action-setup@v2.0.1
+        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
         with:
-          version: 7.0.0
+          version: latest
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-
       - run: pnpm exec nx-cloud start-ci-run
       - name: Workspace lint
         run: pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
@@ -92,13 +91,13 @@ jobs:
       matrix:
         agent: [1, 2, 3]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
       - name: Setup PNPM
-        uses: pnpm/action-setup@v2.0.1
+        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
         with:
-          version: 7.0.0
+          version: latest
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'pnpm'
