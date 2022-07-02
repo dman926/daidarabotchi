@@ -26,22 +26,20 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <BrowserRouter>
-      <FirebaseProvider
-        firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
-        firebaseAppCheckProvider={
-          environment.recaptchaV3PublicKey
-            ? new ReCaptchaV3Provider(environment.recaptchaV3PublicKey)
-            : undefined
-        }
-      >
-        <ThemeProvider
-          theme={createTheme(environment.baseTheme as ThemeOptions)}
-        >
-          <CssBaseline />
+    <FirebaseProvider
+      firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
+      firebaseAppCheckProvider={
+        environment.recaptchaV3PublicKey
+          ? new ReCaptchaV3Provider(environment.recaptchaV3PublicKey)
+          : undefined
+      }
+    >
+      <ThemeProvider theme={createTheme(environment.baseTheme as ThemeOptions)}>
+        <CssBaseline />
+        <BrowserRouter>
           <App />
-        </ThemeProvider>
-      </FirebaseProvider>
-    </BrowserRouter>
+        </BrowserRouter>
+      </ThemeProvider>
+    </FirebaseProvider>
   </StrictMode>
 );
