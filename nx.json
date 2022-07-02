@@ -2,7 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "daidarabotchi",
   "affected": {
-    "defaultBase": "main"
+    "defaultBase": "pre"
   },
   "implicitDependencies": {
     "package.json": {
