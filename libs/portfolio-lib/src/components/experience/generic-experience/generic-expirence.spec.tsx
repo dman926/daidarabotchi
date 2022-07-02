@@ -3,68 +3,61 @@ import '@testing-library/jest-dom';
 
 import { GenericExperience } from './generic-experience';
 
-const short = {
-  header: {
-    headerProps: {},
-    testid: 'short-header',
-  },
-  media: {
-    mediaProps: {
-      children: <span data-testid="short-media-inner">test media</span>,
-    },
-    testid: 'short-media',
-  },
-  content: {
-    contentBody: <span data-testid="short-content-inner">test body</span>,
-    testid: 'short-content',
-  },
-};
-
 describe('Generic Experience', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<GenericExperience />);
+    const { baseElement } = render(<GenericExperience title="" content="" />);
     expect(baseElement).toBeTruthy();
     expect(
       screen.getByTestId('portfolio-generic-experience')
     ).toBeInTheDocument();
   });
 
-  it('should render a card in short mode', () => {
-    const { baseElement } = render(<GenericExperience short={short} />);
+  it('should render a card in compact mode', () => {
+    const { baseElement } = render(
+      <GenericExperience title="" content="" compact />
+    );
     expect(baseElement).toBeTruthy();
     expect(
-      screen.getByTestId('portfolio-generic-experience-short')
+      screen.getByTestId('portfolio-generic-experience-compact')
     ).toBeInTheDocument();
   });
 
-  it('should render a card header in short mode', () => {
-    const { baseElement } = render(<GenericExperience short={short} />);
+  it('should render a card header in compact mode', () => {
+    const { baseElement } = render(
+      <GenericExperience title="" content="" compact />
+    );
     expect(baseElement).toBeTruthy();
     expect(
-      screen.getByTestId('portfolio-generic-experience-short')
+      screen.getByTestId('portfolio-generic-experience-compact')
     ).toBeInTheDocument();
-    expect(screen.getByTestId('short-header')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('portfolio-generic-experience-header')
+    ).toBeInTheDocument();
   });
 
-  it('should render card media in short mode if supplied', () => {
-    const { baseElement } = render(<GenericExperience short={short} />);
+  it('should render card media in compact mode if supplied', () => {
+    const { baseElement } = render(
+      <GenericExperience title="" media={['abc.jpg']} content="" compact />
+    );
     expect(baseElement).toBeTruthy();
     expect(
-      screen.getByTestId('portfolio-generic-experience-short')
+      screen.getByTestId('portfolio-generic-experience-compact')
     ).toBeInTheDocument();
-    if (short.media) {
-      expect(screen.getByTestId('short-media')).toBeInTheDocument();
-    }
+    expect(
+      screen.getByTestId('portfolio-generic-experience-media')
+    ).toBeInTheDocument();
   });
 
-  it('should render card content in short mode if supplied', () => {
-    const { baseElement } = render(<GenericExperience short={short} />);
+  it('should render card content in compact mode', () => {
+    const { baseElement } = render(
+      <GenericExperience title="" content="" compact />
+    );
     expect(baseElement).toBeTruthy();
     expect(
-      screen.getByTestId('portfolio-generic-experience-short')
+      screen.getByTestId('portfolio-generic-experience-compact')
     ).toBeInTheDocument();
-    if (short.content) {
-      expect(screen.getByTestId('short-content')).toBeInTheDocument();
-    }
+    expect(
+      screen.getByTestId('portfolio-generic-experience-content')
+    ).toBeInTheDocument();
   });
 });

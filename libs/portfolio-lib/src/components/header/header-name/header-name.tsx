@@ -1,4 +1,4 @@
-import { Typography } from '@daidarabotchi/material-ui';
+import { Box, Typography } from '@daidarabotchi/material-ui';
 import { ReactNode } from 'react';
 import { notEmpty } from '../../../utils';
 
@@ -69,16 +69,12 @@ export function HeaderName({
         .map<ReactNode>(
           (t) =>
             t.field && (
-              <>
+              <Box key={t.field}>
                 {t.break && <br />}
-                <span
-                  key={t.field}
-                  itemProp={t.itemProp}
-                  data-testid={t.testid}
-                >
+                <span itemProp={t.itemProp} data-testid={t.testid}>
                   {t.field}
                 </span>
-              </>
+              </Box>
             )
         )
         .filter(notEmpty)
