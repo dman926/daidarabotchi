@@ -96,12 +96,14 @@ export function Contact({ email, phone, address }: ContactProps) {
           data-testid="portfolio-contact-phone"
         >
           <meta itemProp="contactType" content={type} />
+          <meta
+            itemProp={type && isFax(type) ? 'faxNumber' : 'telephone'}
+            content={phoneNumber}
+          />
           {type && isFax(type) ? (
-            <Typography itemProp="faxNumber">
-              {formatPhoneNumber(phoneNumber)} (Fax)
-            </Typography>
+            <Typography>{formatPhoneNumber(phoneNumber)} (Fax)</Typography>
           ) : (
-            <Link href={`tel:${phoneNumber}`} itemProp="telephone">
+            <Link href={`tel:${phoneNumber}`}>
               {formatPhoneNumber(phoneNumber)}
             </Link>
           )}
