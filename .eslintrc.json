@@ -15,7 +15,12 @@
       }
     ],
     "arrow-body-style": 1,
-    "no-warning-comments": [1, { "terms": ["@todo", "todo", "fix"] }],
+    "no-warning-comments": [
+      1,
+      {
+        "terms": ["@todo", "todo", "fix"]
+      }
+    ],
     "import/prefer-default-export": 1,
     "no-empty": 1,
     "react/jsx-pascal-case": 1,
@@ -53,6 +58,11 @@
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": "*.json",
+      "parser": "jsonc-eslint-parser",
       "rules": {}
     }
   ]

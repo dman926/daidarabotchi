@@ -69,12 +69,12 @@ export function HeaderName({
         .map<ReactNode>(
           (t) =>
             t.field && (
-              <Box key={t.field}>
+              <span key={t.field}>
                 {t.break && <br />}
                 <span itemProp={t.itemProp} data-testid={t.testid}>
                   {t.field}
                 </span>
-              </Box>
+              </span>
             )
         )
         .filter(notEmpty)

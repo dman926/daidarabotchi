@@ -38,7 +38,7 @@ export function GenericExperience({
   const cachedSubheader = useMemo(
     () =>
       `${subheader || formatStartEndDate(startDate, endDate, noPresent)}${
-        location && ` - ${location}`
+        location ? ` - ${location}` : ''
       }`,
     [endDate, location, noPresent, startDate, subheader]
   );

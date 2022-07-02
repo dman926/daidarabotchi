@@ -42,7 +42,7 @@ export const formatStartEndDate = (
   let out = '';
   if (start) {
     if (noPresent) {
-      out = `${start.toDateString()}${end && ` - ${end.toDateString()}`}`;
+      out = `${start.toDateString()}${end ? ` - ${end.toDateString()}` : ''}`;
     } else {
       out = `${start.toDateString()} - ${end?.toDateString() || 'Present'}`;
     }
