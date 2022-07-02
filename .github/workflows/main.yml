@@ -28,7 +28,7 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
       - name: Setup PNPM
-        uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2 # ratchet:pnpm/action-setup@v2.0.1
+        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
         with:
           version: latest
       - name: Setup node
@@ -61,7 +61,7 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
       - name: Setup PNPM
-        uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2 # ratchet:pnpm/action-setup@v2.0.1
+        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
         with:
           version: latest
       - name: Setup node
@@ -93,7 +93,7 @@ jobs:
     steps:
       - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
       - name: Setup PNPM
-        uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2 # ratchet:pnpm/action-setup@v2.0.1
+        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
         with:
           version: latest
       - name: Setup node
