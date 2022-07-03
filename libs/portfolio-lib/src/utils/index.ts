@@ -49,3 +49,21 @@ export const formatStartEndDate = (
   }
   return out;
 };
+
+// eslint-disable-next-line
+type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any
+  ? A
+  : never;
+
+export type Props<
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  F extends Function,
+  Params = ArgumentTypes<F>
+> = Params extends { length: 0 }
+  ? {
+      fetcher: F;
+    }
+  : {
+      fetcher: F;
+      params: Params;
+    };

@@ -1,7 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import { styled } from '@mui/material';
-import { Container, Stack } from '@daidarabotchi/material-ui';
+import {
+  Box,
+  Container,
+  Divider,
+  DividerProps,
+  IconButton,
+  Stack,
+} from '@daidarabotchi/material-ui';
+import PrintIcon from '@mui/icons-material/Print';
 import {
   Footer,
   FooterProps,
@@ -12,7 +19,8 @@ import {
   WorkExperience,
   WorkExperienceProps,
 } from '@daidarabotchi/portfolio-lib';
-import { Key } from 'react';
+import { styled } from '@mui/material';
+import { Key, useState } from 'react';
 
 type WrappedElement<TType> = { id: Key; element: TType };
 const lorem =
@@ -52,7 +60,10 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [
       title: 'Project Alpha',
       subheader: 'The first project',
       content: lorem,
-      media: ['/assets/test-assets/jpg/test1.jpg', '/assets/test-assets/jpg/test2.jpg'],
+      media: [
+        '/assets/test-assets/jpg/test1.jpg',
+        '/assets/test-assets/jpg/test2.jpg',
+      ],
       startDate: (() => {
         const tmp = new Date();
         tmp.setFullYear(tmp.getFullYear() - 5);
@@ -114,25 +125,52 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [
 
 const footerProps: FooterProps = {};
 
-const SpacedContainer = styled(Container)({
-  marginTop: 12,
+const BoldDivider = styled(Divider)<DividerProps>({
+  borderBottomWidth: 'medium',
   marginBottom: 12,
 });
 
 export function Resume() {
+  const [print, setPrint] = useState(true);
+
   return (
     <Container itemScope itemType="https://schema.org/Person">
-      <Header {...headerProps} />
-      <br />
-      <Stack spacing={2}>
+      <Box sx={{ display: 'flex' }}>
+        <Box sx={{ width: '100%' }}>
+          <Header {...headerProps} />
+        </Box>
+        <Box>
+          <IconButton
+            onClick={() => {
+              setPrint((cur) => !cur);
+            }}
+          >
+            <PrintIcon />
+          </IconButton>
+        </Box>
+      </Box>
+      <BoldDivider />
+      <Stack
+        spacing={2}
+        divider={print ? <Divider variant="inset" /> : undefined}
+      >
         {workExperiences.map((experience) => (
-          <WorkExperience key={experience.id} compact {...experience.element} />
+          <WorkExperience
+            key={experience.id}
+            print={print}
+            compact
+            {...experience.element}
+          />
         ))}
       </Stack>
-      <Stack spacing={2}>
+      <Stack
+        spacing={2}
+        divider={print ? <Divider variant="inset" /> : undefined}
+      >
         {projectExperiences.map((experience) => (
           <ProjectExperience
             key={experience.id}
+            print={print}
             compact
             {...experience.element}
           />
