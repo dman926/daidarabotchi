@@ -36,9 +36,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
         # NEW ENGLAND KEESHONDS
-      - name: Check if deploy is needed
-        id: nek_deploy_needed
-        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds)"
       - name: Build New England Keeshonds
         run: pnpm exec nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
         if: steps.nek_deploy_needed.outputs.deploy == 1
@@ -51,10 +48,7 @@ jobs:
           channelId: live
           projectId: new-england-keeshonds
           entryPoint: apps/new-england-keeshonds
-          # PORTFOLIO
-      - name: Check if deploy is needed
-        id: portfolio_deploy_needed
-        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh portfolio)"
+      # PORTFOLIO
       - name: Build Portfolio
         run: pnpm exec nx run portfolio:build:production && mv dist/apps/portfolio apps/portfolio/out
         if: steps.portfolio_deploy_needed.outputs.deploy == 1
