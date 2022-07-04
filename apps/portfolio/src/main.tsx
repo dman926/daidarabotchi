@@ -3,13 +3,14 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles.scss';
 
-import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material/styles';
 import { FirebaseOptions } from 'firebase/app';
 import { ReCaptchaV3Provider } from 'firebase/app-check';
 import { FirebaseProvider } from '@daidarabotchi/firebase-react';
+import { PrintProvider } from '@daidarabotchi/portfolio-lib';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { environment } from './environments/environment';
+import { ThemeWrap } from './theme-wrap';
 
 import { App } from './app/app';
 
@@ -34,12 +35,14 @@ root.render(
           : undefined
       }
     >
-      <ThemeProvider theme={createTheme(environment.baseTheme as ThemeOptions)}>
-        <CssBaseline />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <PrintProvider>
+        <ThemeWrap>
+          <CssBaseline />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeWrap>
+      </PrintProvider>
     </FirebaseProvider>
   </StrictMode>
 );

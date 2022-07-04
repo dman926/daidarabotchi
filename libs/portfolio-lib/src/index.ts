@@ -4,4 +4,6 @@ export * from './components/experience/project-experience/project-experience';
 export * from './components/experience/work-experience/work-experience';
 export * from './components/footer/footer';
 export * from './components/header/header';
+export * from './components/print-provider/print-provider';
+export * from './components/print-wrap/print-wrap';
 export * from './models';

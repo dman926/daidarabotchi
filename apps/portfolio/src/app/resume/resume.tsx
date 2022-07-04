@@ -7,6 +7,7 @@ import {
   DividerProps,
   IconButton,
   Stack,
+  Typography,
 } from '@daidarabotchi/material-ui';
 import PrintIcon from '@mui/icons-material/Print';
 import {
@@ -16,11 +17,12 @@ import {
   HeaderProps,
   ProjectExperience,
   ProjectExperienceProps,
+  usePrint,
   WorkExperience,
   WorkExperienceProps,
 } from '@daidarabotchi/portfolio-lib';
 import { styled } from '@mui/material';
-import { Key, useState } from 'react';
+import { Key, useEffect } from 'react';
 
 type WrappedElement<TType> = { id: Key; element: TType };
 const lorem =
@@ -131,7 +133,22 @@ const BoldDivider = styled(Divider)<DividerProps>({
 });
 
 export function Resume() {
-  const [print, setPrint] = useState(true);
+  const { print, setPrint } = usePrint();
+
+  useEffect(() => {
+    window.onafterprint = () => {
+      setPrint(false);
+    };
+    return () => {
+      window.onafterprint = null;
+    };
+  }, [setPrint]);
+
+  useEffect(() => {
+    if (print) {
+      window.print();
+    }
+  }, [print]);
 
   return (
     <Container itemScope itemType="https://schema.org/Person">
@@ -140,42 +157,50 @@ export function Resume() {
           <Header {...headerProps} />
         </Box>
         <Box>
-          <IconButton
-            onClick={() => {
-              setPrint((cur) => !cur);
-            }}
-          >
-            <PrintIcon />
-          </IconButton>
+          {!print && (
+            <IconButton
+              onClick={() => {
+                setPrint((cur) => !cur);
+              }}
+            >
+              <PrintIcon />
+            </IconButton>
+          )}
         </Box>
       </Box>
       <BoldDivider />
-      <Stack
-        spacing={2}
-        divider={print ? <Divider variant="inset" /> : undefined}
-      >
-        {workExperiences.map((experience) => (
-          <WorkExperience
-            key={experience.id}
-            print={print}
-            compact
-            {...experience.element}
-          />
-        ))}
-      </Stack>
-      <Stack
-        spacing={2}
-        divider={print ? <Divider variant="inset" /> : undefined}
-      >
-        {projectExperiences.map((experience) => (
-          <ProjectExperience
-            key={experience.id}
-            print={print}
-            compact
-            {...experience.element}
-          />
-        ))}
-      </Stack>
+      {workExperiences.length > 0 && (
+        <Stack
+          spacing={2}
+          divider={print ? <Divider variant="inset" /> : undefined}
+        >
+          <Typography variant="h4">Professional Experience</Typography>
+          {workExperiences.map((experience) => (
+            <WorkExperience
+              key={experience.id}
+              print={print}
+              compact
+              {...experience.element}
+            />
+          ))}
+        </Stack>
+      )}
+      {projectExperiences.length > 0 && (
+        <Stack
+          spacing={2}
+          divider={print ? <Divider variant="inset" /> : undefined}
+        >
+          <Typography variant="h4">Project Experience</Typography>
+          {projectExperiences.map((experience) => (
+            <ProjectExperience
+              key={experience.id}
+              print={print}
+              compact
+              {...experience.element}
+            />
+          ))}
+        </Stack>
+      )}
       <Footer {...footerProps} />
     </Container>
   );
