@@ -57,20 +57,22 @@ export function GenericExperience({
   return (
     <Box data-testid="portfolio-generic-experience">
       {compact ? (
-        <PrintWrapCalc element={Paper}>
-          <Container data-testid="portfolio-generic-experience-header">
-            <Typography>{title}</Typography>
-            <Typography>{cachedSubheader}</Typography>
-          </Container>
-          {!print && (
-            <Container data-testid="portfolio-generic-experience-media">
-              {media && <img src={media[0]} alt="" height="256" />}
+        <Box data-testid="portfolio-generic-experience-compact">
+          <PrintWrapCalc element={Paper}>
+            <Container data-testid="portfolio-generic-experience-header">
+              <Typography>{title}</Typography>
+              <Typography>{cachedSubheader}</Typography>
             </Container>
-          )}
-          <Container data-testid="portfolio-generic-experience-content">
-            <Typography>{content}</Typography>
-          </Container>
-        </PrintWrapCalc>
+            {!print && (
+              <Container data-testid="portfolio-generic-experience-media">
+                {media && <img src={media[0]} alt="" height="256" />}
+              </Container>
+            )}
+            <Container data-testid="portfolio-generic-experience-content">
+              <Typography>{content}</Typography>
+            </Container>
+          </PrintWrapCalc>
+        </Box>
       ) : (
         <PrintWrapCalc
           element={Paper}
