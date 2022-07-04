@@ -3,13 +3,14 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles.scss';
 
-import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material/styles';
 import { FirebaseOptions } from 'firebase/app';
 import { ReCaptchaV3Provider } from 'firebase/app-check';
 import { FirebaseProvider } from '@daidarabotchi/firebase-react';
+import { PrintProvider } from '@daidarabotchi/portfolio-lib';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { environment } from './environments/environment';
+import { ThemeWrap } from './theme-wrap';
 
 import { App } from './app/app';
 
@@ -26,22 +27,22 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <BrowserRouter>
-      <FirebaseProvider
-        firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
-        firebaseAppCheckProvider={
-          environment.recaptchaV3PublicKey
-            ? new ReCaptchaV3Provider(environment.recaptchaV3PublicKey)
-            : undefined
-        }
-      >
-        <ThemeProvider
-          theme={createTheme(environment.baseTheme as ThemeOptions)}
-        >
+    <FirebaseProvider
+      firebaseOptions={environment.firebaseConfig as FirebaseOptions | false}
+      firebaseAppCheckProvider={
+        environment.recaptchaV3PublicKey
+          ? new ReCaptchaV3Provider(environment.recaptchaV3PublicKey)
+          : undefined
+      }
+    >
+      <PrintProvider>
+        <ThemeWrap>
           <CssBaseline />
-          <App />
-        </ThemeProvider>
-      </FirebaseProvider>
-    </BrowserRouter>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeWrap>
+      </PrintProvider>
+    </FirebaseProvider>
   </StrictMode>
 );

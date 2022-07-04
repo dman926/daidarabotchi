@@ -1,13 +1,20 @@
 import MuiPaper, { PaperProps as MuiPaperProps } from '@mui/material/Paper';
-import { ReactChild } from 'react';
+import { forwardRef, JSXElementConstructor, ReactElement } from 'react';
 
 /* eslint-disable-next-line */
 export interface PaperProps extends MuiPaperProps {
-  component?: string | ReactChild;
+  component?:
+    | string
+    | (
+        | string
+        | number
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        | ReactElement<any, string | JSXElementConstructor<any>>
+      );
 }
 
-export function Paper(props: PaperProps) {
-  return <MuiPaper data-testid="mui-paper" {...props} />;
-}
+export const Paper = forwardRef<HTMLDivElement, PaperProps>((props, ref) => (
+  <MuiPaper data-testid="mui-paper" ref={ref} {...props} />
+));
 
 export default Paper;
