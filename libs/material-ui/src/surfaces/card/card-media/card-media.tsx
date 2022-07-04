@@ -1,14 +1,11 @@
-import { Theme } from '@emotion/react';
-import { SxProps } from '@mui/material';
-import MuiCardMedia, { CardMediaClasses } from '@mui/material/CardMedia';
+import MuiCardMedia, {
+  CardMediaProps as MuiCardMediaProps,
+} from '@mui/material/CardMedia';
+import { ElementType } from 'react';
 
-/* eslint-disable-next-line */
-export interface CardMediaProps {
-  children?: React.ReactNode;
-  classes?: Partial<CardMediaClasses>;
-  image?: string;
-  src?: string;
-  sx?: SxProps<Theme>;
+export interface CardMediaProps extends MuiCardMediaProps {
+  height?: string | number;
+  component?: ElementType;
 }
 
 export function CardMedia(props: CardMediaProps) {

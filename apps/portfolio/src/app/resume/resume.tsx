@@ -1,7 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import { styled } from '@mui/material';
-import { Container, Stack } from '@daidarabotchi/material-ui';
+import {
+  Box,
+  Container,
+  Divider,
+  DividerProps,
+  IconButton,
+  Stack,
+  Typography,
+} from '@daidarabotchi/material-ui';
+import PrintIcon from '@mui/icons-material/Print';
 import {
   Footer,
   FooterProps,
@@ -9,10 +17,12 @@ import {
   HeaderProps,
   ProjectExperience,
   ProjectExperienceProps,
+  usePrint,
   WorkExperience,
   WorkExperienceProps,
 } from '@daidarabotchi/portfolio-lib';
-import { Key } from 'react';
+import { styled } from '@mui/material';
+import { Key, useEffect } from 'react';
 
 type WrappedElement<TType> = { id: Key; element: TType };
 const lorem =
@@ -52,7 +62,10 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [
       title: 'Project Alpha',
       subheader: 'The first project',
       content: lorem,
-      media: ['/test-assets/jpg/test1.jpg', '/test-assets/jpg/test2.jpg'],
+      media: [
+        '/assets/test-assets/jpg/test1.jpg',
+        '/assets/test-assets/jpg/test2.jpg',
+      ],
       startDate: (() => {
         const tmp = new Date();
         tmp.setFullYear(tmp.getFullYear() - 5);
@@ -72,7 +85,7 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [
       title: 'Project Beta',
       subheader: 'The second project',
       content: lorem,
-      media: ['/test-assets/jpg/test3.jpg'],
+      media: ['/assets/test-assets/jpg/test3.jpg'],
       startDate: (() => {
         const tmp = new Date();
         tmp.setFullYear(tmp.getFullYear() - 4);
@@ -114,30 +127,80 @@ const projectExperiences: WrappedElement<ProjectExperienceProps>[] = [
 
 const footerProps: FooterProps = {};
 
-const SpacedContainer = styled(Container)({
-  marginTop: 12,
+const BoldDivider = styled(Divider)<DividerProps>({
+  borderBottomWidth: 'medium',
   marginBottom: 12,
 });
 
 export function Resume() {
+  const { print, setPrint } = usePrint();
+
+  useEffect(() => {
+    window.onafterprint = () => {
+      setPrint(false);
+    };
+    return () => {
+      window.onafterprint = null;
+    };
+  }, [setPrint]);
+
+  useEffect(() => {
+    if (print) {
+      window.print();
+    }
+  }, [print]);
+
   return (
     <Container itemScope itemType="https://schema.org/Person">
-      <Header {...headerProps} />
-      <br />
-      <Stack spacing={2}>
-        {workExperiences.map((experience) => (
-          <WorkExperience key={experience.id} compact {...experience.element} />
-        ))}
-      </Stack>
-      <Stack spacing={2}>
-        {projectExperiences.map((experience) => (
-          <ProjectExperience
-            key={experience.id}
-            compact
-            {...experience.element}
-          />
-        ))}
-      </Stack>
+      <Box sx={{ display: 'flex' }}>
+        <Box sx={{ width: '100%' }}>
+          <Header {...headerProps} />
+        </Box>
+        <Box>
+          {!print && (
+            <IconButton
+              onClick={() => {
+                setPrint((cur) => !cur);
+              }}
+            >
+              <PrintIcon />
+            </IconButton>
+          )}
+        </Box>
+      </Box>
+      <BoldDivider />
+      {workExperiences.length > 0 && (
+        <Stack
+          spacing={2}
+          divider={print ? <Divider variant="inset" /> : undefined}
+        >
+          <Typography variant="h4">Professional Experience</Typography>
+          {workExperiences.map((experience) => (
+            <WorkExperience
+              key={experience.id}
+              print={print}
+              compact
+              {...experience.element}
+            />
+          ))}
+        </Stack>
+      )}
+      {projectExperiences.length > 0 && (
+        <Stack
+          spacing={2}
+          divider={print ? <Divider variant="inset" /> : undefined}
+        >
+          <Typography variant="h4">Project Experience</Typography>
+          {projectExperiences.map((experience) => (
+            <ProjectExperience
+              key={experience.id}
+              print={print}
+              compact
+              {...experience.element}
+            />
+          ))}
+        </Stack>
+      )}
       <Footer {...footerProps} />
     </Container>
   );
