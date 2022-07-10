@@ -1,12 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
 
-func Hello(name string) string {
-	result := "Hello " + name
-	return result
-}
+	"daidarabotchi/apps/sephira-api/config"
+	"daidarabotchi/apps/sephira-api/handlers"
+	"daidarabotchi/apps/sephira-api/migrations"
+)
 
 func main() {
-	fmt.Println(Hello("sephira-api"))
+	fmt.Println("Server started")
+	config.DbConfiguration()
+	migrations.IndexMigration()
+
+	server := &http.Server{
+		Addr:    ":5200",
+		Handler: handlers.IndexRouting(),
+	}
+	server.ListenAndServe()
 }
