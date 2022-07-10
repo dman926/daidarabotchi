@@ -45,10 +45,8 @@ jobs:
         run: echo "::set-output name=deploy::$(./scripts/isequal.sh \"New England Keeshonds\" \"${{ steps.tagname.outputs.tagname }})\""
       - name: Build New England Keeshonds
         run: pnpm exec nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
-        if: steps.nek_deploy_needed.outputs.deploy == 1
       - name: Deploy New England Keeshonds
         uses: FirebaseExtended/action-hosting-deploy@276388dd6c2cde23455b30293105cc866c22282d # ratchet:FirebaseExtended/action-hosting-deploy@v0
-        if: steps.nek_deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
@@ -61,10 +59,8 @@ jobs:
         run: echo "::set-output name=deploy::$(./scripts/isequal.sh \"Portfolio\" \"${{ steps.tagname.outputs.tagname }})\""
       - name: Build Portfolio
         run: pnpm exec nx run portfolio:build:production && mv dist/apps/portfolio apps/portfolio/out
-        if: steps.portfolio_deploy_needed.outputs.deploy == 1
       - name: Deploy Portfolio
         uses: FirebaseExtended/action-hosting-deploy@276388dd6c2cde23455b30293105cc866c22282d # ratchet:FirebaseExtended/action-hosting-deploy@v0
-        if: steps.portfolio_deploy_needed.outputs.deploy == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO }}'
