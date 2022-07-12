@@ -21,6 +21,18 @@
     },
     "lint": {
       "executor": "@nx-go/nx-go:lint"
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "tags": ["sephira/api:latest", "sephira/api:v1"]
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
     }
   },
   "tags": []
