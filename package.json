@@ -81,6 +81,8 @@
     "@emotion/react": "11.9.3",
     "@emotion/styled": "11.9.3",
     "@firebase/app-compat": "^0.1.29",
+    "@mdx-js/mdx": "^2.1.2",
+    "@mdx-js/react": "^2.1.2",
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "5.0.0-alpha.88",
     "@mui/material": "^5.8.7",
