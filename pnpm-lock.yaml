@@ -10,6 +10,8 @@ importers:
       '@emotion/styled': 11.9.3
       '@firebase/app-compat': ^0.1.30
       '@firebase/app-types': ^0.7.0
+      '@grpc/grpc-js': ^1.6.8
+      '@grpc/proto-loader': ^0.7.0
       '@mdx-js/react': ^2.1.2
       '@mui/icons-material': ^5.8.4
       '@mui/lab': 5.0.0-alpha.88
@@ -112,6 +114,8 @@ importers:
       '@emotion/react': 11.9.3_szkdlbnthht4v3jvm76fn7u6na
       '@emotion/styled': 11.9.3_y2x62d5bbinncmisoeyv36jqse
       '@firebase/app-compat': 0.1.30
+      '@grpc/grpc-js': 1.6.8
+      '@grpc/proto-loader': 0.7.0
       '@mdx-js/react': 2.1.2_react@18.2.0
       '@mui/icons-material': 5.8.4_firrc3iytazs66dglnpftflsmu
       '@mui/lab': 5.0.0-alpha.88_aww3tr7d6n7ut6p7qs5mu4zqa4
@@ -11136,7 +11140,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -22879,20 +22883,6 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
-    dev: true
-
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution:
-      {
-        integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==,
-      }
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
     dev: true
 
   /promise-polyfill/8.1.3:
