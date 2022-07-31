@@ -1,9 +1,6 @@
-import { createStore } from '@daidarabotchi/sephira-front-end-lib';
+import { StoreProvider } from '@daidarabotchi/sephira-front-end-lib';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-
-import { Provider } from 'react-redux';
-import { environment } from './environments/environment';
 
 import { App } from './app/app';
 
@@ -12,8 +9,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <Provider store={createStore(environment.production)}>
+    <StoreProvider>
       <App />
-    </Provider>
+    </StoreProvider>
   </StrictMode>
 );
