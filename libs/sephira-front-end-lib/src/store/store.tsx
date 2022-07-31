@@ -3,7 +3,7 @@ import { UserSlice } from './slices';
 export interface Store {
   user: UserSlice;
 }
-// useSelector: <TState = unknown, Selected = unknown>(selector: (state: TState) => Selected, equalityFn?: EqualityFn<Selected> | undefined) => Selected
+
 const initialStoreValue: Store = {
   user: new UserSlice(),
 };
