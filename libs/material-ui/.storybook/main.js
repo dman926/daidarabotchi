@@ -17,6 +17,9 @@ module.exports = {
     '@storybook/addon-a11y',
     '@react-theming/storybook-addon',
   ],
+  features: {
+    previewMdx2: true,
+  },
 
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js

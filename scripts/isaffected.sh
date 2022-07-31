@@ -2,9 +2,9 @@
 
 IFS=', '
 str=$(pnpm exec nx print-affected --select=projects)
-read -rasplitIFS<<< "$str"
+read -rasplitIFS <<<"$str"
 for word in "${splitIFS[@]}"; do
-  if [[ $word == $1 ]]; then
+  if [[ "$word" == "$1" ]]; then
     IFS=''
     echo "1"
     exit 0
