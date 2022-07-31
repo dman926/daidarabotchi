@@ -1,0 +1,21 @@
+version: '3'
+services:
+  sephira-db:
+    container_name: sephira-db
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=${NX_SEPHIRA_DB_PASSWORD}
+
+  sephira-db-migrate:
+    container_name: sephira-db-migrate
+    image: migrate/migrate
+    restart: on-failure:5
+    command: ['-path', '/migrations', '-database', '${NX_SEPHIRA_DB_URL}', 'up']
+    volumes:
+      - ./migrations:/migrations
+    links:
+      - sephira-db
+    depends_on:
+      - sephira-db
