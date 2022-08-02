@@ -6,3 +6,5 @@ export class UserSlice extends Slice<User> {
     super(initialValue);
   }
 }
+
+export default UserSlice;

@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react';
 import { UserSlice } from './slices';
+
 export interface Store {
   user: UserSlice;
 }
@@ -10,7 +11,7 @@ const initialStoreValue: Store = {
 
 const StoreContext = createContext<Store>(initialStoreValue);
 
-export const useStore = <Selected extends unknown>(
+export const useStore = <Selected,>(
   selector: (store: Store) => Selected
 ): Selected => {
   const store = useContext(StoreContext);
