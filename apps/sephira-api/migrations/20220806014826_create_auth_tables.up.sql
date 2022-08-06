@@ -1,7 +1,7 @@
 BEGIN;
 CREATE TABLE "user"(
   id VARCHAR(64) NOT NULL,
-  passwd CHAR(60) NOT NULL,
+  crypt CHAR(60) NOT NULL,
   CONSTRAINT pk_user PRIMARY KEY (id)
 );
 CREATE TABLE "user_claims"(
