@@ -12,7 +12,7 @@ services:
     container_name: sephira-db-migrate
     image: migrate/migrate
     restart: on-failure:5
-    command: ['-path', '/migrations', '-database', '${NX_SEPHIRA_DB_URL}', '${NX_SEPHIRA_DB_MIGRATE_DIR}', '${NX_SEPHIRA_DB_MIGRATE_STEP}']
+    command: ['-path', '/migrations', '-database', '${NX_SEPHIRA_DB_DOCKER_URL}', '${NX_SEPHIRA_DB_MIGRATE_DIR}', '${NX_SEPHIRA_DB_MIGRATE_STEP}']
     volumes:
       - ./migrations:/migrations
     links:

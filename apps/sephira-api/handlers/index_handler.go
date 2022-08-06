@@ -9,7 +9,7 @@ import (
 func IndexRouting() *mux.Router {
 	r := mux.NewRouter()
 	// User
-	r.HandleFunc("/ws", UserHandler).Methods("GET")
+	r.HandleFunc("/user/ws", UserWSHandler).Methods("GET")
 	// Middleware
 	middleware.IndexMiddleware(r)
 	return r

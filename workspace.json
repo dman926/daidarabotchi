@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "firebase-react": "libs/firebase-react",
+    "gorilla-websocket-manager": "libs/gorilla-websocket-manager",
     "material-ui": "libs/material-ui",
     "material-ui-e2e": "apps/material-ui-e2e",
     "new-england-keeshonds": "apps/new-england-keeshonds",

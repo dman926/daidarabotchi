@@ -9,7 +9,7 @@ import (
 
 var upgrader = websocket.Upgrader{}
 
-func UserHandler(w http.ResponseWriter, r *http.Request) {
+func UserWSHandler(w http.ResponseWriter, r *http.Request) {
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println("User WS upgrade failed:", err)
