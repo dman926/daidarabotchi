@@ -3,9 +3,6 @@ module daidarabotchi
 go 1.18
 
 require (
-	github.com/golang-jwt/jwt/v4 v4.4.2
-	github.com/gorilla/mux v1.8.0
-	github.com/gorilla/websocket v1.5.0
 	github.com/jackc/pgx/v4 v4.16.1
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa
 )

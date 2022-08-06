@@ -11,6 +11,7 @@ import (
 
 var dbPool *pgxpool.Pool
 
+// I might use Redis in the future
 // var redisClient *redis.Client
 
 func DbConfigure() {
