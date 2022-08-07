@@ -19,3 +19,11 @@ services:
       - sephira-db
     depends_on:
       - sephira-db
+
+  sephira-envoy:
+    container_name: sephira-envoy
+    image: envoyproxy/envoy-dev
+    ports:
+      - "${NX_SEPHIRA_HTTP_PROXY_PORT}:${NX_SEPHIRA_HTTP_PROXY_PORT}"
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
