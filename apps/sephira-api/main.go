@@ -11,10 +11,16 @@ import (
 	"daidarabotchi/apps/sephira-api/db"
 	"daidarabotchi/apps/sephira-api/services/user"
 
+	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
 )
 
 func main() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Println("No .env file located")
+	}
+
 	// Start up
 	log.Println("SEPHIRA starting up...")
 	db.DbConfigure()

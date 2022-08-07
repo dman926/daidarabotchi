@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/jackc/pgx/v4 v4.16.1
+	github.com/joho/godotenv v1.4.0
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa
 	google.golang.org/grpc v1.48.0
 	google.golang.org/protobuf v1.27.1
