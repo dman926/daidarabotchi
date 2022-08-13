@@ -39,5 +39,8 @@ export const useEffectOnce = (
         destroyFunc.current();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 };
+
+export default useEffectOnce;
