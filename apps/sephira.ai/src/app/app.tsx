@@ -1,23 +1,17 @@
-import {
-  fetchUser,
-  selectUser,
-  useAppDispatch,
-  useAppSelector,
-} from '@daidarabotchi/sephira-front-end-lib';
-import { useEffect } from 'react';
+import { useEffectOnce, useStore } from '@daidarabotchi/sephira-front-end-lib';
 
 export function App() {
-  const dispatch = useAppDispatch();
-  const { logInError, firstName } = useAppSelector(selectUser);
+  const user = useStore((store) => store.user);
 
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
+  useEffectOnce(() => {
+    user.subscribe((val) => {
+      console.log(val);
+    });
+  });
 
   return (
     <div data-testid="sephira-wrapper">
-      <p>{firstName}</p>
-      <p>{logInError?.message}</p>
+      <p>test</p>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { render, cleanup, screen, act } from '../utils/testUtils';
+import { render, cleanup, screen } from '@testing-library/react';
 
 import { App } from './app';
 
@@ -8,9 +8,7 @@ describe('App', () => {
   });
 
   it('should render successfully', async () => {
-    await act(() => {
-      render(<App />);
-    });
+    render(<App />);
     expect(screen.getByTestId('sephira-wrapper')).toBeInTheDocument();
   });
 });

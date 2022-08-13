@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package user;
+option go_package = "./services/user";
+
+message UserClaim {
+  string name = 1;
+  string value = 2;
+}
+
+message User {
+  string id = 1;
+  repeated UserClaim claims = 2;
+}
+
+message UserRequest {
+  string username = 1;
+  string passkey = 2;
+}
+
+service UserService {
+  rpc FetchUser(UserRequest) returns (stream User) {}
+}
