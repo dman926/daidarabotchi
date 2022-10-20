@@ -5,7 +5,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/web:rollup",
+      "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/portfolio-lib",
@@ -33,7 +33,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/portfolio-lib"],
+      "outputs": ["{workspaceRoot}/coverage/libs/portfolio-lib"],
       "options": {
         "jestConfig": "libs/portfolio-lib/jest.config.ts",
         "passWithNoTests": true

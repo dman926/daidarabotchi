@@ -15,7 +15,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/new-england-keeshonds-lib"],
+      "outputs": ["{workspaceRoot}/coverage/libs/new-england-keeshonds-lib"],
       "options": {
         "jestConfig": "libs/new-england-keeshonds-lib/jest.config.ts",
         "passWithNoTests": true
