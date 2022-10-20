@@ -60,6 +60,7 @@
     "eslint-plugin-react": "7.31.8",
     "eslint-plugin-react-hooks": "4.6.0",
     "jest": "28.1.3",
+    "jest-environment-jsdom": "^29.2.1",
     "jest-localstorage-mock": "^2.4.22",
     "jsonc-eslint-parser": "^2.1.0",
     "kill-port": "^2.0.1",
