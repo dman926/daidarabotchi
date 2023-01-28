@@ -8,9 +8,7 @@
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
-    },
-    ".eslintrc.json": "*",
-    "go.mod": "*"
+    }
   },
   "tasksRunnerOptions": {
     "default": {
@@ -21,7 +19,6 @@
       }
     }
   },
-  "plugins": ["@nx-go/nx-go"],
   "generators": {
     "@nrwl/react": {
       "application": {
@@ -37,10 +34,6 @@
         "linter": "eslint"
       }
     }
-  },
-  "defaultProject": "new-england-keeshonds",
-  "cli": {
-    "defaultCollection": "@nrwl/react"
   },
   "targetDefaults": {
     "build": {

@@ -24,11 +24,7 @@
       "@daidarabotchi/portfolio-lib": ["libs/portfolio-lib/src/index.ts"],
       "@daidarabotchi/portfolio-lib/interfaces": [
         "libs/portfolio-lib/src/interfaces/index.ts"
-      ],
-      "@daidarabotchi/sephira-front-end-lib": [
-        "libs/sephira-front-end-lib/src/index.ts"
-      ],
-      "@dman926/nx-python3": ["libs/nx-python3/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
