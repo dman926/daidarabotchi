@@ -36,7 +36,7 @@ jobs:
       # NEW ENGLAND KEESHONDS
       - name: Check if deploy is needed
         id: nek_deploy_needed
-        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds-app)"
+        run: echo "deploy=$(./scripts/isaffected.sh new-england-keeshonds-app)"" >> $GITHUB_OUTPUT
       - name: Build New England Keeshonds
         run: |
           pnpm exec nx run new-england-keeshonds-app:build:production
