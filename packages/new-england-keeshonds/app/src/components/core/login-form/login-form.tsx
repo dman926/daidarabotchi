@@ -13,7 +13,7 @@ function FormikTextField({ label, ...props }: any) {
 const VerticalBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-})
+});
 
 export interface LoginFormProps {
   onSubmit: (

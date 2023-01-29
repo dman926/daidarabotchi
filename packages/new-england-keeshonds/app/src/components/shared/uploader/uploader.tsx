@@ -7,12 +7,7 @@ import {
   useState,
   useCallback,
 } from 'react';
-import {
-  Box,
-  CircularProgress,
-  IconButton,
-  Typography,
-} from '@mui/material';
+import { Box, CircularProgress, IconButton, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 export interface UploaderProps {
