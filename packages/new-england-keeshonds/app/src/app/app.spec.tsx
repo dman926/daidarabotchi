@@ -1,15 +1,10 @@
-import { render } from '@testing-library/react';
+import { renderWithProvider } from '../utils/testUtils';
 
 import App from './app';
 
 describe('App', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<App />);
+    const { baseElement } = renderWithProvider(<App />);
     expect(baseElement).toBeTruthy();
-  });
-
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(<App />);
-    expect(getByText(/Welcome new-england-keeshonds-app/gi)).toBeTruthy();
   });
 });
