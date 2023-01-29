@@ -13,26 +13,22 @@ env:
   NX_NEK_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
   NX_NEK_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
   NX_NEK_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.NEK_FIREBASE_APPCHECK_DEBUG_TOKEN }}
-  NX_PORTFOLIO_FIREBASE_CONFIG: ${{ secrets.PORTFOLIO_FIREBASE_CONFIG }}
-  NX_PORTFOLIO_FIREBASE_ADMIN_SDK: ${{ secrets.PORTFOLIO_FIREBASE_ADMIN_SDK }}
-  NX_PORTFOLIO_RECAPTCHA_V3_SITE_KEY: ${{ secrets.PORTFOLIO_RECAPTCHA_V3_SITE_KEY }}
-  NX_PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN }}
 jobs:
   main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     steps:
-      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # pin@v3
         with:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@177b48373c6dc583ce0d9257ffb484bdd232fedf # pin@v3
       - name: Setup PNPM
-        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # pin@v2
         with:
           version: latest
       - name: Setup node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # pin@v3
         with:
           node-version: '16'
           cache: 'pnpm'
@@ -54,18 +50,18 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # pin@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@177b48373c6dc583ce0d9257ffb484bdd232fedf # pin@v3
       - name: Setup PNPM
-        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # pin@v2
         with:
           version: latest
       - name: Setup node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # pin@v3
         with:
           node-version: '16'
           cache: 'pnpm'
@@ -89,15 +85,15 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        agent: [1, 2, 3]
+        agent: [ 1, 2, 3 ]
     steps:
-      - uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # pin@v3
       - name: Setup PNPM
-        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # pin@v2
         with:
           version: latest
       - name: Setup node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # pin@v3
         with:
           node-version: '16'
           cache: 'pnpm'
