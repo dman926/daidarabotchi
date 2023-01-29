@@ -4,8 +4,8 @@ import { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { FirebaseOptions } from 'firebase/app';
 
-const firebaseConfig = import.meta.env.VITE_FIREBASE_CONFIG
-  ? (JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG) as FirebaseOptions)
+const firebaseConfig = import.meta.env.VITE_NEK_FIREBASE_CONFIG
+  ? (JSON.parse(import.meta.env.VITE_NEK_FIREBASE_CONFIG) as FirebaseOptions)
   : false;
 
 function Wrapper({ children }: { children: ReactNode }) {

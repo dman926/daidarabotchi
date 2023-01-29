@@ -23,20 +23,20 @@ const theme = createTheme({
   },
 });
 
-if (import.meta.env.VITE_FIREBASE_APPCHECK_DEGUG_TOKEN !== undefined) {
+if (import.meta.env.VITE_NEK_FIREBASE_APPCHECK_DEGUG_TOKEN !== undefined) {
   // eslint-disable-next-line
   (window as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
-    import.meta.env.VITE_FIREBASE_APPCHECK_DEGUG_TOKEN === 'true'
+    import.meta.env.VITE_NEK_FIREBASE_APPCHECK_DEGUG_TOKEN === 'true'
       ? true
-      : import.meta.env.VITE_FIREBASE_APPCHECK_DEGUG_TOKEN;
+      : import.meta.env.VITE_NEK_FIREBASE_APPCHECK_DEGUG_TOKEN;
 }
 
-const firebaseConfig = import.meta.env.VITE_FIREBASE_CONFIG
-  ? (JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG) as FirebaseOptions)
+const firebaseConfig = import.meta.env.VITE_NEK_FIREBASE_CONFIG
+  ? (JSON.parse(import.meta.env.VITE_NEK_FIREBASE_CONFIG) as FirebaseOptions)
   : false;
 
-const firebaseAppCheckProvider = import.meta.env.VITE_RECAPTCHA_V3_SITE_KEY
-  ? new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_V3_SITE_KEY)
+const firebaseAppCheckProvider = import.meta.env.VITE_NEK_RECAPTCHA_V3_SITE_KEY
+  ? new ReCaptchaV3Provider(import.meta.env.VITE_NEK_RECAPTCHA_V3_SITE_KEY)
   : undefined;
 
 const root = ReactDOM.createRoot(
