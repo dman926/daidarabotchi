@@ -1,15 +1,4 @@
 {
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "daidarabotchi",
-  "affected": {
-    "defaultBase": "pre"
-  },
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    }
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -19,25 +8,32 @@
       }
     }
   },
+  "extends": "nx/presets/npm.json",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "generators": {
     "@nrwl/react": {
       "application": {
         "style": "scss",
         "linter": "eslint",
+        "bundler": "vite",
         "babel": true
-      },
-      "component": {
-        "style": "scss"
       },
       "library": {
         "style": "scss",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "vitest"
+      },
+      "component": {
+        "style": "scss"
       }
     }
   },
   "targetDefaults": {
-    "build": {
-      "dependsOn": ["^build"]
+    "lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+    },
+    "test": {
+      "inputs": ["default", "^default"]
     }
   }
 }

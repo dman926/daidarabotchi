@@ -14,14 +14,8 @@
 
 - New England Keeshonds [![Status: alpha](https://img.shields.io/badge/Status-alpha-red.svg)](https://shields.io/)
   - A react app with Google Firebase for infrusture to help collect electronic payments for puppies.
-- SEPHIRA [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-darkred.svg)](https://shields.io/)
-  - A personal assistant web app for anything I need to easily access at all times.
-- nx-python3 [![Status: beta](https://img.shields.io/badge/Status-beta-yellow.svg)](https://shields.io/)
-  - An NX plugin for using python projects.
 - firebase-react [![Status: beta](https://img.shields.io/badge/Status-beta-yellow.svg)](https://shields.io/)
   - A react context based provider for hosting a global firebase object.
-- portfolio [![Status: pre alpha](https://img.shields.io/badge/Status-pre%20alpha-darkred.svg)](https://shields.io/)
-  - A firebase and react based web portfolio.
 
 ## Licensing
 

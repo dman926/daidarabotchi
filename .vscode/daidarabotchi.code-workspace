@@ -5,40 +5,16 @@
       "path": "../"
     },
     {
-      "name": "material-ui-e2e",
-      "path": "../apps/material-ui-e2e"
+      "name": "",
+      "path": "../packages/firebase-react"
+    }
+    {
+      "name": "New England Keeshonds",
+      "path": "../packages/new-england-keeshonds/app"
     },
     {
-      "name": "new-england-keeshonds",
-      "path": "../apps/new-england-keeshonds"
-    },
-    {
-      "name": "new-england-keeshonds-e2e",
-      "path": "../apps/new-england-keeshonds-e2e"
-    },
-    {
-      "name": "nx-python-e2e",
-      "path": "../apps/nx-python-e2e"
-    },
-    {
-      "name": "sephira.ai",
-      "path": "../apps/sephira.ai-e2e"
-    },
-    {
-      "name": "material-ui",
-      "path": "../libs/material-ui"
-    },
-    {
-      "name": "new-england-keeshonds-lib",
-      "path": "../libs/new-england-keeshonds-lib"
-    },
-    {
-      "name": "nx-python",
-      "path": "../libs/nx-python"
-    },
-    {
-      "name": "sephira-front-end-lib",
-      "path": "../libs/sephira-front-end-lib"
+      "name": "New England Keeshonds E2E",
+      "path": "../packages/new-england-keeshonds/app-e2e"
     }
   ],
   "settings": {
