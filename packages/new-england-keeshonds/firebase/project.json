@@ -1,0 +1,16 @@
+{
+  "name": "new-england-keeshonds-firebase",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/new-england-keeshonds/firebase/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/new-england-keeshonds/firebase/**/*.ts"]
+      }
+    }
+  },
+  "tags": ["new-england-keeshonds"]
+}

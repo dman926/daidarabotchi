@@ -33,7 +33,10 @@ jobs:
         run: pnpm install
         # NEW ENGLAND KEESHONDS
       - name: Build New England Keeshonds
-        run: pnpm exec nx run new-england-keeshonds-app:build:production && mv dist/packages/new-england-keeshonds/app packages/new-england-keeshonds/app/out
+        run: |
+          pnpm exec nx run new-england-keeshonds-app:build:production
+          mkdir -p packages/new-england-keeshonds/firebase/public
+          mv dist/packages/new-england-keeshonds/app packages/new-england-keeshonds/firebase/public
       - name: Deploy New England Keeshonds
         uses: FirebaseExtended/action-hosting-deploy@4d0d0023f1d92b9b7d16dda64b3d7abd2c98974b # pin@v0
         with:

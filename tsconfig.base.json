@@ -6,7 +6,10 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "firebase-react": ["packages/firebase-react/src/index.ts"]
+      "firebase-react": ["packages/firebase-react/src/index.ts"],
+      "new-england-keeshonds/firebase": [
+        "packages/new-england-keeshonds/firebase/src/index.ts"
+      ]
     }
   }
 }
