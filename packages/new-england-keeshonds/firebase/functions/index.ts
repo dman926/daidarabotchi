@@ -1,10 +1,11 @@
-/* eslint-disable import/prefer-default-export */
-
 import * as functions from 'firebase-functions';
-import { initializeApp } from 'firebase-admin/app';
+import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import serviceAccount from '../new-england-keeshonds-firebase-adminsdk.json';
 
-initializeApp();
+initializeApp({
+  credential: cert(serviceAccount as ServiceAccount),
+});
 
 const adminEmails = ['tinamomof7@charter.net', 'dman992266@gmail.com'];
 interface CustomClaims {

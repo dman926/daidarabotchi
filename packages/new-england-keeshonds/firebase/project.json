@@ -4,6 +4,22 @@
   "sourceRoot": "packages/new-england-keeshonds/firebase/src",
   "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "packages/new-england-keeshonds/firebase/functions/lib",
+        "main": "packages/new-england-keeshonds/firebase/functions/index.ts",
+        "tsConfig": "packages/new-england-keeshonds/firebase/tsconfig.lib.json"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "packages/new-england-keeshonds/firebase",
+        "command": "firebase emulators:start"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
