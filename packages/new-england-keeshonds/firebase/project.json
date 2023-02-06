@@ -1,0 +1,34 @@
+{
+  "name": "new-england-keeshonds-firebase",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/new-england-keeshonds/firebase/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/rollup:rollup",
+      "options": {
+        "outputPath": "packages/new-england-keeshonds/firebase/functions/lib",
+        "main": "packages/new-england-keeshonds/firebase/functions/index.ts",
+        "tsConfig": "packages/new-england-keeshonds/firebase/functions/tsconfig.lib.json",
+        "project": "packages/new-england-keeshonds/firebase/functions",
+        "compiler": "swc"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "packages/new-england-keeshonds/firebase",
+        "command": "firebase emulators:start"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/new-england-keeshonds/firebase/**/*.ts"]
+      }
+    }
+  },
+  "tags": ["new-england-keeshonds"]
+}

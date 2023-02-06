@@ -1,0 +1,74 @@
+{
+  "name": "new-england-keeshonds-frontend",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/new-england-keeshonds/frontend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/packages/new-england-keeshonds/frontend"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "new-england-keeshonds-frontend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "new-england-keeshonds-frontend:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "new-england-keeshonds-frontend:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "new-england-keeshonds-frontend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "new-england-keeshonds-frontend:build:development"
+        },
+        "production": {
+          "buildTarget": "new-england-keeshonds-frontend:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/packages/new-england-keeshonds/frontend"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../coverage/packages/new-england-keeshonds/frontend"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/new-england-keeshonds/frontend/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
