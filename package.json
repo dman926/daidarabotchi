@@ -2,12 +2,14 @@
   "name": "daidarabotchi",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {
-  },
+  "scripts": {},
   "private": true,
-  "dependencies": {
-  },
   "devDependencies": {
+    "@nrwl/node": "^15.6.3",
+    "@nrwl/nx-cloud": "^15.0.3",
+    "@nrwl/react": "^15.6.3",
+    "@nrwl/vite": "^15.6.3",
+    "@nrwl/workspace": "^15.6.3",
     "nx": "15.6.3",
     "prettier": "^2.6.2"
   }
