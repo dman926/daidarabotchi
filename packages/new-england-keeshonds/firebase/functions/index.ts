@@ -1,11 +1,7 @@
 import * as functions from 'firebase-functions';
-import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
-import serviceAccount from '../new-england-keeshonds-firebase-adminsdk.json';
+import * as admin from 'firebase-admin';
 
-initializeApp({
-  credential: cert(serviceAccount as ServiceAccount),
-});
+admin.initializeApp();
 
 const adminEmails = ['tinamomof7@charter.net', 'dman992266@gmail.com'];
 interface CustomClaims {
@@ -26,7 +22,7 @@ export const processSignUp = functions.auth.user().onCreate(async (user) => {
   });
   if (claims) {
     try {
-      await getAuth().setCustomUserClaims(user.uid, claims);
+      await admin.auth().setCustomUserClaims(user.uid, claims);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);

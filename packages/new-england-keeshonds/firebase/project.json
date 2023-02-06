@@ -5,13 +5,11 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/rollup:rollup",
+      "executor": "@nrwl/js:tsc",
       "options": {
         "outputPath": "packages/new-england-keeshonds/firebase/functions/lib",
         "main": "packages/new-england-keeshonds/firebase/functions/index.ts",
-        "tsConfig": "packages/new-england-keeshonds/firebase/functions/tsconfig.lib.json",
-        "project": "packages/new-england-keeshonds/firebase/functions",
-        "compiler": "swc"
+        "tsConfig": "packages/new-england-keeshonds/firebase/functions/tsconfig.lib.json"
       }
     },
     "serve": {

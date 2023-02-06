@@ -3,6 +3,6 @@
   "engines": {
     "node": "16"
   },
-  "main": "lib/functions/index.js",
+  "main": "index.ts",
   "private": true
 }
