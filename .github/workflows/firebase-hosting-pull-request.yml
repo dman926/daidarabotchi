@@ -8,27 +8,24 @@ on:
       - main
 
 env:
-  NX_PORTFOLIO_FIREBASE_CONFIG: ${{ secrets.PORTFOLIO_FIREBASE_CONFIG }}
-  NX_PORTFOLIO_FIREBASE_ADMIN_SDK: ${{ secrets.PORTFOLIO_FIREBASE_ADMIN_SDK }}
-  NX_PORTFOLIO_RECAPTCHA_V3_SITE_KEY: ${{ secrets.PORTFOLIO_RECAPTCHA_V3_SITE_KEY }}
-  NX_PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.PORTFOLIO_FIREBASE_APPCHECK_DEBUG_TOKEN }}
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout [main]
-        uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # ratchet:actions/checkout@v2
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # pin@v3
         with:
           fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@e698d52609f0f36b4f79fa52afdae222e3255da7 # ratchet:nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@177b48373c6dc583ce0d9257ffb484bdd232fedf # pin@v3
       - name: Setup PNPM
-        uses: pnpm/action-setup@10693b3829bf86eb2572aef5f3571dcf5ca9287d # ratchet:pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@c3b53f6a16e57305370b4ae5a540c2077a1d50dd # pin@v2
         with:
-          version: 7.0.0
+          version: latest
       - name: Setup node
-        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # ratchet:actions/setup-node@v2
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # pin@v3
         with:
           node-version: '16'
           cache: 'pnpm'
@@ -37,21 +34,23 @@ jobs:
       # NEW ENGLAND KEESHONDS
       - name: Check if deploy is needed
         id: nek_deploy_needed
-        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds)"
+        run: echo "DEPLOY=$(./scripts/isaffected.sh new-england-keeshonds)" >> $GITHUB_OUTPUT
       - name: Build New England Keeshonds
-        run: pnpm exec nx run new-england-keeshonds:build:production && mv dist/apps/new-england-keeshonds apps/new-england-keeshonds/out
+        run: |
+          pnpm exec nx run new-england-keeshonds-frontend:build:production
+          mv dist/packages/new-england-keeshonds/frontend packages/new-england-keeshonds/firebase/public
         env:
           NX_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
           NX_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
           NX_FIREBASE_APPCHECK_DEBUG_TOKEN: ${{ secrets.NEK_FIREBASE_APPCHECK_DEBUG_TOKEN }}
-        if: steps.nek_deploy_needed.outputs.deploy == 1
+        if: steps.nek_deploy_needed.outputs.DEPLOY == 1
       - name: Deploy New England Keeshonds
-        uses: FirebaseExtended/action-hosting-deploy@276388dd6c2cde23455b30293105cc866c22282d # ratchet:FirebaseExtended/action-hosting-deploy@v0
-        if: steps.nek_deploy_needed.outputs.deploy == 1
+        uses: FirebaseExtended/action-hosting-deploy@4d0d0023f1d92b9b7d16dda64b3d7abd2c98974b # pin@v0
+        if: steps.nek_deploy_needed.outputs.DEPLOY == 1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
           projectId: new-england-keeshonds
-          entryPoint: apps/new-england-keeshonds
+          entryPoint: packages/new-england-keeshonds/firebase
         env:
           NX_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
