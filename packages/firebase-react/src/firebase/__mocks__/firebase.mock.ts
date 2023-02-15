@@ -2,15 +2,16 @@ import type { FirebaseApp } from 'firebase/app';
 import type { Analytics } from 'firebase/analytics';
 import type { Auth } from 'firebase/auth';
 import type { Firestore } from 'firebase/firestore';
-import type { FirebaseStorage as Storage } from 'firebase/storage';
+import type { FirebaseStorage as Storage, ListResult, StorageReference } from 'firebase/storage';
 import type { Functions } from 'firebase/functions';
 import type { AppCheck } from 'firebase/app-check';
+import type { vi as VitestUtils } from 'vitest';
 
 export const mockApp = () => ({
   FirebaseApp: {},
   initializeApp: vi.fn(() => ({} as FirebaseApp)),
   FirebaseOptions: {},
-})
+});
 
 export const mockAnalytics = () => ({
   isSupported: vi.fn(() => Promise.resolve(true)),
@@ -30,6 +31,8 @@ export const mockFirestore = () => ({
 
 export const mockStorage = () => ({
   getStorage: vi.fn(() => ({} as Storage)),
+  ref: vi.fn(() => ({} as StorageReference)),
+  listAll: vi.fn(() => Promise.resolve({} as ListResult)),
   FirebaseStorage: {},
 });
 
@@ -54,4 +57,14 @@ export const mockFirebaseOptions = {
   messagingSenderId: 'test_messagingSenderId',
   appId: 'test_appId',
   measurementId: 'test_measurementID',
+};
+
+export const mockFirebase = (vi: typeof VitestUtils) => {
+  vi.doMock('firebase/app', mockApp);
+  vi.doMock('firebase/analytics', mockAnalytics);
+  vi.doMock('firebase/auth', mockAuth);
+  vi.doMock('firebase/firestore', mockFirestore);
+  vi.doMock('firebase/storage', mockStorage);
+  vi.doMock('firebase/functions', mockFunctions);
+  vi.doMock('firebase/app-check', mockAppCheck);
 };

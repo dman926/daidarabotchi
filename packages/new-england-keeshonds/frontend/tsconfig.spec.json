@@ -6,6 +6,8 @@
   },
   "include": [
     "vite.config.ts",
+    "vitest.setup.ts",
+    "src/utils/testUtils.tsx",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.tsx",
