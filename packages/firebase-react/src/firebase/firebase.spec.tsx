@@ -1,20 +1,43 @@
-import { ReactElement } from 'react';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { FirebaseProvider } from './firebase';
+import {
+  mockAnalytics,
+  mockApp,
+  mockAppCheck,
+  mockAuth,
+  mockFirebaseOptions,
+  mockFirestore,
+  mockFunctions,
+  mockStorage,
+} from './__mocks__/firebase.mock';
+vi.doMock('firebase/app', mockApp);
+vi.doMock('firebase/analytics', mockAnalytics);
+vi.doMock('firebase/auth', mockAuth);
+vi.doMock('firebase/firestore', mockFirestore);
+vi.doMock('firebase/storage', mockStorage);
+vi.doMock('firebase/functions', mockFunctions);
+vi.doMock('firebase/app-check', mockAppCheck);
+// eslint-disable-next-line import/first
+import { Firebase } from './firebase';
+// eslint-disable-next-line import/first
+import type { AppCheckProvider } from './firebase';
 
-// TOOD: Create mock for firebase packages to properly test class
+describe('Firebase class', () => {
+  let firebaseAppCheckProvider: AppCheckProvider;
 
-const renderWithProvider = (ui: ReactElement) =>
-  render(<FirebaseProvider firebaseOptions={false}>{ui}</FirebaseProvider>);
+  beforeAll(() => {
+    firebaseAppCheckProvider = {} as AppCheckProvider;
+  });
 
-describe('Firebase React', () => {
-  it('should generate a valid firebase object', () => {
-    const { baseElement } = renderWithProvider(
-      <h1 data-testid="test-h1">test</h1>
+  it('should initialize Firebase class properties correctly', () => {
+    const firebase = new Firebase(
+      mockFirebaseOptions,
+      firebaseAppCheckProvider
     );
-    expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('firebase-provider')).toBeInTheDocument();
-    expect(screen.getByTestId('test-h1'));
+
+    expect(firebase).toBeTruthy();
+    expect(firebase.app).toBeTruthy();
+    expect(firebase.auth).toBeTruthy();
+    expect(firebase.firestore).toBeTruthy();
+    expect(firebase.storage).toBeTruthy();
+    expect(firebase.functions).toBeTruthy();
   });
 });

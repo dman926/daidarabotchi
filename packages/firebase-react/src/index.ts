@@ -1,1 +1,1 @@
-export * from './firebase/firebase';
+export * from './firebase-context/firebase-context';
