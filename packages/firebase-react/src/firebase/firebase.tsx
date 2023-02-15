@@ -7,11 +7,11 @@ import {
   ReCaptchaEnterpriseProvider,
   CustomProvider,
 } from 'firebase/app-check';
-// import {
-//   isSupported as isAnalyticsSupported,
-//   getAnalytics,
-//   Analytics,
-// } from 'firebase/analytics';
+import {
+  isSupported as isAnalyticsSupported,
+  getAnalytics,
+  Analytics,
+} from 'firebase/analytics';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
 import { getStorage, FirebaseStorage as Storage } from 'firebase/storage';
@@ -27,7 +27,7 @@ export class Firebase {
 
   appCheck?: AppCheck;
 
-  // analytics?: Analytics;
+  analytics?: Analytics;
 
   auth: Auth;
 
@@ -42,11 +42,11 @@ export class Firebase {
     firebaseAppCheckProvider?: AppCheckProvider
   ) {
     this.app = initializeApp(firebaseConfig);
-    // isAnalyticsSupported().then((supported) => {
-    //   if (supported) {
-    //     this.analytics = getAnalytics(this.app);
-    //   }
-    // });
+    isAnalyticsSupported().then((supported) => {
+      if (supported) {
+        this.analytics = getAnalytics(this.app);
+      }
+    });
     if (firebaseAppCheckProvider) {
       this.appCheck = initializeAppCheck(this.app, {
         provider: firebaseAppCheckProvider,
