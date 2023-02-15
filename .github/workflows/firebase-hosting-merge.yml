@@ -51,5 +51,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
           projectId: new-england-keeshonds
           entryPoint: packages/new-england-keeshonds/firebase
+          channelId: live
         env:
           NX_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
