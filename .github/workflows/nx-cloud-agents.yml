@@ -53,15 +53,19 @@ jobs:
           AGENT_NAMES="47,Smith,Fury,Ash,J,Bond,Double-O-Seven,X,Stealth,Shadow,Nova,Triple-O,Octave,Lana,Max,Sydney,Vaughn,Sloane,Michael,Fiona,Sam,Ethan,Hunt,Bourne,Nash,McClane,Bryan,John,Jack,Martin,Jason,Frank,Eve,Villeneuve"
           AGENT_NAMES=($(echo "${AGENT_NAMES}" | tr "," "\n"))
           agents_to_choose=$((${#AGENT_NAMES[@]} > ${{inputs.number-of-agents}} ? ${{inputs.number-of-agents}} : ${#AGENT_NAMES[@]}))
-          random_agents=()
+          random_agents=""
           for ((i=0; i < agents_to_choose; i++)); do
             random_index=$((RANDOM % ${#AGENT_NAMES[@]}));
-            random_agents+=("${AGENT_NAMES[random_index]}");
+            random_agent=("${AGENT_NAMES[random_index]}")
+            if [ $i -eq 0 ]; then
+            random_agents="$random_agent"
+            else
+              random_agents="${random_agents},${random_agent}"
+            fi
             unset AGENT_NAMES[random_index];
-            AGENT_NAMES=("${AGENT_NAMES[@]}");
           done
-          echo $random_agents
-          AGENTS_JSON_ARRAY=$(jq -n --argjson agents "${random_agents[@]}" '$agents')
+          AGENTS_LIST_ARRAY=($(echo "${random_agents}" | tr ',' '\n'))
+          AGENTS_JSON_ARRAY=$(echo "${AGENTS_LIST_ARRAY[@]}" | jq -R . | jq -s '[. | {items: .}]')
           echo $AGENTS_JSON_ARRAY
           echo "matrix=$AGENTS_JSON_ARRAY" >> $GITHUB_OUTPUT
 
