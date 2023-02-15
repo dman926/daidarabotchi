@@ -2,7 +2,11 @@ import type { FirebaseApp } from 'firebase/app';
 import type { Analytics } from 'firebase/analytics';
 import type { Auth } from 'firebase/auth';
 import type { Firestore } from 'firebase/firestore';
-import type { FirebaseStorage as Storage, ListResult, StorageReference } from 'firebase/storage';
+import type {
+  FirebaseStorage as Storage,
+  ListResult,
+  StorageReference,
+} from 'firebase/storage';
 import type { Functions } from 'firebase/functions';
 import type { AppCheck } from 'firebase/app-check';
 import type { vi as VitestUtils } from 'vitest';
