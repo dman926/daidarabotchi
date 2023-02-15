@@ -205,11 +205,6 @@ jobs:
               appendFileSync(process.env.GITHUB_ENV, `${v.name}=${parseStr(v.value)}\n`);
             }
 
-      - name: Install Go
-        uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568 # pin@v3
-        with:
-          go-version-file: go.work
-
       - name: Run any configured install-commands
         if: ${{ inputs.install-commands != '' }}
         run: |
