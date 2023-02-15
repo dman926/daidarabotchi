@@ -65,6 +65,7 @@ jobs:
             unset AGENT_NAMES[random_index];
           done
           AGENTS_JSON_ARRAY=$(echo "$random_agents" | jq -R 'split(",")' | jq -c '.')
+          echo $AGENTS_JSON_ARRAY
           echo "matrix=$AGENTS_JSON_ARRAY" >> $GITHUB_OUTPUT
 
   # Intentionally using capital letter in order to make the Github UI for the matrix look better
