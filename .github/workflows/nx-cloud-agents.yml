@@ -45,7 +45,12 @@ jobs:
       - id: set-matrix
         shell: bash
         # Turn the number-of-agents input into a JSON structure which is compatible with a Github job matrix strategy
+        # 50 names
+        # Number of agents is capped at the length of this string
+        # Shouldn't be an issue unless something crazy is happening
+      
         run: |
+          AGENT_NAMES="47,Smith,Fury,Ash,J,Bond,Double-O-Seven,X,Stealth,Shadow,Nova,Triple-O,Octave,Lana,Max,Sydney,Vaughn,Sloane,Michael,Fiona,Sam,Ethan,Hunt,Bourne,Nash,McClane,Bryan,John,Jack,Martin,Jason,Frank,Eve,Villeneuve"
           AGENT_NAMES=($(echo "${AGENT_NAMES}" | tr "," "\n"))
           agents_to_choose=$((${#AGENT_NAMES[@]} > ${inputs.number-of-agents} ? ${inputs.number-of-agents} : ${#AGENT_NAMES[@]}))
           random_agents=()
@@ -58,11 +63,6 @@ jobs:
           AGENTS_JSON_ARRAY=$(echo "${random_agents[@]}" | jq -R . | jq -s .)
           echo $AGENTS_JSON_ARRAY
           echo "matrix=$AGENTS_JSON_ARRAY" >> $GITHUB_OUTPUT
-    env:
-      # 50 names
-      # Number of agents is capped at the length of this string
-      # Shouldn't be an issue unless something crazy is happening
-      AGENT_NAMES: "47,Smith,Fury,Ash,J,Bond,Double-O-Seven,X,Stealth,Shadow,Nova,Triple-O,Octave,Lana,Max,Sydney,Vaughn,Sloane,Michael,Fiona,Sam,Ethan,Hunt,Bourne,Nash,McClane,Bryan,John,Jack,Martin,Jason,Frank,Eve,Villeneuve"
 
   # Intentionally using capital letter in order to make the Github UI for the matrix look better
   Run:
