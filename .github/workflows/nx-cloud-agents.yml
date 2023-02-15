@@ -60,6 +60,7 @@ jobs:
             unset AGENT_NAMES[random_index];
             AGENT_NAMES=("${AGENT_NAMES[@]}");
           done
+          echo $random_agents
           AGENTS_JSON_ARRAY=$(jq -n --argjson agents "${random_agents[@]}" '$agents')
           echo $AGENTS_JSON_ARRAY
           echo "matrix=$AGENTS_JSON_ARRAY" >> $GITHUB_OUTPUT
