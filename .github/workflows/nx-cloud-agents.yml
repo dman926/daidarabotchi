@@ -36,7 +36,7 @@ env:
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
 
 jobs:
-  Set Agents:
+  set-agents:
     runs-on: ${{ inputs.runs-on }}
     name: Init
     outputs:
