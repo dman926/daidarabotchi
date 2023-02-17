@@ -24,7 +24,6 @@ const theme = createTheme({
 });
 
 const appCheckDebugToken = import.meta.env.VITE_FIREBASE_APPCHECK_DEGUG_TOKEN;
-console.log({ appCheckDebugToken, prod: import.meta.env.PROD });
 if (!import.meta.env.PROD && appCheckDebugToken !== undefined) {
   // eslint-disable-next-line
   (window as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
