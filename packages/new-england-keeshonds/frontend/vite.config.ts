@@ -10,11 +10,8 @@ export default defineConfig({
     port: 4200,
     host: 'localhost',
     fs: {
-      allow: [
-        searchForWorkspaceRoot(__dirname),
-        '../../../node_modules'
-      ]
-    }
+      allow: [searchForWorkspaceRoot(__dirname), '../../../node_modules'],
+    },
   },
 
   preview: {
@@ -45,6 +42,6 @@ export default defineConfig({
     },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    setupFiles: ['vitest.setup.ts']
+    setupFiles: ['vitest.setup.ts'],
   },
 });

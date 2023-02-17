@@ -34,7 +34,7 @@ jobs:
       # NEW ENGLAND KEESHONDS
       - name: Check if deploy is needed
         id: nek_deploy_needed
-        run: echo "::set-output name=deploy::$(./scripts/isaffected.sh new-england-keeshonds)"
+        run: echo "DEPLOY=$(./scripts/isaffected.sh new-england-keeshonds-frontend)" >> $GITHUB_OUTPUT
       - name: Build New England Keeshonds
         run: |
           pnpm exec nx run new-england-keeshonds-frontend:build:production
@@ -50,6 +50,7 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
           projectId: new-england-keeshonds
+          channelId: live
           entryPoint: packages/new-england-keeshonds/firebase
         env:
           NX_FIREBASE_ADMIN_SDK: ${{ secrets.NEK_FIREBASE_ADMIN_SDK }}
