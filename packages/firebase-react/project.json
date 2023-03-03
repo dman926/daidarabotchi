@@ -30,7 +30,7 @@
     },
     "test": {
       "executor": "@nrwl/vite:test",
-      "outputs": ["coverage/packages/firebase-react"],
+      "outputs": ["{workspaceRoot}/coverage/packages/firebase-react"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/packages/firebase-react"
