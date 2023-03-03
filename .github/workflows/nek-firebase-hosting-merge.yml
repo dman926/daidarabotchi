@@ -39,12 +39,12 @@ jobs:
           pnpm exec nx run new-england-keeshonds-frontend:build:production
           mv dist/packages/new-england-keeshonds/frontend packages/new-england-keeshonds/firebase/public
         env:
-          VITE_FIREBASE_CONFIG: '${{ secrets.NEK_FIREBASE_CONFIG }}'
-          VITE_RECAPTCHA_V3_SITE_KEY: '${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}'
+          VITE_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+          VITE_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
       - name: Deploy New England Keeshonds
         uses: FirebaseExtended/action-hosting-deploy@4d0d0023f1d92b9b7d16dda64b3d7abd2c98974b # pin@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
           projectId: new-england-keeshonds
           channelId: live
