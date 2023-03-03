@@ -23,12 +23,16 @@ const theme = createTheme({
   },
 });
 
-const appCheckDebugToken = import.meta.env.VITE_FIREBASE_APPCHECK_DEGUG_TOKEN;
-if (!import.meta.env.PROD && appCheckDebugToken !== undefined) {
-  // eslint-disable-next-line
-  (window as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
-    appCheckDebugToken === 'true' ? true : appCheckDebugToken;
+if (!import.meta.env.PROD) {
+  const appCheckDebugToken = import.meta.env.VITE_FIREBASE_APPCHECK_DEGUG_TOKEN;
+  if (appCheckDebugToken !== undefined) {
+    // eslint-disable-next-line
+    (window as any).FIREBASE_APPCHECK_DEBUG_TOKEN =
+      appCheckDebugToken === 'true' ? true : appCheckDebugToken;
+  }
 }
+
+console.log({ test: import.meta.env.VITE_TEST });
 
 const firebaseConfig = import.meta.env.VITE_FIREBASE_CONFIG
   ? (JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG) as FirebaseOptions)
