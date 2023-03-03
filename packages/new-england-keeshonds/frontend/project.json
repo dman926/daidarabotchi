@@ -54,7 +54,9 @@
     },
     "test": {
       "executor": "@nrwl/vite:test",
-      "outputs": ["coverage/packages/new-england-keeshonds/frontend"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/new-england-keeshonds/frontend"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../coverage/packages/new-england-keeshonds/frontend"
