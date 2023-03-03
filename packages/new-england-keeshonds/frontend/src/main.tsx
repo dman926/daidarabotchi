@@ -32,8 +32,6 @@ if (!import.meta.env.PROD) {
   }
 }
 
-console.log({ test: import.meta.env.VITE_TEST });
-
 const firebaseConfig = import.meta.env.VITE_FIREBASE_CONFIG
   ? (JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG) as FirebaseOptions)
   : false;
