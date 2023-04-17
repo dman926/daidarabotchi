@@ -6,6 +6,10 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - .github/workflows/nek-firebase-hosting-pull-request.yml
+      - packages/new-england-keeshonds/**
+      - package.json
 
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
