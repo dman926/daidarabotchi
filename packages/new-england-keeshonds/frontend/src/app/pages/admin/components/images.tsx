@@ -220,6 +220,7 @@ export function Images() {
     <Container data-testid="image-area">
       <Uploader
         onUpload={handleUpload}
+        disabled={!selectedFolder}
         onFinishUpload={() =>
           setTimeout(() => {
             setRefreshDisabled(false);
