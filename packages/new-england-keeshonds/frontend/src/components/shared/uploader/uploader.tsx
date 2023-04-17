@@ -2,10 +2,11 @@ import {
   ChangeEvent,
   Dispatch,
   SetStateAction,
+  useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
-  useCallback,
 } from 'react';
 import { Box, CircularProgress, IconButton, Typography } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -17,22 +18,29 @@ export interface UploaderProps {
     onUpload: () => void
   ) => Promise<void | void[]>;
   onFinishUpload?: () => void;
+  disabled?: boolean;
 }
 
-export function Uploader({ onUpload, onFinishUpload }: UploaderProps) {
-  const [uploadDisabled, setUploadDisabled] = useState(false);
+export function Uploader({
+  onUpload,
+  onFinishUpload,
+  disabled = false,
+}: UploaderProps) {
   const [uploadPercent, setUploadPercent] = useState(0);
   const [uploadState, setUploadState] = useState<
     { total: number; uploaded: number } | undefined
   >();
   const [files, setFiles] = useState<FileList | undefined>();
   const fileInput = useRef<HTMLInputElement>(null);
+  const uploadDisabled = useMemo(
+    () => disabled || Boolean(files),
+    [disabled, files]
+  );
 
   const handleFileUpload = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const { files: toUpload } = event.target;
       if (toUpload && toUpload.length > 0) {
-        setUploadDisabled(true);
         setUploadPercent(0);
         setUploadState({ total: toUpload.length, uploaded: 0 });
         setFiles(toUpload);
@@ -60,7 +68,6 @@ export function Uploader({ onUpload, onFinishUpload }: UploaderProps) {
         });
       }).then(() => {
         setUploadState(undefined);
-        setUploadDisabled(false);
         setFiles(undefined);
         if (onFinishUpload) {
           onFinishUpload();

@@ -1,14 +1,14 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Box, Container, Dialog, Grid, Typography } from '@mui/material';
 import { useFirebase } from 'firebase-react';
 import { useMediaQuery, useTheme } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { listAll, ref } from 'firebase/storage';
+import { listAll, ref, getDownloadURL } from 'firebase/storage';
 
 import { CallToAction } from '../../../components/home/call-to-action/call-to-action';
 import { ContactForm } from '../../../components/home/contact-form/contact-form';
 import { Gallery } from '../../../components/shared/gallery/gallery';
-import { Login } from '../../../components/home/login/login';
 import { Page } from '../../../components/pages/page/page';
+import { Image } from '../../../interfaces/image';
 
 import AllDogsImage from '../../../assets/dogs/all_dogs.jpg';
 import WillowImage from '../../../assets/dogs/willow.jpg';
@@ -16,7 +16,7 @@ import MiloImage from '../../../assets/dogs/milo.jpg';
 import BellaImage from '../../../assets/dogs/bella.jpg';
 
 // @TODO: fill out the description more
-// @TOOD: make this dynamic through functions
+// @TOOD: make this dynamic
 const DOGS: {
   name: string;
   description: string;
@@ -43,26 +43,73 @@ const DOGS: {
 
 export function Home() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [galleryImages, setGalleryImages] = useState();
+  const [galleryImages, setGalleryImages] = useState<Image[] | undefined>();
+  const [focusedImage, setFocusedImage] = useState<Image | boolean>(false);
   const firebase = useFirebase();
+  const firebaseStorage = useMemo(() => firebase.storage, [firebase]);
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down('md'));
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
 
-  useEffect(() => {
-    const galleryListRef = ref(firebase.storage, 'abc');
-
+  const loadImages = useCallback(() => {
+    setGalleryImages(undefined);
+    const galleryListRef = ref(firebaseStorage, 'dogs');
     listAll(galleryListRef)
       .then((res) => {
-        // eslint-disable-next-line no-console
-        console.log(res);
-        // setGalleryImages(res.items);
+        // @TODO: make this better by handling errors caused by missing thumbnails
+        Promise.all(
+          res.items.map((image) =>
+            Promise.all([
+              Promise.resolve(image.name),
+              getDownloadURL(
+                ref(
+                  firebaseStorage,
+                  `dogs/thumbnails/${image.name.substring(
+                    0,
+                    image.name.lastIndexOf('.')
+                  )}_256x256.webp`
+                )
+              ),
+              getDownloadURL(
+                ref(
+                  firebaseStorage,
+                  `dogs/thumbnails/${image.name.substring(
+                    0,
+                    image.name.lastIndexOf('.')
+                  )}_256x256.jpeg`
+                )
+              ),
+            ])
+          )
+        ).then((images) => {
+          setGalleryImages(
+            images.map((image) => ({
+              name: image[0],
+              url: image[1],
+              fallback: image[2],
+            }))
+          );
+        });
       })
       .catch((err) => {
         // eslint-disable-next-line no-console
         console.error(err);
       });
-  }, [firebase.storage]);
+  }, [firebaseStorage]);
+
+  const handleImageSelect = useCallback(
+    (image: string) => {
+      setFocusedImage(true);
+      getDownloadURL(ref(firebaseStorage, `dogs/${image}`)).then((url) => {
+        setFocusedImage({ name: image, url });
+      });
+    },
+    [firebaseStorage]
+  );
+
+  useEffect(() => {
+    loadImages();
+  }, [loadImages]);
 
   return (
     <Page testid="home-wrapper">
@@ -123,20 +170,23 @@ export function Home() {
         </CallToAction>
       </Container>
       <Container maxWidth={false}>
-        <Gallery />
+        <Gallery images={galleryImages} onImageSelect={handleImageSelect} />
+        <Dialog
+          open={Boolean(focusedImage)}
+          onClose={() => {
+            setFocusedImage(false);
+          }}
+        >
+          {focusedImage &&
+            (focusedImage === true ? (
+              <Typography sx={{ padding: 1 }}>Loading Image...</Typography>
+            ) : (
+              <img src={focusedImage.url} alt={focusedImage.name} />
+            ))}
+        </Dialog>
       </Container>
       <Container maxWidth="xs">
         <ContactForm head="Get A Hold Of Me" />
-      </Container>
-      <Container maxWidth="xs">
-        <Login
-          head="Looking to make a payment? Enter your secret word below."
-          onSubmit={(word) => {
-            // @TODO: handle sign in email
-            // eslint-disable-next-line no-console
-            console.log(word);
-          }}
-        />
       </Container>
     </Page>
   );
