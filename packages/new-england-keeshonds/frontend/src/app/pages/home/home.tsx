@@ -181,10 +181,7 @@ export function Home() {
             (focusedImage === true ? (
               <Typography sx={{ padding: 1 }}>Loading Image...</Typography>
             ) : (
-              <img
-                src={focusedImage.url}
-                alt={focusedImage.name}
-              />
+              <img src={focusedImage.url} alt={focusedImage.name} />
             ))}
         </Dialog>
       </Container>

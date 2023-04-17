@@ -21,14 +21,21 @@ export interface UploaderProps {
   disabled?: boolean;
 }
 
-export function Uploader({ onUpload, onFinishUpload, disabled = false }: UploaderProps) {
+export function Uploader({
+  onUpload,
+  onFinishUpload,
+  disabled = false,
+}: UploaderProps) {
   const [uploadPercent, setUploadPercent] = useState(0);
   const [uploadState, setUploadState] = useState<
     { total: number; uploaded: number } | undefined
   >();
   const [files, setFiles] = useState<FileList | undefined>();
   const fileInput = useRef<HTMLInputElement>(null);
-  const uploadDisabled = useMemo(() => disabled || Boolean(files), [disabled, files]);
+  const uploadDisabled = useMemo(
+    () => disabled || Boolean(files),
+    [disabled, files]
+  );
 
   const handleFileUpload = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
