@@ -39,8 +39,8 @@ jobs:
         run: |
           pnpm exec nx run new-england-keeshonds-frontend:build:production
           mv dist/packages/new-england-keeshonds/frontend packages/new-england-keeshonds/firebase/public
-        env:
-          VITE_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
+        env: |
+          VITE_FIREBASE_CONFIG: "${{ secrets.NEK_FIREBASE_CONFIG }}"
           VITE_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
         if: steps.nek_deploy_needed.outputs.DEPLOY == 1
       - name: Deploy New England Keeshonds
