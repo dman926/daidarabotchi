@@ -1,10 +1,17 @@
 import { render } from '@testing-library/react';
 import { ReactElement, ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { mockFirebaseOptions, mockFirebase } from 'firebase-react';
-mockFirebase(vi);
-// eslint-disable-next-line import/first
 import { FirebaseProvider } from 'firebase-react';
+
+const mockFirebaseOptions = {
+  apiKey: 'test_apiKey',
+  authDomain: 'test_authDomain',
+  projectId: 'test_projectId',
+  storageBucket: 'test_storageBucket',
+  messagingSenderId: 'test_messagingSenderId',
+  appId: 'test_appId',
+  measurementId: 'test_measurementID',
+};
 
 function Wrapper({ children }: { children: ReactNode }) {
   return (
