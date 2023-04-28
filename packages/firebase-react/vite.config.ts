@@ -10,9 +10,12 @@ export default defineConfig({
 
   plugins: [
     dts({
-      tsConfigFilePath: join(__dirname, 'tsconfig.lib.json'),
+      tsConfigFilePath: join(
+        __dirname,
+        'tsconfig.' + (process.env.VITEST ? 'spec' : 'lib') + '.json'
+      ),
       // Faster builds by skipping tests. Set this to false to enable type checking.
-      skipDiagnostics: true,
+      skipDiagnostics: false,
     }),
     react(),
     viteTsConfigPaths({
@@ -54,5 +57,6 @@ export default defineConfig({
     },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    setupFiles: ['vitest.setup.ts'],
   },
 });
