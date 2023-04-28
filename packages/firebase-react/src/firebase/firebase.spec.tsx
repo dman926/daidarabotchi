@@ -1,24 +1,25 @@
-import {
-  mockAnalytics,
-  mockApp,
-  mockAppCheck,
-  mockAuth,
-  mockFirebaseOptions,
-  mockFirestore,
-  mockFunctions,
-  mockStorage,
-} from './__mocks__/firebase.mock';
-vi.doMock('firebase/app', mockApp);
-vi.doMock('firebase/analytics', mockAnalytics);
-vi.doMock('firebase/auth', mockAuth);
-vi.doMock('firebase/firestore', mockFirestore);
-vi.doMock('firebase/storage', mockStorage);
-vi.doMock('firebase/functions', mockFunctions);
-vi.doMock('firebase/app-check', mockAppCheck);
-// eslint-disable-next-line import/first
+/* eslint-disable import/first */
+import * as appCheck from 'firebase/app-check';
+vi.mock('firebase/app-check', () => ({
+  AppCheck: {},
+  initializeAppCheck: vi.fn(() => ({} as appCheck.AppCheck)),
+  ReCaptchaV3Provider: {},
+  ReCaptchaEnterpriseProvider: {},
+  CustomProvider: {},
+}));
+
 import { Firebase } from './firebase';
-// eslint-disable-next-line import/first
 import type { AppCheckProvider } from './firebase';
+
+const mockFirebaseOptions = {
+  apiKey: 'test_apiKey',
+  authDomain: 'test_authDomain',
+  projectId: 'test_projectId',
+  storageBucket: 'test_storageBucket',
+  messagingSenderId: 'test_messagingSenderId',
+  appId: 'test_appId',
+  measurementId: 'test_measurementID',
+};
 
 describe('Firebase class', () => {
   let firebaseAppCheckProvider: AppCheckProvider;
@@ -27,7 +28,12 @@ describe('Firebase class', () => {
     firebaseAppCheckProvider = {} as AppCheckProvider;
   });
 
+  afterAll(() => {
+    vi.clearAllMocks();
+  });
+
   it('should initialize Firebase class properties correctly', () => {
+    // (appCheck as any).initializeAppCheck = vi.fn(() => ({} as appCheck.AppCheck));
     const firebase = new Firebase(
       mockFirebaseOptions,
       firebaseAppCheckProvider
