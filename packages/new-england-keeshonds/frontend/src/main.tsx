@@ -14,7 +14,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import App from './app/app';
+import { App } from './app/app';
 
 const theme = createTheme({
   palette: {
@@ -33,7 +33,9 @@ if (!import.meta.env.PROD) {
 }
 
 const firebaseConfig = import.meta.env.VITE_FIREBASE_CONFIG
-  ? (JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG) as FirebaseOptions)
+  ? (JSON.parse(
+      window.atob(import.meta.env.VITE_FIREBASE_CONFIG)
+    ) as FirebaseOptions)
   : false;
 
 const firebaseAppCheckProvider = import.meta.env.VITE_RECAPTCHA_V3_SITE_KEY
