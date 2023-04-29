@@ -42,8 +42,6 @@ const firebaseAppCheckProvider = import.meta.env.VITE_RECAPTCHA_V3_SITE_KEY
   ? new ReCaptchaV3Provider(import.meta.env.VITE_RECAPTCHA_V3_SITE_KEY)
   : undefined;
 
-console.log({ firebaseConfig });
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
