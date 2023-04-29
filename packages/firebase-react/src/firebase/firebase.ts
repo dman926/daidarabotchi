@@ -9,8 +9,8 @@ import {
 import {
   isSupported as isAnalyticsSupported,
   getAnalytics,
-  Analytics,
 } from 'firebase/analytics';
+import type { Analytics } from 'firebase/analytics';
 import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
 import { getStorage, FirebaseStorage as Storage } from 'firebase/storage';
