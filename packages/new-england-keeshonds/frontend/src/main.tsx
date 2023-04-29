@@ -32,10 +32,9 @@ if (!import.meta.env.PROD) {
   }
 }
 
-const firebaseConfig = import.meta.env.VITE_FIREBASE_CONFIG
-  ? (JSON.parse(
-      window.atob(import.meta.env.VITE_FIREBASE_CONFIG)
-    ) as FirebaseOptions)
+const firebaseConfigB64 = import.meta.env.VITE_FIREBASE_CONFIG;
+const firebaseConfig = firebaseConfigB64
+  ? (JSON.parse(window.atob(firebaseConfigB64)) as FirebaseOptions)
   : false;
 
 const firebaseAppCheckProvider = import.meta.env.VITE_RECAPTCHA_V3_SITE_KEY

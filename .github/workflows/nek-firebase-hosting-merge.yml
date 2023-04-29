@@ -37,6 +37,7 @@ jobs:
         run: pnpm install
       - name: Build New England Keeshonds
         run: |
+          echo "VITE_FIREBASE_CONFIG=$VITE_FIREBASE_CONFIG\nVITE_RECAPTCHA_V3_SITE_KEY=$VITE_RECAPTCHA_V3_SITE_KEY" > packages/new-england-keeshonds/frontend/.env
           pnpm exec nx run new-england-keeshonds-frontend:build:production
           mv dist/packages/new-england-keeshonds/frontend packages/new-england-keeshonds/firebase/public
         env:
