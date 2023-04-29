@@ -2,7 +2,9 @@
   "name": "daidarabotchi",
   "version": "0.0.0",
   "license": "GPL-3.0-or-later",
-  "scripts": {},
+  "scripts": {
+    "b64encode": "node -p \"Buffer.from(require('fs').readFileSync(0).toString().trim()).toString('base64')\""
+  },
   "private": true,
   "devDependencies": {
     "@nx/cypress": "16.0.0",
