@@ -26,6 +26,13 @@
       "options": {
         "lintFilePatterns": ["packages/new-england-keeshonds/firebase/**/*.ts"]
       }
+    },
+    "firebase": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec firebase",
+        "cwd": "packages/new-england-keeshonds/firebase"
+      }
     }
   },
   "tags": ["new-england-keeshonds"]
