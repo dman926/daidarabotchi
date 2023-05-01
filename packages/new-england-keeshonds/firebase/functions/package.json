@@ -3,6 +3,10 @@
   "engines": {
     "node": "16"
   },
+  "scripts": {
+    "lint": "eslint . --ext .ts --config ../.eslintrc.json",
+    "build": "tsc --outDir lib --project tsconfig.lib.json"
+  },
   "main": "index.ts",
   "private": true
 }
