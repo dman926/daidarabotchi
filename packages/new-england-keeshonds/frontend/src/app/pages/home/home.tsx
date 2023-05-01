@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Box, Container, Dialog, Grid, Typography } from '@mui/material';
+import { Backdrop, Box, Container, Grid, Typography } from '@mui/material';
 import { useFirebase } from 'firebase-react';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { listAll, ref, getDownloadURL } from 'firebase/storage';
@@ -8,7 +8,8 @@ import { CallToAction } from '../../../components/home/call-to-action/call-to-ac
 import { ContactForm } from '../../../components/home/contact-form/contact-form';
 import { Gallery } from '../../../components/shared/gallery/gallery';
 import { Page } from '../../../components/pages/page/page';
-import { Image } from '../../../interfaces/image';
+import { Image } from '../../../components/core/image/image';
+import type { Image as ImageI } from '../../../interfaces/image';
 
 import AllDogsImage from '../../../assets/dogs/all_dogs.jpg';
 import WillowImage from '../../../assets/dogs/willow.jpg';
@@ -43,8 +44,8 @@ const DOGS: {
 
 export function Home() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [galleryImages, setGalleryImages] = useState<Image[] | undefined>();
-  const [focusedImage, setFocusedImage] = useState<Image | boolean>(false);
+  const [galleryImages, setGalleryImages] = useState<ImageI[] | undefined>();
+  const [focusedImage, setFocusedImage] = useState<ImageI | boolean>(false);
   const firebase = useFirebase();
   const firebaseStorage = useMemo(() => firebase.storage, [firebase]);
   const theme = useTheme();
@@ -171,19 +172,17 @@ export function Home() {
       </Container>
       <Container maxWidth={false}>
         <Gallery images={galleryImages} onImageSelect={handleImageSelect} />
-        <Dialog
+        <Backdrop
+          sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={Boolean(focusedImage)}
-          onClose={() => {
+          onClick={() => {
             setFocusedImage(false);
           }}
         >
-          {focusedImage &&
-            (focusedImage === true ? (
-              <Typography sx={{ padding: 1 }}>Loading Image...</Typography>
-            ) : (
-              <img src={focusedImage.url} alt={focusedImage.name} />
-            ))}
-        </Dialog>
+          {focusedImage && focusedImage !== true && (
+            <Image src={focusedImage.url} alt={focusedImage.name} />
+          )}
+        </Backdrop>
       </Container>
       <Container maxWidth="xs">
         <ContactForm head="Get A Hold Of Me" />
