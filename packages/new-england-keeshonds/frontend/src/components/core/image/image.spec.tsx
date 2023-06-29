@@ -6,6 +6,6 @@ describe('Image', () => {
   it('should render', () => {
     const { baseElement } = render(<Image src="" />);
     expect(baseElement).toBeTruthy();
-    expect(screen.getByTestId('nek-iamge')).toBeInTheDocument();
+    expect(screen.getByTestId('nek-image')).toBeInTheDocument();
   })
 });
