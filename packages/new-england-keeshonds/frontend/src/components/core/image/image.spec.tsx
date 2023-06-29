@@ -7,5 +7,5 @@ describe('Image', () => {
     const { baseElement } = render(<Image src="" />);
     expect(baseElement).toBeTruthy();
     expect(screen.getByTestId('nek-image')).toBeInTheDocument();
-  })
+  });
 });
