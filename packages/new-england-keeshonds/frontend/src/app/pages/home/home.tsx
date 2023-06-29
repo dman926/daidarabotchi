@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Backdrop, Box, Container, Grid, Typography } from '@mui/material';
 import { useFirebase } from 'firebase-react';
 import { useMediaQuery, useTheme } from '@mui/material';
@@ -51,6 +52,8 @@ export function Home() {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down('md'));
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
+  const location = useLocation();
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   const loadImages = useCallback(() => {
     setGalleryImages(undefined);
@@ -58,6 +61,7 @@ export function Home() {
     listAll(galleryListRef)
       .then((res) => {
         // @TODO: make this better by handling errors caused by missing thumbnails
+        // And handle cancelling when needed
         Promise.all(
           res.items.map((image) =>
             Promise.all([
@@ -93,8 +97,8 @@ export function Home() {
         });
       })
       .catch((err) => {
-        // eslint-disable-next-line no-console
         console.error(err);
+        // @TODO: Properly handle this
       });
   }, [firebaseStorage]);
 
@@ -103,10 +107,20 @@ export function Home() {
       setFocusedImage(true);
       getDownloadURL(ref(firebaseStorage, `dogs/${image}`)).then((url) => {
         setFocusedImage({ name: image, url });
+      }).catch((err) => {
+        console.error(err);
+        // @TODO: Properly handle this
       });
     },
     [firebaseStorage]
   );
+
+  useEffect(() => {
+    const { gallery: shouldScroll, behavior } = location.state || {};
+    if (shouldScroll && galleryRef.current) {
+      galleryRef.current?.scrollIntoView({ behavior });
+    }
+  }, [location]);
 
   useEffect(() => {
     loadImages();
@@ -170,7 +184,11 @@ export function Home() {
           })}
         </CallToAction>
       </Container>
-      <Container maxWidth={false}>
+      {/* @TODO: Add "About the breeder" section */}
+      <Container maxWidth="xs">
+        <ContactForm head="Get A Hold Of Me" />
+      </Container>
+      <Container maxWidth={false} ref={galleryRef}>
         <Gallery images={galleryImages} onImageSelect={handleImageSelect} />
         <Backdrop
           sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -179,13 +197,11 @@ export function Home() {
             setFocusedImage(false);
           }}
         >
+          {/* @TODO: Video support */}
           {focusedImage && focusedImage !== true && (
             <Image src={focusedImage.url} alt={focusedImage.name} />
           )}
         </Backdrop>
-      </Container>
-      <Container maxWidth="xs">
-        <ContactForm head="Get A Hold Of Me" />
       </Container>
     </Page>
   );

@@ -106,7 +106,6 @@ export function Images() {
         });
       })
       .catch((err) => {
-        // eslint-disable-next-line no-console
         console.error(err);
       });
   }, [firebaseStorage, selectedFolder]);
@@ -134,14 +133,12 @@ export function Images() {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                   setUploadPercent(progress);
-                  // eslint-disable-next-line no-console
                   console.log(progress);
                 },
                 // eslint-disable-next-line @typescript-eslint/no-empty-function
                 () => {},
                 () => {
                   onUpload();
-                  // eslint-disable-next-line no-console
                   console.log('uploaded');
                   resolve();
                 }

@@ -21,7 +21,7 @@ const GridCenterContents = styled(Grid)(() => ({
 }));
 
 export interface HeaderMenuItemProps {
-  link: string;
+  link?: string;
   text: string;
   ButtonProps?: MuiButtonProps;
 }
@@ -76,9 +76,11 @@ export function Header(props: HeaderProps) {
               )}
             </Typography>
           </GridCenterContents>
-          <GridCenterContents item xs={1} sx={{ position: 'absolute' }}>
-            {/* @TODO: PUT AN ANNOUNCEMENT BAR HERE WHEN THERE IS A CURRENT LITTER */}
-          </GridCenterContents>
+          <GridCenterContents
+            item
+            xs={1}
+            sx={{ position: 'absolute' }}
+          ></GridCenterContents>
           <GridCenterContents item xs={6}>
             {xs ? (
               <>
@@ -97,7 +99,9 @@ export function Header(props: HeaderProps) {
                     return (
                       <MenuItem
                         onClick={() => {
-                          navigate(link);
+                          if (link) {
+                            navigate(link);
+                          }
                           handleClose();
                         }}
                         key={text}
@@ -123,10 +127,14 @@ export function Header(props: HeaderProps) {
                   const { link, text, ButtonProps = {} } = menuItem;
                   return (
                     <Button
-                      // eslint-disable-next-line react/jsx-props-no-spreading
                       {...ButtonProps}
-                      onClick={() => {
-                        navigate(link);
+                      onClick={(ev) => {
+                        if (ButtonProps.onClick) {
+                          ButtonProps.onClick(ev);
+                        }
+                        if (link) {
+                          navigate(link);
+                        }
                       }}
                       key={text}
                       data-testid="nek-header-nav-button"

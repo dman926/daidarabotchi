@@ -5,7 +5,7 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { Header } from '../components/core/header/header';
 import { LoadingPage } from '../components/pages/loading-page/loading-page';
-import { Home, Puppies, Puppy } from './pages';
+import { Home } from './pages';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
@@ -20,6 +20,18 @@ const menuItemButtonBaseProps: ButtonProps = {
 export function App() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const puppiesButtonBaseProps: ButtonProps = {
+    ...menuItemButtonBaseProps,
+    onClick: () => {
+      navigate('/', {
+        state: {
+          gallery: true,
+          behavior: location.pathname === '/' ? 'smooth' : 'instant',
+        },
+      });
+    },
+  };
 
   return (
     <section className="app" data-testid="app-wrapper">
@@ -38,8 +50,7 @@ export function App() {
           },
           {
             text: 'Puppies',
-            link: '/puppies',
-            ButtonProps: menuItemButtonBaseProps,
+            ButtonProps: puppiesButtonBaseProps,
           },
         ]}
       />
@@ -53,11 +64,6 @@ export function App() {
                 <Admin />
               </Suspense>
             }
-          />
-          <Route path="/puppies" element={<Puppies />} />
-          <Route
-            path="/puppies/:parentName/:litterNum/:color"
-            element={<Puppy />}
           />
         </Routes>
       </main>
