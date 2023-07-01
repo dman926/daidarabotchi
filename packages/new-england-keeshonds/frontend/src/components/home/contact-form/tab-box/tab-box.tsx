@@ -39,7 +39,7 @@ export function TabBox({ head, tabs, PaperProps = {} }: TabBoxProps) {
       data-testid="nek-tab-box"
     >
       {!!head && (
-        <Typography fontSize={20} align="center" data-testid="nek-tab-box-head">
+        <Typography variant="h5" align="center" data-testid="nek-tab-box-head">
           {head}
         </Typography>
       )}

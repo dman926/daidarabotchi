@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Backdrop, Box, Container, Grid, Typography } from '@mui/material';
+import {
+  Backdrop,
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Paper,
+} from '@mui/material';
 import { useFirebase } from 'firebase-react';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { listAll, ref, getDownloadURL } from 'firebase/storage';
@@ -41,6 +48,35 @@ const DOGS: {
       'Bella is full of life. Always playful, and the first in line for belly rubs.',
     img: BellaImage,
   },
+];
+
+const ABOUT_ME_TEXT = [
+  `Lorem ipsum dolor sit amet, consectetur adipiscing elit,\
+ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\
+ Faucibus nisl tincidunt eget nullam non nisi est. Odio aenean sed adipiscing diam.\
+ Amet massa vitae tortor condimentum lacinia quis vel eros donec.\
+ Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend.\
+ Donec ac odio tempor orci dapibus ultrices in iaculis nunc.\
+ Facilisis leo vel fringilla est ullamcorper. Integer enim neque volutpat ac tincidunt.\
+ In fermentum posuere urna nec tincidunt praesent. Elementum integer enim neque volutpat ac.`,
+  `Nibh sit amet commodo nulla facilisi nullam vehicula ipsum a.\
+ Lorem ipsum dolor sit amet consectetur adipiscing.\
+ Orci sagittis eu volutpat odio facilisis mauris sit amet massa.\
+ Bibendum neque egestas congue quisque egestas diam. Semper eget duis at tellus at.\
+ Neque sodales ut etiam sit amet nisl purus in.\
+ Elit ut aliquam purus sit amet luctus venenatis lectus.\
+ Aliquet sagittis id consectetur purus ut faucibus pulvinar.\
+ Vitae elementum curabitur vitae nunc sed velit dignissim sodales.\
+ Mi sit amet mauris commodo quis imperdiet massa.\
+ Ultrices in iaculis nunc sed augue lacus viverra vitae congue.\
+ Dui faucibus in ornare quam viverra orci sagittis. Sollicitudin aliquam ultrices sagittis orci.\
+ Eros donec ac odio tempor orci dapibus ultrices. Et odio pellentesque diam volutpat commodo sed egestas.`,
+  `In fermentum posuere urna nec tincidunt praesent. Ullamcorper a lacus vestibulum sed arcu non.\
+ Vitae ultricies leo integer malesuada nunc. Scelerisque purus semper eget duis at tellus at urna.\
+ Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat.\
+ Vulputate sapien nec sagittis aliquam malesuada. Tellus id interdum velit laoreet.\
+ Urna nec tincidunt praesent semper feugiat nibh sed pulvinar.\
+ Tellus elementum sagittis vitae et leo duis ut. Tristique senectus et netus et malesuada fames.`
 ];
 
 export function Home() {
@@ -105,12 +141,14 @@ export function Home() {
   const handleImageSelect = useCallback(
     (image: string) => {
       setFocusedImage(true);
-      getDownloadURL(ref(firebaseStorage, `dogs/${image}`)).then((url) => {
-        setFocusedImage({ name: image, url });
-      }).catch((err) => {
-        console.error(err);
-        // @TODO: Properly handle this
-      });
+      getDownloadURL(ref(firebaseStorage, `dogs/${image}`))
+        .then((url) => {
+          setFocusedImage({ name: image, url });
+        })
+        .catch((err) => {
+          console.error(err);
+          // @TODO: Properly handle this
+        });
     },
     [firebaseStorage]
   );
@@ -128,7 +166,7 @@ export function Home() {
 
   return (
     <Page testid="home-wrapper">
-      <Container>
+      <Container maxWidth="xl">
         <CallToAction
           img={
             <img
@@ -184,7 +222,20 @@ export function Home() {
           })}
         </CallToAction>
       </Container>
-      {/* @TODO: Add "About the breeder" section */}
+      <Container maxWidth="lg">
+        <Paper
+          elevation={4}
+          sx={{ padding: '1em' }}
+          data-testid="nek-home-about-me"
+        >
+          <Typography variant="h5" align="center">
+            About Me
+          </Typography>
+          {ABOUT_ME_TEXT.map((text, i) => (
+            <Typography variant="body1" key={`about_me_section_${i + 1}`} paragraph>{text}</Typography>
+          ))}
+        </Paper>
+      </Container>
       <Container maxWidth="xs">
         <ContactForm head="Get A Hold Of Me" />
       </Container>
