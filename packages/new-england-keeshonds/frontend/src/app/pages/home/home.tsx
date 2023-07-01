@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Backdrop,
   Box,
@@ -7,7 +7,11 @@ import {
   Grid,
   Typography,
   Paper,
+  Divider,
+  IconButton,
+  styled,
 } from '@mui/material';
+import PetsIcon from '@mui/icons-material/Pets';
 import { useFirebase } from 'firebase-react';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { listAll, ref, getDownloadURL } from 'firebase/storage';
@@ -17,6 +21,7 @@ import { ContactForm } from '../../../components/home/contact-form/contact-form'
 import { Gallery } from '../../../components/shared/gallery/gallery';
 import { Page } from '../../../components/pages/page/page';
 import { Image } from '../../../components/core/image/image';
+import { AnimatedDownScrollCircle } from '../../../components/shared/animated-down-scroll-circle/animated-down-scroll-circle';
 import type { Image as ImageI } from '../../../interfaces/image';
 
 import AllDogsImage from '../../../assets/dogs/all_dogs.jpg';
@@ -76,8 +81,13 @@ const ABOUT_ME_TEXT = [
  Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat.\
  Vulputate sapien nec sagittis aliquam malesuada. Tellus id interdum velit laoreet.\
  Urna nec tincidunt praesent semper feugiat nibh sed pulvinar.\
- Tellus elementum sagittis vitae et leo duis ut. Tristique senectus et netus et malesuada fames.`
+ Tellus elementum sagittis vitae et leo duis ut. Tristique senectus et netus et malesuada fames.`,
 ];
+
+const BlankIconButton = styled(IconButton)(({ theme }) => ({
+  '&:hover': { backgroundColor: 'transparent' },
+  '&:focus': { backgroundColor: theme.palette.action.hover },
+}));
 
 export function Home() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -89,6 +99,7 @@ export function Home() {
   const md = useMediaQuery(theme.breakpoints.down('md'));
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
   const location = useLocation();
+  const navigate = useNavigate();
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const loadImages = useCallback(() => {
@@ -153,10 +164,19 @@ export function Home() {
     [firebaseStorage]
   );
 
+  const handleDownScroll = useCallback(() => {
+    navigate('/#gallery', {
+      state: {
+        behavior: 'smooth',
+      },
+    });
+  }, [navigate]);
+
   useEffect(() => {
-    const { gallery: shouldScroll, behavior } = location.state || {};
-    if (shouldScroll && galleryRef.current) {
-      galleryRef.current?.scrollIntoView({ behavior });
+    const { behavior } = location.state || { behavior: 'instant' };
+    const targetEl = galleryRef.current;
+    if (location.hash === '#gallery' && targetEl) {
+      targetEl.scrollIntoView({ behavior, block: 'start' });
     }
   }, [location]);
 
@@ -166,6 +186,21 @@ export function Home() {
 
   return (
     <Page testid="home-wrapper">
+      <Typography
+        variant="h1"
+        fontSize={38}
+        textAlign="center"
+        alignItems="center"
+      >
+        <PetsIcon />
+        &nbsp;New England Keeshonds&nbsp;
+        <PetsIcon />
+      </Typography>
+      <Divider flexItem>
+        <BlankIconButton disableFocusRipple onClick={handleDownScroll}>
+          <AnimatedDownScrollCircle />
+        </BlankIconButton>
+      </Divider>
       <Container maxWidth="xl">
         <CallToAction
           img={
@@ -232,7 +267,13 @@ export function Home() {
             About Me
           </Typography>
           {ABOUT_ME_TEXT.map((text, i) => (
-            <Typography variant="body1" key={`about_me_section_${i + 1}`} paragraph>{text}</Typography>
+            <Typography
+              variant="body1"
+              key={`about_me_section_${i + 1}`}
+              paragraph
+            >
+              {text}
+            </Typography>
           ))}
         </Paper>
       </Container>
