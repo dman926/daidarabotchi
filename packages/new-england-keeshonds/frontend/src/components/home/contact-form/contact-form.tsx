@@ -1,9 +1,10 @@
-import { Box, Button, styled, TextField, Typography } from '@mui/material';
+import { Box, Button, styled, TextField } from '@mui/material';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import EmailIcon from '@mui/icons-material/Email';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { TabBox } from './tab-box/tab-box';
+import { useCallback } from 'react';
 
 const VerticalBox = styled(Box)({
   display: 'flex',
@@ -16,6 +17,10 @@ export interface ContactFormProps {
 }
 
 export function ContactForm({ head }: ContactFormProps) {
+  const handleFacebook = useCallback(() => {
+    window.open('https://www.facebook.com/newenglandkeeshonds', '_blank');
+  }, []);
+
   return (
     <TabBox
       head={head}
@@ -74,7 +79,11 @@ export function ContactForm({ head }: ContactFormProps) {
                       <ErrorMessage name="email" />
                     </VerticalBox>
 
-                    <Button type="submit" disabled={isSubmitting}>
+                    <Button
+                      type="submit"
+                      variant="outlined"
+                      disabled={isSubmitting}
+                    >
                       Send
                     </Button>
                   </Form>
@@ -86,7 +95,19 @@ export function ContactForm({ head }: ContactFormProps) {
         {
           key: 1,
           icon: <FacebookIcon />,
-          content: <Typography>TODO</Typography>,
+          content: (
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '1em',
+              }}
+            >
+              <Button variant="outlined" onClick={handleFacebook}>
+                Visit the New England Keeshonds Facebook page
+              </Button>
+            </Box>
+          ),
         },
       ]}
     />

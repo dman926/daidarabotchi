@@ -1,0 +1,58 @@
+$container-size: 3rem;
+$animation-length: 2s;
+$animation-delay: 0.25s;
+$x-scale: 1.5;
+
+@keyframes fadeAndPulseAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(1) scaleX($x-scale);
+  }
+  35% {
+    opacity: 0;
+    transform: scale(0.8) scaleX(calc($x-scale + 0.8));
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1) scaleX($x-scale);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) scaleX($x-scale);
+  }
+}
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: $container-size;
+  width: $container-size;
+  border: 1px solid;
+  border-radius: 50%;
+}
+
+.item {
+  width: $container-size !important;
+  height: calc($container-size / 3) !important;
+  transform: scaleX($x-scale);
+  animation: fadeAndPulseAnimation $animation-length ease-in-out infinite;
+  animation-delay: calc(
+    $animation-delay * var(--delay-offset)
+  ); /* Delay each item's animation */
+  transition: opacity $animation-length ease-in-out,
+    transform $animation-length ease-in-out;
+
+  &:nth-child(1) {
+    --delay-offset: 0;
+  }
+
+  &:nth-child(2) {
+    --delay-offset: 1;
+  }
+
+  &:nth-child(3) {
+    --delay-offset: 2;
+  }
+}

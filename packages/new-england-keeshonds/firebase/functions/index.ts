@@ -1,31 +1,10 @@
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+/**
+ * @TODO:
+ *    Add a function to retrieve an array of ImagePackage from Google Photos and any albums that are shared
+ *    Add functions to control viewing Google Photos albums and adding and removing read permissions from specific albums
+ */
 
-admin.initializeApp();
-
-const adminEmails = ['tinamomof7@charter.net', 'dman992266@gmail.com'];
-interface CustomClaims {
-  admin?: boolean;
+interface ImagePackage {
+  thumbnailURL: string;
+  url: string;
 }
-
-export const processSignUp = functions.auth.user().onCreate(async (user) => {
-  let claims: CustomClaims | undefined;
-  adminEmails.every((email) => {
-    if (email === user.email) {
-      if (!claims) {
-        claims = {};
-      }
-      claims.admin = true;
-      return false;
-    }
-    return true;
-  });
-  if (claims) {
-    try {
-      await admin.auth().setCustomUserClaims(user.uid, claims);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(err);
-    }
-  }
-});

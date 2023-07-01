@@ -5,6 +5,12 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import FolderIcon from '@mui/icons-material/Folder';
 import { Image } from '../../../interfaces/image';
 
+/**
+ *  @TODO:
+ *    Change to instead take a string[][] instead of folder and images
+ *    Add a layout to show each inner array as a wrap-around infinite horizontal scroll on each line
+ *  */
+
 export interface GalleryProps {
   autoScroll?: boolean;
   folders?: string[];

@@ -29,7 +29,6 @@ export function Admin() {
       })
       .catch((err) => {
         // @TODO: handle this
-        // eslint-disable-next-line no-console
         console.error(err);
       });
   }, [user]);
