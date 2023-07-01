@@ -79,7 +79,9 @@ export function Admin() {
 
   return (
     <Page testid="admin-wrapper">
+      {/* @TODO: Change this image upload to use google photos albums in a transfer list with additional support for ordering */}
       <Images />
+      {/* @TODO: Add options to set homepage photos */}
       <Button
         onClick={() => {
           signOut(firebaseAuth);
