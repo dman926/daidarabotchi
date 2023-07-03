@@ -1,10 +1,7 @@
-/**
- * @TODO:
- *    Add a function to retrieve an array of ImagePackage from Google Photos and any albums that are shared
- *    Add functions to control viewing Google Photos albums and adding and removing read permissions from specific albums
- */
+import { initializeApp } from 'firebase-admin/app';
 
-interface ImagePackage {
-  thumbnailURL: string;
-  url: string;
-}
+import { processSignUpHandler } from './auth';
+
+initializeApp();
+
+export const processSignUp = processSignUpHandler;
