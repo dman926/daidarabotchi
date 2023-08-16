@@ -1,4 +1,5 @@
 import { initializeApp, FirebaseApp } from 'firebase/app';
+import { getAnalytics, Analytics } from 'firebase/analytics';
 import { getAuth, Auth } from 'firebase/auth';
 import { getStorage, FirebaseStorage } from 'firebase/storage';
 import { getFirestore, Firestore } from 'firebase/firestore';
@@ -23,6 +24,8 @@ export class Firebase {
 
   private appCheck: AppCheck;
 
+  private _analytics: Analytics;
+
   private _auth?: Auth;
 
   private _storage?: FirebaseStorage;
@@ -35,10 +38,12 @@ export class Firebase {
       provider: new ReCaptchaV3Provider(RECAPTCHA_SITE_KEY),
       isTokenAutoRefreshEnabled: true,
     });
+    this._analytics = getAnalytics(this.app);
   }
 
   private checkAppAndAppCheck(): void {
-    if (!this.app) {
+    // Sanity check
+    if (!(this.app && this.appCheck)) {
       throw new Error(
         'Firebase has not been initialized. Call `Firebase.getInstance()` first.'
       );
@@ -60,6 +65,11 @@ export class Firebase {
     return Firebase.instance;
   }
 
+  public get analytics(): Analytics {
+    this.checkAppAndAppCheck();
+    return this._analytics;
+  }
+
   public get auth(): Auth {
     this.checkAppAndAppCheck();
     if (!this._auth) {
@@ -70,11 +80,6 @@ export class Firebase {
 
   public get storage(): FirebaseStorage {
     this.checkAppAndAppCheck();
-    if (!this.app) {
-      throw new Error(
-        'Firebase Storage has not been initialized. Call `Firebase.getInstance()` first.'
-      );
-    }
     if (!this._storage) {
       this._storage = getStorage(this.app);
     }
@@ -83,11 +88,6 @@ export class Firebase {
 
   public get firestore(): Firestore {
     this.checkAppAndAppCheck();
-    if (!this.app) {
-      throw new Error(
-        'Firebase Functions has not been initialized. Call `Firebase.getInstance()` first.'
-      );
-    }
     if (!this._firestore) {
       this._firestore = getFirestore(this.app);
     }

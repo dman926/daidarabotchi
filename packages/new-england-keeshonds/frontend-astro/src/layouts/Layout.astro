@@ -42,6 +42,10 @@ const keywords = [
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script>
+      import { Firebase } from '~firebase';
+      import { logEvent } from 'firebase/analytics';
+
+      // AppCheck Debug
       if (!import.meta.env.PROD) {
         const appCheckDebugToken = import.meta.env.PUBLIC_APPCHECK_DEBUG_TOKEN;
         if (appCheckDebugToken !== undefined) {
@@ -49,6 +53,9 @@ const keywords = [
             appCheckDebugToken === 'false' ? true : appCheckDebugToken;
         }
       }
+
+      // Google Analytics
+      logEvent(Firebase.getInstance().analytics, 'page_view');
     </script>
   </head>
 
