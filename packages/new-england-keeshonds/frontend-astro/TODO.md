@@ -1,0 +1,23 @@
+# TODO
+
+- Home page
+  - Call to action
+    - ?
+    - Probably about the same thing it is now.
+      - Try to expand it a little. It's too tall.
+  - Contact
+    - Email
+    - Facebook
+  - Gallery
+    - Vertical stack of horizontal scrollers.
+    - Store each photo book in storage as folders in /gallery.
+    - Allow optional captions.
+    - Capture emitted event from Eventarc when thumbnail is done processing.
+    - Render thumbnails with fuzzy load (if I can easily), and smooth expand and transition to original when clicked.
+  - Same-page navigation
+    - Maybe a floating menu for a table of contents?
+      - Menu is expanded by default.
+      - Close button is floating just outside of the menu. Very clear.
+      - Allow a tap on non-clickable elements to trigger the menu visibility toggle.
+- Admin
+  - Edit/add photo books and photos.
