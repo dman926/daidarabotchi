@@ -7,7 +7,6 @@
   },
   "private": true,
   "devDependencies": {
-    "@astrojs/partytown": "^1.2.3",
     "@astrojs/sitemap": "^2.0.2",
     "@nx/cypress": "16.7.0",
     "@nx/eslint-plugin": "16.7.0",
