@@ -13,7 +13,10 @@
     - Store each photo book in storage as folders in /gallery.
     - Allow optional captions.
     - Capture emitted event from Eventarc when thumbnail is done processing.
-    - Render thumbnails with fuzzy load (if I can easily), and smooth expand and transition to original when clicked.
+    - Render thumbnails with fuzzy load and smooth expand and transition to original when clicked.
+      - Images are being resized to 256x256 and 800x800 in jpeg and avif (includes original image)
+      - Fuzzy load all 256x256 images first, then move on to 800x800 (no fuzzy anymore)
+      - When clicked, expand 800x800 to full size and show quality toggle that loads original image
   - Same-page navigation
     - Maybe a floating menu for a table of contents?
       - Menu is expanded by default.
