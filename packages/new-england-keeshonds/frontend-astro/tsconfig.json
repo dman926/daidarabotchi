@@ -27,6 +27,7 @@
     "ignoreDeprecations": "5.0",
     // Allow JavaScript files to be imported
     "allowJs": true,
+    "types": ["vite/client", "vitest"],
     "baseUrl": "./",
     "paths": {
       "~firebase": ["src/utils/firebase.ts"]

@@ -29,6 +29,12 @@
     "sync": {
       "executor": "@nxtensions/astro:sync"
     },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "packages/new-england-keeshonds/frontend-astro/vitest.config.ts"
+      }
+    },
     "build-and-copy": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
