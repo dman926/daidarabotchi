@@ -1,0 +1,48 @@
+{
+  "name": "new-england-keeshonds-frontend-astro",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "packages/new-england-keeshonds/frontend-astro/src",
+  "targets": {
+    "build": {
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "executor": "@nxtensions/astro:build",
+      "options": {}
+    },
+    "dev": {
+      "executor": "@nxtensions/astro:dev",
+      "options": {}
+    },
+    "preview": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nxtensions/astro:preview",
+      "options": {}
+    },
+    "check": {
+      "executor": "@nxtensions/astro:check"
+    },
+    "sync": {
+      "executor": "@nxtensions/astro:sync"
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "packages/new-england-keeshonds/frontend-astro/vitest.config.ts"
+      }
+    },
+    "build-and-copy": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "cp -r dist/packages/${projectRoot}/* ./packages/${projectRoot}/public/",
+        "cwd": "."
+      }
+    }
+  },
+  "tags": ["new-england-keeshonds", "web", "astro"]
+}

@@ -1,0 +1,48 @@
+name: Set user as admin in Firebase
+
+on:
+  workflow_dispatch:
+    inputs:
+      user_email:
+        description: 'The email of the Firebase user to grant admin access'
+        type: string
+        required: true
+      remove_admin:
+        description: 'Check this box to remove admin access from the user'
+        default: false
+        type: boolean
+        required: false
+      project:
+        default: 'New England Keeshonds'
+        type: choice
+        options:
+          - 'New England Keeshonds'
+
+jobs:
+  set_admin_claim:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .github/workflows/scripts
+    steps:
+      - name: Get service account
+        uses: dkershner6/switch-case-action@v1
+        id: service_account
+        with:
+          default: 'missing'
+          conditionals-with-values: |
+            ${{ inputs.project == 'New England Keeshonds' }} => ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+      - name: Install dependencies
+        run: pnpm install
+      - name: Set Firebase Admin Claim
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ steps.service_account.outputs.value }}
+          USER_EMAIL: ${{ inputs.user_email }}
+          REMOVE_ADMIN: ${{ inputs.remove_admin }}
+        run: node setAdminClaims.mjs "$USER_EMAIL" "$FIREBASE_SERVICE_ACCOUNT" "$REMOVE_ADMIN"

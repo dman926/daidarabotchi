@@ -58,7 +58,7 @@ jobs:
             random_index=$((RANDOM % ${#AGENT_NAMES[@]}));
             random_agent=("${AGENT_NAMES[random_index]}")
             if [ $i -eq 0 ]; then
-            random_agents="$random_agent"
+              random_agents="$random_agent"
             else
               random_agents="${random_agents},${random_agent}"
             fi

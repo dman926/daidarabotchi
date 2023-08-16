@@ -36,13 +36,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build New England Keeshonds
-        run: |
-          echo "VITE_FIREBASE_CONFIG=$VITE_FIREBASE_CONFIG\nVITE_RECAPTCHA_V3_SITE_KEY=$VITE_RECAPTCHA_V3_SITE_KEY" > packages/new-england-keeshonds/frontend/.env
-          pnpm exec nx run new-england-keeshonds-frontend:build:production
-          mv dist/packages/new-england-keeshonds/frontend packages/new-england-keeshonds/firebase/public
-        env:
-          VITE_FIREBASE_CONFIG: ${{ secrets.NEK_FIREBASE_CONFIG }}
-          VITE_RECAPTCHA_V3_SITE_KEY: ${{ secrets.NEK_RECAPTCHA_V3_SITE_KEY }}
+        run: pnpm exec nx run new-england-keeshonds-frontend-astro:build-and-copy
       - name: Deploy New England Keeshonds
         uses: FirebaseExtended/action-hosting-deploy@4d0d0023f1d92b9b7d16dda64b3d7abd2c98974b # pin@v0
         with:
@@ -50,4 +44,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEW_ENGLAND_KEESHONDS }}'
           projectId: new-england-keeshonds
           channelId: live
-          entryPoint: packages/new-england-keeshonds/firebase
+          entryPoint: packages/new-england-keeshonds/frontend-astro

@@ -30,7 +30,8 @@ import MiloImage from '../../../assets/dogs/milo.jpg';
 import BellaImage from '../../../assets/dogs/bella.jpg';
 
 // @TODO: fill out the description more
-// @TOOD: make this dynamic
+// @TODO: make this dynamic
+// @TODO: change hardcoded photos to be stored and optimized by firebase with fuzzy-lazy loading
 const DOGS: {
   name: string;
   description: string;
@@ -205,6 +206,7 @@ export function Home() {
         <CallToAction
           img={
             <img
+              // @TODO: Replace this img with a fuzzy-lazy loading image from firebase storage
               src={AllDogsImage}
               alt="Willow, Milo, and Bella"
               placeholder="blur"
