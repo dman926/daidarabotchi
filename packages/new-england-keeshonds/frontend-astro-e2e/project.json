@@ -1,0 +1,27 @@
+{
+  "name": "new-england-keeshonds-frontend-astro-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/new-england-keeshonds/frontend-astro-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/new-england-keeshonds/frontend-astro-e2e/cypress.config.ts",
+        "devServerTarget": "new-england-keeshonds-frontend-astro:dev",
+        "testingType": "e2e"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/new-england-keeshonds/frontend-astro-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["new-england-keeshonds-frontend-astro"]
+}

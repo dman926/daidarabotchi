@@ -42,3 +42,4 @@ Thumbs.db
 nx-cloud.env
 .local.env
 .env.local
+.astro
