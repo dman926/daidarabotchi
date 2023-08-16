@@ -57,9 +57,6 @@ importers:
       '@astrojs/partytown':
         specifier: ^1.2.3
         version: 1.2.3
-      '@astrojs/prefetch':
-        specifier: ^0.3.0
-        version: 0.3.0
       '@astrojs/sitemap':
         specifier: ^2.0.2
         version: 2.0.2
@@ -281,12 +278,6 @@ packages:
     dependencies:
       '@builder.io/partytown': 0.7.6
       mrmime: 1.0.1
-    dev: true
-
-  /@astrojs/prefetch@0.3.0:
-    resolution: {integrity: sha512-LPKpbcnTwonkgNeLvVEQ1SXEyjkjsCm/o77Leg6/9725Cpn+rAIHiWMwFwigqf366VuvdvEYsG86nH8d1kSoNA==}
-    dependencies:
-      throttles: 1.0.1
     dev: true
 
   /@astrojs/prism@2.1.2:
@@ -13631,11 +13622,6 @@ packages:
 
   /throttleit@1.0.0:
     resolution: {integrity: sha512-rkTVqu6IjfQ/6+uNuuc3sZek4CEYxTJom3IktzgdSxcZqdARuebbA/f4QmAxMQIxqq9ZLEUkSYqvuk1I6VKq4g==}
-    dev: true
-
-  /throttles@1.0.1:
-    resolution: {integrity: sha512-fab7Xg+zELr9KOv4fkaBoe/b3L0GMGLd0IBSCn16GoE/Qx6/OfCr1eGNyEcDU2pUA79qQfZ8kPQWlRuok4YwTw==}
-    engines: {node: '>=6'}
     dev: true
 
   /through@2.3.8:
