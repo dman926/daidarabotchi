@@ -29,11 +29,12 @@
     "sync": {
       "executor": "@nxtensions/astro:sync"
     },
-    "astro": {
+    "build-and-copy": {
       "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
-        "command": "astro",
-        "cwd": "packages/new-england-keeshonds/frontend-astro"
+        "command": "cp -r dist/packages/${projectRoot}/* ./packages/${projectRoot}/public/",
+        "cwd": "."
       }
     }
   },

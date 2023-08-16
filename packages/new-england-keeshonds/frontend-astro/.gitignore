@@ -1,3 +1,7 @@
+# public
+public/
+!public/favicon.svg
+
 # Logs
 logs
 *.log
