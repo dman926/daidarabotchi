@@ -1,4 +1,6 @@
 ---
+import Menu from '~components/Menu.astro';
+
 interface Props {
   frontmatter?: { title: string };
   title?: string;
@@ -60,30 +62,29 @@ const keywords = [
   </head>
 
   <body>
-    <slot />
+    <div class:list={['theme-light', 'flex']}>
+      <section
+        class:list={[
+          'fixed',
+          'left-0',
+          'top-0',
+          'p-4',
+          'bg-gray-800',
+          'text-white',
+        ]}
+      >
+        <Menu />
+      </section>
+      <main class:list={['flex-grow', 'mx-auto', 'max-w-screen-xl', 'p-8']}>
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
 
 <style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
-
   html {
-    font-family: system-ui, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-size: 224px;
-  }
-
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
   }
 </style>

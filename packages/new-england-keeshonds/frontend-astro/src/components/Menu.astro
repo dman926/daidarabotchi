@@ -1,0 +1,23 @@
+---
+const actions = [
+  {
+    text: 'lorem',
+    link: '/#lorem',
+  },
+  { text: 'ipsum', link: '/#ipsum' },
+  {
+    text: 'delorem',
+    link: '/#delorem',
+  },
+];
+---
+
+<ul class="space-y-2">
+  {
+    actions.map((action) => (
+      <li>
+        <a href={action.link}>{action.text}</a>
+      </li>
+    ))
+  }
+</ul>
